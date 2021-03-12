@@ -8,9 +8,14 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Tween",
+"class": "CurveTween",
+"language": "GDScript",
+"path": "res://godot_tools/CurveTween/CurveTween.gd"
+} ]
 _global_script_class_icons={
-
+"CurveTween": ""
 }
 
 [application]
