@@ -8,6 +8,7 @@
 [node name="player" groups=[
 "player",
 ] instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="camera" parent="." index="1" instance=ExtResource( 3 )]

@@ -14,12 +14,9 @@ var _path:Array = []
 var _last_facing_direction:Vector3 = Vector3.ZERO
 
 func calculate_move_direction() -> Vector3:
+	print(STATES.keys()[_current_state])
 	match _current_state:
 		STATES.IDLE: 
-#			if randf() > 0.99:
-#				_current_state = STATES.SEARCHING
-#				_get_path()
-#				print(_path)
 			return Vector3.ZERO
 		STATES.SEARCHING:
 			if not _path.empty():
@@ -30,6 +27,9 @@ func calculate_move_direction() -> Vector3:
 				_current_state = STATES.IDLE
 				return Vector3.ZERO
 		STATES.TRACKING_PLAYER:
+			if not _has_line_of_sight_to_player():
+				_get_path()
+				_current_state = STATES.SEARCHING
 			return _calculate_direction_to_player()
 		_: return Vector3.ZERO
 
@@ -47,7 +47,7 @@ func _calculate_direction_to_player() -> Vector3:
 
 
 func _get_path() -> void:
-	_path = owner.calculate_path(global_transform.origin, Vector3(rand_range(-40,40), 0, rand_range(-40,40)))
+	_path = owner.calculate_path(global_transform.origin, _player.global_transform.origin)
 
 
 func _calculate_direction_to_next_path_point() -> Vector3:
@@ -64,6 +64,7 @@ func _calculate_direction_to_point(point:Vector3) -> Vector3:
 	direction.y = 0
 	return direction.normalized()
 
+
 func _face_move_direction(move_direction:Vector3) -> void:
 	if move_direction != Vector3.ZERO:
 		_last_facing_direction = lerp(_last_facing_direction, move_direction, 0.05)
@@ -78,8 +79,20 @@ func _face_move_direction(move_direction:Vector3) -> void:
 
 func detected_body(body:KinematicBody):
 	if not body: return
-	if body.is_in_group('player'):
+	if body.is_in_group('player') and _has_line_of_sight_to_player():
+		_path.clear()
 		_current_state = STATES.TRACKING_PLAYER
+
+
+func _has_line_of_sight_to_player() -> bool:
+	$PlayerLineOfSight.enabled = true
+	$PlayerLineOfSight.cast_to = _player.global_transform.origin - global_transform.origin
+	$PlayerLineOfSight.force_raycast_update()
+	if $PlayerLineOfSight.is_colliding():
+		if $PlayerLineOfSight.get_collider().is_in_group('player'):
+			return true
+	$PlayerLineOfSight.enabled = false
+	return false
 
 
 func damage(amount:int) -> void:
