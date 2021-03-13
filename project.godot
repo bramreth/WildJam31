@@ -30,6 +30,14 @@ config/name="WildJam31"
 run/main_scene="res://scenes/enviornments/Playground.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Game="*res://globals/Game.gd"
+System="*res://globals/System.gd"
+Event="*res://globals/Event.gd"
+ThreadUtils="*res://globals/ThreadUtils.gd"
+Scene="*res://globals/Scene.gd"
+
 [display]
 
 window/size/width=1920

@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/ui/audio_settings.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/akira_medium.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/akira_large.tres" type="DynamicFont" id=3]
+
+[node name="root" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="."]
+margin_right = 1920.0
+margin_bottom = 63.0
+custom_fonts/font = ExtResource( 3 )
+text = "Settings
+"
+
+[node name="master_volume" type="HBoxContainer" parent="."]
+margin_top = 67.0
+margin_right = 1920.0
+margin_bottom = 107.0
+
+[node name="label" type="Label" parent="master_volume"]
+margin_top = 11.0
+margin_right = 190.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "Master Volume"
+
+[node name="toggle" type="CheckButton" parent="master_volume"]
+margin_left = 194.0
+margin_right = 270.0
+margin_bottom = 40.0
+
+[node name="master_volume_slider" type="HScrollBar" parent="."]
+margin_top = 111.0
+margin_right = 1920.0
+margin_bottom = 123.0
+max_value = 1.0
+
+[node name="background_volume" type="HBoxContainer" parent="."]
+margin_top = 127.0
+margin_right = 1920.0
+margin_bottom = 167.0
+
+[node name="label" type="Label" parent="background_volume"]
+margin_top = 11.0
+margin_right = 248.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "Background Volume"
+
+[node name="toggle" type="CheckButton" parent="background_volume"]
+margin_left = 252.0
+margin_right = 328.0
+margin_bottom = 40.0
+
+[node name="background_volume_slider" type="HScrollBar" parent="."]
+margin_top = 171.0
+margin_right = 1920.0
+margin_bottom = 183.0
+max_value = 1.0
+
+[node name="sfx_volume" type="HBoxContainer" parent="."]
+margin_top = 187.0
+margin_right = 1920.0
+margin_bottom = 227.0
+
+[node name="label" type="Label" parent="sfx_volume"]
+margin_top = 11.0
+margin_right = 143.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "Sfx Volume"
+
+[node name="toggle" type="CheckButton" parent="sfx_volume"]
+margin_left = 147.0
+margin_right = 223.0
+margin_bottom = 40.0
+
+[node name="sfx_volume_slider" type="HScrollBar" parent="."]
+margin_top = 231.0
+margin_right = 1920.0
+margin_bottom = 243.0
+max_value = 1.0
+[connection signal="toggled" from="master_volume/toggle" to="." method="_on_master_volume_toggled"]
+[connection signal="value_changed" from="master_volume_slider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="toggled" from="background_volume/toggle" to="." method="_on_background_volume_toggled"]
+[connection signal="value_changed" from="background_volume_slider" to="." method="_on_background_volume_slider_value_changed"]
+[connection signal="toggled" from="sfx_volume/toggle" to="." method="_on_sfx_toggled"]
+[connection signal="value_changed" from="sfx_volume_slider" to="." method="_on_sfx_volume_slider_value_changed"]
