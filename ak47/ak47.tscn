@@ -220,7 +220,7 @@ tracks/7/keys = {
 } ]
 }
 
-[sub_resource type="Environment" id=4]
+[sub_resource type="Environment" id=3]
 background_color = Color( 0.627451, 0.627451, 0.627451, 1 )
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.15
@@ -229,7 +229,7 @@ tonemap_mode = 3
 glow_enabled = true
 glow_bloom = 0.5
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=4]
 script/source = "extends Spatial
 
 export (PackedScene) var particle
@@ -257,7 +257,7 @@ anims/fire = SubResource( 1 )
 anims/reload = SubResource( 2 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 4 )
+environment = SubResource( 3 )
 
 [node name="ak47" type="Spatial" parent="."]
 transform = Transform( 0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, -7, 0, 0 )
@@ -270,24 +270,24 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 3, 0 )
 [node name="clip" parent="ak47" instance=ExtResource( 2 )]
 
 [node name="click" type="Spatial" parent="ak47"]
-script = SubResource( 5 )
+script = SubResource( 4 )
 particle = ExtResource( 5 )
 queue_count = 4
 
 [node name="spatial_blast_queue" type="Spatial" parent="ak47"]
 transform = Transform( 0.997564, 0.069757, 0, -0.069757, 0.997564, 0, 0, 0, 1, 30.0439, 4.84641, 0 )
-script = SubResource( 5 )
+script = SubResource( 4 )
 particle = ExtResource( 1 )
 queue_count = 16
 
 [node name="flash_queue" type="Spatial" parent="ak47"]
 transform = Transform( 0.997564, 0.069757, 0, -0.069757, 0.997564, 0, 0, 0, 1, 29.9617, 4.6634, 0 )
-script = SubResource( 5 )
+script = SubResource( 4 )
 particle = ExtResource( 3 )
 
 [node name="shell_queue" type="Spatial" parent="ak47"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90731, 6.57994, 1.63172 )
-script = SubResource( 5 )
+script = SubResource( 4 )
 particle = ExtResource( 7 )
 queue_count = 16
 

@@ -1,12 +1,29 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://camera/camera.gd" type="Script" id=2]
+[ext_resource path="res://assets/hitmarker.png" type="Texture" id=3]
+[ext_resource path="res://assets/flat_mark.png" type="Texture" id=4]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
 [sub_resource type="Animation" id=2]
-resource_name = "fade_in"
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.450625, 0.450625 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
@@ -32,7 +49,46 @@ noise = SubResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="juicy_cam"]
 
+[node name="CenterContainer" type="CenterContainer" parent="juicy_cam/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anchor" type="Control" parent="juicy_cam/CanvasLayer/CenterContainer"]
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0
+
+[node name="crosshair" type="Sprite" parent="juicy_cam/CanvasLayer/CenterContainer/anchor"]
+self_modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="juicy_cam/CanvasLayer/CenterContainer/anchor/crosshair"]
+anims/hit = SubResource( 2 )
+
+[node name="cross" type="Node2D" parent="juicy_cam/CanvasLayer/CenterContainer/anchor"]
+
+[node name="l" type="Sprite" parent="juicy_cam/CanvasLayer/CenterContainer/anchor/cross"]
+texture = ExtResource( 4 )
+
+[node name="u" type="Sprite" parent="juicy_cam/CanvasLayer/CenterContainer/anchor/cross"]
+rotation = 1.5708
+texture = ExtResource( 4 )
+
+[node name="r" type="Sprite" parent="juicy_cam/CanvasLayer/CenterContainer/anchor/cross"]
+rotation = -3.14159
+texture = ExtResource( 4 )
+
+[node name="d" type="Sprite" parent="juicy_cam/CanvasLayer/CenterContainer/anchor/cross"]
+rotation = -1.5708
+texture = ExtResource( 4 )
+
 [node name="fader" type="ColorRect" parent="juicy_cam/CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -42,4 +98,4 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="juicy_cam/CanvasLayer/fader"]
-anims/fade_in = SubResource( 2 )
+anims/fade_in = SubResource( 3 )
