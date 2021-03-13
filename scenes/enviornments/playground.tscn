@@ -47,7 +47,7 @@ material/0 = null
 shape = SubResource( 5 )
 
 [node name="player" parent="." index="1" instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.5989, 19.7773 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7821, 12.5989, 22.8304 )
 
 [node name="enemy" parent="." index="2" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.09129, -11.1471 )

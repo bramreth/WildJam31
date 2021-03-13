@@ -16,10 +16,10 @@ var _last_facing_direction:Vector3 = Vector3.ZERO
 func calculate_move_direction() -> Vector3:
 	match _current_state:
 		STATES.IDLE: 
-			if randf() > 0.99:
-				_current_state = STATES.SEARCHING
-				_get_path()
-				print(_path)
+#			if randf() > 0.99:
+#				_current_state = STATES.SEARCHING
+#				_get_path()
+#				print(_path)
 			return Vector3.ZERO
 		STATES.SEARCHING:
 			if not _path.empty():
@@ -37,10 +37,13 @@ func calculate_move_direction() -> Vector3:
 func _calculate_direction_to_player() -> Vector3:
 	var move_direction:Vector3 = _player.global_transform.origin - global_transform.origin 
 	var distance_to_player = move_direction.length()
-	move_direction.y = 0
-	move_direction = move_direction.normalized()
-	_face_move_direction(move_direction)
-	return move_direction
+	if distance_to_player < 4:
+		return Vector3.ZERO
+	else:
+		move_direction.y = 0
+		move_direction = move_direction.normalized()
+		_face_move_direction(move_direction)
+		return move_direction
 
 
 func _get_path() -> void:
@@ -61,7 +64,6 @@ func _calculate_direction_to_point(point:Vector3) -> Vector3:
 	direction.y = 0
 	return direction.normalized()
 
-
 func _face_move_direction(move_direction:Vector3) -> void:
 	if move_direction != Vector3.ZERO:
 		_last_facing_direction = lerp(_last_facing_direction, move_direction, 0.05)
@@ -72,3 +74,16 @@ func _face_move_direction(move_direction:Vector3) -> void:
 			0
 		)
 		$MeshInstance.orthonormalize()
+
+
+func detected_body(body:KinematicBody):
+	if not body: return
+	if body.is_in_group('player'):
+		_current_state = STATES.TRACKING_PLAYER
+
+
+func damage(amount:int) -> void:
+	if dead: return
+	if not _current_state == STATES.TRACKING_PLAYER:
+		_current_state = STATES.TRACKING_PLAYER
+	.damage(amount)

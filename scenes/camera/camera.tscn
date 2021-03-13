@@ -50,7 +50,6 @@ height = 0.2
 albedo_color = Color( 1, 0, 0, 1 )
 
 [node name="cam_container" type="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 script = ExtResource( 2 )
 
 [node name="juicy_cam" type="Camera" parent="."]

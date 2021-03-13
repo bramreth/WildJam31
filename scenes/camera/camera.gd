@@ -55,6 +55,9 @@ func fire_bullet(radius:float) -> void:
 	$juicy_cam/RayCast.force_raycast_update()
 	if $juicy_cam/RayCast.is_colliding():
 		$juicy_cam/RayCast/DebugHitDetector.global_transform.origin = $juicy_cam/RayCast.get_collision_point()
+		var collider = $juicy_cam/RayCast.get_collider()
+		if collider.is_in_group('enemy'):
+			collider.damage(1)
 	$juicy_cam/RayCast.enabled = true
 
 
