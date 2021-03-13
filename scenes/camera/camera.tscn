@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
 [ext_resource path="res://assets/images/hitmarker.png" type="Texture" id=3]
 [ext_resource path="res://assets/images/flat_mark.png" type="Texture" id=4]
 [ext_resource path="res://scenes/prefabs/ak47/ak47.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/prefabs/hud.tscn" type="PackedScene" id=6]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -93,7 +94,10 @@ texture = ExtResource( 4 )
 rotation = -1.5708
 texture = ExtResource( 4 )
 
+[node name="gui" parent="juicy_cam/CanvasLayer" instance=ExtResource( 6 )]
+
 [node name="fader" type="ColorRect" parent="juicy_cam/CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -105,21 +109,9 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="juicy_cam/CanvasLayer/fader"]
 anims/fade_in = SubResource( 3 )
 
-[node name="ViewportContainer" type="ViewportContainer" parent="juicy_cam/CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Viewport" type="Viewport" parent="juicy_cam/CanvasLayer/ViewportContainer"]
-size = Vector2( 1920, 1080 )
-transparent_bg = true
-handle_input_locally = false
-render_target_update_mode = 3
-
 [node name="gun" parent="juicy_cam" instance=ExtResource( 5 )]
 transform = Transform( -0.0118058, 0.00042665, 0.0485844, 0.00210992, 0.0499554, 7.4012e-05, -0.0485405, 0.00206766, -0.0118133, 1.47358, -0.844503, -1.68106 )
 spread_curve = SubResource( 4 )
 [connection signal="fired" from="juicy_cam/gun" to="." method="_on_gun_fired"]
+[connection signal="reload" from="juicy_cam/gun" to="." method="_on_gun_reload"]
 [connection signal="spread" from="juicy_cam/gun" to="." method="_on_gun_spread"]

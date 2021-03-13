@@ -218,6 +218,20 @@ tracks/7/keys = {
 "method": "trigger"
 } ]
 }
+tracks/8/type = "method"
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.425 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reset_ammo"
+} ]
+}
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Spatial
@@ -247,7 +261,7 @@ anims/fire = SubResource( 1 )
 anims/reload = SubResource( 2 )
 
 [node name="ak47" type="Spatial" parent="."]
-transform = Transform( 0.994522, -0.104528, 0, 0.104528, 0.994522, 0, 0, 0, 1, -4, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1 )
 
 [node name="ak_back" parent="ak47" instance=ExtResource( 6 )]
 
