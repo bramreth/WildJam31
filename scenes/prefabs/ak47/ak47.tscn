@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/particles/shot.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/kenshapes/clip.glb" type="PackedScene" id=2]
 [ext_resource path="res://scenes/particles/muzle_flash.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/kenshapes/akbarrel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/particles/click.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/kenshapes/ak_back.glb" type="PackedScene" id=6]
 [ext_resource path="res://scenes/particles/shell.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/prefabs/ak47/gun_test.gd" type="Script" id=8]
+[ext_resource path="res://scenes/prefabs/clip.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fire"
@@ -233,6 +233,229 @@ tracks/8/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=4]
+resource_name = "reload (copy)"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("ak47:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 0.594604, 0.594604, 0.594604 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 2, 1, 1 ), Vector3( 2, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ak47:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 0.594604, 0.594604, 0.594604 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -20, 90 ), Vector3( 0, 0, 90 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ak47:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 0.594604, 0.594604, 0.5 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1.5, 1, 1 ), Vector3( 1.5, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ak47/clip:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.3 ),
+"transitions": PoolRealArray( 0.45, 0.45, 0.45, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 8.65247, -18.8225, -4.91926 ), Vector3( 2.81121, 0, -43.2237 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ak47/clip:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.3 ),
+"transitions": PoolRealArray( 0.45, 0.45, 0.45, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 80, 0, 0 ), Vector3( 48.314, -4.06586e-06, -70 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ak47/clip:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.3 ),
+"transitions": PoolRealArray( 0.45, 0.45, 0.45, 0.45 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1.5, 1.5, 1.5 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ak47/clip:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("ak47/clip/animclip")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = false
+tracks/7/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "tuck_ammo"
+}, {
+"args": [ true ],
+"method": "show_ammo"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "reload (copy) (copy)"
+length = 0.6
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("ak47:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.275, 0.525, 0.6 ),
+"transitions": PoolRealArray( 0.594604, 0.594604, 0.594604, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 2, 1, 1 ), Vector3( 2, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ak47:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.275, 0.525, 0.6 ),
+"transitions": PoolRealArray( 0.594604, 0.594604, 0.594604, 0.535887, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -20, 90 ), Vector3( 0, 0, 90 ), Vector3( 0, 0, 375 ), Vector3( 0, 0, 360 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ak47:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.275, 0.525, 0.6 ),
+"transitions": PoolRealArray( 0.594604, 0.594604, 0.594604, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1.5, 1, 1 ), Vector3( 1.5, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ak47/clip:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.225, 0.4, 0.5, 0.575 ),
+"transitions": PoolRealArray( 0.450625, 0.450625, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 8.65247, -18.8225, -4.91926 ), Vector3( -29.9457, 7.51019e-06, -7.47583 ), Vector3( 0, 0, -7.47583 ), Vector3( 0, 0, -7.47583 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ak47/clip:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.225, 0.4, 0.5, 0.575 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 80, 0, 0 ), Vector3( 20, 0, -30 ), Vector3( 20, 0, -30 ), Vector3( 20, 0, -30 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ak47/clip:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.225, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1.5, 1.5, 1.5 ), Vector3( 2, 1, 2 ), Vector3( 2, 1, 2 ), Vector3( 2, 1, 2 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ak47/clip:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.225, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("ak47/click")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.575 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "trigger"
+} ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.425 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "reset_ammo"
+} ]
+}
+
 [sub_resource type="GDScript" id=3]
 script/source = "extends Spatial
 
@@ -259,6 +482,8 @@ script = ExtResource( 8 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fire = SubResource( 1 )
 anims/reload = SubResource( 2 )
+"anims/reload (copy)" = SubResource( 4 )
+"anims/reload (copy) (copy)" = SubResource( 5 )
 
 [node name="ak47" type="Spatial" parent="."]
 transform = Transform( 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, -7, 0, 0 )
@@ -268,7 +493,11 @@ transform = Transform( 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, -
 [node name="Spatial" parent="ak47" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 3, 0 )
 
-[node name="clip" parent="ak47" instance=ExtResource( 2 )]
+[node name="clip" type="Spatial" parent="ak47"]
+
+[node name="animclip" parent="ak47/clip" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+script = null
 
 [node name="click" type="Spatial" parent="ak47"]
 script = SubResource( 3 )

@@ -16,7 +16,6 @@ func _ready():
 	
 func _input(event):
 	pass
-#		$juicy_cam/CanvasLayer/CenterContainer/anchor/crosshair/AnimationPlayer.play("hit")
 #		spread = spread + 30.0
 #		$juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees += 22
 #		spread(spread)
@@ -57,6 +56,7 @@ func fire_bullet(radius:float) -> void:
 		$juicy_cam/RayCast/DebugHitDetector.global_transform.origin = $juicy_cam/RayCast.get_collision_point()
 		var collider = $juicy_cam/RayCast.get_collider()
 		if collider.is_in_group('enemy'):
+			$juicy_cam/CanvasLayer/CenterContainer/anchor/crosshair/AnimationPlayer.play("hit")
 			collider.damage(1)
 	$juicy_cam/RayCast.enabled = true
 
