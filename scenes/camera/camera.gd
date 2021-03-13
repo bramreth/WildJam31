@@ -48,6 +48,10 @@ func _on_gun_spread(amount):
 	spread(amount)
 
 
-func _on_gun_fired():
+func _on_gun_fired(ammo):
 	print("fired")
+	$juicy_cam/CanvasLayer/gui/ammo.text = str(ammo)
 	add_trauma(0.1)
+
+func _on_gun_reload():
+	$juicy_cam/CanvasLayer/gui/clipflat/AnimationPlayer.play("reload")
