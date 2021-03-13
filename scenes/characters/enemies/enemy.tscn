@@ -29,12 +29,15 @@ transform = Transform( 1, 0, 0, 0, 1, -2.84217e-14, 0, 2.84217e-14, 1, 0, -0.936
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="DetectionArea" type="Area" parent="." index="2"]
+[node name="DetectionArea" type="Area" parent="MeshInstance" index="1"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="DetectionArea" index="0"]
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/DetectionArea" index="0"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.5, 12.5 )
 shape = SubResource( 4 )
 __meta__ = {
 "_editor_description_": ""
 }
-[connection signal="body_entered" from="DetectionArea" to="." method="detected_body"]
+
+[node name="PlayerLineOfSight" type="RayCast" parent="." index="2"]
+[connection signal="body_entered" from="MeshInstance/DetectionArea" to="." method="detected_body"]
