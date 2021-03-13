@@ -13,14 +13,21 @@ _global_script_classes=[ {
 "class": "CurveTween",
 "language": "GDScript",
 "path": "res://godot_tools/CurveTween/CurveTween.gd"
+}, {
+"base": "Spatial",
+"class": "Level",
+"language": "GDScript",
+"path": "res://scenes/enviornments/Level.gd"
 } ]
 _global_script_class_icons={
-"CurveTween": ""
+"CurveTween": "",
+"Level": ""
 }
 
 [application]
 
 config/name="WildJam31"
+run/main_scene="res://scenes/enviornments/Playground.tscn"
 config/icon="res://icon.png"
 
 [display]
