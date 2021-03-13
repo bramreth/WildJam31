@@ -2,7 +2,7 @@ extends Spatial
 
 var spread = 1.0 
 
-func add_trauma(trauma_in: int):
+func add_trauma(trauma_in: float):
 	$juicy_cam.add_trauma(trauma_in)
 	
 func fade_in():
@@ -15,16 +15,13 @@ func _ready():
 	fade_in()
 	
 func _input(event):
-	if Input.is_action_just_pressed("ui_cancel"):
-		fade_out()
-	if Input.is_action_just_pressed("click"):
+	pass
 #		$juicy_cam/CanvasLayer/CenterContainer/anchor/crosshair/AnimationPlayer.play("hit")
-		spread = spread + 30.0
+#		spread = spread + 30.0
 #		$juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees += 22
-		spread(spread)
+#		spread(spread)
 
 func _physics_process(delta):
-	spread = lerp(spread, 1.0, delta * 2)
 	var rot = $juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees
 #	var targ = (1 + floor($juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees/ 90)) * 90
 #
@@ -33,7 +30,6 @@ func _physics_process(delta):
 #		targ,
 #		delta * 2
 #	)
-	spread(spread)
 
 func spread(radius: float):
 	var l = $juicy_cam/CanvasLayer/CenterContainer/anchor/cross/l
@@ -46,3 +42,12 @@ func spread(radius: float):
 	d.position.y = radius
 #	cross.scale = Vector2(radius, radius)
 
+
+
+func _on_gun_spread(amount):
+	spread(amount)
+
+
+func _on_gun_fired():
+	print("fired")
+	add_trauma(0.1)

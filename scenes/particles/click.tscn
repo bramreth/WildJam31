@@ -18,7 +18,6 @@ gravity = Vector3( 0, -333, 0 )
 initial_velocity = 80.0
 initial_velocity_random = 0.5
 angular_velocity_random = 1.0
-scale = 0.5
 scale_random = 1.0
 scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
@@ -34,11 +33,11 @@ emission_on_uv2 = false
 material = SubResource( 6 )
 
 [node name="click" type="Particles"]
-transform = Transform( -0.209859, 0.0772624, 0.974674, 0.369619, 0.929165, 0.00592842, -0.905175, 0.361502, -0.223551, 4.05312e-06, 5.18176, 0 )
+transform = Transform( 0.473272, -0.193749, 0.859346, 0.369619, 0.929165, 0.00592842, -0.799623, 0.314825, 0.51136, 4.05312e-06, 5.18176, 0 )
 emitting = false
 amount = 3
 one_shot = true
+speed_scale = 2.0
 explosiveness = 1.0
-local_coords = false
 process_material = SubResource( 5 )
 draw_pass_1 = SubResource( 7 )
