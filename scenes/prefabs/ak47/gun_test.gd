@@ -12,6 +12,7 @@ signal spread(amount)
 signal fired(ammo)
 signal reload()
 
+var out = true
 
 func _process(delta):
 	if not $AnimationPlayer.is_playing():
@@ -34,6 +35,14 @@ func _input(event):
 	if not $AnimationPlayer.is_playing():
 		if Input.is_action_just_pressed("reload"):
 			reload()
+	if Input.is_action_just_pressed("ui_end"):
+		out = not out
+		if out:
+			$AnimationPlayer.play_backwards("reload (copy)")
+			$ak47/clip/animclip/AnimationPlayer.play_backwards("show")
+		else:
+			$ak47/clip/animclip/AnimationPlayer.play("show")
+			$AnimationPlayer.play("reload (copy)")
 			
 
 func drain_ammo():
