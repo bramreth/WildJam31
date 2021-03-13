@@ -9,7 +9,8 @@ var ammo = 30
 var max_ammo = 30
 
 signal spread(amount)
-signal fired(ammo, spread)
+signal fired()
+signal update_ammo(ammo, spread)
 signal reload()
 
 var out = true
@@ -22,7 +23,8 @@ func _process(delta):
 				return
 			$AnimationPlayer.play("fire")
 			drain_ammo()
-			emit_signal("fired", ammo, spread)
+			emit_signal("update_ammo", ammo, spread)
+			emit_signal("fired")
 			bullet_spread()
 		$ak47.translation = $ak47.translation.linear_interpolate(Vector3.ZERO, delta * 5)
 		$ak47.rotation_degrees.x = lerp_angle($ak47.rotation_degrees.x, 0, delta * 5)
@@ -58,4 +60,4 @@ func reload():
 		
 func reset_ammo():
 	ammo = max_ammo
-	emit_signal("fired", ammo, spread)
+	emit_signal("update_ammo", ammo, spread)

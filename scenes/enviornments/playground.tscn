@@ -53,5 +53,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7821, 12.5989, 22.8304 )
 [node name="enemy" parent="." index="2" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.09129, -11.1471 )
 
-[node name="enemy2" parent="." index="3" instance=ExtResource( 5 )]
+[node name="slimeenemy" parent="." index="3" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3447, 6.0676, -13.1404 )

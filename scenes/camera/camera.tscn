@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://assets/images/flat_mark.png" type="Texture" id=4]
 [ext_resource path="res://scenes/prefabs/ak47/ak47.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/prefabs/hud.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/particles/spatial_pqueue.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/particles/hit.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/particles/cloud.tscn" type="PackedScene" id=9]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -76,7 +79,6 @@ margin_right = 960.0
 margin_bottom = 540.0
 
 [node name="crosshair" type="Sprite" parent="juicy_cam/CanvasLayer/CenterContainer/anchor"]
-self_modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
@@ -124,8 +126,18 @@ cast_to = Vector3( 0, 0, -100 )
 
 [node name="DebugHitDetector" type="MeshInstance" parent="juicy_cam/RayCast"]
 transform = Transform( 1, 0, 1.49012e-08, 0, 1, 0, -1.49012e-08, 0, 1, 0, 0, 0 )
+layers = 0
 mesh = SubResource( 5 )
 material/0 = SubResource( 6 )
+
+[node name="spatial_pqueue" parent="juicy_cam/RayCast/DebugHitDetector" instance=ExtResource( 7 )]
+particle = ExtResource( 8 )
+queue_count = 16
+
+[node name="spatial_pqueue_cloud" parent="juicy_cam/RayCast/DebugHitDetector" instance=ExtResource( 7 )]
+particle = ExtResource( 9 )
+queue_count = 16
 [connection signal="fired" from="juicy_cam/gun" to="." method="_on_gun_fired"]
 [connection signal="reload" from="juicy_cam/gun" to="." method="_on_gun_reload"]
 [connection signal="spread" from="juicy_cam/gun" to="." method="_on_gun_spread"]
+[connection signal="update_ammo" from="juicy_cam/gun" to="." method="_on_gun_update_ammo"]

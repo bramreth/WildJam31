@@ -54,18 +54,25 @@ func fire_bullet(radius:float) -> void:
 	$juicy_cam/RayCast.force_raycast_update()
 	if $juicy_cam/RayCast.is_colliding():
 		$juicy_cam/RayCast/DebugHitDetector.global_transform.origin = $juicy_cam/RayCast.get_collision_point()
+		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue.trigger()
 		var collider = $juicy_cam/RayCast.get_collider()
+		var norm = $juicy_cam/RayCast.get_collision_normal()
+		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_cloud.look_at(norm, Vector3(0,1,0))
+		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_cloud.trigger()
 		if collider.is_in_group('enemy'):
 			$juicy_cam/CanvasLayer/CenterContainer/anchor/crosshair/AnimationPlayer.play("hit")
 			collider.damage(1)
 	$juicy_cam/RayCast.enabled = true
 
 
-func _on_gun_fired(ammo, spread):
+func _on_gun_fired():
 	print("fired")
 	fire_bullet(spread)
-	$juicy_cam/CanvasLayer/gui/ammo.text = str(ammo)
 	add_trauma(0.1)
 
 func _on_gun_reload():
 	$juicy_cam/CanvasLayer/gui/clipflat/AnimationPlayer.play("reload")
+
+
+func _on_gun_update_ammo(ammo, spread):
+	$juicy_cam/CanvasLayer/gui/ammo.text = str(ammo)
