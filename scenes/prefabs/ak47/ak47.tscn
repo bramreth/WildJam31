@@ -486,7 +486,7 @@ anims/reload = SubResource( 2 )
 "anims/reload (copy) (copy)" = SubResource( 5 )
 
 [node name="ak47" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1 )
+transform = Transform( 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, -7, 0, 0 )
 
 [node name="ak_back" parent="ak47" instance=ExtResource( 6 )]
 

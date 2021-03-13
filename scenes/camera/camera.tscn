@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
@@ -42,8 +42,14 @@ tracks/0/keys = {
 [sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0 ), 0.0, 3.0344, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
+[sub_resource type="SphereMesh" id=5]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 1, 0, 0, 1 )
+
 [node name="cam_container" type="Spatial"]
-transform = Transform( -0.201762, 0, -0.979435, 0, 1, 0, 0.979435, 0, -0.201762, -23.3319, 13.3944, -18.8764 )
 script = ExtResource( 2 )
 
 [node name="juicy_cam" type="Camera" parent="."]
@@ -112,6 +118,14 @@ anims/fade_in = SubResource( 3 )
 [node name="gun" parent="juicy_cam" instance=ExtResource( 5 )]
 transform = Transform( -0.0118058, 0.00042665, 0.0485844, 0.00210992, 0.0499554, 7.4012e-05, -0.0485405, 0.00206766, -0.0118133, 1.47358, -0.844503, -1.68106 )
 spread_curve = SubResource( 4 )
+
+[node name="RayCast" type="RayCast" parent="juicy_cam"]
+cast_to = Vector3( 0, 0, -100 )
+
+[node name="DebugHitDetector" type="MeshInstance" parent="juicy_cam/RayCast"]
+transform = Transform( 1, 0, 1.49012e-08, 0, 1, 0, -1.49012e-08, 0, 1, 0, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
 [connection signal="fired" from="juicy_cam/gun" to="." method="_on_gun_fired"]
 [connection signal="reload" from="juicy_cam/gun" to="." method="_on_gun_reload"]
 [connection signal="spread" from="juicy_cam/gun" to="." method="_on_gun_spread"]

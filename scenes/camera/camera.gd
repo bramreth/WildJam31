@@ -43,13 +43,27 @@ func spread(radius: float):
 #	cross.scale = Vector2(radius, radius)
 
 
-
 func _on_gun_spread(amount):
 	spread(amount)
 
 
-func _on_gun_fired(ammo):
+func fire_bullet(radius:float) -> void:
+	var x:float = rand_range(0, radius*10) * sin(rand_range(0, 2 * PI))
+	var y:float = rand_range(0, radius*10) * cos(rand_range(0, 2 * PI))
+	$juicy_cam/RayCast.enabled = true
+	$juicy_cam/RayCast.cast_to = Vector3(x,y,-100)
+	$juicy_cam/RayCast.force_raycast_update()
+	if $juicy_cam/RayCast.is_colliding():
+		$juicy_cam/RayCast/DebugHitDetector.global_transform.origin = $juicy_cam/RayCast.get_collision_point()
+		var collider = $juicy_cam/RayCast.get_collider()
+		if collider.is_in_group('enemy'):
+			collider.damage(1)
+	$juicy_cam/RayCast.enabled = true
+
+
+func _on_gun_fired(ammo, spread):
 	print("fired")
+	fire_bullet(spread)
 	$juicy_cam/CanvasLayer/gui/ammo.text = str(ammo)
 	add_trauma(0.1)
 
