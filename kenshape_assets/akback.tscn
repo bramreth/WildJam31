@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://kenshape_assets/ak_back.glb" type="PackedScene" id=1]
+
+[node name="akback" type="Spatial"]
+
+[node name="ak_back" parent="." instance=ExtResource( 1 )]

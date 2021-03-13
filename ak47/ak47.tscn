@@ -1,0 +1,314 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://particles/shot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://kenshape_assets/clip.glb" type="PackedScene" id=2]
+[ext_resource path="res://particles/muzle_flash.tscn" type="PackedScene" id=3]
+[ext_resource path="res://kenshape_assets/akbarrel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://particles/click.tscn" type="PackedScene" id=5]
+[ext_resource path="res://kenshape_assets/ak_back.glb" type="PackedScene" id=6]
+[ext_resource path="res://particles/shell.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ak47/gun_test.gd" type="Script" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fire"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("ak47/OmniLight:omni_range")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 2.14355, 1 ),
+"update": 0,
+"values": [ 44.0, 0.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("ak47/spatial_blast_queue")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "trigger"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ak47/OmniLight2:omni_range")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 12.0, 0.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("ak47/flash_queue")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "trigger"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ak47:translation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -7, 0, 0 ), Vector3( -4, 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ak47:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 10 ), Vector3( 0, 0, 6 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ak47:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("ak47/shell_queue")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "trigger"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "reload"
+length = 0.6
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("ak47:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.275, 0.525, 0.6 ),
+"transitions": PoolRealArray( 0.594604, 0.594604, 0.594604, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 2, 1, 1 ), Vector3( 2, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ak47:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.275, 0.525, 0.6 ),
+"transitions": PoolRealArray( 0.594604, 0.594604, 0.594604, 0.535887, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -20, 90 ), Vector3( 0, 0, 90 ), Vector3( 0, 0, 375 ), Vector3( 0, 0, 360 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ak47:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.275, 0.525, 0.6 ),
+"transitions": PoolRealArray( 0.594604, 0.594604, 0.594604, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1.5, 1, 1 ), Vector3( 1.5, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ak47/clip:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.225, 0.4, 0.5, 0.575 ),
+"transitions": PoolRealArray( 0.450625, 0.450625, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 8.65247, -18.8225, -4.91926 ), Vector3( -29.9457, 7.51019e-06, -7.47583 ), Vector3( 0, 0, -7.47583 ), Vector3( 0, 0, -7.47583 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ak47/clip:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.225, 0.4, 0.5, 0.575 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 80, 0, 0 ), Vector3( 20, 0, -30 ), Vector3( 20, 0, -30 ), Vector3( 20, 0, -30 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ak47/clip:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.225, 0.4, 0.5, 0.575 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 1.5, 1.5, 1.5 ), Vector3( 2, 1, 2 ), Vector3( 2, 1, 2 ), Vector3( 2, 1, 2 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("ak47/clip:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.225, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("ak47/click")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.575 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "trigger"
+} ]
+}
+
+[sub_resource type="Environment" id=3]
+background_color = Color( 0.627451, 0.627451, 0.627451, 1 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.15
+ambient_light_sky_contribution = 0.15
+tonemap_mode = 3
+glow_enabled = true
+glow_bloom = 0.5
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Spatial
+
+export (PackedScene) var particle
+export (int) var queue_count = 8
+
+var index = 0
+
+func _ready():
+	for _i in range(queue_count):
+		add_child(particle.instance())
+		
+func get_next_particle():
+	return get_child(index)
+	
+func trigger():
+	get_next_particle().restart()
+	index = (index + 1) % queue_count
+"
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fire = SubResource( 1 )
+anims/reload = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.201762, 0, -0.979435, 0, 1, 0, 0.979435, 0, -0.201762, -23.3319, 13.3944, -18.8764 )
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 3 )
+
+[node name="ak47" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1 )
+
+[node name="ak_back" parent="ak47" instance=ExtResource( 6 )]
+
+[node name="Spatial" parent="ak47" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 3, 0 )
+
+[node name="clip" parent="ak47" instance=ExtResource( 2 )]
+
+[node name="click" type="Spatial" parent="ak47"]
+script = SubResource( 4 )
+particle = ExtResource( 5 )
+queue_count = 4
+
+[node name="spatial_blast_queue" type="Spatial" parent="ak47"]
+transform = Transform( 0.997564, 0.069757, 0, -0.069757, 0.997564, 0, 0, 0, 1, 30.0439, 4.84641, 0 )
+script = SubResource( 4 )
+particle = ExtResource( 1 )
+queue_count = 16
+
+[node name="flash_queue" type="Spatial" parent="ak47"]
+transform = Transform( 0.997564, 0.069757, 0, -0.069757, 0.997564, 0, 0, 0, 1, 29.9617, 4.6634, 0 )
+script = SubResource( 4 )
+particle = ExtResource( 3 )
+
+[node name="shell_queue" type="Spatial" parent="ak47"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90731, 6.57994, 1.63172 )
+script = SubResource( 4 )
+particle = ExtResource( 7 )
+queue_count = 16
+
+[node name="OmniLight" type="OmniLight" parent="ak47"]
+transform = Transform( 0.997564, 0.0697569, 0, -0.0697569, 0.997564, 0, 0, 0, 1, 38.4582, 13.8383, 0.0206146 )
+light_color = Color( 1, 0.631373, 0, 1 )
+light_energy = 50.0
+light_indirect_energy = 50.0
+light_specular = 0.0
+omni_range = 0.0
+omni_attenuation = 0.707104
+
+[node name="OmniLight2" type="OmniLight" parent="ak47"]
+transform = Transform( 0.997564, 0.0697569, 0, -0.0697569, 0.997564, 0, 0, 0, 1, 41.9971, 14.2871, 0.0206146 )
+light_energy = 100.0
+light_indirect_energy = 100.0
+light_specular = 0.0
+omni_range = 0.0
+omni_attenuation = 0.707104
