@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://camera/juicy_cam.gd" type="Script" id=1]
-[ext_resource path="res://camera/camera.gd" type="Script" id=2]
-[ext_resource path="res://assets/hitmarker.png" type="Texture" id=3]
-[ext_resource path="res://assets/flat_mark.png" type="Texture" id=4]
+[ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
+[ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
+[ext_resource path="res://assets/images/hitmarker.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/flat_mark.png" type="Texture" id=4]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -57,10 +57,10 @@ __meta__ = {
 }
 
 [node name="anchor" type="Control" parent="juicy_cam/CanvasLayer/CenterContainer"]
-margin_left = 512.0
-margin_top = 300.0
-margin_right = 512.0
-margin_bottom = 300.0
+margin_left = 960.0
+margin_top = 540.0
+margin_right = 960.0
+margin_bottom = 540.0
 
 [node name="crosshair" type="Sprite" parent="juicy_cam/CanvasLayer/CenterContainer/anchor"]
 self_modulate = Color( 1, 1, 1, 0 )

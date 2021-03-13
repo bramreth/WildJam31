@@ -22,14 +22,10 @@ func _input(event):
 		spread = spread + 30.0
 #		$juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees += 22
 		spread(spread)
-		
-		
 
 func _physics_process(delta):
 	spread = lerp(spread, 1.0, delta * 2)
 	var rot = $juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees
-		
-	
 #	var targ = (1 + floor($juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees/ 90)) * 90
 #
 #	$juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees = lerp(
@@ -38,7 +34,7 @@ func _physics_process(delta):
 #		delta * 2
 #	)
 	spread(spread)
-	
+
 func spread(radius: float):
 	var l = $juicy_cam/CanvasLayer/CenterContainer/anchor/cross/l
 	var u = $juicy_cam/CanvasLayer/CenterContainer/anchor/cross/u
@@ -49,5 +45,4 @@ func spread(radius: float):
 	r.position.x = radius
 	d.position.y = radius
 #	cross.scale = Vector2(radius, radius)
-	pass	
-	
+
