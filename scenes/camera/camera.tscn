@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://scenes/particles/hit.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/particles/cloud.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/camera/PauseMenu.gd" type="Script" id=10]
+[ext_resource path="res://assets/fonts/Akira Expanded Demo.otf" type="DynamicFontData" id=11]
+[ext_resource path="res://assets/fonts/pause_menu_buttons.tres" type="DynamicFont" id=12]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -45,6 +47,7 @@ tracks/0/keys = {
 
 [sub_resource type="DynamicFont" id=4]
 size = 64
+font_data = ExtResource( 11 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "pause"
@@ -239,6 +242,7 @@ margin_top = -140.0
 margin_right = -2460.0
 margin_bottom = -39.9999
 rect_min_size = Vector2( 500, 100 )
+custom_fonts/font = ExtResource( 12 )
 text = "Continue"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -254,6 +258,7 @@ margin_top = -20.0
 margin_right = -2460.0
 margin_bottom = 80.0002
 rect_min_size = Vector2( 500, 100 )
+custom_fonts/font = ExtResource( 12 )
 text = "Settings"
 
 [node name="Reset" type="Button" parent="juicy_cam/CanvasLayer/PauseMenu"]
@@ -262,6 +267,7 @@ margin_top = 640.0
 margin_right = -1500.0
 margin_bottom = 740.0
 rect_min_size = Vector2( 500, 100 )
+custom_fonts/font = ExtResource( 12 )
 text = "Reset"
 
 [node name="Quit" type="Button" parent="juicy_cam/CanvasLayer/PauseMenu"]
@@ -270,6 +276,7 @@ margin_top = 760.0
 margin_right = -1500.0
 margin_bottom = 860.0
 rect_min_size = Vector2( 500, 100 )
+custom_fonts/font = ExtResource( 12 )
 text = "Quit"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="juicy_cam/CanvasLayer/PauseMenu"]
