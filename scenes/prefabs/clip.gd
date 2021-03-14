@@ -4,6 +4,8 @@ var ammo_types = []
 var ammo_index  = 0
 var ammo = null
 
+signal init()
+
 func swap_ammo(forward: bool):
 	if ammo: ammo.visible = false
 	if forward:

@@ -18,6 +18,9 @@ signal change_ammo_type(ammo_ref)
 
 var out = false
 
+func _ready():
+	load_ammo_data()
+
 func _process(delta):
 	if not $AnimationPlayer.is_playing() and not out:
 		if Input.is_action_pressed("click"):
