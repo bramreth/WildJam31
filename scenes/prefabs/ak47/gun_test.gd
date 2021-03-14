@@ -8,10 +8,13 @@ var spread_decay = 0.04
 var ammo = 30
 var max_ammo = 30
 
+var selected_ammo
+
 signal spread(amount)
 signal fired()
 signal update_ammo(ammo, spread)
 signal reload()
+signal change_ammo_type(ammo_ref)
 
 var out = false
 
@@ -56,6 +59,14 @@ func shut_ammo_view():
 	$AnimationPlayer.play_backwards("reload (copy)")
 	$ak47/clip/animclip/AnimationPlayer.play_backwards("show")
 	out = false
+	#TODO get the current ammo type
+	load_ammo_data()
+	spread = clamp(spread - 0.2, 0, 1)
+	reset_ammo()
+
+func load_ammo_data():
+	selected_ammo = $ak47/clip/animclip.get_ammo_data()
+	emit_signal("change_ammo_type", selected_ammo)
 
 func drain_ammo():
 	ammo = clamp(ammo -1, 0, max_ammo)

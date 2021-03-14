@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/camera/PauseMenu.gd" type="Script" id=10]
 [ext_resource path="res://assets/fonts/Akira Expanded Demo.otf" type="DynamicFontData" id=11]
 [ext_resource path="res://assets/fonts/pause_menu_buttons.tres" type="DynamicFont" id=12]
+[ext_resource path="res://scenes/particles/sprite.tscn" type="PackedScene" id=13]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 
@@ -302,10 +303,15 @@ queue_count = 16
 [node name="spatial_pqueue_cloud" parent="juicy_cam/RayCast/DebugHitDetector" instance=ExtResource( 7 )]
 particle = ExtResource( 9 )
 queue_count = 16
+
+[node name="spatial_pqueue_sprite" parent="juicy_cam/RayCast/DebugHitDetector" instance=ExtResource( 7 )]
+particle = ExtResource( 13 )
+queue_count = 16
 [connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Continue" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Continue_pressed"]
 [connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Settings" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Reset" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Reset_pressed"]
 [connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Quit" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Quit_pressed"]
+[connection signal="change_ammo_type" from="juicy_cam/gun" to="." method="_on_gun_change_ammo_type"]
 [connection signal="fired" from="juicy_cam/gun" to="." method="_on_gun_fired"]
 [connection signal="reload" from="juicy_cam/gun" to="." method="_on_gun_reload"]
 [connection signal="spread" from="juicy_cam/gun" to="." method="_on_gun_spread"]

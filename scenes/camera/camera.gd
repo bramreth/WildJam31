@@ -57,8 +57,13 @@ func fire_bullet(radius:float) -> void:
 		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue.trigger()
 		var collider = $juicy_cam/RayCast.get_collider()
 		var norm = $juicy_cam/RayCast.get_collision_normal()
-		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_cloud.look_at(norm, Vector3(0,1,0))
+		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_cloud.get_next_particle().look_at(norm, Vector3(0,1,0))
 		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_cloud.trigger()
+		var sprite = $juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_sprite.get_next_particle()
+		sprite.look_at(norm, Vector3(0,1,0))
+		if am:
+			sprite.draw_pass_1.material.albedo_texture = am
+		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_sprite.trigger()
 		if collider.is_in_group('enemy'):
 			$juicy_cam/CanvasLayer/CenterContainer/anchor/crosshair/AnimationPlayer.play("hit")
 			collider.damage(1)
@@ -76,3 +81,10 @@ func _on_gun_reload():
 
 func _on_gun_update_ammo(ammo, spread):
 	$juicy_cam/CanvasLayer/gui/ammo.text = str(ammo)
+
+var am = null
+
+func _on_gun_change_ammo_type(ammo_ref):
+	am = ammo_ref.icon
+	$juicy_cam/CanvasLayer/gui/ammo_type.texture = ammo_ref.icon
+	$juicy_cam/CanvasLayer/gui/ammo_type/AnimationPlayer.play("set_ammo")

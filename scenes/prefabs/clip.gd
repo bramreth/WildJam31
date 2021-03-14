@@ -33,3 +33,6 @@ func show_ammo(show: bool):
 func tuck_ammo():
 	$ammo_container.visible = false
 	$AnimationPlayer.seek(0, true)
+
+func get_ammo_data():
+	return $ammo_container.get_child(ammo_index)
