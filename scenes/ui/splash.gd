@@ -19,5 +19,4 @@ func _on_animation_player_animation_finished(anim_name):
 
 func _attempt_game_launch():
 	if shown_splash and Game.ready:
-		Scene.change(Scene.MAIN)
-		Game.play_background_audio(Game.AUDIO_TRACK_DEFAULT)
+		Scene.change(Scene.MAIN_MENU)

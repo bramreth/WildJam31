@@ -42,4 +42,5 @@ func _on_Reset_pressed():
 
 
 func _on_Quit_pressed():
-	get_tree().quit()
+	unpause_game()
+	Scene.change(Scene.MAIN_MENU)

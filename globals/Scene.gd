@@ -1,6 +1,6 @@
 extends Node
 
-const MAIN = "res://scenes/ui/menu.tscn"
+const MAIN_MENU = "res://scenes/ui/menu.tscn"
 const PLAYGROUND = "res://scenes/enviornments/playground.tscn"
 
 func init(scene_path:String) -> Node:
