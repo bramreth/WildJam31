@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://kenshape_assets/enemies/we have pac man at home/we have pac man at home.glb" type="PackedScene" id=1]
+[ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
+
+[node name="enemy" instance=ExtResource( 2 )]
+max_health = 2000
+
+[node name="MeshInstance" parent="." index="1"]
+layers = 0
+
+[node name="MeshInstance" parent="MeshInstance" index="0"]
+layers = 0
+
+[node name="we have pac man at home" parent="MeshInstance" index="2" instance=ExtResource( 1 )]
+transform = Transform( 0.1, 0, 0, 0, -1.62921e-08, -0.1, 0, 0.1, -1.62921e-08, 0, 0, 0 )

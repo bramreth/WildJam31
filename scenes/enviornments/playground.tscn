@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/characters/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enviornments/Level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/materials/green_checkered.tres" type="Material" id=3]
 [ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/characters/enemies/slime.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/characters/enemies/ghost.tscn" type="PackedScene" id=6]
 
 [sub_resource type="NavigationMesh" id=1]
 resource_local_to_scene = true
@@ -61,8 +62,15 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7821, 12.5989, 22.8304 )
 [node name="enemy" parent="." index="2" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.09129, -11.1471 )
 
-[node name="slimeenemy" parent="." index="3" instance=ExtResource( 5 )]
+[node name="slimeenemy" parent="." index="3" groups=[
+"character",
+] instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3447, 6.0676, -13.1404 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="4"]
 environment = SubResource( 7 )
+
+[node name="enemy2" parent="." index="5" groups=[
+"character",
+] instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.56953, 0 )

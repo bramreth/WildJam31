@@ -17,6 +17,8 @@ var current_speed:float = speed
 var input_direction:Vector3 = Vector3.ZERO
 var current_snap:Vector3 = SNAP_VECTOR
 
+var frost_speed_mod = 1.0
+
 var _hang_time:float = 0.0
 
 func _ready():
@@ -36,9 +38,9 @@ func _physics_process(_delta: float) -> void:
 		current_snap = SNAP_VECTOR
 		
 	if is_running():
-		current_speed = speed * sprint_speed_modifier
+		current_speed = frost_speed_mod * speed * sprint_speed_modifier
 	else: 
-		current_speed = speed
+		current_speed = frost_speed_mod * speed
 	
 # region stubs
 func calculate_move_direction() -> Vector3:

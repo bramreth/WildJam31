@@ -1,7 +1,7 @@
 extends Spatial
 
 export (Curve) var spread_curve
-var max_spread = 144
+
 var spread = 0.0
 var spread_decay = 0.04
 
@@ -37,7 +37,7 @@ func _process(delta):
 		$ak47.rotation_degrees.y = lerp_angle($ak47.rotation_degrees.y, 0, delta * 5)
 		$ak47.rotation_degrees.z = lerp_angle($ak47.rotation_degrees.z, 0, delta * 5)
 	spread = clamp(spread - (0.66 * delta), 0, 1)
-	emit_signal("spread", max_spread * spread_curve.interpolate(spread))
+	emit_signal("spread", selected_ammo.weapon_spread * spread_curve.interpolate(spread))
 		
 func _input(event):
 	if out:

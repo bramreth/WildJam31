@@ -6,6 +6,7 @@
 
 [node name="pickup" instance=ExtResource( 1 )]
 icon = ExtResource( 3 )
+frost = 2
 
 [node name="cupcake" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )

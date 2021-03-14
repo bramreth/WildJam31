@@ -5,7 +5,11 @@
 [ext_resource path="res://kenshape_assets/ammo/food/pineapple/pineapple.png" type="Texture" id=3]
 
 [node name="pickup" instance=ExtResource( 1 )]
+dmg_min = 2
+dmg_max = 4
+dmg_col = Color( 1, 1, 0, 1 )
 icon = ExtResource( 3 )
+poison = 1
 
 [node name="pineapple" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )

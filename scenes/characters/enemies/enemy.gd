@@ -100,3 +100,22 @@ func damage(amount:int) -> void:
 	if not _current_state == STATES.TRACKING_PLAYER:
 		_current_state = STATES.TRACKING_PLAYER
 	.damage(amount)
+
+# if the ammo has elemental effects apply them to the character
+func apply_element(ammo_source):
+	if ammo_source.frost:
+		$effect_handler.add_frost(ammo_source.frost)
+	if ammo_source.poison:
+		$effect_handler.add_poison(ammo_source.poison)
+		
+func poison_dmg(dmg):
+	damage(dmg)
+	var p = $spatial_pqueue.get_next_particle()
+	p.set_number_col(dmg, Color.limegreen)
+	$spatial_pqueue.trigger()
+	
+func frost_dmg(dmg):
+	damage(dmg)
+	var p = $spatial_pqueue.get_next_particle()
+	p.set_number_col(dmg, Color.skyblue)
+	$spatial_pqueue.trigger()
