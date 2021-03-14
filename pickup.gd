@@ -3,12 +3,14 @@ extends Spatial
 export (int) var dmg_min = 1
 export (int) var dmg_max = 1
 export (int) var weapon_spread = 144
-export (int) var max_ammo
+export (int) var max_ammo = 30
 export (int) var knockback
 export(Color) var dmg_col = Color.white
 
 export (float) var crit_rate = 0.1
 export (int) var crit_mul = 2
+
+export (float) var rof = 1.0
 
 #range
 export (int) var explosion
