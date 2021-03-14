@@ -14,7 +14,7 @@ var _path:Array = []
 var _last_facing_direction:Vector3 = Vector3.ZERO
 
 func calculate_move_direction() -> Vector3:
-	print(STATES.keys()[_current_state])
+#	print(STATES.keys()[_current_state])
 	match _current_state:
 		STATES.IDLE: 
 			return Vector3.ZERO

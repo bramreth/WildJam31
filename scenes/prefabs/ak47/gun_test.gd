@@ -13,10 +13,10 @@ signal fired()
 signal update_ammo(ammo, spread)
 signal reload()
 
-var out = true
+var out = false
 
 func _process(delta):
-	if not $AnimationPlayer.is_playing():
+	if not $AnimationPlayer.is_playing() and not out:
 		if Input.is_action_pressed("click"):
 			if ammo <= 0: 
 				reload()
@@ -34,18 +34,28 @@ func _process(delta):
 	emit_signal("spread", max_spread * spread_curve.interpolate(spread))
 		
 func _input(event):
+	if out:
+		if Input.is_action_just_pressed("click") or Input.is_action_just_pressed("reload"):
+			shut_ammo_view()
 	if not $AnimationPlayer.is_playing():
 		if Input.is_action_just_pressed("reload"):
 			reload()
-	if Input.is_action_just_pressed("ui_end"):
-		out = not out
-		if out:
-			$AnimationPlayer.play_backwards("reload (copy)")
-			$ak47/clip/animclip/AnimationPlayer.play_backwards("show")
-		else:
-			$ak47/clip/animclip/AnimationPlayer.play("show")
-			$AnimationPlayer.play("reload (copy)")
-			
+	if Input.is_action_just_pressed("cycle_ammo") or Input.is_action_just_pressed("cycle_ammo_back"):
+		if not out:
+			open_ammo_view()
+		$ak47/clip/animclip.swap_ammo(Input.is_action_just_pressed("cycle_ammo"))
+		$ak47/clip/view_timeout.start(0)
+
+func open_ammo_view():
+	$AnimationPlayer.play("reload (copy)")
+	$ak47/clip/animclip/AnimationPlayer.play("show")
+	out = true
+	$ak47/clip/view_timeout.start(0)
+		
+func shut_ammo_view():
+	$AnimationPlayer.play_backwards("reload (copy)")
+	$ak47/clip/animclip/AnimationPlayer.play_backwards("show")
+	out = false
 
 func drain_ammo():
 	ammo = clamp(ammo -1, 0, max_ammo)
@@ -61,3 +71,7 @@ func reload():
 func reset_ammo():
 	ammo = max_ammo
 	emit_signal("update_ammo", ammo, spread)
+
+
+func _on_view_timeout_timeout():
+	if out: shut_ammo_view()

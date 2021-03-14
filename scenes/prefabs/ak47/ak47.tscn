@@ -496,7 +496,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 3, 0 )
 [node name="clip" type="Spatial" parent="ak47"]
 
 [node name="animclip" parent="ak47/clip" instance=ExtResource( 9 )]
-script = null
+
+[node name="view_timeout" type="Timer" parent="ak47/clip"]
+one_shot = true
 
 [node name="click" type="Spatial" parent="ak47"]
 script = SubResource( 5 )
@@ -536,3 +538,4 @@ light_indirect_energy = 10.0
 light_specular = 0.0
 omni_range = 4.0
 omni_attenuation = 0.707104
+[connection signal="timeout" from="ak47/clip/view_timeout" to="." method="_on_view_timeout_timeout"]
