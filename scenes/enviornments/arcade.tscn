@@ -22,7 +22,7 @@ data = PoolVector3Array( 50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, 
 [sub_resource type="CubeMesh" id=4]
 size = Vector3( 88, 10, 2 )
 
-[sub_resource type="ConcavePolygonShape" id=8]
+[sub_resource type="ConcavePolygonShape" id=5]
 data = PoolVector3Array( -44, 5, 1, 44, 5, 1, -44, -5, 1, 44, 5, 1, 44, -5, 1, -44, -5, 1, 44, 5, -1, -44, 5, -1, 44, -5, -1, -44, 5, -1, -44, -5, -1, 44, -5, -1, 44, 5, 1, 44, 5, -1, 44, -5, 1, 44, 5, -1, 44, -5, -1, 44, -5, 1, -44, 5, -1, -44, 5, 1, -44, -5, -1, -44, 5, 1, -44, -5, 1, -44, -5, -1, 44, 5, 1, -44, 5, 1, 44, 5, -1, -44, 5, 1, -44, 5, -1, 44, 5, -1, -44, -5, 1, 44, -5, 1, -44, -5, -1, 44, -5, 1, 44, -5, -1, -44, -5, -1 )
 
 [sub_resource type="ProceduralSky" id=6]
@@ -57,7 +57,7 @@ material/0 = null
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/wall" index="0"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/wall/StaticBody" index="0"]
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 
 [node name="wall2" type="MeshInstance" parent="Navigation/NavigationMeshInstance" index="2"]
 transform = Transform( -1.62921e-07, 0, 1, 0, 2, 0, -1, 0, -1.62921e-07, 41.857, 5, -5.44088 )
@@ -67,7 +67,7 @@ material/0 = null
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/wall2" index="0"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/wall2/StaticBody" index="0"]
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 
 [node name="wall3" type="MeshInstance" parent="Navigation/NavigationMeshInstance" index="3"]
 transform = Transform( -1, 0, -3.89414e-07, 0, 2, 0, 3.89414e-07, 0, -1, -1.53452, 5, 37.455 )
@@ -77,7 +77,7 @@ material/0 = null
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/wall3" index="0"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/wall3/StaticBody" index="0"]
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 
 [node name="wall4" type="MeshInstance" parent="Navigation/NavigationMeshInstance" index="4"]
 transform = Transform( -4.37114e-08, 0, -1, 0, 2, 0, 1, 0, -4.37114e-08, -44.9407, 5, -3.5946 )
@@ -87,7 +87,7 @@ material/0 = null
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/wall4" index="0"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/wall4/StaticBody" index="0"]
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 
 [node name="Spawner" parent="." index="1" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.409, 3.25206, -38.1015 )
