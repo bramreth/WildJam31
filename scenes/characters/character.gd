@@ -4,6 +4,8 @@ const GRAVITY:float = -9.8
 const SNAP_VECTOR:Vector3 = Vector3.DOWN*3
 
 export(int) var max_health = 20
+export(int) var max_armor = 0
+onready var armor:int = max_armor
 onready var health:int = max_health
 var dead:bool = false
 
@@ -58,11 +60,20 @@ func apply_gravity(delta:float) -> void:
 		_hang_time += delta / 3
 		velocity.y += _hang_time * GRAVITY
 
-func damage(amount:int) -> void:
+func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
 	if dead: return
-	health = max(health - amount, 0)
-	if health <= 0 and not dead:
-		_on_death()
+	
+	if knockback:
+		velocity += knockback
+	
+	if armor > 0:
+		var armor_damage = amount
+		amount = (armor - amount) * -1
+		armor -= armor_damage
+	if amount > 0:
+		health = max(health - amount, 0)
+		if health <= 0 and not dead:
+			_on_death()
 
 func _on_death() -> void:
 	dead = true
