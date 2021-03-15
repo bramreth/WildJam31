@@ -29,7 +29,7 @@ transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0
 [node name="bat" parent="MeshInstance/sprite_container" index="0" instance=ExtResource( 1 )]
 transform = Transform( 0.1, -1.86265e-09, 8.32667e-16, -5.55112e-17, -1.62921e-08, -0.1, 1.86265e-09, 0.1, -1.62921e-08, 0.12656, -3.18581e-08, 0.717755 )
 
-[node name="MeshInstance" parent="MeshInstance" index="1"]
+[node name="MeshInstance" parent="MeshInstance" index="2"]
 layers = 0
 
 [node name="health_bar" parent="." index="10"]

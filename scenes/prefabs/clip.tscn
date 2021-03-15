@@ -85,6 +85,15 @@ transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 1, 2.993, 7, 0 )
 
 [node name="beer" parent="ammo_container" index="0" instance=ExtResource( 4 )]
 visible = false
+dmg_min = 10
+dmg_max = 24
+weapon_spread = 16
+max_ammo = 100
+rof = 2.0
+fire = 5
+frost = 5
+poison = 5
+bleed = 5
 
 [node name="cupcake" parent="ammo_container" index="1" instance=ExtResource( 5 )]
 visible = false

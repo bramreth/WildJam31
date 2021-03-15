@@ -485,7 +485,7 @@ anims/reload = SubResource( 2 )
 "anims/reload (copy) (copy)" = SubResource( 4 )
 
 [node name="ak47" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1 )
+transform = Transform( 0.994522, -0.104528, 0, 0.104528, 0.994522, 0, 0, 0, 1, -4, 0, 0 )
 
 [node name="ak_back" parent="ak47" instance=ExtResource( 10 )]
 
@@ -525,7 +525,7 @@ light_color = Color( 1, 0.631373, 0, 1 )
 light_energy = 5.0
 light_indirect_energy = 5.0
 light_specular = 0.0
-omni_range = 11.0
+omni_range = 0.0
 omni_attenuation = 0.707104
 
 [node name="OmniLight2" type="OmniLight" parent="ak47"]
@@ -533,6 +533,6 @@ transform = Transform( 0.997564, 0.0697569, 0, -0.0697569, 0.997564, 0, 0, 0, 1,
 light_energy = 10.0
 light_indirect_energy = 10.0
 light_specular = 0.0
-omni_range = 4.0
+omni_range = 0.0
 omni_attenuation = 0.707104
 [connection signal="timeout" from="ak47/clip/view_timeout" to="." method="_on_view_timeout_timeout"]

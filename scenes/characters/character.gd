@@ -27,6 +27,7 @@ func _ready():
 	pass
 
 func _physics_process(_delta: float) -> void:
+	if dead: return
 	var hvel:Vector3 = velocity
 	var move_direction:Vector3 = calculate_move_direction()
 	hvel = hvel.linear_interpolate(move_direction * current_speed, acceleration * _delta)

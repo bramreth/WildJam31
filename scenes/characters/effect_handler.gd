@@ -87,3 +87,10 @@ func _on_FireTimer_timeout():
 	if burn_counter.empty():
 		burn.emitting = false
 	$BurnTimer.start()
+	
+func die():
+	burn.emitting = false
+	bleed.emitting = false
+	poison.emitting = false
+	frost.emitting = false
+	

@@ -24,7 +24,10 @@ func update_bars():
 	$health_bar/Viewport/root/ArmorBar.max_value = max_armor
 	$health_bar/Viewport/root/ArmorBar.value = armor
 	$health_bar/Viewport/root/ArmorBar/armor.text = str(armor)
-	if armor <= 0: $health_bar/Viewport/root/ArmorBar.visible = false
+	if armor <= 0: 
+		$health_bar/Viewport/root/ArmorBar.visible = false
+	if health <= 0: 
+		$health_bar/Viewport/root/HealthBar.visible = false
 		
 
 func calculate_move_direction() -> Vector3:
@@ -133,6 +136,7 @@ func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
 
 # if the ammo has elemental effects apply them to the character
 func apply_element(ammo_source):
+	if dead: return
 	if ammo_source.fire:
 		$effect_handler.add_burn(ammo_source.fire)
 	if armor <= 0:
@@ -169,3 +173,17 @@ func burn_dmg(dmg):
 	var p = $spatial_pqueue.get_next_particle()
 	p.set_number_col(post_armor_dmg, Color.orangered)
 	$spatial_pqueue.trigger()
+
+func _on_death() -> void:
+	dead = true
+	$MeshInstance/DetectionArea/CollisionShape.disabled = true
+	$Hitbox/CollisionShape.disabled = true
+	$collision.disabled = true
+	$effect_handler.die()
+	$DeathPlayer.play("die")
+	$deathburst.restart()
+
+
+func _on_DeathPlayer_animation_finished(anim_name):
+	if anim_name == "die":
+		queue_free()
