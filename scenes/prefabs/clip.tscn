@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/prefabs/clip.gd" type="Script" id=1]
 [ext_resource path="res://assets/kenshapes/clip.glb" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://scenes/pickups/gun.tscn" type="PackedScene" id=9]
 [ext_resource path="res://kenshape_assets/gun/x clip.glb" type="PackedScene" id=10]
 [ext_resource path="res://scenes/pickups/token.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/pickups/sock.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/pickups/cigarette.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "show"
@@ -117,4 +119,11 @@ visible = false
 visible = false
 
 [node name="token" parent="ammo_container" index="7" instance=ExtResource( 11 )]
+visible = false
+
+[node name="sock" parent="ammo_container" index="8" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0 )
+visible = false
+
+[node name="cigarette" parent="ammo_container" index="9" instance=ExtResource( 13 )]
 visible = false

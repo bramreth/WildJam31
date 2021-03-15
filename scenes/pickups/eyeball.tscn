@@ -5,7 +5,8 @@
 [ext_resource path="res://kenshape_assets/ammo/misc/eye/eye.png" type="Texture" id=3]
 
 [node name="pickup" instance=ExtResource( 1 )]
-max_ammo = 45
+weapon_spread = 250
+max_ammo = 120
 rof = 2.0
 icon = ExtResource( 3 )
 poison = 2
