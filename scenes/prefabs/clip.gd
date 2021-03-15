@@ -11,7 +11,6 @@ func swap_ammo(forward: bool):
 	if forward:
 		ammo_index = (ammo_index + 1) % $ammo_container.get_child_count()
 	else:
-		print((ammo_index - 1) % ($ammo_container.get_child_count()-1))
 		ammo_index = (ammo_index - 1) % ($ammo_container.get_child_count()-1)
 		if sign(ammo_index) == -1:
 			ammo_index = $ammo_container.get_child_count()-2-ammo_index

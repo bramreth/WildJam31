@@ -32,6 +32,9 @@ custom_styles/bg = SubResource( 3 )
 step = 1.0
 value = 50.0
 percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="health" type="Label" parent="HealthBar"]
 margin_right = 200.0
