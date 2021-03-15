@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/fonts/Akira Expanded Demo.otf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 1, 0, 1 )
+
+[node name="root" type="Control"]
+rect_min_size = Vector2( 200, 55 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+margin_right = 200.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+step = 1.0
+value = 50.0
+percent_visible = false
+
+[node name="health" type="Label" parent="HealthBar"]
+margin_right = 200.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+custom_fonts/font = SubResource( 4 )
+text = "hello"
+valign = 1
+
+[node name="ArmorBar" type="ProgressBar" parent="."]
+margin_top = 30.0
+margin_right = 200.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 200, 25 )
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 3 )
+step = 1.0
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="armor" type="Label" parent="ArmorBar"]
+margin_right = 200.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+custom_fonts/font = SubResource( 4 )
+text = "hello"
+valign = 1

@@ -63,6 +63,8 @@ func apply_gravity(delta:float) -> void:
 func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
 	if dead: return
 	
+	if armor > 0:
+		knockback /= 4
 	if knockback:
 		velocity += knockback
 	

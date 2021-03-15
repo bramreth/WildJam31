@@ -13,6 +13,19 @@ var _velocity:Vector3 = Vector3()
 var _path:Array = []
 var _last_facing_direction:Vector3 = Vector3.ZERO
 
+func _ready():
+	update_bars()
+
+func update_bars():
+	$health_bar/Viewport/root/HealthBar.max_value = max_health
+	$health_bar/Viewport/root/HealthBar.value = health
+	$health_bar/Viewport/root/HealthBar/health.text = str(health)
+	$health_bar/Viewport/root/ArmorBar.max_value = max_armor
+	$health_bar/Viewport/root/ArmorBar.value = armor
+	$health_bar/Viewport/root/ArmorBar/armor.text = str(armor)
+	if armor <= 0: $health_bar/Viewport/root/ArmorBar.visible = false
+		
+
 func calculate_move_direction() -> Vector3:
 #	print(STATES.keys()[_current_state])
 	match _current_state:
@@ -100,17 +113,20 @@ func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
 	if not _current_state == STATES.TRACKING_PLAYER:
 		_current_state = STATES.TRACKING_PLAYER
 	.damage(amount, knockback)
+	update_bars()
 
 # if the ammo has elemental effects apply them to the character
 func apply_element(ammo_source):
-	if ammo_source.frost:
-		$effect_handler.add_frost(ammo_source.frost)
-	if ammo_source.poison:
-		$effect_handler.add_poison(ammo_source.poison)
-	if ammo_source.bleed:
-		$effect_handler.add_bleed(ammo_source.bleed)
 	if ammo_source.fire:
 		$effect_handler.add_burn(ammo_source.fire)
+	if armor < 0:
+		if ammo_source.frost:
+			$effect_handler.add_frost(ammo_source.frost)
+		if ammo_source.poison:
+			$effect_handler.add_poison(ammo_source.poison)
+		if ammo_source.bleed:
+			$effect_handler.add_bleed(ammo_source.bleed)
+	
 		
 func poison_dmg(dmg):
 	damage(dmg)
@@ -131,7 +147,9 @@ func bleed_dmg(dmg):
 	$spatial_pqueue.trigger()
 	
 func burn_dmg(dmg):
-	damage(dmg)
+	var post_armor_dmg = dmg
+	if armor > 0: post_armor_dmg *= 8
+	damage(post_armor_dmg)
 	var p = $spatial_pqueue.get_next_particle()
-	p.set_number_col(dmg, Color.orangered)
+	p.set_number_col(post_armor_dmg, Color.orangered)
 	$spatial_pqueue.trigger()

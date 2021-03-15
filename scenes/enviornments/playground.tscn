@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/characters/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enviornments/Level.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://scenes/characters/enemies/slime.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/characters/enemies/ghost.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/prefabs/arcade_one.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/prefabs/chair.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/prefabs/table.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/prefabs/counter.tscn" type="PackedScene" id=10]
 
 [sub_resource type="NavigationMesh" id=1]
 resource_local_to_scene = true
@@ -61,6 +64,15 @@ collision_mask = 3
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance2/StaticBody" index="0"]
 shape = SubResource( 5 )
 
+[node name="counter" parent="Navigation" index="1" instance=ExtResource( 10 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 6.90415, 0, -33.0497 )
+
+[node name="Spatial" parent="Navigation" index="2" instance=ExtResource( 9 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 20.8713, 0, -37.4156 )
+
+[node name="Spatial2" parent="Navigation" index="3" instance=ExtResource( 8 )]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 19.7794, 0, -37.1708 )
+
 [node name="cabinet" parent="." index="1" instance=ExtResource( 7 )]
 transform = Transform( -0.0246068, 0, -0.999697, 0, 1, 0, 0.999697, 0, -0.0246068, 16.8999, 1.65084, -31.029 )
 
@@ -82,11 +94,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7821, 12.5989, 22.8304 )
 [node name="enemy" parent="." index="7" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.09129, -11.1471 )
 
-[node name="slimeenemy" parent="." index="8" instance=ExtResource( 5 )]
+[node name="slimeenemy" parent="." index="8" groups=[
+"character",
+] instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3447, 6.0676, -13.1404 )
+max_health = 100
+max_armor = 10
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="9"]
 environment = SubResource( 7 )
 
-[node name="enemy2" parent="." index="10" instance=ExtResource( 6 )]
+[node name="enemy2" parent="." index="10" groups=[
+"character",
+] instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.56953, 0 )
+max_health = 500
+max_armor = 250

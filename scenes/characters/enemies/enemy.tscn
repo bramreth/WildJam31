@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/characters/character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/particles/poison.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/particles/bleed.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/particles/burn.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/ui/health_bar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="CapsuleMesh" id=1]
 
@@ -23,10 +24,27 @@ extents = Vector3( 15, 15, 4 )
 
 [sub_resource type="CapsuleShape" id=5]
 
+[sub_resource type="QuadMesh" id=6]
+flip_faces = true
+size = Vector2( 2, 0.55 )
+
+[sub_resource type="ViewportTexture" id=8]
+viewport_path = NodePath("health_bar/Viewport")
+
+[sub_resource type="SpatialMaterial" id=7]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 2
+params_billboard_keep_scale = true
+albedo_texture = SubResource( 8 )
+
 [node name="enemy" groups=[
 "enemy",
 ] instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+max_health = 75
+max_armor = 25
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="1"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
@@ -80,4 +98,18 @@ collision_mask = 2147483650
 [node name="CollisionShape" type="CollisionShape" parent="Hitbox" index="0"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
 shape = SubResource( 5 )
+
+[node name="health_bar" type="MeshInstance" parent="." index="10"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.25917, 0 )
+mesh = SubResource( 6 )
+material/0 = SubResource( 7 )
+
+[node name="Viewport" type="Viewport" parent="health_bar" index="0"]
+size = Vector2( 200, 55 )
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="root" parent="health_bar/Viewport" index="0" instance=ExtResource( 10 )]
+margin_right = 200.0
+margin_bottom = 55.0
 [connection signal="body_entered" from="MeshInstance/DetectionArea" to="." method="detected_body"]
