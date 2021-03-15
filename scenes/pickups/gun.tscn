@@ -8,6 +8,7 @@
 [node name="pickup" instance=ExtResource( 5 )]
 dmg_min = 2
 dmg_max = 3
+knockback = 35
 icon = ExtResource( 1 )
 
 [node name="x clip" parent="." index="0" instance=ExtResource( 2 )]

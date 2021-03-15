@@ -43,6 +43,8 @@ mesh = SubResource( 2 )
 material/0 = ExtResource( 3 )
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/MeshInstance" index="0"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance/StaticBody" index="0"]
 shape = SubResource( 3 )
@@ -53,6 +55,8 @@ mesh = SubResource( 4 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/MeshInstance2" index="0"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance2/StaticBody" index="0"]
 shape = SubResource( 5 )

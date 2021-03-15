@@ -47,8 +47,8 @@ func _on_gun_spread(amount):
 
 
 func fire_bullet(radius:float) -> void:
-	var x:float = rand_range(0, radius*10) * sin(rand_range(0, 2 * PI))
-	var y:float = rand_range(0, radius*10) * cos(rand_range(0, 2 * PI))
+	var x:float = rand_range(0, radius*20) * sin(rand_range(0, 2 * PI))
+	var y:float = rand_range(0, radius*20) * cos(rand_range(0, 2 * PI))
 	$juicy_cam/RayCast.enabled = true
 	$juicy_cam/RayCast.cast_to = Vector3(x,y,-100)
 	$juicy_cam/RayCast.force_raycast_update()
@@ -65,9 +65,12 @@ func fire_bullet(radius:float) -> void:
 			sprite.draw_pass_1.material.albedo_texture = $juicy_cam/gun.selected_ammo.icon
 		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_sprite.trigger()
 		
-		if collider.is_in_group('enemy'):
+		if collider.is_in_group('hitbox'):
+			var enemy = collider.get_parent()
 			var ammo_dat =  $juicy_cam/gun.selected_ammo
 			var dmg = floor(rand_range(ammo_dat.dmg_min, ammo_dat.dmg_max+1))
+			if collider.is_in_group('weakspot'):
+				dmg *= 2
 			$juicy_cam/CanvasLayer/CenterContainer/anchor/crosshair/AnimationPlayer.play("hit")
 			#dmg number for enemy
 			var dmg_num = $juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_num.get_next_particle()
@@ -80,13 +83,19 @@ func fire_bullet(radius:float) -> void:
 			dmg_num.look_at(norm, Vector3(0,1,0))
 			$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_num.trigger()
 			
-			collider.damage(dmg)
-			collider.apply_element(ammo_dat)
+			var knockback = Vector3.ZERO
+			if ammo_dat.knockback > 0:
+				knockback = get_parent().global_transform.origin.direction_to(collider.global_transform.origin)
+				knockback.normalized()
+				knockback = knockback * ammo_dat.knockback
+			
+			enemy.damage(dmg, knockback)
+			enemy.apply_element(ammo_dat)
 	$juicy_cam/RayCast.enabled = true
 
 
-func _on_gun_fired():
-	print("fired")
+func _on_gun_fired(spread):
+#	print("fired")
 	fire_bullet(spread)
 	add_trauma(0.1)
 

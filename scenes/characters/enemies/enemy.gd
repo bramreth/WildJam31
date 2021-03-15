@@ -95,11 +95,11 @@ func _has_line_of_sight_to_player() -> bool:
 	return false
 
 
-func damage(amount:int) -> void:
+func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
 	if dead: return
 	if not _current_state == STATES.TRACKING_PLAYER:
 		_current_state = STATES.TRACKING_PLAYER
-	.damage(amount)
+	.damage(amount, knockback)
 
 # if the ammo has elemental effects apply them to the character
 func apply_element(ammo_source):
