@@ -38,15 +38,15 @@ func calculate_move_direction() -> Vector3:
 				return move_direction
 			else:
 				if not _has_line_of_sight_to_player():
-					_current_state = STATES.IDLE
+					move_state(STATES.IDLE)
 					return Vector3.ZERO
 				else:
-					_current_state = STATES.TRACKING_PLAYER
+					move_state(STATES.TRACKING_PLAYER)
 					return Vector3.ZERO
 		STATES.TRACKING_PLAYER:
 			if not _has_line_of_sight_to_player():
 				_get_path()
-				_current_state = STATES.SEARCHING
+				move_state(STATES.SEARCHING)
 			return _calculate_direction_to_player()
 		_: return Vector3.ZERO
 
@@ -98,7 +98,7 @@ func detected_body(body:KinematicBody):
 	if not body: return
 	if body.is_in_group('player') and _has_line_of_sight_to_player():
 		_path.clear()
-		_current_state = STATES.TRACKING_PLAYER
+		move_state(STATES.TRACKING_PLAYER)
 
 
 func _has_line_of_sight_to_player() -> bool:
@@ -111,11 +111,23 @@ func _has_line_of_sight_to_player() -> bool:
 	$PlayerLineOfSight.enabled = false
 	return false
 
+func move_state(_state_in: int):
+#	assert(_state_in in STATES.keys(), "invalid target state")
+	if _current_state == _state_in: return
+	_current_state = _state_in
+	match _current_state:
+		STATES.IDLE:
+			$AnimationPlayer.stop()
+		STATES.SEARCHING:
+			$AnimationPlayer.play("walk")
+		STATES.TRACKING_PLAYER:
+			$AnimationPlayer.play("walk")
+	
+
 
 func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
 	if dead: return
-	if not _current_state == STATES.TRACKING_PLAYER:
-		_current_state = STATES.TRACKING_PLAYER
+	move_state(STATES.TRACKING_PLAYER)
 	.damage(amount, knockback)
 	update_bars()
 
@@ -123,7 +135,7 @@ func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
 func apply_element(ammo_source):
 	if ammo_source.fire:
 		$effect_handler.add_burn(ammo_source.fire)
-	if armor < 0:
+	if armor <= 0:
 		if ammo_source.frost:
 			$effect_handler.add_frost(ammo_source.frost)
 		if ammo_source.poison:
