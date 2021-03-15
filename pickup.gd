@@ -22,6 +22,7 @@ export (Texture) var icon
 export (int) var fire
 export (int) var frost
 export (int) var poison
+export (int) var bleed
 
 export (bool) var projectile
 export (int) var ricochet

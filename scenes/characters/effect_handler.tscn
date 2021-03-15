@@ -12,5 +12,14 @@ one_shot = true
 [node name="FrostTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="BleedTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="BurnTimer" type="Timer" parent="."]
+wait_time = 0.4
 [connection signal="timeout" from="PoisonTimer" to="." method="_on_PoisonTimer_timeout"]
 [connection signal="timeout" from="FrostTimer" to="." method="_on_FrostTimer_timeout"]
+[connection signal="timeout" from="BleedTimer" to="." method="_on_BleedTimer_timeout"]
+[connection signal="timeout" from="BurnTimer" to="." method="_on_FireTimer_timeout"]

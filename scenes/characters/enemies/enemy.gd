@@ -107,6 +107,10 @@ func apply_element(ammo_source):
 		$effect_handler.add_frost(ammo_source.frost)
 	if ammo_source.poison:
 		$effect_handler.add_poison(ammo_source.poison)
+	if ammo_source.bleed:
+		$effect_handler.add_bleed(ammo_source.bleed)
+	if ammo_source.fire:
+		$effect_handler.add_burn(ammo_source.fire)
 		
 func poison_dmg(dmg):
 	damage(dmg)
@@ -118,4 +122,16 @@ func frost_dmg(dmg):
 	damage(dmg)
 	var p = $spatial_pqueue.get_next_particle()
 	p.set_number_col(dmg, Color.skyblue)
+	$spatial_pqueue.trigger()
+
+func bleed_dmg(dmg):
+	damage(dmg)
+	var p = $spatial_pqueue.get_next_particle()
+	p.set_number_col(dmg, Color.red)
+	$spatial_pqueue.trigger()
+	
+func burn_dmg(dmg):
+	damage(dmg)
+	var p = $spatial_pqueue.get_next_particle()
+	p.set_number_col(dmg, Color.orangered)
 	$spatial_pqueue.trigger()

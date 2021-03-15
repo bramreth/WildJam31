@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/prefabs/clip.gd" type="Script" id=1]
 [ext_resource path="res://assets/kenshapes/clip.glb" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/pickups/strawb_milk.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/pickups/gun.tscn" type="PackedScene" id=9]
 [ext_resource path="res://kenshape_assets/gun/x clip.glb" type="PackedScene" id=10]
+[ext_resource path="res://scenes/pickups/token.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "show"
@@ -103,5 +104,8 @@ weapon_spread = 33
 [node name="strawb_milk" parent="ammo_container" index="5" instance=ExtResource( 8 )]
 visible = false
 
-[node name="pickup" parent="ammo_container" index="6" instance=ExtResource( 9 )]
+[node name="gun" parent="ammo_container" index="6" instance=ExtResource( 9 )]
+visible = false
+
+[node name="token" parent="ammo_container" index="7" instance=ExtResource( 11 )]
 visible = false

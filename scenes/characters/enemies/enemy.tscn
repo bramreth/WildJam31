@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/characters/character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://scenes/particles/spatial_pqueue.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/particles/frost.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/particles/poison.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/particles/bleed.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/particles/burn.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CapsuleMesh" id=1]
 
@@ -49,14 +51,21 @@ __meta__ = {
 [node name="effect_handler" parent="." index="3" instance=ExtResource( 3 )]
 frost_particles_path = NodePath("../frost")
 poison_particles_path = NodePath("../poison")
+bleed_particles_path = NodePath("../bleed")
+burn_particles_path = NodePath("../burn")
 
 [node name="spatial_pqueue" parent="." index="4" instance=ExtResource( 5 )]
 particle = ExtResource( 4 )
-queue_count = 3
 
 [node name="frost" parent="." index="5" instance=ExtResource( 6 )]
 emitting = false
 
 [node name="poison" parent="." index="6" instance=ExtResource( 7 )]
+emitting = false
+
+[node name="bleed" parent="." index="7" instance=ExtResource( 8 )]
+emitting = false
+
+[node name="burn" parent="." index="8" instance=ExtResource( 9 )]
 emitting = false
 [connection signal="body_entered" from="MeshInstance/DetectionArea" to="." method="detected_body"]

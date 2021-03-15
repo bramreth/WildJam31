@@ -6,6 +6,10 @@
 
 [node name="pickup" instance=ExtResource( 1 )]
 icon = ExtResource( 3 )
+fire = 2
+frost = 2
+poison = 2
+bleed = 2
 
 [node name="milk" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
