@@ -30,6 +30,8 @@ mesh = SubResource( 1 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="table/generatedClone"]
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="table/generatedClone/StaticBody"]
 shape = SubResource( 2 )
