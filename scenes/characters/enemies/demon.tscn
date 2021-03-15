@@ -15,9 +15,15 @@ params_billboard_keep_scale = true
 albedo_texture = SubResource( 1 )
 
 [node name="enemy" instance=ExtResource( 2 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.51219, 0 )
+max_health = 50
+max_armor = 50
 
 [node name="MeshInstance" parent="." index="1"]
 layers = 0
+
+[node name="sprite_container" parent="MeshInstance" index="0"]
+transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0 )
 
 [node name="blue demon" parent="MeshInstance/sprite_container" index="0" instance=ExtResource( 1 )]
 transform = Transform( 0.1, 0, 0, 0, -1.62921e-08, -0.1, 0, 0.1, -1.62921e-08, 0, 0, 0 )
