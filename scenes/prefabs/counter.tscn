@@ -58,6 +58,8 @@ material/1 = null
 material/2 = null
 
 [node name="StaticBody" type="StaticBody" parent="counter/generatedClone"]
+collision_layer = 7
+collision_mask = 2147483655
 
 [node name="CollisionShape" type="CollisionShape" parent="counter/generatedClone/StaticBody"]
 shape = SubResource( 2 )

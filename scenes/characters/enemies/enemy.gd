@@ -8,6 +8,7 @@ enum STATES {
 var _current_state:int = STATES.IDLE
 
 onready var _player = get_tree().get_nodes_in_group("player").front()
+onready var _level = get_tree().get_nodes_in_group('level').front()
 
 var _velocity:Vector3 = Vector3()
 var _path:Array = []
@@ -27,7 +28,6 @@ func update_bars():
 		
 
 func calculate_move_direction() -> Vector3:
-#	print(STATES.keys()[_current_state])
 	match _current_state:
 		STATES.IDLE: 
 			return Vector3.ZERO
@@ -37,8 +37,12 @@ func calculate_move_direction() -> Vector3:
 				_face_move_direction(move_direction)
 				return move_direction
 			else:
-				_current_state = STATES.IDLE
-				return Vector3.ZERO
+				if not _has_line_of_sight_to_player():
+					_current_state = STATES.IDLE
+					return Vector3.ZERO
+				else:
+					_current_state = STATES.TRACKING_PLAYER
+					return Vector3.ZERO
 		STATES.TRACKING_PLAYER:
 			if not _has_line_of_sight_to_player():
 				_get_path()
@@ -60,7 +64,7 @@ func _calculate_direction_to_player() -> Vector3:
 
 
 func _get_path() -> void:
-	_path = owner.calculate_path(global_transform.origin, _player.global_transform.origin)
+	_path = _level.calculate_path(global_transform.origin, _player.global_transform.origin)
 
 
 func _calculate_direction_to_next_path_point() -> Vector3:

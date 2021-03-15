@@ -44,6 +44,8 @@ material/0 = null
 material/1 = null
 
 [node name="StaticBody" type="StaticBody" parent="chair idk/generatedClone"]
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="chair idk/generatedClone/StaticBody"]
 shape = SubResource( 2 )
