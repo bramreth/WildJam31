@@ -1,10 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/characters/character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.gd" type="Script" id=2]
 [ext_resource path="res://scenes/characters/effect_handler.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/particles/damage_number.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/particles/spatial_pqueue.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/particles/frost.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/particles/poison.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/particles/bleed.tscn" type="PackedScene" id=8]
@@ -17,10 +15,10 @@
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.513726, 0, 0, 1 )
 
-[sub_resource type="BoxShape" id=4]
+[sub_resource type="BoxShape" id=3]
 extents = Vector3( 15, 15, 4 )
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=4]
 size = Vector3( 0.5, 0.7, 0.5 )
 
 [sub_resource type="CapsuleShape" id=5]
@@ -117,14 +115,14 @@ transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/DetectionArea" index="0"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.5, 12.5 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="MeshInstance" index="2"]
 transform = Transform( 0.125, 0, 0, 0, -1.01825e-08, -0.125, 0, 0.0625, -2.03651e-08, 0, -0.0695639, 0.00396252 )
-mesh = SubResource( 3 )
+mesh = SubResource( 4 )
 material/0 = null
 
 [node name="PlayerLineOfSight" type="RayCast" parent="." index="2"]
@@ -136,22 +134,19 @@ poison_particles_path = NodePath("../poison")
 bleed_particles_path = NodePath("../bleed")
 burn_particles_path = NodePath("../burn")
 
-[node name="spatial_pqueue" parent="." index="4" instance=ExtResource( 5 )]
-particle = ExtResource( 4 )
-
-[node name="frost" parent="." index="5" instance=ExtResource( 6 )]
+[node name="frost" parent="." index="4" instance=ExtResource( 6 )]
 emitting = false
 
-[node name="poison" parent="." index="6" instance=ExtResource( 7 )]
+[node name="poison" parent="." index="5" instance=ExtResource( 7 )]
 emitting = false
 
-[node name="bleed" parent="." index="7" instance=ExtResource( 8 )]
+[node name="bleed" parent="." index="6" instance=ExtResource( 8 )]
 emitting = false
 
-[node name="burn" parent="." index="8" instance=ExtResource( 9 )]
+[node name="burn" parent="." index="7" instance=ExtResource( 9 )]
 emitting = false
 
-[node name="Hitbox" type="Area" parent="." index="9" groups=[
+[node name="Hitbox" type="Area" parent="." index="8" groups=[
 "hitbox",
 ]]
 collision_layer = 2
@@ -161,7 +156,7 @@ collision_mask = 2147483650
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
 shape = SubResource( 5 )
 
-[node name="health_bar" type="MeshInstance" parent="." index="10"]
+[node name="health_bar" type="MeshInstance" parent="." index="9"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.25917, 0 )
 mesh = SubResource( 6 )
 material/0 = SubResource( 8 )
@@ -175,13 +170,13 @@ render_target_v_flip = true
 margin_right = 200.0
 margin_bottom = 55.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
 anims/walk = SubResource( 9 )
 
-[node name="DeathPlayer" type="AnimationPlayer" parent="." index="12"]
+[node name="DeathPlayer" type="AnimationPlayer" parent="." index="11"]
 anims/die = SubResource( 10 )
 
-[node name="deathburst" parent="." index="13" instance=ExtResource( 11 )]
+[node name="deathburst" parent="." index="12" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 [connection signal="body_entered" from="MeshInstance/DetectionArea" to="." method="detected_body"]
 [connection signal="animation_finished" from="DeathPlayer" to="." method="_on_DeathPlayer_animation_finished"]

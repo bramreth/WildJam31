@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://kenshape_assets/enemies/demon/blue demon.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/characters/WeakSpot.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("health_bar/Viewport")
@@ -23,13 +24,16 @@ max_armor = 50
 layers = 0
 
 [node name="sprite_container" parent="MeshInstance" index="0"]
-transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0 )
+transform = Transform( 0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0 )
 
 [node name="blue demon" parent="MeshInstance/sprite_container" index="0" instance=ExtResource( 1 )]
 transform = Transform( 0.1, 0, 0, 0, -1.62921e-08, -0.1, 0, 0.1, -1.62921e-08, 0, 0, 0 )
 
-[node name="MeshInstance" parent="MeshInstance" index="1"]
+[node name="MeshInstance" parent="MeshInstance" index="2"]
 layers = 0
 
-[node name="health_bar" parent="." index="10"]
+[node name="health_bar" parent="." index="9"]
 material/0 = SubResource( 2 )
+
+[node name="WeakSpot" parent="." index="13" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0961217, 0.397693, -4.38168e-14 )

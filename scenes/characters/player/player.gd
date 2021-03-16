@@ -4,6 +4,9 @@ onready var camera:Camera = $camera/juicy_cam
 
 func _ready():
 	pass
+	
+func add_dmg_anim(col, num, pos):
+	$camera.set_enemy_dmg(col, num, pos)
 
 func _physics_process(_delta: float) -> void:
 	input_direction = get_input_direction()

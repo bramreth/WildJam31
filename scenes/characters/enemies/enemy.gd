@@ -1,5 +1,7 @@
 extends "res://scenes/characters/character.gd"
 
+signal damage_anim(color, num, pos)
+
 enum STATES {
 	IDLE,
 	TRACKING_PLAYER,
@@ -149,30 +151,26 @@ func apply_element(ammo_source):
 	
 		
 func poison_dmg(dmg):
+	if dead: return
 	damage(dmg)
-	var p = $spatial_pqueue.get_next_particle()
-	p.set_number_col(dmg, Color.limegreen)
-	$spatial_pqueue.trigger()
+	_player.add_dmg_anim(Color.limegreen, dmg, global_transform.origin)
 	
 func frost_dmg(dmg):
+	if dead: return
 	damage(dmg)
-	var p = $spatial_pqueue.get_next_particle()
-	p.set_number_col(dmg, Color.skyblue)
-	$spatial_pqueue.trigger()
+	_player.add_dmg_anim(Color.skyblue, dmg, global_transform.origin)
 
 func bleed_dmg(dmg):
+	if dead: return
 	damage(dmg)
-	var p = $spatial_pqueue.get_next_particle()
-	p.set_number_col(dmg, Color.red)
-	$spatial_pqueue.trigger()
+	_player.add_dmg_anim(Color.red, dmg, global_transform.origin)
 	
 func burn_dmg(dmg):
+	if dead: return
 	var post_armor_dmg = dmg
-	if armor > 0: post_armor_dmg *= 8
+	if armor > dmg: post_armor_dmg = min(5 * post_armor_dmg, armor)
 	damage(post_armor_dmg)
-	var p = $spatial_pqueue.get_next_particle()
-	p.set_number_col(post_armor_dmg, Color.orangered)
-	$spatial_pqueue.trigger()
+	_player.add_dmg_anim(Color.orangered, post_armor_dmg, global_transform.origin)
 
 func _on_death() -> void:
 	dead = true

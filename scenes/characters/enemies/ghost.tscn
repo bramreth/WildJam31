@@ -2,22 +2,20 @@
 
 [ext_resource path="res://kenshape_assets/enemies/we have pac man at home/we have pac man at home.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/characters/WeakSpot.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SphereShape" id=1]
-radius = 0.700878
 
-[sub_resource type="SphereShape" id=2]
-
-[sub_resource type="ViewportTexture" id=3]
+[sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("health_bar/Viewport")
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=3]
 resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 2
 params_billboard_keep_scale = true
-albedo_texture = SubResource( 3 )
+albedo_texture = SubResource( 2 )
 
 [node name="enemy" instance=ExtResource( 2 )]
 max_health = 40
@@ -33,26 +31,17 @@ transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0
 [node name="we have pac man at home" parent="MeshInstance/sprite_container" index="0" instance=ExtResource( 1 )]
 transform = Transform( 0.1, 0, 0, 0, -1.62921e-08, -0.1, 0, 0.1, -1.62921e-08, 0, 0, 0 )
 
-[node name="MeshInstance" parent="MeshInstance" index="1"]
+[node name="MeshInstance" parent="MeshInstance" index="2"]
 layers = 0
 
-[node name="WeakSpot" type="Area" parent="." index="7" groups=[
-"hitbox",
-"weakspot",
-]]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape" type="CollisionShape" parent="WeakSpot" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.826911, 0 )
-shape = SubResource( 1 )
+[node name="WeakSpot" parent="." index="7" instance=ExtResource( 3 )]
 
 [node name="CollisionShape" parent="Hitbox" index="0"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, -0.520665, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
-[node name="health_bar" parent="." index="11"]
-material/0 = SubResource( 4 )
+[node name="health_bar" parent="." index="10"]
+material/0 = SubResource( 3 )
 
-[node name="AnimationPlayer" parent="." index="12"]
+[node name="AnimationPlayer" parent="." index="11"]
 playback_speed = 0.66

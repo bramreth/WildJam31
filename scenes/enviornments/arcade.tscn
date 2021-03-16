@@ -199,8 +199,15 @@ enemy_2 = ExtResource( 4 )
 enemy_3 = ExtResource( 6 )
 wave_size = 2
 
-[node name="player" parent="." index="3" instance=ExtResource( 1 )]
+[node name="Spawner3" parent="." index="3" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -34.1898, 3.25206, -27.686 )
+enemy_1 = ExtResource( 5 )
+enemy_2 = ExtResource( 4 )
+enemy_3 = ExtResource( 6 )
+wave_size = 2
+
+[node name="player" parent="." index="4" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2291, 14.4621, 24.5184 )
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="4"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="5"]
 environment = SubResource( 16 )

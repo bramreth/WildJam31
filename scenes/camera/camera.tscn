@@ -275,6 +275,9 @@ margin_bottom = 740.0
 rect_min_size = Vector2( 500, 100 )
 custom_fonts/font = ExtResource( 12 )
 text = "Reset"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Quit" type="Button" parent="juicy_cam/CanvasLayer/PauseMenu"]
 margin_left = -2000.0
