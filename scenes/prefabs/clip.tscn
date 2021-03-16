@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/prefabs/clip.gd" type="Script" id=1]
 [ext_resource path="res://assets/kenshapes/clip.glb" type="PackedScene" id=2]
@@ -60,6 +60,34 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
+[sub_resource type="QuadMesh" id=3]
+size = Vector2( 8, 8 )
+
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("MeshInstance/Viewport")
+
+[sub_resource type="SpatialMaterial" id=5]
+resource_local_to_scene = true
+params_billboard_mode = 1
+params_billboard_keep_scale = true
+albedo_texture = SubResource( 4 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "show_dat"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.4, 0.5 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector3( 0.00155718, 0, 1 ), Vector3( 0.02, 1, 1 ), Vector3( 1, 1, 1 ) ]
+}
+
 [node name="clip" groups=[
 "player_ammo",
 ] instance=ExtResource( 2 )]
@@ -86,7 +114,7 @@ light_indirect_energy = 2.0
 omni_range = 0.0
 
 [node name="ammo_container" type="Spatial" parent="." index="5"]
-transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 1, 2.993, 7, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.993, 7, 0 )
 
 [node name="beer" parent="ammo_container" index="0" instance=ExtResource( 4 )]
 visible = false
@@ -132,3 +160,22 @@ visible = false
 
 [node name="lighter" parent="ammo_container" index="10" instance=ExtResource( 14 )]
 visible = false
+
+[node name="ammo_data" type="MeshInstance" parent="." index="6"]
+transform = Transform( 0.00194963, 0, 0, 0, 0.0212794, 0, 0, 0, 1, 10.814, 6.088, -5.92 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 5 )
+
+[node name="Viewport" type="Viewport" parent="ammo_data" index="0"]
+size = Vector2( 300, 400 )
+own_world = true
+transparent_bg = true
+
+[node name="ColorRect" type="ColorRect" parent="ammo_data/Viewport" index="0"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 300, 400 )
+color = Color( 0, 0, 0, 0.607843 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ammo_data" index="1"]
+anims/show_dat = SubResource( 6 )

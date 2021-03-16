@@ -150,6 +150,7 @@ max_x = 1
 max_y = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="juicy_cam"]
+follow_viewport_enable = true
 
 [node name="CenterContainer" type="CenterContainer" parent="juicy_cam/CanvasLayer"]
 anchor_right = 1.0

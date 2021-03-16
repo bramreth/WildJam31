@@ -50,5 +50,12 @@ func tuck_ammo():
 	$ammo_container.visible = false
 	$AnimationPlayer.seek(0, true)
 
+func show_dat(on):
+	if on:
+		$ammo_data/AnimationPlayer.play("show_dat")
+	else:
+		$ammo_data/AnimationPlayer.play_backwards("show_dat")
+#		$ammo_data/AnimationPlayer.seek(0.1, true)
+
 func get_ammo_data():
 	return ammo_types[ammo_index]

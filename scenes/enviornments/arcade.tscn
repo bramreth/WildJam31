@@ -408,9 +408,7 @@ wave_size = 2
 [node name="player" parent="." index="4" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2291, 14.4621, 24.5184 )
 
-[node name="enemy" parent="." index="5" groups=[
-"character",
-] instance=ExtResource( 5 )]
+[node name="enemy" parent="." index="5" instance=ExtResource( 5 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.51219, 61.4218 )
 
 [node name="WorldEnvironment" parent="." index="6"]

@@ -59,6 +59,7 @@ func open_ammo_view():
 	$ak47/clip/animclip/AnimationPlayer.play("show")
 	out = true
 	$ak47/clip/view_timeout.start(0)
+	$ak47/clip/animclip.show_dat(true)
 		
 func shut_ammo_view():
 	$AnimationPlayer.playback_speed = 1.0
@@ -69,6 +70,7 @@ func shut_ammo_view():
 	load_ammo_data()
 	spread = clamp(spread - 0.2, 0, 1)
 	reset_ammo()
+	$ak47/clip/animclip.show_dat(false)
 
 func load_ammo_data():
 	selected_ammo = $ak47/clip/animclip.get_ammo_data()
