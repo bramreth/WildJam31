@@ -5,9 +5,12 @@ signal damage_anim(color, num, pos)
 enum STATES {
 	IDLE,
 	TRACKING_PLAYER,
-	SEARCHING
+	SEARCHING,
+	ATTACKING
 }
 var _current_state:int = STATES.IDLE
+
+export(float) var attack_speed = 1.0
 
 onready var _player = get_tree().get_nodes_in_group("player").front()
 onready var _level = get_tree().get_nodes_in_group('level').front()
@@ -15,9 +18,11 @@ onready var _level = get_tree().get_nodes_in_group('level').front()
 var _velocity:Vector3 = Vector3()
 var _path:Array = []
 var _last_facing_direction:Vector3 = Vector3.ZERO
+var _can_attack:bool = true
 
 func _ready():
 	update_bars()
+	$AttackTimer.wait_time = attack_speed
 
 func update_bars():
 	$health_bar/Viewport/root/HealthBar.max_value = max_health
@@ -53,6 +58,14 @@ func calculate_move_direction() -> Vector3:
 				_get_path()
 				move_state(STATES.SEARCHING)
 			return _calculate_direction_to_player()
+		STATES.ATTACKING:
+			if _can_attack:
+				if _has_line_of_sight_to_player() and _distance_to_player() < 5.0:
+					_player.damage(10)
+					$AttackTimer.start()
+					_can_attack = false
+				else: move_state(STATES.TRACKING_PLAYER)
+			return Vector3.ZERO
 		_: return Vector3.ZERO
 
 
@@ -60,6 +73,7 @@ func _calculate_direction_to_player() -> Vector3:
 	var move_direction:Vector3 = _player.global_transform.origin - global_transform.origin 
 	var distance_to_player = move_direction.length()
 	if distance_to_player < 4:
+		_current_state = STATES.ATTACKING
 		return Vector3.ZERO
 	else:
 		move_direction.y = 0
@@ -106,6 +120,10 @@ func detected_body(body:KinematicBody):
 		move_state(STATES.TRACKING_PLAYER)
 
 
+func _distance_to_player() -> float:
+	return global_transform.origin.distance_to(_player.global_transform.origin)
+
+
 func _has_line_of_sight_to_player() -> bool:
 	$PlayerLineOfSight.enabled = true
 	$PlayerLineOfSight.cast_to = _player.global_transform.origin - global_transform.origin
@@ -122,6 +140,8 @@ func move_state(_state_in: int):
 	_current_state = _state_in
 	match _current_state:
 		STATES.IDLE:
+			$AnimationPlayer.stop()
+		STATES.ATTACKING:
 			$AnimationPlayer.stop()
 		STATES.SEARCHING:
 			$AnimationPlayer.play("walk")
@@ -175,7 +195,7 @@ func burn_dmg(dmg):
 func _on_death() -> void:
 	dead = true
 	$MeshInstance/DetectionArea/CollisionShape.disabled = true
-	$Hitbox/CollisionShape.disabled = true
+#	$Hitbox/CollisionShape.disabled = true
 	$collision.disabled = true
 	$effect_handler.die()
 	$DeathPlayer.play("die")
@@ -185,3 +205,7 @@ func _on_death() -> void:
 func _on_DeathPlayer_animation_finished(anim_name):
 	if anim_name == "die":
 		queue_free()
+
+
+func _on_AttackTimer_timeout():
+	_can_attack = true

@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/characters/character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.gd" type="Script" id=2]
 [ext_resource path="res://scenes/characters/effect_handler.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/characters/enemies/Hitbox.gd" type="Script" id=4]
 [ext_resource path="res://scenes/particles/frost.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/particles/poison.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/particles/bleed.tscn" type="PackedScene" id=8]
@@ -15,13 +16,14 @@
 [sub_resource type="SpatialMaterial" id=2]
 albedo_color = Color( 0.513726, 0, 0, 1 )
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="CapsuleShape" id=3]
+height = 0.152059
+
+[sub_resource type="BoxShape" id=4]
 extents = Vector3( 15, 15, 4 )
 
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="CubeMesh" id=5]
 size = Vector3( 0.5, 0.7, 0.5 )
-
-[sub_resource type="CapsuleShape" id=5]
 
 [sub_resource type="QuadMesh" id=6]
 flip_faces = true
@@ -108,56 +110,36 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
 [node name="sprite_container" type="Spatial" parent="MeshInstance" index="0"]
-transform = Transform( -0.0758453, 0.0367366, 0, -0.055105, -0.0505635, -6.66133e-17, -3.91544e-17, -3.59275e-17, 0.09375, 0, 0, -1.34375 )
+
+[node name="Hitbox" type="Area" parent="MeshInstance/sprite_container" index="0" groups=[
+"hitbox",
+]]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+collision_layer = 2
+collision_mask = 2147483650
+script = ExtResource( 4 )
+
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/sprite_container/Hitbox" index="0"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 3 )
 
 [node name="DetectionArea" type="Area" parent="MeshInstance" index="1"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/DetectionArea" index="0"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.5, 12.5 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="MeshInstance" type="MeshInstance" parent="MeshInstance" index="2"]
 transform = Transform( 0.125, 0, 0, 0, -1.01825e-08, -0.125, 0, 0.0625, -2.03651e-08, 0, -0.0695639, 0.00396252 )
-mesh = SubResource( 4 )
+mesh = SubResource( 5 )
 material/0 = null
 
-[node name="PlayerLineOfSight" type="RayCast" parent="." index="2"]
-collision_mask = 4
-
-[node name="effect_handler" parent="." index="3" instance=ExtResource( 3 )]
-frost_particles_path = NodePath("../frost")
-poison_particles_path = NodePath("../poison")
-bleed_particles_path = NodePath("../bleed")
-burn_particles_path = NodePath("../burn")
-
-[node name="frost" parent="." index="4" instance=ExtResource( 6 )]
-emitting = false
-
-[node name="poison" parent="." index="5" instance=ExtResource( 7 )]
-emitting = false
-
-[node name="bleed" parent="." index="6" instance=ExtResource( 8 )]
-emitting = false
-
-[node name="burn" parent="." index="7" instance=ExtResource( 9 )]
-emitting = false
-
-[node name="Hitbox" type="Area" parent="." index="8" groups=[
-"hitbox",
-]]
-collision_layer = 2
-collision_mask = 2147483650
-
-[node name="CollisionShape" type="CollisionShape" parent="Hitbox" index="0"]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
-shape = SubResource( 5 )
-
-[node name="health_bar" type="MeshInstance" parent="." index="9"]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.25917, 0 )
+[node name="health_bar" type="MeshInstance" parent="." index="2"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.25917, -7.10543e-15 )
 mesh = SubResource( 6 )
 material/0 = SubResource( 8 )
 
@@ -170,13 +152,37 @@ render_target_v_flip = true
 margin_right = 200.0
 margin_bottom = 55.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
+[node name="PlayerLineOfSight" type="RayCast" parent="." index="3"]
+collision_mask = 4
+
+[node name="effect_handler" parent="." index="4" instance=ExtResource( 3 )]
+frost_particles_path = NodePath("../frost")
+poison_particles_path = NodePath("../poison")
+bleed_particles_path = NodePath("../bleed")
+burn_particles_path = NodePath("../burn")
+
+[node name="frost" parent="." index="5" instance=ExtResource( 6 )]
+emitting = false
+
+[node name="poison" parent="." index="6" instance=ExtResource( 7 )]
+emitting = false
+
+[node name="bleed" parent="." index="7" instance=ExtResource( 8 )]
+emitting = false
+
+[node name="burn" parent="." index="8" instance=ExtResource( 9 )]
+emitting = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9"]
 anims/walk = SubResource( 9 )
 
-[node name="DeathPlayer" type="AnimationPlayer" parent="." index="11"]
+[node name="DeathPlayer" type="AnimationPlayer" parent="." index="10"]
 anims/die = SubResource( 10 )
 
-[node name="deathburst" parent="." index="12" instance=ExtResource( 11 )]
+[node name="deathburst" parent="." index="11" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+
+[node name="AttackTimer" type="Timer" parent="." index="12"]
 [connection signal="body_entered" from="MeshInstance/DetectionArea" to="." method="detected_body"]
 [connection signal="animation_finished" from="DeathPlayer" to="." method="_on_DeathPlayer_animation_finished"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

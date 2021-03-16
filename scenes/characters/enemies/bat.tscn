@@ -1,18 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://kenshape_assets/enemies/bat/bat.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
 
-[sub_resource type="ViewportTexture" id=1]
+[sub_resource type="SphereShape" id=1]
+radius = 1.2
+
+[sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("health_bar/Viewport")
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=3]
 resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 2
 params_billboard_keep_scale = true
-albedo_texture = SubResource( 1 )
+albedo_texture = SubResource( 2 )
 
 [node name="enemy" instance=ExtResource( 2 )]
 max_health = 35
@@ -23,17 +26,21 @@ acceleration = 12.0
 [node name="MeshInstance" parent="." index="1"]
 layers = 0
 
-[node name="sprite_container" parent="MeshInstance" index="0"]
-transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0 )
-
 [node name="bat" parent="MeshInstance/sprite_container" index="0" instance=ExtResource( 1 )]
 transform = Transform( 0.1, -1.86265e-09, 8.32667e-16, -5.55112e-17, -1.62921e-08, -0.1, 1.86265e-09, 0.1, -1.62921e-08, 0.12656, -3.18581e-08, 0.717755 )
+
+[node name="Hitbox" parent="MeshInstance/sprite_container" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="CollisionShape" parent="MeshInstance/sprite_container/Hitbox" index="0"]
+transform = Transform( 1, 6.25849e-07, 1.621e-07, -1.54422e-07, -1.93801e-07, 1, -2.38419e-07, -1, -2.59581e-07, 0.167377, 0.00151962, 1.26693 )
+shape = SubResource( 1 )
 
 [node name="MeshInstance" parent="MeshInstance" index="2"]
 layers = 0
 
-[node name="health_bar" parent="." index="10"]
-material/0 = SubResource( 2 )
+[node name="health_bar" parent="." index="2"]
+material/0 = SubResource( 3 )
 
-[node name="AnimationPlayer" parent="." index="11"]
+[node name="AnimationPlayer" parent="." index="9"]
 playback_speed = 2.0

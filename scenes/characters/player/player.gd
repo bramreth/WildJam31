@@ -3,7 +3,7 @@ extends "res://scenes/characters/character.gd"
 onready var camera:Camera = $camera/juicy_cam
 
 func _ready():
-	pass
+	$camera.update_health(health, armor)
 	
 func add_dmg_anim(col, num, pos):
 	$camera.set_enemy_dmg(col, num, pos)
@@ -32,3 +32,12 @@ static func get_input_direction() -> Vector3:
 func _jump() -> void:
 	velocity.y = jump_force
 	current_snap = Vector3.ZERO
+
+
+func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
+	.damage(amount, knockback)
+	$camera.update_health(health, armor)
+	
+
+func _on_death() -> void:
+	get_tree().reload_current_scene()
