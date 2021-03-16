@@ -66,10 +66,10 @@ func fire_bullet(radius:float) -> void:
 		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_sprite.trigger()
 		
 		if collider.is_in_group('hitbox'):
-			var enemy = collider.get_parent()
+			var enemy = collider.owner
 			var ammo_dat =  $juicy_cam/gun.selected_ammo
 			var dmg = floor(rand_range(ammo_dat.dmg_min, ammo_dat.dmg_max+1))
-			if collider.is_in_group('weakspot'):
+			if collider.is_weakspot:
 				dmg *= 2
 			$juicy_cam/CanvasLayer/CenterContainer/anchor/crosshair/AnimationPlayer.play("hit")
 			#dmg number for enemy
