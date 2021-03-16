@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/pickups/drops/drop.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/pickups/cupcake.tscn" type="PackedScene" id=2]
+
+[node name="drop" instance=ExtResource( 1 )]
+ammo_name = "cupcake"
+
+[node name="pickup" parent="pickup_container" index="0" instance=ExtResource( 2 )]

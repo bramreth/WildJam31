@@ -5,14 +5,16 @@
 [ext_resource path="res://kenshape_assets/ammo/food/pizza/pizza.png" type="Texture" id=3]
 
 [node name="pickup" instance=ExtResource( 1 )]
-dmg_max = 2
-max_ammo = 12
+dmg_min = 3
+dmg_max = 5
+weapon_spread = 100
+max_ammo = 8
+knockback = 20
 dmg_col = Color( 1, 0.00392157, 0.00392157, 1 )
-crit_rate = 0.33
-crit_mul = 5
-rof = 0.33
+crit_rate = 0.5
+crit_mul = 3
+rof = 1.0
 icon = ExtResource( 3 )
-fire = 1
 
 [node name="pizza" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )

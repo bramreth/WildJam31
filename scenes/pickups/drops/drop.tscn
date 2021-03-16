@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/pickups/drop.gd" type="Script" id=1]
-[ext_resource path="res://scenes/pickups/token.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/particles/deathburst.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/particles/deathburst.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/pickups/drops/drop.gd" type="Script" id=2]
 
 [sub_resource type="SphereShape" id=1]
 radius = 3.0
@@ -62,7 +61,7 @@ tracks/3/keys = {
 }
 
 [node name="drop" type="Spatial"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 ammo_name = "token"
 
 [node name="Area" type="Area" parent="."]
@@ -78,9 +77,7 @@ anims/pickup = SubResource( 2 )
 [node name="pickup_container" type="Spatial" parent="."]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 
-[node name="pickup" parent="pickup_container" instance=ExtResource( 2 )]
-
-[node name="deathburst" parent="." instance=ExtResource( 3 )]
+[node name="deathburst" parent="." instance=ExtResource( 1 )]
 amount = 3
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
