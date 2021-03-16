@@ -181,5 +181,8 @@ anims/die = SubResource( 10 )
 
 [node name="deathburst" parent="." index="11" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+
+[node name="AttackTimer" type="Timer" parent="." index="12"]
 [connection signal="body_entered" from="MeshInstance/DetectionArea" to="." method="detected_body"]
 [connection signal="animation_finished" from="DeathPlayer" to="." method="_on_DeathPlayer_animation_finished"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

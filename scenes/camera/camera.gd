@@ -115,3 +115,7 @@ func _on_gun_change_ammo_type(ammo_ref):
 	$juicy_cam/CanvasLayer/gui/maxammo.text = str(ammo_ref.max_ammo)
 	$juicy_cam/CanvasLayer/gui/ammo_type.texture = ammo_ref.icon
 	$juicy_cam/CanvasLayer/gui/ammo_type/AnimationPlayer.play("set_ammo")
+
+
+func update_health(health, armor) -> void:
+	$juicy_cam/CanvasLayer/gui.update_health(health, armor)
