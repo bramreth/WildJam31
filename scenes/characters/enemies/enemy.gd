@@ -75,7 +75,7 @@ func _get_path() -> void:
 func _calculate_direction_to_next_path_point() -> Vector3:
 	var point:Vector3 = _path.front()
 	
-	if global_transform.origin.distance_to(point) < 1.5:
+	if global_transform.origin.distance_to(point) < 1.7:
 		_path.pop_front()
 	
 	return _calculate_direction_to_point(point)
