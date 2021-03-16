@@ -1,12 +1,13 @@
 [gd_resource type="SpatialMaterial" load_steps=3 format=2]
 
-[ext_resource path="res://kenshape_assets/environment/carpet.png" type="Texture" id=2]
+[sub_resource type="StreamTexture" id=1]
+flags = 19
+load_path = "res://.import/carpet.png-7b677ac0ccf3b025f8e697c2c5462953.s3tc.stex"
 
-[sub_resource type="ImageTexture" id=1]
+[sub_resource type="ImageTexture" id=2]
 
 [resource]
 albedo_color = Color( 0.337255, 0.490196, 0.27451, 1 )
-albedo_texture = ExtResource( 2 )
+albedo_texture = SubResource( 1 )
 metallic_specular = 0.0
-metallic_texture = SubResource( 1 )
-uv1_scale = Vector3( 3, 3, 3 )
+metallic_texture = SubResource( 2 )

@@ -143,6 +143,7 @@ script = ExtResource( 2 )
 [node name="juicy_cam" type="Camera" parent="."]
 transform = Transform( 1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0, 0 )
 current = true
+far = 300.0
 script = ExtResource( 1 )
 noise = SubResource( 1 )
 max_x = 1
