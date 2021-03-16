@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/pickups/drop.gd" type="Script" id=1]
+[ext_resource path="res://scenes/pickups/token.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/particles/deathburst.tscn" type="PackedScene" id=3]
+
+[sub_resource type="SphereShape" id=1]
+radius = 3.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "pickup"
+length = 3.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("pickup_container:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector3( 0.1, 0.1, 0.1 ), Vector3( 0.3, 0.05, 0.1 ), Vector3( 0.1, 0.3, 0.1 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("pickup_container:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5, 0.6 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 2, 0 ), Vector3( 0, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("deathburst")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "restart"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("pickup_container:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 720, 0 ) ]
+}
+
+[node name="drop" type="Spatial"]
+script = ExtResource( 1 )
+ammo_name = "token"
+
+[node name="Area" type="Area" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/pickup = SubResource( 2 )
+
+[node name="pickup_container" type="Spatial" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+
+[node name="pickup" parent="pickup_container" instance=ExtResource( 2 )]
+
+[node name="deathburst" parent="." instance=ExtResource( 3 )]
+amount = 3
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

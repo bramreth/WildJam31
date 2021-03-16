@@ -102,6 +102,10 @@ cycle_ammo_back={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_5="player_interactible"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

@@ -23,7 +23,7 @@ max_armor = 50
 layers = 0
 
 [node name="sprite_container" parent="MeshInstance" index="0"]
-transform = Transform( 0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0 )
+transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0 )
 
 [node name="blue demon" parent="MeshInstance/sprite_container" index="0" instance=ExtResource( 1 )]
 transform = Transform( 0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0 )

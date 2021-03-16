@@ -60,7 +60,9 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[node name="clip" instance=ExtResource( 2 )]
+[node name="clip" groups=[
+"player_ammo",
+] instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0 )
 script = ExtResource( 1 )
 
@@ -100,7 +102,6 @@ bleed = 5
 
 [node name="cupcake" parent="ammo_container" index="1" instance=ExtResource( 5 )]
 visible = false
-weapon_spread = 66
 
 [node name="eyeball" parent="ammo_container" index="2" instance=ExtResource( 3 )]
 visible = false

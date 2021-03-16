@@ -8,6 +8,15 @@ var starting_ammo = ["cupcake", "sock", "cigarette"]
 
 signal init()
 
+func add_ammo(name_in: String):
+	for i in ammo_types:
+		if i.name == name_in:
+			return
+	for amm in $ammo_container.get_children():
+		if amm.name == name_in:
+			ammo_types.append(amm)
+	
+
 func swap_ammo(forward: bool):
 	if ammo: ammo.visible = false
 	if forward:
