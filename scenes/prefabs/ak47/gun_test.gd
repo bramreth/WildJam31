@@ -41,6 +41,12 @@ func _process(delta):
 	emit_signal("spread", selected_ammo.weapon_spread * spread_curve.interpolate(spread))
 		
 func _input(event):
+	if Input.is_action_just_pressed("view"):
+		if not out:
+			open_ammo_view()
+		out = true
+		$ak47/clip/animclip.swap_new_ammo()
+		$ak47/clip/view_timeout.start(0)
 	if out:
 		if Input.is_action_just_pressed("click") or Input.is_action_just_pressed("reload"):
 			shut_ammo_view()
@@ -62,6 +68,7 @@ func open_ammo_view():
 	$ak47/clip/animclip.show_dat(true)
 		
 func shut_ammo_view():
+#	$ak47/clip/animclip.save_new_ammo()
 	$AnimationPlayer.playback_speed = 1.0
 	$AnimationPlayer.play_backwards("reload (copy)")
 	$ak47/clip/animclip/AnimationPlayer.play_backwards("show")
@@ -69,14 +76,16 @@ func shut_ammo_view():
 	#TODO get the current ammo type
 	load_ammo_data()
 	spread = clamp(spread - 0.2, 0, 1)
-	reset_ammo()
 	$ak47/clip/animclip.show_dat(false)
-
+	
 func load_ammo_data():
+	var last_ammo = selected_ammo
 	selected_ammo = $ak47/clip/animclip.get_ammo_data()
+	if selected_ammo == last_ammo: return
 	max_ammo = selected_ammo.max_ammo
 	emit_signal("change_ammo_type", selected_ammo)
 	reset_ammo()
+	
 	
 
 func drain_ammo():

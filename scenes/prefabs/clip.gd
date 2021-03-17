@@ -4,6 +4,8 @@ var ammo_types = []
 var ammo_index  = 0
 var ammo = null
 
+var new_ammo = 0
+
 var starting_ammo = ["cupcake", "sock", "cigarette", "ninja_star"]
 
 signal init()
@@ -15,7 +17,17 @@ func add_ammo(name_in: String):
 	for amm in $ammo_container.get_children():
 		if amm.name == name_in:
 			ammo_types.append(amm)
+			new_ammo = ammo_types.find(amm)
 	
+#func swap_last_ammo():
+#	print(last_index, " ", ammo_index)
+#	var new_last = ammo_index
+#	ammo_index = last_index
+#	last_index = new_last
+func swap_new_ammo():
+	ammo_types[ammo_index].visible = false
+	ammo_index = new_ammo
+	swap_to_ammo()
 
 func swap_ammo(forward: bool):
 	if ammo: ammo.visible = false
@@ -26,7 +38,10 @@ func swap_ammo(forward: bool):
 		if sign(ammo_index) == -1:
 			ammo_index = (len(ammo_types)-2)-ammo_index
 			
-		
+	swap_to_ammo()
+	
+	
+func swap_to_ammo():
 	ammo = ammo_types[ammo_index]
 	$ammo_data/Viewport/ammo_data.setup(ammo)
 	$AnimationPlayer.play("show")
@@ -57,7 +72,10 @@ func show_dat(on):
 		$ammo_data/AnimationPlayer.play("show_dat")
 	else:
 		$ammo_data/AnimationPlayer.play_backwards("show_dat")
-#		$ammo_data/AnimationPlayer.seek(0.1, true)
+
+#func save_new_ammo():
+#	if last_index != ammo_index:
+#		last_index = ammo_index
 
 func get_ammo_data():
 	return ammo_types[ammo_index]
