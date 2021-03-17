@@ -43,5 +43,6 @@ resource_local_to_scene = true
 material = SubResource( 6 )
 
 [node name="Particles" type="Particles"]
+amount = 12
 process_material = SubResource( 5 )
 draw_pass_1 = SubResource( 7 )
