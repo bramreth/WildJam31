@@ -4,3 +4,5 @@
 
 [node name="pickup" type="Spatial"]
 script = ExtResource( 1 )
+electric_range = 0.0
+electric_jumps = 0

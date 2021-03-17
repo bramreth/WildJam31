@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://kenshape_assets/ammo/misc/vhs tape/vhs tape/vhs tape.glb" type="PackedScene" id=2]
+[ext_resource path="res://kenshape_assets/ammo/misc/vhs tape/vhs tape/vhs tape.png" type="Texture" id=3]
+[ext_resource path="res://scenes/particles/electric.tscn" type="PackedScene" id=4]
+
+[node name="pickup" instance=ExtResource( 1 )]
+dmg_min = 5
+dmg_max = 8
+max_ammo = 4
+dmg_col = Color( 1, 1, 0, 1 )
+crit_rate = 0.25
+crit_mul = 3
+rof = 0.4
+icon = ExtResource( 3 )
+electric = 10
+electric_range = 30.0
+electric_jumps = 5
+flavour = "The H stands for Hi-Fi"
+rarity = 2
+
+[node name="vhs tape" parent="." index="0" instance=ExtResource( 2 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
+
+[node name="electric" parent="." index="1" instance=ExtResource( 4 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 )
+local_coords = true

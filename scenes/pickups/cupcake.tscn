@@ -14,7 +14,6 @@ knockback = 15
 dmg_col = Color( 1, 0.423529, 0.788235, 1 )
 icon = ExtResource( 3 )
 frost = 2
-electric = 2
 flavour = "is that \"frost\"ing?"
 
 [node name="cupcake" parent="." index="0" instance=ExtResource( 2 )]

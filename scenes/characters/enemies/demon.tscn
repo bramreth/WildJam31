@@ -9,16 +9,16 @@
 radius = 0.846152
 height = 0.192583
 
-[sub_resource type="ViewportTexture" id=3]
+[sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("health_bar/Viewport")
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=3]
 resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 2
 params_billboard_keep_scale = true
-albedo_texture = SubResource( 3 )
+albedo_texture = SubResource( 2 )
 
 [node name="enemy" instance=ExtResource( 2 )]
 max_health = 50
@@ -47,4 +47,4 @@ transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.0143084
 layers = 0
 
 [node name="health_bar" parent="." index="2"]
-material/0 = SubResource( 4 )
+material/0 = SubResource( 3 )

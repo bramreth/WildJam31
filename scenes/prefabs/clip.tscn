@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scenes/prefabs/clip.gd" type="Script" id=1]
 [ext_resource path="res://assets/kenshapes/clip.glb" type="PackedScene" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://scenes/pickups/lighter.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/ui/ammo_dat.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/pickups/ninja.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/pickups/vhs.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/pickups/fire_extinguisher.tscn" type="PackedScene" id=18]
 
 [sub_resource type="Animation" id=1]
 resource_name = "show"
@@ -132,6 +134,8 @@ fire = 5
 frost = 5
 poison = 5
 bleed = 5
+electric_range = 10.0
+electric_jumps = 5
 
 [node name="cupcake" parent="ammo_container" index="1" instance=ExtResource( 5 )]
 visible = false
@@ -139,35 +143,63 @@ visible = false
 [node name="eyeball" parent="ammo_container" index="2" instance=ExtResource( 3 )]
 visible = false
 weapon_spread = 180
+electric_range = 10.0
+electric_jumps = 5
 
 [node name="pineapple" parent="ammo_container" index="3" instance=ExtResource( 7 )]
 visible = false
+electric_range = 10.0
+electric_jumps = 5
 
 [node name="pizza" parent="ammo_container" index="4" instance=ExtResource( 6 )]
 visible = false
 weapon_spread = 33
+electric_range = 10.0
+electric_jumps = 5
 
 [node name="strawb_milk" parent="ammo_container" index="5" instance=ExtResource( 8 )]
 visible = false
+electric_range = 10.0
+electric_jumps = 5
 
 [node name="gun" parent="ammo_container" index="6" instance=ExtResource( 9 )]
 visible = false
+electric_range = 10.0
+electric_jumps = 5
 
 [node name="token" parent="ammo_container" index="7" instance=ExtResource( 11 )]
 visible = false
+electric_range = 10.0
+electric_jumps = 5
 
 [node name="sock" parent="ammo_container" index="8" instance=ExtResource( 12 )]
 transform = Transform( 1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0, 0, 0 )
 visible = false
+electric_range = 10.0
+electric_jumps = 5
 
 [node name="cigarette" parent="ammo_container" index="9" instance=ExtResource( 13 )]
 visible = false
+electric_range = 10.0
+electric_jumps = 5
 
 [node name="lighter" parent="ammo_container" index="10" instance=ExtResource( 14 )]
 visible = false
+electric_range = 10.0
+electric_jumps = 5
 
 [node name="ninja_star" parent="ammo_container" index="11" instance=ExtResource( 16 )]
 visible = false
+electric_range = 10.0
+electric_jumps = 5
+
+[node name="vhs" parent="ammo_container" index="12" instance=ExtResource( 17 )]
+visible = false
+
+[node name="fire_extinguisher" parent="ammo_container" index="13" instance=ExtResource( 18 )]
+visible = false
+dmg_col = Color( 0, 0.694118, 1, 1 )
+flavour = "I'll just put this over here with the rest of the fire."
 
 [node name="ammo_data" type="MeshInstance" parent="." index="6"]
 transform = Transform( 0.00155718, 0, 0, 0, 0, 0, 0, 0, 1, 11.2391, 6.088, -5.92 )
