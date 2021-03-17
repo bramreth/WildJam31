@@ -25,6 +25,9 @@ export (int) var fire
 export (int) var frost
 export (int) var poison
 export (int) var bleed
+export (int) var electric
+export (float) var electric_range = 10.0
+export (int) var electric_jumps = 5
 
 export (bool) var projectile
 export (int) var ricochet

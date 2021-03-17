@@ -17,6 +17,9 @@ var bleed = null
 export (NodePath) var burn_particles_path
 var burn = null
 
+export (NodePath) var electric_particles_path
+onready var electric = get_node(electric_particles_path)
+
 var max_stax = 16
 var max_bleed = 5
 
@@ -64,7 +67,6 @@ func add_bleed(bleed_in):
 	if $BleedTimer.is_stopped():
 		$BleedTimer.start()
 
-
 func _on_BleedTimer_timeout():
 	if bleed_counter:
 		get_parent().bleed_dmg(bleed_counter)
@@ -72,6 +74,22 @@ func _on_BleedTimer_timeout():
 	if bleed_counter <= 0:
 		bleed.emitting = false
 	$BleedTimer.start()
+
+func add_electric(electric_in, electric_range, electric_jumps):
+	var enemies = get_tree().get_nodes_in_group('enemy')
+	enemies.shuffle()
+	for enemy in enemies:
+		if enemy == get_parent(): continue
+		if get_parent().global_transform.origin.distance_to(enemy.global_transform.origin) < electric_range:
+			enemy.electric_dmg(electric_in, electric_range, electric_jumps)
+			break
+
+func start_electric_particle():
+	electric.emitting = true
+	$ElectricTimer.start()
+
+func _on_ElectricTimer_timeout():
+	electric.emitting = false
 
 func add_burn(burn_in):
 	burn.emitting = true

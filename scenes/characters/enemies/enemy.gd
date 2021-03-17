@@ -182,6 +182,8 @@ func apply_element(ammo_source):
 		$effect_handler.add_poison(ammo_source.poison)
 	if ammo_source.bleed:
 		$effect_handler.add_bleed(ammo_source.bleed)
+	if  ammo_source.electric:
+		$effect_handler.add_electric(ammo_source.electric, ammo_source.electric_range, ammo_source.electric_jumps)
 	
 		
 func poison_dmg(dmg):
@@ -214,6 +216,19 @@ func burn_dmg(dmg):
 	if armor > dmg: post_armor_dmg = min(5 * post_armor_dmg, armor)
 	damage(post_armor_dmg)
 	_player.add_dmg_anim(Color.orangered, post_armor_dmg, global_transform.origin)
+
+func electric_dmg(dmg, max_distance, jumps):
+	if dead: return
+	var post_armor_dmg = dmg
+	if armor > 0:
+		post_armor_dmg = post_armor_dmg * 0.5
+	damage(post_armor_dmg)
+	_player.add_dmg_anim(Color.yellow, post_armor_dmg, global_transform.origin)
+	$effect_handler.start_electric_particle()
+	jumps -= 1
+	if jumps > 0:
+		yield(get_tree().create_timer(0.05),"timeout")
+		$effect_handler.add_electric(dmg, max_distance, jumps)
 
 func _on_death() -> void:
 	dead = true
