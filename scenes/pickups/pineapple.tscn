@@ -13,6 +13,8 @@ dmg_col = Color( 1, 1, 0, 1 )
 crit_rate = 0.25
 crit_mul = 3
 icon = ExtResource( 3 )
+flavour = "The sick love child of pine and apple trees."
+rarity = 1
 
 [node name="pineapple" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )

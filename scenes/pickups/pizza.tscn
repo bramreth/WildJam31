@@ -13,8 +13,9 @@ knockback = 20
 dmg_col = Color( 1, 0.00392157, 0.00392157, 1 )
 crit_rate = 0.5
 crit_mul = 3
-rof = 1.0
 icon = ExtResource( 3 )
+flavour = "Pizza time! "
+rarity = 2
 
 [node name="pizza" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )

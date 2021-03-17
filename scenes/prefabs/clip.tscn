@@ -170,7 +170,7 @@ visible = false
 visible = false
 
 [node name="ammo_data" type="MeshInstance" parent="." index="6"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2391, 6.088, -5.92 )
+transform = Transform( 0.00155718, 0, 0, 0, 0, 0, 0, 0, 1, 11.2391, 6.088, -5.92 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 5 )
 

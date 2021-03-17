@@ -1,0 +1,57 @@
+<<<<<<< HEAD
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://kenshape_assets/enemies/demon/blue demon.glb" type="PackedScene" id=1]
+[ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/prefabs/projectiles/Projectile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/characters/enemies/Hitbox.gd" type="Script" id=4]
+=======
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://kenshape_assets/enemies/demon/blue demon.glb" type="PackedScene" id=1]
+[ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/characters/Weakspot.tscn" type="PackedScene" id=3]
+>>>>>>> 4998e9108fdfb67f8cffa08593cded9fa6e48ad9
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.846152
+height = 0.192583
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("health_bar/Viewport")
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 2
+params_billboard_keep_scale = true
+albedo_texture = SubResource( 2 )
+
+[node name="enemy" instance=ExtResource( 2 )]
+max_health = 50
+max_armor = 50
+is_ranged = true
+attack_range = 25.0
+ranged_attack_projectile = ExtResource( 3 )
+
+[node name="MeshInstance" parent="." index="1"]
+layers = 0
+
+[node name="sprite_container" parent="MeshInstance" index="0"]
+transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0 )
+
+[node name="blue demon" parent="MeshInstance/sprite_container" index="0" instance=ExtResource( 1 )]
+transform = Transform( 0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, 0 )
+
+[node name="CollisionShape" parent="MeshInstance/sprite_container/Hitbox" index="0"]
+transform = Transform( 1, 0, -7.10543e-15, -7.10542e-15, -1.62921e-07, 1, 8.9407e-08, -1, -1.62921e-07, 0, -0.503878, 6.00669e-08 )
+shape = SubResource( 1 )
+
+[node name="Weakspot" parent="MeshInstance/sprite_container" index="2" instance=ExtResource( 3 )]
+
+[node name="MeshInstance" parent="MeshInstance" index="2"]
+layers = 0
+
+[node name="health_bar" parent="." index="2"]
+material/0 = SubResource( 3 )

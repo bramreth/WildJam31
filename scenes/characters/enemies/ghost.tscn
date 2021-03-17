@@ -1,14 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://kenshape_assets/enemies/we have pac man at home/we have pac man at home.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/characters/enemies/Hitbox.gd" type="Script" id=4]
+[ext_resource path="res://scenes/characters/Weakspot.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 height = 0.208422
-
-[sub_resource type="SphereShape" id=5]
-radius = 0.873185
 
 [sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("health_bar/Viewport")
@@ -39,17 +36,8 @@ transform = Transform( 0.1, 0, 0, 0, -1.62921e-08, -0.1, 0, 0.1, -1.62921e-08, 0
 transform = Transform( 1, 1.24345e-14, -2.98023e-08, 2.98023e-08, -1.62921e-07, 1, -6.21725e-15, -1, -1.62921e-07, -0.00204599, -0.455397, 5.45745e-08 )
 shape = SubResource( 1 )
 
-[node name="Weakspot" type="Area" parent="MeshInstance/sprite_container" index="2" groups=[
-"hitbox",
-]]
-collision_layer = 2
-collision_mask = 2
-script = ExtResource( 4 )
-is_weakspot = true
-
-[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/sprite_container/Weakspot" index="0"]
-transform = Transform( 1, 0, -2.98023e-08, -3.55271e-15, 1, 0, 2.98023e-08, 0, 1, -0.0181956, -2.85008e-08, 0.66529 )
-shape = SubResource( 5 )
+[node name="Weakspot2" parent="MeshInstance/sprite_container" index="2" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0, 0.665 )
 
 [node name="MeshInstance" parent="MeshInstance" index="2"]
 layers = 0

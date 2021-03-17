@@ -1,15 +1,23 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/characters/enemies/Hitbox.gd" type="Script" id=1]
+[ext_resource path="res://scenes/particles/spatial_pqueue.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/particles/crit.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SphereShape" id=1]
-radius = 0.700878
+radius = 0.770998
 
-[node name="WeakSpot" type="Area" groups=[
+[node name="Weakspot" type="Area" groups=[
 "hitbox",
-"weakspot",
 ]]
 collision_layer = 2
 collision_mask = 2
+script = ExtResource( 1 )
+is_weakspot = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.826911, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.91713e-08, 0.896135 )
 shape = SubResource( 1 )
+
+[node name="spatial_pqueue" parent="CollisionShape" instance=ExtResource( 2 )]
+particle = ExtResource( 3 )
