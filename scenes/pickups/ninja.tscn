@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://kenshape_assets/ammo/misc/ninja/ninja/ninja star.glb" type="PackedScene" id=1]
+[ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://kenshape_assets/ammo/misc/ninja/ninja/ninja star.png" type="Texture" id=3]
+[ext_resource path="res://scenes/particles/bleed.tscn" type="PackedScene" id=4]
+
+[node name="pickup" instance=ExtResource( 2 )]
+dmg_max = 3
+max_ammo = 50
+crit_rate = 0.3
+rof = 2.0
+icon = ExtResource( 3 )
+bleed = 1
+
+[node name="ninja star" parent="." index="0" instance=ExtResource( 1 )]
+transform = Transform( 0.259808, 0.15, 0, -0.15, 0.259808, 0, 0, 0, 0.3, 0, 0, 0 )
+
+[node name="bleed" parent="ninja star" index="1" instance=ExtResource( 4 )]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 6, 0, 0, 0 )
+local_coords = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/prefabs/clip.gd" type="Script" id=1]
 [ext_resource path="res://assets/kenshapes/clip.glb" type="PackedScene" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://scenes/pickups/sock.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/pickups/cigarette.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/pickups/lighter.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/ui/ammo_dat.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/pickups/ninja.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "show"
@@ -64,16 +66,19 @@ tracks/0/keys = {
 size = Vector2( 8, 8 )
 
 [sub_resource type="ViewportTexture" id=4]
-viewport_path = NodePath("MeshInstance/Viewport")
+viewport_path = NodePath("ammo_data/Viewport")
 
 [sub_resource type="SpatialMaterial" id=5]
 resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
 params_billboard_mode = 1
 params_billboard_keep_scale = true
 albedo_texture = SubResource( 4 )
 
-[sub_resource type="Animation" id=6]
-resource_name = "show_dat"
+[sub_resource type="World" id=6]
+
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -114,7 +119,7 @@ light_indirect_energy = 2.0
 omni_range = 0.0
 
 [node name="ammo_container" type="Spatial" parent="." index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.993, 7, 0 )
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 1, 2.993, 7, 0 )
 
 [node name="beer" parent="ammo_container" index="0" instance=ExtResource( 4 )]
 visible = false
@@ -161,21 +166,22 @@ visible = false
 [node name="lighter" parent="ammo_container" index="10" instance=ExtResource( 14 )]
 visible = false
 
+[node name="ninja" parent="ammo_container" index="11" instance=ExtResource( 16 )]
+visible = false
+
 [node name="ammo_data" type="MeshInstance" parent="." index="6"]
-transform = Transform( 0.00194963, 0, 0, 0, 0.0212794, 0, 0, 0, 1, 10.814, 6.088, -5.92 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2391, 6.088, -5.92 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 5 )
 
 [node name="Viewport" type="Viewport" parent="ammo_data" index="0"]
 size = Vector2( 300, 400 )
 own_world = true
+world = SubResource( 6 )
 transparent_bg = true
+render_target_v_flip = true
 
-[node name="ColorRect" type="ColorRect" parent="ammo_data/Viewport" index="0"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 300, 400 )
-color = Color( 0, 0, 0, 0.607843 )
+[node name="ammo_data" parent="ammo_data/Viewport" index="0" instance=ExtResource( 15 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ammo_data" index="1"]
-anims/show_dat = SubResource( 6 )
+anims/show_dat = SubResource( 7 )

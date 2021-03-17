@@ -26,6 +26,7 @@ export (int) var bleed
 
 export (bool) var projectile
 export (int) var ricochet
+export (String) var flavour
 
 func _ready():
 	assert(get_child(0), "must have child glb")

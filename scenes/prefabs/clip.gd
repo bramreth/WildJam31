@@ -4,7 +4,7 @@ var ammo_types = []
 var ammo_index  = 0
 var ammo = null
 
-var starting_ammo = ["cupcake", "sock", "cigarette"]
+var starting_ammo = ["cupcake", "sock", "cigarette", "ninja"]
 
 signal init()
 
@@ -28,6 +28,7 @@ func swap_ammo(forward: bool):
 			
 		
 	ammo = ammo_types[ammo_index]
+	$ammo_data/Viewport/ammo_data.setup(ammo)
 	$AnimationPlayer.play("show")
 	ammo.visible = true
 	
@@ -38,6 +39,7 @@ func _ready():
 #	ammo_types = $ammo_container.get_children()
 	ammo = ammo_types[ammo_index]
 	ammo.visible = true
+	$ammo_data/Viewport/ammo_data.setup(ammo)
 
 func show_ammo(show: bool):
 	$ammo_container.visible = true
