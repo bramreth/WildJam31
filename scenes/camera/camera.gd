@@ -70,6 +70,7 @@ func fire_bullet(radius:float) -> void:
 			var ammo_dat =  $juicy_cam/gun.selected_ammo
 			var dmg = floor(rand_range(ammo_dat.dmg_min, ammo_dat.dmg_max+1))
 			if collider.is_weakspot:
+				collider.trigger()
 				dmg *= 2
 			$juicy_cam/CanvasLayer/CenterContainer/anchor/crosshair/AnimationPlayer.play("hit")
 			#dmg number for enemy

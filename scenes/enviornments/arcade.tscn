@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scenes/characters/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enviornments/Level.tscn" type="PackedScene" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://scenes/characters/enemies/bat.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/characters/enemies/Spawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://kenshape_assets/environment/wall/wall2.png" type="Texture" id=8]
+[ext_resource path="res://scenes/pickups/drops/pineapple_drop.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/pickups/drops/lighter_drop.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/pickups/drops/pizza_drop.tscn" type="PackedScene" id=11]
 
 [sub_resource type="NavigationMesh" id=1]
 resource_local_to_scene = true
@@ -408,10 +411,17 @@ wave_size = 2
 [node name="player" parent="." index="4" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2291, 14.4621, 24.5184 )
 
-[node name="enemy" parent="." index="5" groups=[
-"character",
-] instance=ExtResource( 5 )]
+[node name="enemy" parent="." index="5" instance=ExtResource( 5 )]
 transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 1.51219, 61.4218 )
 
 [node name="WorldEnvironment" parent="." index="6"]
 environment = SubResource( 22 )
+
+[node name="drop" parent="." index="7" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.085, 2.19707, 14.9775 )
+
+[node name="drop2" parent="." index="8" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.1347, 3.29071, 33.2438 )
+
+[node name="drop3" parent="." index="9" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0601, 21.0194, 30.3596 )

@@ -7,7 +7,18 @@ var picking_up = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player_ammo = get_tree().get_nodes_in_group("player_ammo").front()
-
+	var dat = $pickup_container.get_child(0)
+	print("bmarker", dat.rarity)
+	match(dat.rarity):
+		dat.rarities.COMMON:
+			$Particles.draw_pass_1.material.albedo_color = Color.whitesmoke
+		dat.rarities.UNCOMMON:
+			$Particles.draw_pass_1.material.albedo_color = Color.deepskyblue
+		dat.rarities.RARE:
+			$Particles.draw_pass_1.material.albedo_color = Color.yellow
+		dat.rarities.EPIC:
+			$Particles.draw_pass_1.material.albedo_color = Color.fuchsia
+	print($Particles.draw_pass_1.material.albedo_color)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -18,9 +29,11 @@ func _process(delta):
 
 
 func _on_Area_body_entered(body):
+	$Particles.emitting = false
 	print(body.name)
 	player_ammo.add_ammo(ammo_name)
 	picking_up = true
+	$pickup_container/bouncer.stop()
 	$AnimationPlayer.play("pickup")
 
 
