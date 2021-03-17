@@ -1,5 +1,7 @@
 extends Spatial
 
+
+
 export (int) var dmg_min = 1
 export (int) var dmg_max = 1
 export (int) var weapon_spread = 144
@@ -27,6 +29,15 @@ export (int) var bleed
 export (bool) var projectile
 export (int) var ricochet
 export (String) var flavour
+
+enum rarities{
+	COMMON,
+	UNCOMMON,
+	RARE,
+	EPIC
+}
+
+export(rarities) var rarity
 
 func _ready():
 	assert(get_child(0), "must have child glb")

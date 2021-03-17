@@ -51,6 +51,8 @@ max_ammo = 20
 dmg_col = Color( 1, 0.305882, 0, 1 )
 icon = ExtResource( 3 )
 fire = 8
+flavour = "Starting smoking is a sign you're going too fast"
+rarity = 2
 
 [node name="cigarette" parent="." index="0" instance=ExtResource( 1 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )

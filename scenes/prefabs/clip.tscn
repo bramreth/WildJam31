@@ -166,7 +166,7 @@ visible = false
 [node name="lighter" parent="ammo_container" index="10" instance=ExtResource( 14 )]
 visible = false
 
-[node name="ninja" parent="ammo_container" index="11" instance=ExtResource( 16 )]
+[node name="ninja_star" parent="ammo_container" index="11" instance=ExtResource( 16 )]
 visible = false
 
 [node name="ammo_data" type="MeshInstance" parent="." index="6"]

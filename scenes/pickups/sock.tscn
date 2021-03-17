@@ -12,6 +12,8 @@ weapon_spread = 88
 max_ammo = 2
 icon = ExtResource( 3 )
 poison = 10
+flavour = "The scientiests didn’t stop to think if they should."
+rarity = 3
 
 [node name="sock" parent="." index="0" instance=ExtResource( 1 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
