@@ -27,7 +27,8 @@ func add_ammo(ammo_dat):
 	$new_ammo/AnimationPlayer.play("show")
 	$new_ammo/Timer.start()
 	
-
+func heal():
+	$HealthDisplay/pqueue.trigger()
 
 func _on_Timer_timeout():
 	$new_ammo/AnimationPlayer.play_backwards("show")

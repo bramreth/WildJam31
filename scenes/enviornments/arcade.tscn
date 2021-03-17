@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scenes/characters/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enviornments/Level.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/pickups/drops/pineapple_drop.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/pickups/drops/lighter_drop.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/pickups/drops/pizza_drop.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/pickups/health.tscn" type="PackedScene" id=12]
 
 [sub_resource type="NavigationMesh" id=1]
 resource_local_to_scene = true
@@ -425,3 +426,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30.1347, 3.29071, 33.2438 )
 
 [node name="drop3" parent="." index="9" instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.0601, 21.0194, 30.3596 )
+
+[node name="drop4" parent="." index="10" instance=ExtResource( 12 )]
+transform = Transform( 0.699177, 0, 0.714949, 0, 1, 0, -0.714949, 0, 0.699177, 55.1894, 3.20621, -53.184 )
+
+[node name="drop5" parent="." index="11" instance=ExtResource( 12 )]
+transform = Transform( 0.699177, 0, 0.714949, 0, 1, 0, -0.714949, 0, 0.699177, 50.3482, 3.20621, -48.2336 )
+
+[node name="drop6" parent="." index="12" instance=ExtResource( 12 )]
+transform = Transform( 0.699177, 0, 0.714949, 0, 1, 0, -0.714949, 0, 0.699177, 44.4713, 3.20621, -42.2241 )
+
+[node name="drop7" parent="." index="13" instance=ExtResource( 12 )]
+transform = Transform( 0.699177, 0, 0.714949, 0, 1, 0, -0.714949, 0, 0.699177, 38.3381, 3.20621, -35.9526 )
+
+[node name="drop8" parent="." index="14" instance=ExtResource( 12 )]
+transform = Transform( 0.699177, 0, 0.714949, 0, 1, 0, -0.714949, 0, 0.699177, 32.3104, 3.20621, -29.7889 )

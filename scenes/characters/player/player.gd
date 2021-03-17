@@ -33,9 +33,18 @@ func _jump() -> void:
 	velocity.y = jump_force
 	current_snap = Vector3.ZERO
 
+func add_health(health_in: int):
+	health = clamp(health + health_in, 0, max_health)
+	$camera.update_health(health, armor)
+	
+func add_armor(armor_in: int):
+	armor = clamp(armor + armor_in, 0, max_armor)
+	$camera.update_health(health, armor)
+	
 
 func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
 	.damage(amount, knockback)
+	camera.add_trauma(0.6)
 	$camera.update_health(health, armor)
 	
 
