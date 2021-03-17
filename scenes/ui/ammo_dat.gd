@@ -51,6 +51,7 @@ func setup(ammo_data):
 	$VBoxContainer/fire.visible = current.fire
 	$VBoxContainer/poison.visible = current.poison
 	$VBoxContainer/bleed.visible = current.bleed
+	$VBoxContainer/electric.visible = current.electric
 	if current.flavour:
 		$VBoxContainer/flavour.visible = true
 		$VBoxContainer/flavour.text =  current.flavour
