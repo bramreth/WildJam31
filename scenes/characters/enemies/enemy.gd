@@ -11,6 +11,9 @@ enum STATES {
 var _current_state:int = STATES.IDLE
 
 export(float) var attack_speed = 1.0
+export(bool) var is_ranged = false
+export(float) var attack_range = 5.0
+export(PackedScene) var ranged_attack_projectile
 
 onready var _player = get_tree().get_nodes_in_group("player").front()
 onready var _level = get_tree().get_nodes_in_group('level').front()
@@ -60,19 +63,31 @@ func calculate_move_direction() -> Vector3:
 			return _calculate_direction_to_player()
 		STATES.ATTACKING:
 			if _can_attack:
-				if _has_line_of_sight_to_player() and _distance_to_player() < 5.0:
-					_player.damage(10)
-					$AttackTimer.start()
-					_can_attack = false
+				if _has_line_of_sight_to_player() and _distance_to_player() < attack_range:
+					_attack_player()
 				else: move_state(STATES.TRACKING_PLAYER)
 			return Vector3.ZERO
 		_: return Vector3.ZERO
 
 
+func _attack_player():
+	if not is_ranged:
+		_player.damage(10)
+	else:
+		var projectile = ranged_attack_projectile.instance()
+		var direction_to_player:Vector3 = _calculate_direction_to_point(_player.global_transform.origin)
+		get_parent().add_child(projectile)
+		projectile.global_transform.origin = $MeshInstance/sprite_container/RangedOrigin.global_transform.origin
+		projectile.fire_at(direction_to_player)
+	
+	$AttackTimer.start()
+	_can_attack = false
+
+
 func _calculate_direction_to_player() -> Vector3:
 	var move_direction:Vector3 = _player.global_transform.origin - global_transform.origin 
 	var distance_to_player = move_direction.length()
-	if distance_to_player < 4:
+	if distance_to_player < attack_range:
 		_current_state = STATES.ATTACKING
 		return Vector3.ZERO
 	else:

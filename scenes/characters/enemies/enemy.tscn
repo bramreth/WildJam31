@@ -123,6 +123,9 @@ script = ExtResource( 4 )
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
 shape = SubResource( 3 )
 
+[node name="RangedOrigin" type="Spatial" parent="MeshInstance/sprite_container" index="1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1, 0 )
+
 [node name="DetectionArea" type="Area" parent="MeshInstance" index="1"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
 

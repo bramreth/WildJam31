@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://kenshape_assets/enemies/demon/blue demon.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/prefabs/projectiles/Projectile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/characters/enemies/Hitbox.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
@@ -25,6 +26,9 @@ albedo_texture = SubResource( 3 )
 [node name="enemy" instance=ExtResource( 2 )]
 max_health = 50
 max_armor = 50
+is_ranged = true
+attack_range = 25.0
+ranged_attack_projectile = ExtResource( 3 )
 
 [node name="MeshInstance" parent="." index="1"]
 layers = 0
