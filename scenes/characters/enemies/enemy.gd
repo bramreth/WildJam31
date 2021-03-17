@@ -195,7 +195,9 @@ func burn_dmg(dmg):
 func _on_death() -> void:
 	dead = true
 	$MeshInstance/DetectionArea/CollisionShape.disabled = true
-#	$Hitbox/CollisionShape.disabled = true
+	$MeshInstance/sprite_container.rotation.y = 0
+	for area in $MeshInstance/sprite_container.get_children():
+		if area is Area: area.queue_free()
 	$collision.disabled = true
 	$effect_handler.die()
 	$DeathPlayer.play("die")
