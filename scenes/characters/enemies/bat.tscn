@@ -1,46 +1,108 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://kenshape_assets/enemies/bat/bat.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/characters/attack_mark.tscn" type="PackedScene" id=3]
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="Animation" id=1]
+resource_name = "fire"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 0.1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.12656, -3.18581e-08, 0.717755 ), Vector3( 0.12656, 1.44816, 1.65524 ), Vector3( 0.12656, -1.2293, 0.717755 ), Vector3( 0.12656, -3.18581e-08, 0.717755 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.1, 0.1, 0.1 ), Vector3( 0.15, 0.15, 0.15 ), Vector3( 0.1, 0.1, 0.1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite3D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 5, 5, 5 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 25, 25, 25 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("../../..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_attack_player"
+} ]
+}
+
+[sub_resource type="SphereShape" id=2]
 radius = 1.2
 
-[sub_resource type="ViewportTexture" id=2]
+[sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("health_bar/Viewport")
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=4]
 resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 2
 params_billboard_keep_scale = true
-albedo_texture = SubResource( 2 )
+albedo_texture = SubResource( 3 )
 
 [node name="enemy" instance=ExtResource( 2 )]
 max_health = 35
 max_armor = 0
 speed = 22.0
 acceleration = 12.0
+attack_anim = NodePath("MeshInstance/sprite_container/bat/AnimationPlayer")
 
 [node name="MeshInstance" parent="." index="1"]
 layers = 0
 
 [node name="bat" parent="MeshInstance/sprite_container" index="0" instance=ExtResource( 1 )]
-transform = Transform( 0.1, -1.86265e-09, 8.32667e-16, -5.55112e-17, -1.62921e-08, -0.1, 1.86265e-09, 0.1, -1.62921e-08, 0.12656, -3.18581e-08, 0.717755 )
+transform = Transform( 0.1, -1.86265e-09, 8.1419e-17, 0, -4.37114e-09, -0.1, 1.86265e-09, 0.1, -4.37114e-09, 0.12656, -3.18581e-08, 0.717755 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance/sprite_container/bat" index="1"]
+playback_speed = 1.5
+anims/fire = SubResource( 1 )
+
+[node name="Sprite3D" parent="MeshInstance/sprite_container/bat" index="2" instance=ExtResource( 3 )]
 
 [node name="Hitbox" parent="MeshInstance/sprite_container" index="1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="CollisionShape" parent="MeshInstance/sprite_container/Hitbox" index="0"]
 transform = Transform( 1, 6.25849e-07, 1.621e-07, -1.54422e-07, -1.93801e-07, 1, -2.38419e-07, -1, -2.59581e-07, 0.167377, 0.00151962, 1.26693 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="MeshInstance" parent="MeshInstance" index="2"]
 layers = 0
 
 [node name="health_bar" parent="." index="2"]
-material/0 = SubResource( 3 )
+material/0 = SubResource( 4 )
 
-[node name="AnimationPlayer" parent="." index="9"]
+[node name="AnimationPlayer" parent="." index="10"]
 playback_speed = 2.0

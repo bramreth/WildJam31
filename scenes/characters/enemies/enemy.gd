@@ -22,8 +22,11 @@ var _velocity:Vector3 = Vector3()
 var _path:Array = []
 var _last_facing_direction:Vector3 = Vector3.ZERO
 var _can_attack:bool = true
+var attack_animator = null
+export (NodePath) var attack_anim
 
 func _ready():
+	attack_animator = get_node(attack_anim)
 	update_bars()
 	$AttackTimer.wait_time = attack_speed
 
@@ -64,7 +67,10 @@ func calculate_move_direction() -> Vector3:
 		STATES.ATTACKING:
 			if _can_attack:
 				if _has_line_of_sight_to_player() and _distance_to_player() < attack_range:
-					_attack_player()
+					if attack_animator: 
+						attack_animator.play("fire")
+					else:
+						_attack_player()
 				else: move_state(STATES.TRACKING_PLAYER)
 			return Vector3.ZERO
 		_: return Vector3.ZERO
