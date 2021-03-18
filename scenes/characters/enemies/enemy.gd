@@ -230,6 +230,11 @@ func electric_dmg(dmg, max_distance, jumps):
 		yield(get_tree().create_timer(0.05),"timeout")
 		$effect_handler.add_electric(dmg, max_distance, jumps)
 
+func explosion_dmg(dmg, knockback):
+	if dead: return
+	damage(dmg, knockback)
+	_player.add_dmg_anim(Color.white, dmg, global_transform.origin)
+
 func _on_death() -> void:
 	dead = true
 	$MeshInstance/DetectionArea/CollisionShape.disabled = true

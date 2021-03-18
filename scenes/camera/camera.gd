@@ -2,6 +2,8 @@ extends Spatial
 
 var spread = 1.0 
 
+onready var explosion = load('res://scenes/prefabs/projectiles/Explosion.tscn')
+
 func add_trauma(trauma_in: float):
 	$juicy_cam.add_trauma(trauma_in)
 	
@@ -54,6 +56,10 @@ func fire_bullet(radius:float) -> void:
 	$juicy_cam/RayCast.force_raycast_update()
 	if $juicy_cam/RayCast.is_colliding():
 		$juicy_cam/RayCast/DebugHitDetector.global_transform.origin = $juicy_cam/RayCast.get_collision_point()
+#		var ex = explosion.instance()
+#		get_tree().get_nodes_in_group('level').front().add_child(ex)
+#		ex.global_transform.origin = $juicy_cam/RayCast.get_collision_point()
+#		ex.explode()
 		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue.trigger()
 		var collider = $juicy_cam/RayCast.get_collider()
 		var norm = $juicy_cam/RayCast.get_collision_normal()
