@@ -26,6 +26,13 @@ func _ready():
 	load_ammo_data()
 
 func _process(delta):
+	spread = clamp(spread - (0.66 * delta), 0, 1)
+	if is_sprinting: 
+		spread = clamp(spread + 0.5, 0, 1)
+		was_sprinting = true
+	elif was_sprinting:
+		spread = clamp(spread - 0.75, 0, 1)
+		was_sprinting = false
 	if not $AnimationPlayer.is_playing() and not out:
 		if Input.is_action_pressed("click"):
 			if ammo <= 0: 
@@ -41,14 +48,6 @@ func _process(delta):
 		$ak47.rotation_degrees.x = lerp_angle($ak47.rotation_degrees.x, 0, delta * 5)
 		$ak47.rotation_degrees.y = lerp_angle($ak47.rotation_degrees.y, 0, delta * 5)
 		$ak47.rotation_degrees.z = lerp_angle($ak47.rotation_degrees.z, 0, delta * 5)
-	spread = clamp(spread - (0.66 * delta), 0, 1)
-	if is_sprinting: 
-		spread = clamp(spread + 0.5, 0, 1)
-		was_sprinting = true
-	elif was_sprinting:
-		spread = clamp(spread - 0.75, 0, 1)
-		was_sprinting = false
-	print(spread)
 	emit_signal("spread", selected_ammo.weapon_spread * spread_curve.interpolate(spread))
 		
 func _input(event):
