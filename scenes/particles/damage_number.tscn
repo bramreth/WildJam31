@@ -42,7 +42,7 @@ material = SubResource( 5 )
 font_path = "res://assets/fonts/Akira Expanded Demo.otf"
 
 [sub_resource type="DynamicFont" id=9]
-size = 48
+size = 40
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
 font_data = SubResource( 8 )
