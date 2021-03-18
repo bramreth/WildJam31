@@ -2,7 +2,6 @@
 
 [sub_resource type="StreamTexture" id=1]
 flags = 19
-load_path = "res://.import/carpet.png-7b677ac0ccf3b025f8e697c2c5462953.s3tc.stex"
 
 [sub_resource type="ImageTexture" id=2]
 

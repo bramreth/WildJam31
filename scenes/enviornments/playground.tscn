@@ -99,7 +99,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3447, 6.0676, -13.1404 )
 max_health = 100
 max_armor = 10
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="9"]
+[node name="WorldEnvironment" parent="." index="9"]
 environment = SubResource( 7 )
 
 [node name="enemy2" parent="." index="10" instance=ExtResource( 6 )]
