@@ -8,7 +8,7 @@ enum STATES {
 	SEARCHING,
 	ATTACKING
 }
-var _current_state:int = STATES.IDLE
+var _current_state:int = STATES.SEARCHING
 
 export(float) var attack_speed = 1.0
 export(bool) var is_ranged = false
@@ -81,7 +81,7 @@ func _attack_player():
 		_player.damage(10)
 	else:
 		var projectile = ranged_attack_projectile.instance()
-		var direction_to_player:Vector3 = _calculate_direction_to_point(_player.global_transform.origin)
+		var direction_to_player:Vector3 = (_player.global_transform.origin - global_transform.origin).normalized() 
 		get_parent().add_child(projectile)
 		projectile.global_transform.origin = $MeshInstance/sprite_container/RangedOrigin.global_transform.origin
 		projectile.fire_at(direction_to_player)
@@ -158,7 +158,11 @@ func _has_line_of_sight_to_player() -> bool:
 func move_state(_state_in: int):
 #	assert(_state_in in STATES.keys(), "invalid target state")
 	if _current_state == _state_in: return
-	_current_state = _state_in
+	if _state_in == STATES.IDLE:
+		_current_state = STATES.SEARCHING
+	else:
+		_current_state = _state_in
+	
 	match _current_state:
 		STATES.IDLE:
 			$AnimationPlayer.stop()

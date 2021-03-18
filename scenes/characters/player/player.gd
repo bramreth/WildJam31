@@ -9,6 +9,7 @@ func add_dmg_anim(col, num, pos):
 	$camera.set_enemy_dmg(col, num, pos)
 
 func _physics_process(_delta: float) -> void:
+	if dead: return
 	input_direction = get_input_direction()
 	if is_on_floor() and Input.is_action_just_pressed("move_jump"):
 		_jump()
@@ -49,4 +50,12 @@ func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
 	
 
 func _on_death() -> void:
-	get_tree().reload_current_scene()
+	dead = true
+	$AnimationPlayer.play("die")
+	$camera.fade_out()
+#	get_tree().reload_current_scene()
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "die":
+		get_tree().reload_current_scene()

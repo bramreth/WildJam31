@@ -16,6 +16,7 @@
 [ext_resource path="res://scenes/particles/damage_number.tscn" type="PackedScene" id=14]
 
 [sub_resource type="OpenSimplexNoise" id=1]
+period = 32.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "hit"
@@ -146,8 +147,8 @@ current = true
 far = 300.0
 script = ExtResource( 1 )
 noise = SubResource( 1 )
-max_x = 1
-max_y = 1
+max_r = 2
+decay = 0.8
 
 [node name="CanvasLayer" type="CanvasLayer" parent="juicy_cam"]
 follow_viewport_enable = true
@@ -193,7 +194,6 @@ texture = ExtResource( 4 )
 [node name="gui" parent="juicy_cam/CanvasLayer" instance=ExtResource( 6 )]
 
 [node name="fader" type="ColorRect" parent="juicy_cam/CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2

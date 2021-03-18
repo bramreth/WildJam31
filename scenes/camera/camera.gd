@@ -11,6 +11,8 @@ func fade_in():
 	$juicy_cam/CanvasLayer/fader/AnimationPlayer.play("fade_in")
 
 func fade_out():
+	$juicy_cam/gun.drop()
+	$juicy_cam/CanvasLayer/fader/AnimationPlayer.playback_speed = 0.66
 	$juicy_cam/CanvasLayer/fader/AnimationPlayer.play_backwards("fade_in")
 
 func _ready():
@@ -109,7 +111,7 @@ func set_enemy_dmg(col, dmg, pos):
 func _on_gun_fired(spread):
 #	print("fired")
 	fire_bullet(spread)
-	add_trauma(0.1)
+#	add_trauma(0.1)
 
 func _on_gun_reload():
 	$juicy_cam/CanvasLayer/gui/clipflat/AnimationPlayer.play("reload")

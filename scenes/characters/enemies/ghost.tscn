@@ -60,7 +60,8 @@ tracks/3/keys = {
 }
 
 [sub_resource type="CapsuleShape" id=1]
-height = 0.208422
+radius = 1.33495
+height = 0.724707
 
 [sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("health_bar/Viewport")
@@ -94,7 +95,7 @@ anims/fire = SubResource( 4 )
 [node name="Sprite3D" parent="MeshInstance/sprite_container/we have pac man at home" index="2" instance=ExtResource( 4 )]
 
 [node name="CollisionShape" parent="MeshInstance/sprite_container/Hitbox" index="0"]
-transform = Transform( 1, 1.24345e-14, -2.98023e-08, 2.98023e-08, -1.62921e-07, 1, -6.21725e-15, -1, -1.62921e-07, -0.00204599, -0.455397, 5.45745e-08 )
+transform = Transform( 1, 1.24345e-14, -2.98023e-08, 2.98023e-08, -1.62921e-07, 1, -7.99361e-15, -1, -1.62921e-07, 0.0726476, -0.0317879, 4.36187e-09 )
 shape = SubResource( 1 )
 
 [node name="Weakspot2" parent="MeshInstance/sprite_container" index="2" instance=ExtResource( 3 )]

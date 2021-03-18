@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/prefabs/clip.gd" type="Script" id=1]
 [ext_resource path="res://assets/kenshapes/clip.glb" type="PackedScene" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://scenes/pickups/ninja.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/pickups/vhs.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/pickups/fire_extinguisher.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/pickups/pencil.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Animation" id=1]
 resource_name = "show"
@@ -200,6 +201,9 @@ visible = false
 visible = false
 dmg_col = Color( 0, 0.694118, 1, 1 )
 flavour = "I'll just put this over here with the rest of the fire."
+
+[node name="pencil" parent="ammo_container" index="14" instance=ExtResource( 19 )]
+visible = false
 
 [node name="ammo_data" type="MeshInstance" parent="." index="6"]
 transform = Transform( 0.00155718, 0, 0, 0, 0, 0, 0, 0, 1, 11.2391, 6.088, -5.92 )

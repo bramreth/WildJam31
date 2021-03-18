@@ -6,7 +6,7 @@ var ammo = null
 
 var new_ammo = 0
 
-var starting_ammo = ["cupcake", "sock", "cigarette", "ninja_star", "vhs"]
+var starting_ammo = ["pencil"]
 
 signal init()
 
@@ -31,6 +31,9 @@ func swap_new_ammo():
 
 func swap_ammo(forward: bool):
 	if ammo: ammo.visible = false
+	if len(ammo_types) == 1:
+		swap_to_ammo()
+		return
 	if forward:
 		ammo_index = (ammo_index + 1) % len(ammo_types)
 	else:

@@ -1,9 +1,37 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/characters/character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/player/player.gd" type="Script" id=2]
 [ext_resource path="res://scenes/camera/camera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/characters/player/camera.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "die"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("camera:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 0.5, 0.5, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.917852, 0 ), Vector3( 0, 0.607579, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("camera:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 2 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.8, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 62.045 ), Vector3( 10.605, 9.43518e-08, 83.764 ), Vector3( 41.53, 3.7165e-07, 83.764 ) ]
+}
 
 [node name="player" groups=[
 "player",
@@ -21,3 +49,7 @@ acceleration = 8.0
 [node name="camera" parent="." index="1" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.917852, 0 )
 script = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+anims/die = SubResource( 1 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

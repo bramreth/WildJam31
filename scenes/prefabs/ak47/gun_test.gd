@@ -19,6 +19,8 @@ signal change_ammo_type(ammo_ref)
 var out = false
 
 func _ready():
+	$AnimationPlayer.play("fire")
+	$AnimationPlayer.seek(0.1, true)
 	load_ammo_data()
 
 func _process(delta):
@@ -104,6 +106,8 @@ func reset_ammo():
 	ammo = max_ammo
 	emit_signal("update_ammo", ammo, spread)
 
+func drop():
+	$AnimationPlayer.play("drop")
 
 func _on_view_timeout_timeout():
 	if out: shut_ammo_view()

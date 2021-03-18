@@ -25,7 +25,3 @@ func _process(delta):
 	rotation_degrees.x = noise.get_noise_4d(0, 0, time * time_scale, 0) * max_r * shake
 	rotation_degrees.y = noise.get_noise_4d(0, 0, 0, time * time_scale) * max_r * shake
 	if trauma > 0: trauma = clamp(trauma - (delta * decay), 0, 1)
-
-func _input(event):
-	if Input.is_action_just_pressed("click"):
-		add_trauma(0.4)
