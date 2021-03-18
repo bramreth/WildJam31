@@ -28,12 +28,14 @@ func _physics_process(delta):
 	var rot = $juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees
 	var tilt = PI/30
 	if is_sprinting: tilt *= 2
+	var lean_speed = delta * 2
+	if not get_parent().is_on_floor(): lean_speed *= 5
 	if Input.is_action_pressed("move_left"):
-		$juicy_cam.rotation.z = lerp($juicy_cam.rotation.z, tilt, delta)
+		$juicy_cam.rotation.z = lerp($juicy_cam.rotation.z, tilt, lean_speed)
 	elif Input.is_action_pressed("move_right"):
-		$juicy_cam.rotation.z = lerp($juicy_cam.rotation.z, -tilt, delta)
+		$juicy_cam.rotation.z = lerp($juicy_cam.rotation.z, -tilt, lean_speed)
 	else:
-		$juicy_cam.rotation.z = lerp($juicy_cam.rotation.z, 0, delta*2)
+		$juicy_cam.rotation.z = lerp($juicy_cam.rotation.z, 0, lean_speed * 2)
 		
 #	var targ = (1 + floor($juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees/ 90)) * 90
 #
