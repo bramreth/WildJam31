@@ -1,8 +1,8 @@
 extends Spatial
 
-var spread = 1.0 
-
 onready var explosion = load('res://scenes/prefabs/projectiles/Explosion.tscn')
+
+var is_sprinting = false
 
 func add_trauma(trauma_in: float):
 	$juicy_cam.add_trauma(trauma_in)
@@ -26,6 +26,15 @@ func _input(event):
 
 func _physics_process(delta):
 	var rot = $juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees
+	var tilt = PI/30
+	if is_sprinting: tilt *= 2
+	if Input.is_action_pressed("move_left"):
+		$juicy_cam.rotation.z = lerp($juicy_cam.rotation.z, tilt, delta)
+	elif Input.is_action_pressed("move_right"):
+		$juicy_cam.rotation.z = lerp($juicy_cam.rotation.z, -tilt, delta)
+	else:
+		$juicy_cam.rotation.z = lerp($juicy_cam.rotation.z, 0, delta*2)
+		
 #	var targ = (1 + floor($juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees/ 90)) * 90
 #
 #	$juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees = lerp(
@@ -128,3 +137,8 @@ func _on_gun_change_ammo_type(ammo_ref):
 
 func update_health(health, armor) -> void:
 	$juicy_cam/CanvasLayer/gui.update_health(health, armor)
+
+
+func sprint_spread_multiplier(is_sprinting:bool):
+	self.is_sprinting = is_sprinting
+	$juicy_cam/gun.is_sprinting = is_sprinting

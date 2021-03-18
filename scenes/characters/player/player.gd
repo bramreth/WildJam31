@@ -24,7 +24,9 @@ func calculate_move_direction() -> Vector3:
 	return move_direction.normalized()
 
 func is_running() -> bool:
-	return Input.is_action_pressed("move_sprint")
+	var is_running = Input.is_action_pressed("move_sprint")
+	$camera.sprint_spread_multiplier(is_running)
+	return is_running
 #region end
 
 static func get_input_direction() -> Vector3:

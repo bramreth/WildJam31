@@ -2,6 +2,8 @@ extends Spatial
 
 export (Curve) var spread_curve
 
+var is_sprinting:bool = false
+var was_sprinting:bool = false
 var spread = 0.0
 var spread_decay = 0.04
 
@@ -40,6 +42,13 @@ func _process(delta):
 		$ak47.rotation_degrees.y = lerp_angle($ak47.rotation_degrees.y, 0, delta * 5)
 		$ak47.rotation_degrees.z = lerp_angle($ak47.rotation_degrees.z, 0, delta * 5)
 	spread = clamp(spread - (0.66 * delta), 0, 1)
+	if is_sprinting: 
+		spread = clamp(spread + 0.5, 0, 1)
+		was_sprinting = true
+	elif was_sprinting:
+		spread = clamp(spread - 0.75, 0, 1)
+		was_sprinting = false
+	print(spread)
 	emit_signal("spread", selected_ammo.weapon_spread * spread_curve.interpolate(spread))
 		
 func _input(event):

@@ -48,21 +48,22 @@ func calculate_move_direction() -> Vector3:
 		STATES.IDLE: 
 			return Vector3.ZERO
 		STATES.SEARCHING:
+			if _has_line_of_sight_to_player():
+				move_state(STATES.TRACKING_PLAYER)
+				return Vector3.ZERO
+			
 			if not _path.empty():
 				var move_direction = _calculate_direction_to_next_path_point()
 				_face_move_direction(move_direction)
 				return move_direction
 			else:
-				if not _has_line_of_sight_to_player():
-					move_state(STATES.IDLE)
-					return Vector3.ZERO
-				else:
-					move_state(STATES.TRACKING_PLAYER)
-					return Vector3.ZERO
+				_get_path()
+				return Vector3.ZERO
 		STATES.TRACKING_PLAYER:
 			if not _has_line_of_sight_to_player():
 				_get_path()
 				move_state(STATES.SEARCHING)
+				return Vector3.ZERO
 			return _calculate_direction_to_player()
 		STATES.ATTACKING:
 			if _can_attack:
@@ -159,6 +160,7 @@ func move_state(_state_in: int):
 #	assert(_state_in in STATES.keys(), "invalid target state")
 	if _current_state == _state_in: return
 	if _state_in == STATES.IDLE:
+		_get_path()
 		_current_state = STATES.SEARCHING
 	else:
 		_current_state = _state_in
