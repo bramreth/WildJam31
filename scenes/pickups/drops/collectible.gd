@@ -30,6 +30,12 @@ func _on_Area_body_entered(body):
 	$pickup_container/bouncer.stop()
 	$AnimationPlayer.play("pickup")
 
+func spawn_anim():
+	$AnimationPlayer.play("spawn_anim")
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	queue_free()
+	if anim_name == "pickup" or anim_name == "despawn":
+		queue_free()
+		
+func despawn():
+	$AnimationPlayer.play_backwards("despawn")

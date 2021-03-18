@@ -11,6 +11,8 @@ func update_health(health, armor) -> void:
 	$HealthDisplay/ArmorBar/armor.text = String(armor)
 	if armor <= 0:
 		$HealthDisplay/ArmorBar/armor.visible = false
+	else:
+		$HealthDisplay/ArmorBar/armor.visible = true
 
 func add_ammo(ammo_dat):
 	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_ico.texture = ammo_dat.icon
@@ -29,6 +31,9 @@ func add_ammo(ammo_dat):
 	
 func heal():
 	$HealthDisplay/pqueue.trigger()
+	
+func armor():
+	$HealthDisplay/pqueuearmor.trigger()
 
 func _on_Timer_timeout():
 	$new_ammo/AnimationPlayer.play_backwards("show")

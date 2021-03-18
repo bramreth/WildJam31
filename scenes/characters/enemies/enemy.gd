@@ -26,6 +26,7 @@ var attack_animator = null
 export (NodePath) var attack_anim
 
 func _ready():
+	randomize()
 	attack_animator = get_node(attack_anim)
 	update_bars()
 	$AttackTimer.wait_time = attack_speed
@@ -77,6 +78,7 @@ func calculate_move_direction() -> Vector3:
 
 
 func _attack_player():
+	if dead: return
 	if not is_ranged:
 		_player.damage(10)
 	else:
@@ -85,7 +87,6 @@ func _attack_player():
 		get_parent().add_child(projectile)
 		projectile.global_transform.origin = $MeshInstance/sprite_container/RangedOrigin.global_transform.origin
 		projectile.fire_at(direction_to_player)
-	
 	$AttackTimer.start()
 	_can_attack = false
 
@@ -255,7 +256,16 @@ func _on_death() -> void:
 	$effect_handler.die()
 	$DeathPlayer.play("die")
 	$deathburst.restart()
+	loot_drop()
+	
 
+func loot_drop():
+	var loot_val = randf()
+	# 10% of the time drop a health pack
+	if loot_val < 0.06:
+		get_tree().get_nodes_in_group("col_spawner").front().add_health(global_transform.origin)
+	elif loot_val < 0.1:
+		get_tree().get_nodes_in_group("col_spawner").front().add_armor(global_transform.origin)
 
 func _on_DeathPlayer_animation_finished(anim_name):
 	if anim_name == "die":
