@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/particles/deathburst.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/pickups/drops/collectible.gd" type="Script" id=2]
@@ -7,6 +7,46 @@
 
 [sub_resource type="SphereShape" id=1]
 radius = 3.0
+
+[sub_resource type="Animation" id=7]
+resource_name = "despawn"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("pickup_container:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.2, 0.2, 0.1 ), Vector3( 0.1, 0.1, 0.1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("pickup_container:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 2, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("pickup_container:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -360, 0 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "pickup"
@@ -63,6 +103,46 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=3]
+resource_name = "spawn_anim"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("pickup_container:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.2, 0.2, 0.1 ), Vector3( 0.1, 0.1, 0.1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("pickup_container:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 2, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("pickup_container:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -360, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -90,7 +170,7 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
 }
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=5]
 resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
@@ -102,9 +182,9 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_texture = ExtResource( 4 )
 
-[sub_resource type="QuadMesh" id=5]
+[sub_resource type="QuadMesh" id=6]
 resource_local_to_scene = true
-material = SubResource( 4 )
+material = SubResource( 5 )
 
 [node name="drop" type="Spatial"]
 script = ExtResource( 2 )
@@ -117,21 +197,23 @@ collision_mask = 16
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/despawn = SubResource( 7 )
 anims/pickup = SubResource( 2 )
+anims/spawn_anim = SubResource( 3 )
 
 [node name="pickup_container" type="Spatial" parent="."]
-transform = Transform( 0.1, 0, 6.51683e-08, 0, 0.1, 0, -6.51683e-08, 0, 0.1, 0, 0.05, 0 )
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 
 [node name="bouncer" type="AnimationPlayer" parent="pickup_container"]
 autoplay = "bounve"
 playback_speed = 2.0
-anims/bounve = SubResource( 3 )
+anims/bounve = SubResource( 4 )
 
 [node name="deathburst" parent="." instance=ExtResource( 1 )]
 amount = 3
 
 [node name="Particles" parent="." instance=ExtResource( 3 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
-draw_pass_1 = SubResource( 5 )
+draw_pass_1 = SubResource( 6 )
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
