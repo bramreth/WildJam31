@@ -42,7 +42,7 @@ func _process(delta):
 			$AnimationPlayer.play("fire")
 			drain_ammo()
 			emit_signal("update_ammo", ammo, spread)
-			emit_signal("fired", spread)
+			emit_signal("fired", selected_ammo.weapon_spread * spread_curve.interpolate(spread))
 			bullet_spread()
 		$ak47.translation = $ak47.translation.linear_interpolate(Vector3.ZERO, delta * 5)
 		$ak47.rotation_degrees.x = lerp_angle($ak47.rotation_degrees.x, 0, delta * 5)

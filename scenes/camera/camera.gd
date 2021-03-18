@@ -62,8 +62,8 @@ func _on_gun_spread(amount):
 
 
 func fire_bullet(radius:float) -> void:
-	var x:float = rand_range(0, radius*20) * sin(rand_range(0, 2 * PI))
-	var y:float = rand_range(0, radius*20) * cos(rand_range(0, 2 * PI))
+	var x:float = rand_range(0, radius * .1) * sin(rand_range(0, 2 * PI))
+	var y:float = rand_range(0, radius * .1) * cos(rand_range(0, 2 * PI))
 	$juicy_cam/RayCast.enabled = true
 	$juicy_cam/RayCast.cast_to = Vector3(x,y,-100)
 	$juicy_cam/RayCast.force_raycast_update()
