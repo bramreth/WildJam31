@@ -113,15 +113,26 @@ func fire_bullet(radius:float) -> void:
 			enemy.apply_element(ammo_dat)
 	$juicy_cam/RayCast.enabled = true
 
+
+func fire_projectile(spread, projectile = null):
+	var p = projectile.instance()
+	get_tree().get_nodes_in_group('level').front().add_child(p)
+	p.global_transform.origin = $juicy_cam/gun.get_projectile_spawn()
+	p.fire_at(-global_transform.basis.z)
+
+
 func set_enemy_dmg(col, dmg, pos):
 	var dmg_num = $juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_num.get_next_particle()
 	dmg_num.set_number_col(dmg, col)
 	dmg_num.global_transform.origin = pos
 	$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_num.trigger()
 
-func _on_gun_fired(spread):
+func _on_gun_fired(spread, is_projectile, projectile = null):
 #	print("fired")
-	fire_bullet(spread)
+	if is_projectile:
+		fire_projectile(spread, projectile)
+	else:
+		fire_bullet(spread)
 #	add_trauma(0.1)
 
 func _on_gun_reload():

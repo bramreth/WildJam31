@@ -13,7 +13,7 @@ var max_ammo = 30
 var selected_ammo
 
 signal spread(amount)
-signal fired(spread)
+signal fired(spread, ammo_type)
 signal update_ammo(ammo, spread)
 signal reload()
 signal change_ammo_type(ammo_ref)
@@ -42,7 +42,7 @@ func _process(delta):
 			$AnimationPlayer.play("fire")
 			drain_ammo()
 			emit_signal("update_ammo", ammo, spread)
-			emit_signal("fired", selected_ammo.weapon_spread * spread_curve.interpolate(spread))
+			emit_signal("fired", selected_ammo.weapon_spread * spread_curve.interpolate(spread), selected_ammo.is_projectile, selected_ammo.projectile)
 			bullet_spread()
 		$ak47.translation = $ak47.translation.linear_interpolate(Vector3.ZERO, delta * 5)
 		$ak47.rotation_degrees.x = lerp_angle($ak47.rotation_degrees.x, 0, delta * 5)
@@ -119,3 +119,7 @@ func drop():
 
 func _on_view_timeout_timeout():
 	if out: shut_ammo_view()
+
+
+func get_projectile_spawn():
+	return $ak47/spatial_blast_queue.global_transform.origin

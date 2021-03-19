@@ -1,6 +1,7 @@
 extends Spatial
 
-
+export(bool) var is_projectile = false
+export(PackedScene) var projectile
 
 export (int) var dmg_min = 1
 export (int) var dmg_max = 1
@@ -29,7 +30,7 @@ export (int) var electric
 export (float) var electric_range = 10.0
 export (int) var electric_jumps = 5
 
-export (bool) var projectile
+#export (bool) var projectile
 export (int) var ricochet
 export (String) var flavour
 

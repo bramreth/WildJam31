@@ -136,11 +136,11 @@ func _face_move_direction(move_direction:Vector3) -> void:
 		$MeshInstance.orthonormalize()
 
 
-func detected_body(body:KinematicBody):
-	if not body: return
-	if body.is_in_group('player') and _has_line_of_sight_to_player():
-		_path.clear()
-		move_state(STATES.TRACKING_PLAYER)
+#func detected_body(body:KinematicBody):
+#	if not body: return
+#	if body.is_in_group('player') and _has_line_of_sight_to_player():
+#		_path.clear()
+#		move_state(STATES.TRACKING_PLAYER)
 
 
 func _distance_to_player() -> float:
@@ -250,7 +250,7 @@ func explosion_dmg(dmg, knockback):
 
 func _on_death() -> void:
 	dead = true
-	$MeshInstance/DetectionArea/CollisionShape.disabled = true
+#	$MeshInstance/DetectionArea/CollisionShape.disabled = true
 	$MeshInstance/sprite_container.rotation.y = 0
 	for area in $MeshInstance/sprite_container.get_children():
 		if area is Area: area.queue_free()
