@@ -9,6 +9,7 @@ var direction:Vector3
 
 func fire_at(direction:Vector3):
 	self.direction = direction
+	$Timer.start()
 
 
 func _physics_process(delta):
@@ -21,3 +22,7 @@ func _physics_process(delta):
 		$AnimationPlayer.play("hit")
 		direction = Vector3.ZERO
 		set_physics_process(false)
+
+
+func _on_Timer_timeout():
+	queue_free()

@@ -10,7 +10,7 @@ var max_mob_count = 24
 
 var spawners
 
-signal wave_start()
+signal wave_start(wave_out)
 signal wave_end()
 
 var spawners_map = {}
@@ -20,6 +20,7 @@ func _ready():
 	for s in spawners:
 		spawners_map[s] = false
 		s.connect("all_dead", self, "spawner_done")
+	$wave_controller/major_timer.start(0)
 
 func spawner_done(spawner):
 	spawners_map[spawner] = true
@@ -64,13 +65,16 @@ func start_wave():
 	current_wave = $wave_controller.get_wave(wave)
 	divvy_wave(current_wave)
 	start_spawning()
-	emit_signal("wave_start")
+	emit_signal("wave_start", wave + 1)
 	
 func end_wave():
 	print("end wave")
 	wave_active = false
 	wave += 1
 	emit_signal("wave_end")
+	start_wave()
+#	$wave_controller/major_timer.wait_time = 8
+#	$wave_controller/major_timer.start(0)
 
 func check_spawning_done(map):
 	for k in map:
@@ -88,3 +92,7 @@ func start_spawning():
 				print("done")
 				return
 			
+
+
+func _on_major_timer_timeout():
+	start_wave()

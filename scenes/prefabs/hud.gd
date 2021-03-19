@@ -3,6 +3,10 @@ extends Control
 func _ready():
 	$new_ammo/AnimationPlayer.play_backwards("show")
 	$new_ammo/AnimationPlayer.seek(0, true)
+	$wave_info/AnimationPlayer.play_backwards("show")
+	$wave_info/AnimationPlayer.seek(0, true)
+	get_tree().get_nodes_in_group("level").front().connect("wave_start", self, "wave_start")
+	get_tree().get_nodes_in_group("level").front().connect("wave_end", self, "wave_end")
 
 func update_health(health, armor) -> void:
 	$HealthDisplay/HealthBar.value = health
@@ -35,5 +39,22 @@ func heal():
 func armor():
 	$HealthDisplay/pqueuearmor.trigger()
 
+func wave_start(arg):
+	$wave_info/Panel/Particles2D.amount = 48
+	$wave_info/Panel/title.text = "Enemies inbound\nWave: " + str(arg)
+	$wave_info/AnimationPlayer.play("show")
+	$wave_info/waveTimer.start(0)
+	
+func wave_end():
+	return
+	$wave_info/Panel/Particles2D.amount = 64
+	$wave_info/Panel/title.text = "Wave complete!\nScavenge!"
+	$wave_info/AnimationPlayer.play("show")
+	$wave_info/waveTimer.start(0)
+
 func _on_Timer_timeout():
 	$new_ammo/AnimationPlayer.play_backwards("show")
+
+
+func _on_waveTimer_timeout():
+	$wave_info/AnimationPlayer.play_backwards("show")
