@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/characters/Weakspot.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/characters/attack_mark.tscn" type="PackedScene" id=4]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "fire"
 length = 0.4
 tracks/0/type = "value"
@@ -59,25 +59,26 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="CapsuleShape" id=1]
+[sub_resource type="CapsuleShape" id=2]
 radius = 1.33495
 height = 0.724707
 
-[sub_resource type="ViewportTexture" id=2]
+[sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("health_bar/Viewport")
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=4]
 resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 2
 params_billboard_keep_scale = true
-albedo_texture = SubResource( 2 )
+albedo_texture = SubResource( 3 )
 
 [node name="enemy" instance=ExtResource( 2 )]
-max_health = 40
-max_armor = 20
-speed = 8.0
+max_health = 20
+max_armor = 0
+speed = 13.0
+attack_range = 7.0
 attack_anim = NodePath("MeshInstance/sprite_container/we have pac man at home/AnimationPlayer")
 
 [node name="MeshInstance" parent="." index="1"]
@@ -90,13 +91,13 @@ transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0
 transform = Transform( 0.1, -2.98023e-09, 1.3027e-16, 0, -4.37114e-09, -0.1, 2.98023e-09, 0.1, -4.37114e-09, 0, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance/sprite_container/we have pac man at home" index="1"]
-anims/fire = SubResource( 4 )
+anims/fire = SubResource( 1 )
 
 [node name="Sprite3D" parent="MeshInstance/sprite_container/we have pac man at home" index="2" instance=ExtResource( 4 )]
 
 [node name="CollisionShape" parent="MeshInstance/sprite_container/Hitbox" index="0"]
 transform = Transform( 1, 1.24345e-14, -2.98023e-08, 2.98023e-08, -1.62921e-07, 1, -7.99361e-15, -1, -1.62921e-07, 0.0726476, -0.0317879, 4.36187e-09 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Weakspot2" parent="MeshInstance/sprite_container" index="2" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0, 0.665 )
@@ -105,7 +106,7 @@ transform = Transform( 1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0, 0.6
 layers = 0
 
 [node name="health_bar" parent="." index="2"]
-material/0 = SubResource( 3 )
+material/0 = SubResource( 4 )
 
 [node name="AnimationPlayer" parent="." index="10"]
 playback_speed = 0.66
