@@ -1,157 +1,14 @@
-[gd_scene load_steps=242 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://scenes/characters/enemies/Spawner.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enviornments/Level.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/characters/player/player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/blender/Fence_glass_067.material" type="Material" id=4]
-[ext_resource path="res://assets/blender/Fence_glass_074.material" type="Material" id=5]
-[ext_resource path="res://assets/blender/Fence_metal_068.material" type="Material" id=6]
-[ext_resource path="res://assets/blender/Wall_material_001.material" type="Material" id=7]
-[ext_resource path="res://assets/blender/Stair_glass_003.material" type="Material" id=8]
-[ext_resource path="res://assets/blender/Fence_metal_072.material" type="Material" id=9]
-[ext_resource path="res://assets/blender/Fence_glass_066.material" type="Material" id=10]
-[ext_resource path="res://assets/blender/Fence_metal_065.material" type="Material" id=11]
-[ext_resource path="res://assets/blender/Fence_glass_065.material" type="Material" id=12]
-[ext_resource path="res://assets/blender/Fence_metal_067.material" type="Material" id=13]
-[ext_resource path="res://assets/blender/Stair_white_002.material" type="Material" id=14]
-[ext_resource path="res://assets/blender/Stair_white_003.material" type="Material" id=15]
-[ext_resource path="res://assets/blender/Fence_metal_007.material" type="Material" id=16]
-[ext_resource path="res://assets/blender/Stair_wood_003.material" type="Material" id=17]
-[ext_resource path="res://assets/blender/Fence_glass_007.material" type="Material" id=18]
-[ext_resource path="res://assets/blender/Stair_wood_002.material" type="Material" id=19]
-[ext_resource path="res://assets/blender/Baseboard_material.material" type="Material" id=20]
 [ext_resource path="res://assets/blender/Stair_metal.material" type="Material" id=21]
-[ext_resource path="res://assets/blender/Wall_material.material" type="Material" id=22]
 [ext_resource path="res://assets/blender/Stair_wood.material" type="Material" id=23]
 [ext_resource path="res://assets/blender/Stair_white.material" type="Material" id=24]
 [ext_resource path="res://assets/blender/Stair_glass.material" type="Material" id=25]
-[ext_resource path="res://assets/blender/Fence_glass_006.material" type="Material" id=26]
-[ext_resource path="res://assets/blender/Fence_metal_006.material" type="Material" id=27]
-[ext_resource path="res://assets/blender/Fence_metal_005.material" type="Material" id=28]
-[ext_resource path="res://assets/blender/Fence_metal_010.material" type="Material" id=29]
-[ext_resource path="res://assets/blender/Fence_metal_033.material" type="Material" id=30]
-[ext_resource path="res://assets/blender/Stair_metal_002.material" type="Material" id=31]
-[ext_resource path="res://assets/blender/Fence_metal_013.material" type="Material" id=32]
-[ext_resource path="res://assets/blender/Fence_glass_032.material" type="Material" id=33]
-[ext_resource path="res://assets/blender/Fence_metal_014.material" type="Material" id=34]
-[ext_resource path="res://assets/blender/Fence_glass_014.material" type="Material" id=35]
-[ext_resource path="res://assets/blender/Fence_metal_017.material" type="Material" id=36]
-[ext_resource path="res://assets/blender/Fence_glass_033.material" type="Material" id=37]
-[ext_resource path="res://assets/blender/Fence_glass_017.material" type="Material" id=38]
-[ext_resource path="res://assets/blender/Fence_metal_021.material" type="Material" id=39]
-[ext_resource path="res://assets/blender/Fence_glass_019.material" type="Material" id=40]
-[ext_resource path="res://assets/blender/Fence_glass_021.material" type="Material" id=41]
-[ext_resource path="res://assets/blender/Fence_glass_023.material" type="Material" id=42]
-[ext_resource path="res://assets/blender/Fence_metal_020.material" type="Material" id=43]
-[ext_resource path="res://assets/blender/Stair_glass_002.material" type="Material" id=44]
-[ext_resource path="res://assets/blender/Fence_glass_071.material" type="Material" id=45]
-[ext_resource path="res://assets/blender/Fence_glass_072.material" type="Material" id=46]
-[ext_resource path="res://assets/blender/Fence_metal_012.material" type="Material" id=47]
-[ext_resource path="res://assets/blender/Fence_glass_022.material" type="Material" id=48]
-[ext_resource path="res://assets/blender/Fence_metal_023.material" type="Material" id=49]
-[ext_resource path="res://assets/blender/Fence_glass_015.material" type="Material" id=50]
-[ext_resource path="res://assets/blender/Fence_metal_015.material" type="Material" id=51]
-[ext_resource path="res://assets/blender/Fence_metal_019.material" type="Material" id=52]
-[ext_resource path="res://assets/blender/Fence_glass_030.material" type="Material" id=53]
-[ext_resource path="res://assets/blender/Fence_glass_012.material" type="Material" id=54]
-[ext_resource path="res://assets/blender/Fence_metal_032.material" type="Material" id=55]
-[ext_resource path="res://assets/blender/Fence_metal_018.material" type="Material" id=56]
-[ext_resource path="res://assets/blender/Fence_glass_020.material" type="Material" id=57]
-[ext_resource path="res://assets/blender/Fence_metal_011.material" type="Material" id=58]
-[ext_resource path="res://assets/blender/Fence_glass_011.material" type="Material" id=59]
-[ext_resource path="res://assets/blender/Fence_glass_018.material" type="Material" id=60]
-[ext_resource path="res://assets/blender/Fence_glass_013.material" type="Material" id=61]
-[ext_resource path="res://assets/blender/Fence_metal_022.material" type="Material" id=62]
-[ext_resource path="res://assets/blender/Fence_glass_073.material" type="Material" id=63]
-[ext_resource path="res://assets/blender/Fence_glass.material" type="Material" id=64]
-[ext_resource path="res://assets/blender/Fence_metal_009.material" type="Material" id=65]
-[ext_resource path="res://assets/blender/Fence_glass_009.material" type="Material" id=66]
-[ext_resource path="res://assets/blender/Fence_metal.material" type="Material" id=67]
-[ext_resource path="res://assets/blender/Fence_glass_010.material" type="Material" id=68]
-[ext_resource path="res://assets/blender/Fence_metal_073.material" type="Material" id=69]
-[ext_resource path="res://assets/blender/Fence_metal_049.material" type="Material" id=70]
-[ext_resource path="res://assets/blender/Fence_glass_049.material" type="Material" id=71]
-[ext_resource path="res://assets/blender/Fence_metal_059.material" type="Material" id=72]
-[ext_resource path="res://assets/blender/Fence_glass_052.material" type="Material" id=73]
-[ext_resource path="res://assets/blender/Fence_metal_050.material" type="Material" id=74]
-[ext_resource path="res://assets/blender/Fence_glass_043.material" type="Material" id=75]
-[ext_resource path="res://assets/blender/Fence_metal_045.material" type="Material" id=76]
-[ext_resource path="res://assets/blender/Fence_metal_043.material" type="Material" id=77]
-[ext_resource path="res://assets/blender/Fence_glass_044.material" type="Material" id=78]
-[ext_resource path="res://assets/blender/Fence_glass_047.material" type="Material" id=79]
-[ext_resource path="res://assets/blender/Fence_glass_041.material" type="Material" id=80]
-[ext_resource path="res://assets/blender/Fence_glass_040.material" type="Material" id=81]
-[ext_resource path="res://assets/blender/Fence_metal_051.material" type="Material" id=82]
-[ext_resource path="res://assets/blender/Fence_metal_060.material" type="Material" id=83]
-[ext_resource path="res://assets/blender/Fence_metal_057.material" type="Material" id=84]
-[ext_resource path="res://assets/blender/Fence_metal_062.material" type="Material" id=85]
-[ext_resource path="res://assets/blender/Fence_glass_061.material" type="Material" id=86]
-[ext_resource path="res://assets/blender/Fence_metal_063.material" type="Material" id=87]
-[ext_resource path="res://assets/blender/Fence_metal_061.material" type="Material" id=88]
-[ext_resource path="res://assets/blender/Fence_glass_053.material" type="Material" id=89]
-[ext_resource path="res://assets/blender/Fence_glass_002.material" type="Material" id=90]
-[ext_resource path="res://assets/blender/Fence_glass_060.material" type="Material" id=91]
-[ext_resource path="res://assets/blender/Fence_metal_058.material" type="Material" id=92]
-[ext_resource path="res://assets/blender/Fence_glass_058.material" type="Material" id=93]
-[ext_resource path="res://assets/blender/Fence_glass_057.material" type="Material" id=94]
-[ext_resource path="res://assets/blender/Fence_metal_001.material" type="Material" id=95]
-[ext_resource path="res://assets/blender/Fence_metal_053.material" type="Material" id=96]
-[ext_resource path="res://assets/blender/Fence_glass_051.material" type="Material" id=97]
-[ext_resource path="res://assets/blender/Fence_glass_001.material" type="Material" id=98]
-[ext_resource path="res://assets/blender/Fence_glass_059.material" type="Material" id=99]
-[ext_resource path="res://assets/blender/Fence_glass_062.material" type="Material" id=100]
-[ext_resource path="res://assets/blender/Fence_glass_050.material" type="Material" id=101]
-[ext_resource path="res://assets/blender/Fence_glass_063.material" type="Material" id=102]
-[ext_resource path="res://assets/blender/Fence_metal_052.material" type="Material" id=103]
-[ext_resource path="res://assets/blender/Fence_metal_048.material" type="Material" id=104]
-[ext_resource path="res://assets/blender/Fence_glass_048.material" type="Material" id=105]
-[ext_resource path="res://assets/blender/Fence_metal_047.material" type="Material" id=106]
-[ext_resource path="res://assets/blender/Fence_metal_042.material" type="Material" id=107]
-[ext_resource path="res://assets/blender/Fence_glass_042.material" type="Material" id=108]
-[ext_resource path="res://assets/blender/Fence_metal_044.material" type="Material" id=109]
-[ext_resource path="res://assets/blender/Fence_glass_045.material" type="Material" id=110]
-[ext_resource path="res://assets/blender/Fence_metal_046.material" type="Material" id=111]
-[ext_resource path="res://assets/blender/Fence_glass_046.material" type="Material" id=112]
-[ext_resource path="res://assets/blender/Fence_metal_041.material" type="Material" id=113]
-[ext_resource path="res://assets/blender/Fence_metal_040.material" type="Material" id=114]
-[ext_resource path="res://assets/blender/Fence_metal_036.material" type="Material" id=115]
-[ext_resource path="res://assets/blender/Fence_glass_024.material" type="Material" id=116]
-[ext_resource path="res://assets/blender/Fence_glass_025.material" type="Material" id=117]
-[ext_resource path="res://assets/blender/Fence_glass_038.material" type="Material" id=118]
-[ext_resource path="res://assets/blender/Fence_glass_037.material" type="Material" id=119]
-[ext_resource path="res://assets/blender/Fence_metal_038.material" type="Material" id=120]
-[ext_resource path="res://assets/blender/Fence_metal_026.material" type="Material" id=121]
-[ext_resource path="res://assets/blender/Fence_metal_028.material" type="Material" id=122]
-[ext_resource path="res://assets/blender/Fence_glass_028.material" type="Material" id=123]
-[ext_resource path="res://assets/blender/Fence_metal_029.material" type="Material" id=124]
-[ext_resource path="res://assets/blender/Fence_glass_029.material" type="Material" id=125]
-[ext_resource path="res://assets/blender/Fence_metal_037.material" type="Material" id=126]
-[ext_resource path="res://assets/blender/Fence_metal_024.material" type="Material" id=127]
-[ext_resource path="res://assets/blender/Fence_glass_026.material" type="Material" id=128]
-[ext_resource path="res://assets/blender/Fence_metal_025.material" type="Material" id=129]
-[ext_resource path="res://assets/blender/Fence_metal_027.material" type="Material" id=130]
-[ext_resource path="res://assets/blender/Fence_glass_027.material" type="Material" id=131]
-[ext_resource path="res://assets/blender/Fence_glass_036.material" type="Material" id=132]
-[ext_resource path="res://assets/blender/Fence_metal_030.material" type="Material" id=133]
-[ext_resource path="res://assets/blender/Fence_metal_003.material" type="Material" id=134]
-[ext_resource path="res://assets/blender/Fence_metal_002.material" type="Material" id=135]
-[ext_resource path="res://assets/blender/Fence_glass_004.material" type="Material" id=136]
-[ext_resource path="res://assets/blender/Fence_glass_005.material" type="Material" id=137]
-[ext_resource path="res://assets/blender/Fence_glass_003.material" type="Material" id=138]
-[ext_resource path="res://assets/blender/Fence_metal_004.material" type="Material" id=139]
-[ext_resource path="res://assets/blender/Fence_metal_074.material" type="Material" id=140]
 [ext_resource path="res://scenes/characters/enemies/ghost.tscn" type="PackedScene" id=141]
-[ext_resource path="res://assets/blender/Stair_metal_003.material" type="Material" id=142]
 [ext_resource path="res://scenes/characters/enemies/bat.tscn" type="PackedScene" id=143]
-[ext_resource path="res://assets/blender/Fence_metal_071.material" type="Material" id=144]
-[ext_resource path="res://assets/blender/Fence_metal_070.material" type="Material" id=145]
-[ext_resource path="res://assets/blender/Fence_metal_069.material" type="Material" id=146]
-[ext_resource path="res://assets/blender/Fence_glass_069.material" type="Material" id=147]
-[ext_resource path="res://assets/blender/Fence_glass_068.material" type="Material" id=148]
-[ext_resource path="res://assets/blender/Fence_glass_070.material" type="Material" id=149]
-[ext_resource path="res://assets/blender/Fence_metal_066.material" type="Material" id=150]
-[ext_resource path="res://assets/blender/Fence_metal_064.material" type="Material" id=151]
-[ext_resource path="res://assets/blender/Fence_glass_064.material" type="Material" id=152]
 [ext_resource path="res://scenes/prefabs/arcade_one.tscn" type="PackedScene" id=153]
 [ext_resource path="res://scenes/pickups/drops/pineapple_drop.tscn" type="PackedScene" id=154]
 [ext_resource path="res://scenes/pickups/drops/lighter_drop.tscn" type="PackedScene" id=155]
@@ -187,7 +44,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 6,
-"material": ExtResource( 7 ),
 "name": "Wall_material.001",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -205,7 +61,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 6,
-"material": ExtResource( 22 ),
 "name": "Wall_material",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -220,7 +75,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 6,
-"material": ExtResource( 20 ),
 "name": "Baseboard_material",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -241,7 +95,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 168,
-"material": ExtResource( 15 ),
 "name": "Stair_white.003",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -254,7 +107,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 336,
-"material": ExtResource( 17 ),
 "name": "Stair_wood.003",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -267,7 +119,6 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 360,
-"material": ExtResource( 142 ),
 "name": "Stair_metal.003",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -280,7 +131,6 @@ surfaces/3 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 288,
-"material": ExtResource( 8 ),
 "name": "Stair_glass.003",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -371,7 +221,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 1494,
-"material": ExtResource( 14 ),
 "name": "Stair_white.002",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -384,7 +233,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 1854,
-"material": ExtResource( 19 ),
 "name": "Stair_wood.002",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -397,7 +245,6 @@ surfaces/2 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 648,
-"material": ExtResource( 31 ),
 "name": "Stair_metal.002",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -410,7 +257,6 @@ surfaces/3 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 828,
-"material": ExtResource( 44 ),
 "name": "Stair_glass.002",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -485,7 +331,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 9 ),
 "name": "Fence_metal.072",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -498,7 +343,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 46 ),
 "name": "Fence_glass.072",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -513,7 +357,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 69 ),
 "name": "Fence_metal.073",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -526,7 +369,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 63 ),
 "name": "Fence_glass.073",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -541,7 +383,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 140 ),
 "name": "Fence_metal.074",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -554,7 +395,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 5 ),
 "name": "Fence_glass.074",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -569,7 +409,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 144 ),
 "name": "Fence_metal.071",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -582,7 +421,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 45 ),
 "name": "Fence_glass.071",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -597,7 +435,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 145 ),
 "name": "Fence_metal.070",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -610,7 +447,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 149 ),
 "name": "Fence_glass.070",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -625,7 +461,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 146 ),
 "name": "Fence_metal.069",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -638,7 +473,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 147 ),
 "name": "Fence_glass.069",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -653,7 +487,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 6 ),
 "name": "Fence_metal.068",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -666,7 +499,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 148 ),
 "name": "Fence_glass.068",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -681,7 +513,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 13 ),
 "name": "Fence_metal.067",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -694,7 +525,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 4 ),
 "name": "Fence_glass.067",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -709,7 +539,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 150 ),
 "name": "Fence_metal.066",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -722,7 +551,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 10 ),
 "name": "Fence_glass.066",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -737,7 +565,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 11 ),
 "name": "Fence_metal.065",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -750,7 +577,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 12 ),
 "name": "Fence_glass.065",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -765,7 +591,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 151 ),
 "name": "Fence_metal.064",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -778,7 +603,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 152 ),
 "name": "Fence_glass.064",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -793,7 +617,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 16 ),
 "name": "Fence_metal.007",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -806,7 +629,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 18 ),
 "name": "Fence_glass.007",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -821,7 +643,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 27 ),
 "name": "Fence_metal.006",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -834,7 +655,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 26 ),
 "name": "Fence_glass.006",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -849,7 +669,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 28 ),
 "name": "Fence_metal.005",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -862,7 +681,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 137 ),
 "name": "Fence_glass.005",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -877,7 +695,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 139 ),
 "name": "Fence_metal.004",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -890,7 +707,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 136 ),
 "name": "Fence_glass.004",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -905,7 +721,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 134 ),
 "name": "Fence_metal.003",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -918,7 +733,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 138 ),
 "name": "Fence_glass.003",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -933,7 +747,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 135 ),
 "name": "Fence_metal.002",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -946,7 +759,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 90 ),
 "name": "Fence_glass.002",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -961,7 +773,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 95 ),
 "name": "Fence_metal.001",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -974,7 +785,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 98 ),
 "name": "Fence_glass.001",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -989,7 +799,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 87 ),
 "name": "Fence_metal.063",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1002,7 +811,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 102 ),
 "name": "Fence_glass.063",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1017,7 +825,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 85 ),
 "name": "Fence_metal.062",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1030,7 +837,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 100 ),
 "name": "Fence_glass.062",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1045,7 +851,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 88 ),
 "name": "Fence_metal.061",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1058,7 +863,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 86 ),
 "name": "Fence_glass.061",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1073,7 +877,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 83 ),
 "name": "Fence_metal.060",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1086,7 +889,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 91 ),
 "name": "Fence_glass.060",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1101,7 +903,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 72 ),
 "name": "Fence_metal.059",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1114,7 +915,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 99 ),
 "name": "Fence_glass.059",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1129,7 +929,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 92 ),
 "name": "Fence_metal.058",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1142,7 +941,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 93 ),
 "name": "Fence_glass.058",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1157,7 +955,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 84 ),
 "name": "Fence_metal.057",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1170,7 +967,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 94 ),
 "name": "Fence_glass.057",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1185,7 +981,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 96 ),
 "name": "Fence_metal.053",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1198,7 +993,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 89 ),
 "name": "Fence_glass.053",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1213,7 +1007,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 103 ),
 "name": "Fence_metal.052",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1226,7 +1019,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 73 ),
 "name": "Fence_glass.052",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1241,7 +1033,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 82 ),
 "name": "Fence_metal.051",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1254,7 +1045,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 97 ),
 "name": "Fence_glass.051",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1269,7 +1059,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 74 ),
 "name": "Fence_metal.050",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1282,7 +1071,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 101 ),
 "name": "Fence_glass.050",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1297,7 +1085,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 70 ),
 "name": "Fence_metal.049",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1310,7 +1097,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 71 ),
 "name": "Fence_glass.049",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1325,7 +1111,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 104 ),
 "name": "Fence_metal.048",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1338,7 +1123,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 105 ),
 "name": "Fence_glass.048",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1353,7 +1137,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 106 ),
 "name": "Fence_metal.047",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1366,7 +1149,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 79 ),
 "name": "Fence_glass.047",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1381,7 +1163,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 107 ),
 "name": "Fence_metal.042",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1394,7 +1175,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 108 ),
 "name": "Fence_glass.042",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1409,7 +1189,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 77 ),
 "name": "Fence_metal.043",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1422,7 +1201,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 75 ),
 "name": "Fence_glass.043",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1437,7 +1215,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 109 ),
 "name": "Fence_metal.044",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1450,7 +1227,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 78 ),
 "name": "Fence_glass.044",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1465,7 +1241,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 76 ),
 "name": "Fence_metal.045",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1478,7 +1253,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 110 ),
 "name": "Fence_glass.045",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1493,7 +1267,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 111 ),
 "name": "Fence_metal.046",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1506,7 +1279,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 112 ),
 "name": "Fence_glass.046",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1521,7 +1293,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 113 ),
 "name": "Fence_metal.041",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1534,7 +1305,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 80 ),
 "name": "Fence_glass.041",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1549,7 +1319,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 114 ),
 "name": "Fence_metal.040",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1562,7 +1331,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 81 ),
 "name": "Fence_glass.040",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1577,7 +1345,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 120 ),
 "name": "Fence_metal.038",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1590,7 +1357,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 118 ),
 "name": "Fence_glass.038",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1605,7 +1371,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 126 ),
 "name": "Fence_metal.037",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1618,7 +1383,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 119 ),
 "name": "Fence_glass.037",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1633,7 +1397,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 115 ),
 "name": "Fence_metal.036",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1646,7 +1409,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 132 ),
 "name": "Fence_glass.036",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1661,7 +1423,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 127 ),
 "name": "Fence_metal.024",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1674,7 +1435,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 116 ),
 "name": "Fence_glass.024",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1689,7 +1449,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 129 ),
 "name": "Fence_metal.025",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1702,7 +1461,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 117 ),
 "name": "Fence_glass.025",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1717,7 +1475,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 121 ),
 "name": "Fence_metal.026",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1730,7 +1487,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 128 ),
 "name": "Fence_glass.026",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1745,7 +1501,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 130 ),
 "name": "Fence_metal.027",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1758,7 +1513,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 131 ),
 "name": "Fence_glass.027",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1773,7 +1527,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 122 ),
 "name": "Fence_metal.028",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1786,7 +1539,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 123 ),
 "name": "Fence_glass.028",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1801,7 +1553,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 124 ),
 "name": "Fence_metal.029",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1814,7 +1565,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 125 ),
 "name": "Fence_glass.029",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1829,7 +1579,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 133 ),
 "name": "Fence_metal.030",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1842,7 +1591,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 53 ),
 "name": "Fence_glass.030",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1857,7 +1605,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 55 ),
 "name": "Fence_metal.032",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1870,7 +1617,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 33 ),
 "name": "Fence_glass.032",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1885,7 +1631,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 30 ),
 "name": "Fence_metal.033",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1898,7 +1643,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 37 ),
 "name": "Fence_glass.033",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1913,7 +1657,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 47 ),
 "name": "Fence_metal.012",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1926,7 +1669,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 54 ),
 "name": "Fence_glass.012",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1941,7 +1683,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 32 ),
 "name": "Fence_metal.013",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1954,7 +1695,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 61 ),
 "name": "Fence_glass.013",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1969,7 +1709,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 34 ),
 "name": "Fence_metal.014",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1982,7 +1721,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 35 ),
 "name": "Fence_glass.014",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -1997,7 +1735,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 51 ),
 "name": "Fence_metal.015",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2010,7 +1747,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 50 ),
 "name": "Fence_glass.015",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2025,7 +1761,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 36 ),
 "name": "Fence_metal.017",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2038,7 +1773,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 38 ),
 "name": "Fence_glass.017",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2053,7 +1787,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 56 ),
 "name": "Fence_metal.018",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2066,7 +1799,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 60 ),
 "name": "Fence_glass.018",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2081,7 +1813,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 52 ),
 "name": "Fence_metal.019",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2094,7 +1825,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 40 ),
 "name": "Fence_glass.019",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2109,7 +1839,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 43 ),
 "name": "Fence_metal.020",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2122,7 +1851,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 57 ),
 "name": "Fence_glass.020",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2137,7 +1865,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 39 ),
 "name": "Fence_metal.021",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2150,7 +1877,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 41 ),
 "name": "Fence_glass.021",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2165,7 +1891,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 62 ),
 "name": "Fence_metal.022",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2178,7 +1903,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 48 ),
 "name": "Fence_glass.022",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2193,7 +1917,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 49 ),
 "name": "Fence_metal.023",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2206,7 +1929,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 42 ),
 "name": "Fence_glass.023",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2221,7 +1943,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 58 ),
 "name": "Fence_metal.011",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2234,7 +1955,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 59 ),
 "name": "Fence_glass.011",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2249,7 +1969,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 29 ),
 "name": "Fence_metal.010",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2262,7 +1981,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 68 ),
 "name": "Fence_glass.010",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2277,7 +1995,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 65 ),
 "name": "Fence_metal.009",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2290,7 +2007,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 66 ),
 "name": "Fence_glass.009",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2305,7 +2021,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 228,
-"material": ExtResource( 67 ),
 "name": "Fence_metal",
 "primitive": 4,
 "skeleton_aabb": [  ],
@@ -2318,7 +2033,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 36,
-"material": ExtResource( 64 ),
 "name": "Fence_glass",
 "primitive": 4,
 "skeleton_aabb": [  ],

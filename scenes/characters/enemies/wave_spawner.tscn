@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/characters/enemies/wave_spawner.gd" type="Script" id=1]
+[ext_resource path="res://scenes/characters/enemies/ghost.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/characters/enemies/bat.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/characters/enemies/demon.tscn" type="PackedScene" id=4]
+
+[node name="Spawner" type="Spatial" groups=[
+"spawner",
+]]
+script = ExtResource( 1 )
+enemy_trash = ExtResource( 2 )
+enemy_fast = ExtResource( 3 )
+enemy_range = ExtResource( 4 )
+enemy_tank = ExtResource( 3 )
+
+[node name="trash" type="Spatial" parent="."]
+
+[node name="fast" type="Spatial" parent="."]
+
+[node name="range" type="Spatial" parent="."]
+
+[node name="tank" type="Spatial" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
