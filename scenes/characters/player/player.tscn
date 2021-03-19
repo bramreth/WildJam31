@@ -42,7 +42,7 @@ collision_mask = 23
 script = ExtResource( 2 )
 max_health = 100
 max_armor = 50
-speed = 20.0
+speed = 15.0
 sprint_speed_modifier = 1.75
 acceleration = 8.0
 
