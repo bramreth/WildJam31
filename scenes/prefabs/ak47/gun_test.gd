@@ -11,7 +11,6 @@ var ammo = 30
 var max_ammo = 30
 
 var selected_ammo
-
 signal spread(amount)
 signal fired(spread, ammo_type)
 signal update_ammo(ammo, spread)
@@ -27,6 +26,7 @@ func _ready():
 
 func _process(delta):
 	spread = clamp(spread - (0.66 * delta), 0, 1)
+	
 	if is_sprinting: 
 		spread = clamp(spread + 0.5, 0, 1)
 		was_sprinting = true
@@ -35,6 +35,9 @@ func _process(delta):
 		was_sprinting = false
 	if not $AnimationPlayer.is_playing() and not out:
 		if Input.is_action_pressed("click"):
+			$shot.pitch_scale = ((3 * selected_ammo.rof) + rand_range(-0.02,0.02))
+			print(spread)
+			$shot.max_db = 1.0 - (6*spread)
 			if ammo <= 0: 
 				reload()
 				return

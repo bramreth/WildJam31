@@ -35,3 +35,6 @@ func disable():
 	ex.global_transform.origin = global_transform.origin
 	ex.explode()
 	$AnimationPlayer.play("hit")
+	
+	$Particles.restart()
+	$Particles2.restart()

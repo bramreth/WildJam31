@@ -1,8 +1,58 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/prefabs/projectiles/PlayerProjectile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://kenshape_assets/ammo/misc/fire extuingisher/fire extuingisher/fire extuingisher.glb" type="PackedScene" id=2]
 [ext_resource path="res://scenes/prefabs/projectiles/Explosion.tscn" type="PackedScene" id=3]
+[ext_resource path="res://godot_tools/CommonAssets/particles/random_selection.png" type="Texture" id=4]
+[ext_resource path="res://scenes/particles/shard.png" type="Texture" id=5]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 3.46917, 0, 0, Vector2( 0.503145, 1 ), 0.567004, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+gravity = Vector3( 0, 0, 0 )
+angle = 720.0
+angle_random = 1.0
+scale = 25.0
+scale_curve = SubResource( 2 )
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 4 )
+
+[sub_resource type="QuadMesh" id=6]
+material = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+gravity = Vector3( 0, 0, 0 )
+angle = 720.0
+angle_random = 1.0
+scale = 25.0
+scale_random = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 5 )
+
+[sub_resource type="QuadMesh" id=8]
+material = SubResource( 4 )
 
 [node name="PlayerProjectile" instance=ExtResource( 1 )]
 collision_layer = 1
@@ -13,4 +63,23 @@ explosion = ExtResource( 3 )
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 
 [node name="fire extuingisher" parent="MeshInstance" index="0" instance=ExtResource( 2 )]
-transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.05, 0, 0, 0 )
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
+
+[node name="Particles" type="Particles" parent="." index="5"]
+emitting = false
+amount = 1
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 6 )
+
+[node name="Particles2" type="Particles" parent="." index="6"]
+emitting = false
+amount = 4
+lifetime = 0.3
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 8 )

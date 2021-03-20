@@ -1,12 +1,18 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/particles/shot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/Gun Sounds/cock2.ogg" type="AudioStream" id=2]
 [ext_resource path="res://scenes/particles/muzle_flash.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/Gun Sounds/winchester-rifle-cock-reload.ogg" type="AudioStream" id=4]
 [ext_resource path="res://scenes/particles/click.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/Gun Sounds/ak47-load.ogg" type="AudioStream" id=6]
 [ext_resource path="res://scenes/particles/shell.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/prefabs/ak47/gun_test.gd" type="Script" id=8]
 [ext_resource path="res://scenes/prefabs/clip.tscn" type="PackedScene" id=9]
 [ext_resource path="res://kenshape_assets/gun/x gun no clip.glb" type="PackedScene" id=10]
+[ext_resource path="res://assets/Gun Sounds/tank-fire-1.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/Gun Sounds/Gun Sounds 2/ak47-single-shot-5.ogg" type="AudioStream" id=14]
+[ext_resource path="res://scenes/prefabs/ak47/shotfx.gd" type="Script" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "drop"
@@ -141,6 +147,32 @@ tracks/7/keys = {
 "method": "trigger"
 } ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("shot:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = false
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/9/type = "method"
+tracks/9/path = NodePath("shotfx")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "fire"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.6
@@ -257,6 +289,42 @@ tracks/8/keys = {
 "method": "reset_ammo"
 } ]
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("clip:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("ding:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.025 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("cock:playing")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=4]
 length = 0.3
@@ -361,6 +429,18 @@ tracks/7/keys = {
 "args": [ true ],
 "method": "show_ammo"
 } ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("clip:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -499,6 +579,11 @@ func trigger():
 	index = (index + 1) % queue_count
 "
 
+[sub_resource type="OpenSimplexNoise" id=7]
+period = 8.0
+persistence = 0.2
+lacunarity = 3.0
+
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 8 )
 
@@ -510,7 +595,7 @@ anims/reload = SubResource( 3 )
 "anims/reload (copy) (copy)" = SubResource( 5 )
 
 [node name="ak47" type="Spatial" parent="."]
-transform = Transform( 0.994522, -0.104528, 0, 0.104528, 0.994522, 0, 0, 0, 1, -4, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -554,7 +639,7 @@ light_color = Color( 1, 0.631373, 0, 1 )
 light_energy = 5.0
 light_indirect_energy = 5.0
 light_specular = 0.0
-omni_range = 0.0
+omni_range = 11.0
 omni_attenuation = 0.707104
 
 [node name="OmniLight2" type="OmniLight" parent="ak47"]
@@ -562,6 +647,48 @@ transform = Transform( 0.997564, 0.0697569, 0, -0.0697569, 0.997564, 0, 0, 0, 1,
 light_energy = 10.0
 light_indirect_energy = 10.0
 light_specular = 0.0
-omni_range = 0.0
+omni_range = 4.0
 omni_attenuation = 0.707104
+
+[node name="clip" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 2 )
+unit_db = -5.0
+bus = "gunsfx"
+area_mask = 2147483649
+
+[node name="ding" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+unit_db = -5.0
+bus = "gunsfx"
+area_mask = 2147483649
+
+[node name="cock" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+unit_db = -3.0
+bus = "Sfx"
+area_mask = 2147483649
+
+[node name="shot" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 11 )
+unit_db = 4.0
+max_db = -5.0
+pitch_scale = 3.0
+bus = "shotsfx"
+doppler_tracking = 1
+
+[node name="shotfx" type="Spatial" parent="."]
+script = ExtResource( 16 )
+n = SubResource( 7 )
+
+[node name="shot1" type="AudioStreamPlayer3D" parent="shotfx"]
+stream = ExtResource( 14 )
+bus = "shotsfx"
+
+[node name="shot3" type="AudioStreamPlayer3D" parent="shotfx"]
+stream = ExtResource( 14 )
+bus = "shotsfx"
+
+[node name="shot4" type="AudioStreamPlayer3D" parent="shotfx"]
+stream = ExtResource( 14 )
+bus = "shotsfx"
 [connection signal="timeout" from="ak47/clip/view_timeout" to="." method="_on_view_timeout_timeout"]

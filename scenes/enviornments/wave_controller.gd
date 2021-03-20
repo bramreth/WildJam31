@@ -4,7 +4,7 @@ enum mobs {
 	TRASH,
 	FAST, 
 	RANGE,
-	EXTRA
+	TANK
 }
 
 func _ready():
@@ -23,6 +23,10 @@ func fast_wave(level: int):
 func range_wave(level: int):
 	if level <= 30:
 		return {mobs.RANGE: uncommon(level)}
+		
+func tank_wave(level: int):
+	if level <= 30:
+		return {mobs.TANK: common(level)}
 
 func get_wave(iter: int):
 	var wave = []
@@ -39,10 +43,14 @@ func get_wave(iter: int):
 		wave.append(trash_wave(iter))
 		wave.append(fast_wave(max(iter-5, 0)))
 		wave.append(range_wave(max(iter-5, 0)))
+	elif iter < 12:
+		wave.append(trash_wave(iter))
+		wave.append(tank_wave(max(iter-7, 0)))
 	elif iter < 15:
 		wave.append(trash_wave(iter))
-		wave.append(fast_wave(max(iter-5, 0)))
-		wave.append(range_wave(max(iter-5, 0)))
+		wave.append(fast_wave(max(iter-8, 0)))
+		wave.append(range_wave(max(iter-8, 0)))
+		wave.append(tank_wave(max(iter-8, 0)))
 	else:
 		wave.append("restart")
 	return wave

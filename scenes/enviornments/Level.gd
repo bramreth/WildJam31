@@ -21,6 +21,8 @@ func _ready():
 		spawners_map[s] = false
 		s.connect("all_dead", self, "spawner_done")
 	$wave_controller/major_timer.start(0)
+	Event.emit_signal(Event.OPEN_DOORS)
+
 
 func spawner_done(spawner):
 	spawners_map[spawner] = true

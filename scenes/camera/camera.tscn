@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
@@ -14,6 +14,8 @@
 [ext_resource path="res://assets/fonts/pause_menu_buttons.tres" type="DynamicFont" id=12]
 [ext_resource path="res://scenes/particles/sprite.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/particles/damage_number.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/Gun Sounds/hits1/hit3.ogg" type="AudioStream" id=15]
+[ext_resource path="res://assets/Gun Sounds/hits1/hit1.ogg" type="AudioStream" id=17]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 period = 32.0
@@ -167,7 +169,6 @@ margin_right = 960.0
 margin_bottom = 540.0
 
 [node name="crosshair" type="Sprite" parent="juicy_cam/CanvasLayer/CenterContainer/anchor"]
-self_modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 
@@ -194,6 +195,7 @@ texture = ExtResource( 4 )
 [node name="gui" parent="juicy_cam/CanvasLayer" instance=ExtResource( 6 )]
 
 [node name="fader" type="ColorRect" parent="juicy_cam/CanvasLayer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -323,6 +325,28 @@ queue_count = 16
 [node name="spatial_pqueue_num" parent="juicy_cam/RayCast/DebugHitDetector" instance=ExtResource( 7 )]
 particle = ExtResource( 14 )
 queue_count = 16
+
+[node name="AudioHit" type="AudioStreamPlayer3D" parent="juicy_cam/RayCast/DebugHitDetector"]
+stream = ExtResource( 15 )
+unit_db = 5.0
+max_db = 0.0
+max_distance = 50.0
+bus = "Sfx"
+
+[node name="AudioCrit" type="AudioStreamPlayer3D" parent="juicy_cam/RayCast/DebugHitDetector"]
+stream = ExtResource( 15 )
+unit_db = 5.0
+max_db = 0.0
+pitch_scale = 2.0
+max_distance = 50.0
+bus = "Sfx"
+
+[node name="AudioDud" type="AudioStreamPlayer3D" parent="juicy_cam/RayCast/DebugHitDetector"]
+stream = ExtResource( 17 )
+unit_db = 5.0
+max_db = 0.0
+max_distance = 50.0
+bus = "Sfx"
 [connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Continue" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Continue_pressed"]
 [connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Settings" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Reset" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Reset_pressed"]

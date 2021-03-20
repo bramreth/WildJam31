@@ -7,10 +7,10 @@ func _ready():
 
 func _on_open():
 	if not open:
-		$animation_player.play("open_doors")
+		$AnimationPlayer.play("open_doors")
 		open = true
 
 func _on_close():
 	if open:
-		$animation_player.play("close_doors")
+		$AnimationPlayer.play("close_doors")
 		open = false

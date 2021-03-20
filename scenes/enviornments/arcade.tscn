@@ -66,42 +66,42 @@ data = PoolVector3Array( -2.5, 4, 30, 2.5, 4, 30, -2.5, -4, 30, 2.5, 4, 30, 2.5,
 [sub_resource type="CubeMesh" id=13]
 size = Vector3( 30, 2, 4 )
 
-[sub_resource type="ConcavePolygonShape" id=23]
+[sub_resource type="ConcavePolygonShape" id=14]
 data = PoolVector3Array( -15, 1, 2, 15, 1, 2, -15, -1, 2, 15, 1, 2, 15, -1, 2, -15, -1, 2, 15, 1, -2, -15, 1, -2, 15, -1, -2, -15, 1, -2, -15, -1, -2, 15, -1, -2, 15, 1, 2, 15, 1, -2, 15, -1, 2, 15, 1, -2, 15, -1, -2, 15, -1, 2, -15, 1, -2, -15, 1, 2, -15, -1, -2, -15, 1, 2, -15, -1, 2, -15, -1, -2, 15, 1, 2, -15, 1, 2, 15, 1, -2, -15, 1, 2, -15, 1, -2, 15, 1, -2, -15, -1, 2, 15, -1, 2, -15, -1, -2, 15, -1, 2, 15, -1, -2, -15, -1, -2 )
 
-[sub_resource type="ConcavePolygonShape" id=24]
+[sub_resource type="ConcavePolygonShape" id=15]
 data = PoolVector3Array( -15, 1, 2, 15, 1, 2, -15, -1, 2, 15, 1, 2, 15, -1, 2, -15, -1, 2, 15, 1, -2, -15, 1, -2, 15, -1, -2, -15, 1, -2, -15, -1, -2, 15, -1, -2, 15, 1, 2, 15, 1, -2, 15, -1, 2, 15, 1, -2, 15, -1, -2, 15, -1, 2, -15, 1, -2, -15, 1, 2, -15, -1, -2, -15, 1, 2, -15, -1, 2, -15, -1, -2, 15, 1, 2, -15, 1, 2, 15, 1, -2, -15, 1, 2, -15, 1, -2, 15, 1, -2, -15, -1, 2, 15, -1, 2, -15, -1, -2, 15, -1, 2, 15, -1, -2, -15, -1, -2 )
-
-[sub_resource type="ConcavePolygonShape" id=25]
-data = PoolVector3Array( -15, 1, 2, 15, 1, 2, -15, -1, 2, 15, 1, 2, 15, -1, 2, -15, -1, 2, 15, 1, -2, -15, 1, -2, 15, -1, -2, -15, 1, -2, -15, -1, -2, 15, -1, -2, 15, 1, 2, 15, 1, -2, 15, -1, 2, 15, 1, -2, 15, -1, -2, 15, -1, 2, -15, 1, -2, -15, 1, 2, -15, -1, -2, -15, 1, 2, -15, -1, 2, -15, -1, -2, 15, 1, 2, -15, 1, 2, 15, 1, -2, -15, 1, 2, -15, 1, -2, 15, 1, -2, -15, -1, 2, 15, -1, 2, -15, -1, -2, 15, -1, 2, 15, -1, -2, -15, -1, -2 )
-
-[sub_resource type="ConcavePolygonShape" id=26]
-data = PoolVector3Array( -15, 1, 2, 15, 1, 2, -15, -1, 2, 15, 1, 2, 15, -1, 2, -15, -1, 2, 15, 1, -2, -15, 1, -2, 15, -1, -2, -15, 1, -2, -15, -1, -2, 15, -1, -2, 15, 1, 2, 15, 1, -2, 15, -1, 2, 15, 1, -2, 15, -1, -2, 15, -1, 2, -15, 1, -2, -15, 1, 2, -15, -1, -2, -15, 1, 2, -15, -1, 2, -15, -1, -2, 15, 1, 2, -15, 1, 2, 15, 1, -2, -15, 1, 2, -15, 1, -2, 15, 1, -2, -15, -1, 2, 15, -1, 2, -15, -1, -2, 15, -1, 2, 15, -1, -2, -15, -1, -2 )
-
-[sub_resource type="CubeMesh" id=15]
-size = Vector3( 70, 2, 50 )
 
 [sub_resource type="ConcavePolygonShape" id=16]
+data = PoolVector3Array( -15, 1, 2, 15, 1, 2, -15, -1, 2, 15, 1, 2, 15, -1, 2, -15, -1, 2, 15, 1, -2, -15, 1, -2, 15, -1, -2, -15, 1, -2, -15, -1, -2, 15, -1, -2, 15, 1, 2, 15, 1, -2, 15, -1, 2, 15, 1, -2, 15, -1, -2, 15, -1, 2, -15, 1, -2, -15, 1, 2, -15, -1, -2, -15, 1, 2, -15, -1, 2, -15, -1, -2, 15, 1, 2, -15, 1, 2, 15, 1, -2, -15, 1, 2, -15, 1, -2, 15, 1, -2, -15, -1, 2, 15, -1, 2, -15, -1, -2, 15, -1, 2, 15, -1, -2, -15, -1, -2 )
+
+[sub_resource type="ConcavePolygonShape" id=17]
+data = PoolVector3Array( -15, 1, 2, 15, 1, 2, -15, -1, 2, 15, 1, 2, 15, -1, 2, -15, -1, 2, 15, 1, -2, -15, 1, -2, 15, -1, -2, -15, 1, -2, -15, -1, -2, 15, -1, -2, 15, 1, 2, 15, 1, -2, 15, -1, 2, 15, 1, -2, 15, -1, -2, 15, -1, 2, -15, 1, -2, -15, 1, 2, -15, -1, -2, -15, 1, 2, -15, -1, 2, -15, -1, -2, 15, 1, 2, -15, 1, 2, 15, 1, -2, -15, 1, 2, -15, 1, -2, 15, 1, -2, -15, -1, 2, 15, -1, 2, -15, -1, -2, 15, -1, 2, 15, -1, -2, -15, -1, -2 )
+
+[sub_resource type="CubeMesh" id=18]
+size = Vector3( 70, 2, 50 )
+
+[sub_resource type="ConcavePolygonShape" id=19]
 data = PoolVector3Array( -35, 1, 25, 35, 1, 25, -35, -1, 25, 35, 1, 25, 35, -1, 25, -35, -1, 25, 35, 1, -25, -35, 1, -25, 35, -1, -25, -35, 1, -25, -35, -1, -25, 35, -1, -25, 35, 1, 25, 35, 1, -25, 35, -1, 25, 35, 1, -25, 35, -1, -25, 35, -1, 25, -35, 1, -25, -35, 1, 25, -35, -1, -25, -35, 1, 25, -35, -1, 25, -35, -1, -25, 35, 1, 25, -35, 1, 25, 35, 1, -25, -35, 1, 25, -35, 1, -25, 35, 1, -25, -35, -1, 25, 35, -1, 25, -35, -1, -25, 35, -1, 25, 35, -1, -25, -35, -1, -25 )
 
-[sub_resource type="CubeMesh" id=17]
+[sub_resource type="CubeMesh" id=20]
 size = Vector3( 3, 20, 3 )
 
-[sub_resource type="ConcavePolygonShape" id=18]
+[sub_resource type="ConcavePolygonShape" id=21]
 data = PoolVector3Array( -1.5, 10, 1.5, 1.5, 10, 1.5, -1.5, -10, 1.5, 1.5, 10, 1.5, 1.5, -10, 1.5, -1.5, -10, 1.5, 1.5, 10, -1.5, -1.5, 10, -1.5, 1.5, -10, -1.5, -1.5, 10, -1.5, -1.5, -10, -1.5, 1.5, -10, -1.5, 1.5, 10, 1.5, 1.5, 10, -1.5, 1.5, -10, 1.5, 1.5, 10, -1.5, 1.5, -10, -1.5, 1.5, -10, 1.5, -1.5, 10, -1.5, -1.5, 10, 1.5, -1.5, -10, -1.5, -1.5, 10, 1.5, -1.5, -10, 1.5, -1.5, -10, -1.5, 1.5, 10, 1.5, -1.5, 10, 1.5, 1.5, 10, -1.5, -1.5, 10, 1.5, -1.5, 10, -1.5, 1.5, 10, -1.5, -1.5, -10, 1.5, 1.5, -10, 1.5, -1.5, -10, -1.5, 1.5, -10, 1.5, 1.5, -10, -1.5, -1.5, -10, -1.5 )
 
-[sub_resource type="CubeMesh" id=19]
+[sub_resource type="CubeMesh" id=22]
 size = Vector3( 8, 1, 50 )
 
-[sub_resource type="ConcavePolygonShape" id=20]
+[sub_resource type="ConcavePolygonShape" id=23]
 data = PoolVector3Array( -4, 0.5, 25, 4, 0.5, 25, -4, -0.5, 25, 4, 0.5, 25, 4, -0.5, 25, -4, -0.5, 25, 4, 0.5, -25, -4, 0.5, -25, 4, -0.5, -25, -4, 0.5, -25, -4, -0.5, -25, 4, -0.5, -25, 4, 0.5, 25, 4, 0.5, -25, 4, -0.5, 25, 4, 0.5, -25, 4, -0.5, -25, 4, -0.5, 25, -4, 0.5, -25, -4, 0.5, 25, -4, -0.5, -25, -4, 0.5, 25, -4, -0.5, 25, -4, -0.5, -25, 4, 0.5, 25, -4, 0.5, 25, 4, 0.5, -25, -4, 0.5, 25, -4, 0.5, -25, 4, 0.5, -25, -4, -0.5, 25, 4, -0.5, 25, -4, -0.5, -25, 4, -0.5, 25, 4, -0.5, -25, -4, -0.5, -25 )
 
-[sub_resource type="ProceduralSky" id=21]
+[sub_resource type="ProceduralSky" id=24]
 sky_energy = 1.2
 
-[sub_resource type="Environment" id=22]
+[sub_resource type="Environment" id=25]
 background_mode = 2
-background_sky = SubResource( 21 )
+background_sky = SubResource( 24 )
 ambient_light_color = Color( 1, 0.615234, 0, 1 )
 ambient_light_energy = 1.5
 glow_enabled = true
@@ -288,7 +288,7 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance7/StaticBody" index="0"]
-shape = SubResource( 23 )
+shape = SubResource( 14 )
 
 [node name="MeshInstance10" type="MeshInstance" parent="Navigation/NavigationMeshInstance" index="14"]
 transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 50, 1, -20 )
@@ -300,7 +300,7 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance10/StaticBody" index="0"]
-shape = SubResource( 24 )
+shape = SubResource( 15 )
 
 [node name="MeshInstance8" type="MeshInstance" parent="Navigation/NavigationMeshInstance" index="15"]
 transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 50, 1, 20 )
@@ -312,7 +312,7 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance8/StaticBody" index="0"]
-shape = SubResource( 25 )
+shape = SubResource( 16 )
 
 [node name="MeshInstance9" type="MeshInstance" parent="Navigation/NavigationMeshInstance" index="16"]
 transform = Transform( 0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 50, 1, 40 )
@@ -324,11 +324,11 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance9/StaticBody" index="0"]
-shape = SubResource( 26 )
+shape = SubResource( 17 )
 
 [node name="MeshInstance11" type="MeshInstance" parent="Navigation/NavigationMeshInstance" index="17"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 43.7709, 17.8632, 50.3134 )
-mesh = SubResource( 15 )
+mesh = SubResource( 18 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/MeshInstance11" index="0"]
@@ -336,11 +336,11 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance11/StaticBody" index="0"]
-shape = SubResource( 16 )
+shape = SubResource( 19 )
 
 [node name="MeshInstance12" type="MeshInstance" parent="Navigation/NavigationMeshInstance" index="18"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7545, 8.67684, 29.6966 )
-mesh = SubResource( 17 )
+mesh = SubResource( 20 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/MeshInstance12" index="0"]
@@ -348,11 +348,11 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance12/StaticBody" index="0"]
-shape = SubResource( 18 )
+shape = SubResource( 21 )
 
 [node name="MeshInstance15" type="MeshInstance" parent="Navigation/NavigationMeshInstance" index="19"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7545, 8.67684, 61.5583 )
-mesh = SubResource( 17 )
+mesh = SubResource( 20 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/MeshInstance15" index="0"]
@@ -360,11 +360,11 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance15/StaticBody" index="0"]
-shape = SubResource( 18 )
+shape = SubResource( 21 )
 
 [node name="MeshInstance13" type="MeshInstance" parent="Navigation/NavigationMeshInstance" index="20"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.9362, 8.67684, 29.6966 )
-mesh = SubResource( 17 )
+mesh = SubResource( 20 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/MeshInstance13" index="0"]
@@ -372,11 +372,11 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance13/StaticBody" index="0"]
-shape = SubResource( 18 )
+shape = SubResource( 21 )
 
 [node name="MeshInstance14" type="MeshInstance" parent="Navigation/NavigationMeshInstance" index="21"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 70.0451, 8.67684, 29.6966 )
-mesh = SubResource( 17 )
+mesh = SubResource( 20 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/MeshInstance14" index="0"]
@@ -384,11 +384,11 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance14/StaticBody" index="0"]
-shape = SubResource( 18 )
+shape = SubResource( 21 )
 
 [node name="MeshInstance16" type="MeshInstance" parent="Navigation/NavigationMeshInstance" index="22"]
 transform = Transform( 1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 28.9462, 7.87972, 2.97377 )
-mesh = SubResource( 19 )
+mesh = SubResource( 22 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Navigation/NavigationMeshInstance/MeshInstance16" index="0"]
@@ -396,13 +396,13 @@ collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/MeshInstance16/StaticBody" index="0"]
-shape = SubResource( 20 )
+shape = SubResource( 23 )
 
 [node name="player" parent="." index="1" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2291, 14.4621, 24.5184 )
 
 [node name="WorldEnvironment" parent="." index="2"]
-environment = SubResource( 22 )
+environment = SubResource( 25 )
 
 [node name="drop" parent="." index="3" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.085, 2.19707, 14.9775 )

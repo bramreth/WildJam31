@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/characters/enemies/wave_spawner.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/enemies/ghost.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/characters/enemies/bat.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/characters/enemies/demon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/characters/enemies/invader.tscn" type="PackedScene" id=5]
 
 [node name="Spawner" type="Spatial" groups=[
 "spawner",
@@ -12,7 +13,7 @@ script = ExtResource( 1 )
 enemy_trash = ExtResource( 2 )
 enemy_fast = ExtResource( 3 )
 enemy_range = ExtResource( 4 )
-enemy_tank = ExtResource( 3 )
+enemy_tank = ExtResource( 5 )
 
 [node name="trash" type="Spatial" parent="."]
 

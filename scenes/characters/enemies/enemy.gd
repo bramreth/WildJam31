@@ -24,6 +24,7 @@ var _last_facing_direction:Vector3 = Vector3.ZERO
 var _can_attack:bool = true
 var attack_animator = null
 export (NodePath) var attack_anim
+export (NodePath) var walk_audio
 
 func _ready():
 	randomize()
@@ -258,6 +259,8 @@ func _on_death() -> void:
 	$effect_handler.die()
 	$DeathPlayer.play("die")
 	$deathburst.restart()
+	if walk_audio:
+		get_node(walk_audio).stop()
 	loot_drop()
 	
 

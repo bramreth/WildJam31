@@ -7,6 +7,8 @@ const CLOSE_DOORS = "close_doors"
 
 signal game_loaded(player_data)
 signal game_initialised()
+signal open_doors()
+signal close_doors()
 
 
 func connect_signal(signal_name:String, reference:Node, function:String):

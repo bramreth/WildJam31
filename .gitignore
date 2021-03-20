@@ -2,6 +2,7 @@
 # Godot-specific ignores
 *.import
 *.glb.import
+*.lmbake
 export.cfg
 export_presets.cfg
 

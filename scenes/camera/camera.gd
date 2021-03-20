@@ -73,6 +73,8 @@ func fire_bullet(radius:float) -> void:
 #		get_tree().get_nodes_in_group('level').front().add_child(ex)
 #		ex.global_transform.origin = $juicy_cam/RayCast.get_collision_point()
 #		ex.explode()
+		
+
 		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue.trigger()
 		var collider = $juicy_cam/RayCast.get_collider()
 		var norm = $juicy_cam/RayCast.get_collision_normal()
@@ -91,6 +93,9 @@ func fire_bullet(radius:float) -> void:
 			if collider.is_weakspot:
 				collider.trigger()
 				dmg *= 2
+				$juicy_cam/RayCast/DebugHitDetector/AudioCrit.play(0)
+			else:
+				$juicy_cam/RayCast/DebugHitDetector/AudioHit.play(0)
 			$juicy_cam/CanvasLayer/CenterContainer/anchor/crosshair/AnimationPlayer.play("hit")
 			#dmg number for enemy
 			var dmg_num = $juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_num.get_next_particle()
@@ -111,6 +116,8 @@ func fire_bullet(radius:float) -> void:
 			
 			enemy.damage(dmg, knockback)
 			enemy.apply_element(ammo_dat)
+		else:
+			$juicy_cam/RayCast/DebugHitDetector/AudioDud.play(0)
 	$juicy_cam/RayCast.enabled = true
 
 
