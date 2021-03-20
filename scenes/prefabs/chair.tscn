@@ -36,7 +36,7 @@ data = PoolVector3Array( -12.9659, 3.2588, -3.5, -13, 3, -3.5, -12, 3, -3.5, -12
 [node name="Spatial" type="Spatial"]
 
 [node name="chair idk" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 12, 0 )
 
 [node name="generatedClone" type="MeshInstance" parent="chair idk"]
 mesh = SubResource( 1 )
