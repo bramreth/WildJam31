@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/characters/enemies/wave_spawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/prefabs/arcade_base.tscn" type="PackedScene" id=2]
+
+[node name="arcade machine" instance=ExtResource( 2 )]
+
+[node name="Spawner" parent="." index="17" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04281, 1.17834, -0.0461621 )
