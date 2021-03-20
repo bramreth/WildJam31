@@ -220,6 +220,7 @@ func frost_dmg(dmg):
 
 func bleed_dmg(dmg):
 	if dead: return
+	$baudio.play(0)
 	var post_armor_dmg = dmg
 	if armor > 0:
 		post_armor_dmg = post_armor_dmg * 0.5
@@ -228,6 +229,7 @@ func bleed_dmg(dmg):
 	
 func burn_dmg(dmg):
 	if dead: return
+	$buaudio.play(0)
 	var post_armor_dmg = dmg
 	if armor > dmg: post_armor_dmg = min(5 * post_armor_dmg, armor)
 	damage(post_armor_dmg)
