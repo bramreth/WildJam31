@@ -202,6 +202,7 @@ func apply_element(ammo_source):
 		
 func poison_dmg(dmg):
 	if dead: return
+	$paudio.play(0)
 	var post_armor_dmg = dmg
 	if armor > 0:
 		post_armor_dmg = post_armor_dmg * 0.5
@@ -210,6 +211,7 @@ func poison_dmg(dmg):
 	
 func frost_dmg(dmg):
 	if dead: return
+	$faudio.play(0)
 	var post_armor_dmg = dmg
 	if armor > 0:
 		post_armor_dmg = post_armor_dmg * 0.5
@@ -233,6 +235,7 @@ func burn_dmg(dmg):
 
 func electric_dmg(dmg, max_distance, jumps):
 	if dead: return
+	$eaudio.play(0)
 	var post_armor_dmg = dmg
 	if armor > 0:
 		post_armor_dmg = post_armor_dmg * 0.5

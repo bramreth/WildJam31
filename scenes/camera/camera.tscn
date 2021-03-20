@@ -328,24 +328,24 @@ queue_count = 16
 
 [node name="AudioHit" type="AudioStreamPlayer3D" parent="juicy_cam/RayCast/DebugHitDetector"]
 stream = ExtResource( 15 )
-unit_db = 5.0
-max_db = 0.0
-max_distance = 50.0
+unit_db = 50.0
+max_db = -5.0
+max_distance = 250.0
 bus = "Sfx"
 
 [node name="AudioCrit" type="AudioStreamPlayer3D" parent="juicy_cam/RayCast/DebugHitDetector"]
 stream = ExtResource( 15 )
-unit_db = 5.0
-max_db = 0.0
+unit_db = 50.0
+max_db = -3.0
 pitch_scale = 2.0
-max_distance = 50.0
+max_distance = 250.0
 bus = "Sfx"
 
 [node name="AudioDud" type="AudioStreamPlayer3D" parent="juicy_cam/RayCast/DebugHitDetector"]
 stream = ExtResource( 17 )
-unit_db = 5.0
-max_db = 0.0
-max_distance = 50.0
+unit_db = 50.0
+max_db = -5.0
+max_distance = 250.0
 bus = "Sfx"
 [connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Continue" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Continue_pressed"]
 [connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Settings" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Settings_pressed"]
