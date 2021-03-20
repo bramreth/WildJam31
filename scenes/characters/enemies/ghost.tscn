@@ -130,11 +130,11 @@ playback_speed = 0.66
 stream = ExtResource( 5 )
 max_db = -2.0
 autoplay = true
-bus = "Sfx"
+bus = "Background"
 
 [node name="attack_player" type="AudioStreamPlayer3D" parent="." index="15"]
 stream = ExtResource( 6 )
 unit_db = 2.0
 max_db = 0.0
 pitch_scale = 14.0
-bus = "Sfx"
+bus = "Background"

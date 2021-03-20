@@ -22,9 +22,8 @@ func add_health(loc: Vector3):
 func add_armor(loc: Vector3):
 	var new_pack = null
 	if len(armor_list) >= max_drops:
-		new_pack = armor_list.front()
-	else:
-		new_pack = armor_scene.instance()
+		armor_list.pop_front().queue_free()
+	new_pack = armor_scene.instance()
 	new_pack.global_transform.origin = loc
 	new_pack.spawn_anim()
 	add_child(new_pack)

@@ -1,10 +1,13 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=2]
+[gd_resource type="AudioBusLayout" load_steps=4 format=2]
 
 [sub_resource type="AudioEffectReverb" id=1]
 resource_name = "Reverb"
 predelay_msec = 75.0
 room_size = 0.2
-wet = 0.05
+wet = 0.03
+
+[sub_resource type="AudioEffectCompressor" id=3]
+resource_name = "Compressor"
 
 [sub_resource type="AudioEffectHighPassFilter" id=2]
 resource_name = "HighPassFilter"
@@ -24,6 +27,8 @@ bus/2/volume_db = 0.0
 bus/2/send = "Master"
 bus/2/effect/0/effect = SubResource( 1 )
 bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource( 3 )
+bus/2/effect/1/enabled = true
 bus/3/name = "gunsfx"
 bus/3/solo = false
 bus/3/mute = false

@@ -134,7 +134,7 @@ shape = SubResource( 2 )
 [node name="Weakspot" parent="MeshInstance/sprite_container" index="3" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.0143084, -3.60176e-09, 0.0811466 )
 
-[node name="MeshInstance" parent="MeshInstance" index="2"]
+[node name="MeshInstance" parent="MeshInstance" index="1"]
 layers = 0
 
 [node name="health_bar" parent="." index="2"]

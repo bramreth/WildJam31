@@ -98,7 +98,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 transform = Transform( 1, 6.25849e-07, 1.621e-07, -1.54422e-07, -1.93801e-07, 1, -2.38419e-07, -1, -2.59581e-07, 0.167377, 0.00151962, 1.26693 )
 shape = SubResource( 2 )
 
-[node name="MeshInstance" parent="MeshInstance" index="2"]
+[node name="MeshInstance" parent="MeshInstance" index="1"]
 layers = 0
 
 [node name="health_bar" parent="." index="2"]
