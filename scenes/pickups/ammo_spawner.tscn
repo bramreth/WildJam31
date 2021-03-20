@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/pickups/ammo_spawner.gd" type="Script" id=1]
+[ext_resource path="res://scenes/pickups/drops/pineapple_drop.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/pickups/drops/pizza_drop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/pickups/drops/cupcake_drop.tscn" type="PackedScene" id=4]
 
-[node name="ammo_spawner" type="Spatial"]
+[node name="ammo_spawner" type="Spatial" groups=[
+"ammo_spawner",
+]]
 script = ExtResource( 1 )
+cpickup = ExtResource( 4 )
+upickup = ExtResource( 2 )
+rpickup = ExtResource( 3 )

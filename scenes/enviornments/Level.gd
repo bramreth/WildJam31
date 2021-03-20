@@ -3,7 +3,7 @@ class_name Level
 
 onready var navigation:Navigation = $Navigation
 var current_wave = []
-var wave = 1
+var wave = 0
 var wave_active = false
 
 var max_mob_count = 24
@@ -16,6 +16,7 @@ signal wave_end()
 var spawners_map = {}
 
 func _ready():
+	randomize()
 	spawners = get_tree().get_nodes_in_group("spawner")
 	for s in spawners:
 		spawners_map[s] = false
@@ -67,6 +68,7 @@ func start_wave():
 	current_wave = $wave_controller.get_wave(wave)
 	divvy_wave(current_wave)
 	start_spawning()
+	spawn_ammo()
 	emit_signal("wave_start", wave + 1)
 	
 func end_wave():
@@ -94,7 +96,9 @@ func start_spawning():
 				print("done")
 				return
 			
-
+func spawn_ammo():
+	for aspawner in get_tree().get_nodes_in_group("ammo_spawner"):
+		aspawner.spawn_pickup(rand_range(0, 3))
 
 func _on_major_timer_timeout():
 	start_wave()
