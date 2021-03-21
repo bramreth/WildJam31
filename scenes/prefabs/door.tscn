@@ -178,7 +178,7 @@ material/0 = null
 material/1 = null
 
 [node name="door_with_handle" type="MeshInstance" parent="door_frame"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.805, 0, -0.14 )
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -0.805, 0, -0.14 )
 mesh = SubResource( 2 )
 material/0 = null
 material/1 = null
@@ -194,7 +194,7 @@ material/0 = null
 shape = SubResource( 4 )
 
 [node name="door_no_handle" type="MeshInstance" parent="door_frame"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.805, 0, -0.14 )
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 0.805, 0, -0.14 )
 mesh = SubResource( 5 )
 material/0 = null
 material/1 = null
