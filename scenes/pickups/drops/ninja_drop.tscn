@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/pickups/drops/drop.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/pickups/ninja.tscn" type="PackedScene" id=2]
+
+[node name="ninja" instance=ExtResource( 1 )]
+ammo_name = "ninja"
+
+[node name="ninja" parent="pickup_container" index="1" instance=ExtResource( 2 )]
