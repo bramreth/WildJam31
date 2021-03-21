@@ -1,23 +1,27 @@
 extends Spatial
 
-var ammo_types = []
+var ammo_types = {}
 var ammo_index  = 0
 var ammo = null
 
 var new_ammo = 0
 
 var starting_ammo = ["beer", "pencil", "sock", "cigarette", 'fire_extinguisher', "cupcake", "eyeball", "vhs"]
+var ammo_amounts = {}
 
 signal init()
 
-func add_ammo(name_in: String):
-	for i in ammo_types:
+func add_ammo(name_in: String, amount:int = -1):
+	for i in ammo_types.keys():
 		if i.name == name_in:
 			return
 	for amm in $ammo_container.get_children():
 		if amm.name == name_in:
-			ammo_types.append(amm)
-			new_ammo = ammo_types.find(amm)
+			ammo_types[amm] = {
+				'clip': amm.max_ammo,
+				'reserve': amm.max_ammo
+				}
+			new_ammo = ammo_types.keys().find(amm)
 	
 #func swap_last_ammo():
 #	print(last_index, " ", ammo_index)
@@ -25,7 +29,7 @@ func add_ammo(name_in: String):
 #	ammo_index = last_index
 #	last_index = new_last
 func swap_new_ammo():
-	ammo_types[ammo_index].visible = false
+	ammo_types.keys()[ammo_index].visible = false
 	ammo_index = new_ammo
 	swap_to_ammo()
 
@@ -35,17 +39,17 @@ func swap_ammo(forward: bool):
 		swap_to_ammo()
 		return
 	if forward:
-		ammo_index = (ammo_index + 1) % len(ammo_types)
+		ammo_index = (ammo_index + 1) % len(ammo_types.keys())
 	else:
-		ammo_index = (ammo_index - 1) % (len(ammo_types)-1)
+		ammo_index = (ammo_index - 1) % (len(ammo_types.keys())-1)
 		if sign(ammo_index) == -1:
-			ammo_index = (len(ammo_types)-2)-ammo_index
+			ammo_index = (len(ammo_types.keys())-2)-ammo_index
 			
 	swap_to_ammo()
 	
 	
 func swap_to_ammo():
-	ammo = ammo_types[ammo_index]
+	ammo = ammo_types.keys()[ammo_index]
 	$ammo_data/Viewport/ammo_data.setup(ammo)
 	$AnimationPlayer.play("show")
 	ammo.visible = true
@@ -53,9 +57,12 @@ func swap_to_ammo():
 func _ready():
 	for amm in $ammo_container.get_children():
 		if amm.name in starting_ammo:
-			ammo_types.append(amm)
+			ammo_types[amm] = {
+				'clip': amm.max_ammo,
+				'reserve': amm.max_ammo
+				}
 #	ammo_types = $ammo_container.get_children()
-	ammo = ammo_types[ammo_index]
+	ammo = ammo_types.keys()[ammo_index]
 	ammo.visible = true
 	$ammo_data/Viewport/ammo_data.setup(ammo)
 
@@ -81,4 +88,24 @@ func show_dat(on):
 #		last_index = ammo_index
 
 func get_ammo_data():
-	return ammo_types[ammo_index]
+	return ammo_types.keys()[ammo_index]
+
+
+func can_fire():
+	var amm = ammo_types.keys()[ammo_index]
+	if ammo_types[amm]['clip'] > 0:
+		ammo_types[amm]['clip'] -= 1 
+		return true
+	return false
+
+
+func reload_current():
+	var amm = ammo_types.keys()[ammo_index]
+	if ammo_types[amm]['reserve'] > 0:
+		var amount_to_reload = amm.max_ammo - ammo_types[amm]['clip']
+		if ammo_types[amm]['reserve'] > amount_to_reload:
+			ammo_types[amm]['reserve'] -= amount_to_reload
+			ammo_types[amm]['clip'] = amm.max_ammo
+		else:
+			ammo_types[amm]['clip'] += ammo_types[amm]['reserve']
+			ammo_types[amm]['reserve'] = 0
