@@ -16,13 +16,11 @@ func fade_out():
 	$juicy_cam/CanvasLayer/fader/AnimationPlayer.play_backwards("fade_in")
 
 func _ready():
+	Event.connect(Event.ON_FIELD_OF_VIEW_CHANGED, self, "set_fov")
 	fade_in()
 	
-func _input(event):
-	pass
-#		spread = spread + 30.0
-#		$juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees += 22
-#		spread(spread)
+func set_fov(fov_in):
+	$juicy_cam.fov = fov_in
 
 func _physics_process(delta):
 	var rot = $juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees

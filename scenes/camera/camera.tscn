@@ -51,7 +51,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "pause"
 length = 0.6
 tracks/0/type = "value"
@@ -127,7 +127,7 @@ tracks/5/keys = {
 "values": [ Vector2( -2000, 760 ), Vector2( -2000, 760 ), Vector2( 760, 760 ), Vector2( 710, 760 ) ]
 }
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 64
 font_data = ExtResource( 11 )
 
@@ -219,7 +219,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="juicy_cam/CanvasLayer/PauseMenu"]
-anims/pause = SubResource( 5 )
+anims/pause = SubResource( 4 )
 
 [node name="main" type="Control" parent="juicy_cam/CanvasLayer/PauseMenu"]
 anchor_right = 1.0
@@ -243,7 +243,7 @@ margin_left = 765.0
 margin_top = -200.0
 margin_right = 1115.0
 margin_bottom = -132.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Paused"
 align = 1
 valign = 1
@@ -305,7 +305,6 @@ custom_fonts/font = ExtResource( 12 )
 text = "Quit"
 
 [node name="settings_screen" type="Control" parent="juicy_cam/CanvasLayer/PauseMenu"]
-visible = false
 margin_left = 710.0
 margin_top = 240.0
 margin_right = 1210.0
