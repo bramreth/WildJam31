@@ -3,7 +3,7 @@ class_name Level
 
 onready var navigation:Navigation = $Navigation
 var current_wave = []
-var wave = 13
+var wave = 0
 var wave_active = false
 
 var max_mob_count = 24

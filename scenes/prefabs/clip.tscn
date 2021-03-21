@@ -133,7 +133,6 @@ dmg_min = 10
 dmg_max = 24
 weapon_spread = 16
 max_ammo = 100
-rof = 2.0
 fire = 5
 frost = 5
 poison = 5
