@@ -68,25 +68,25 @@ __meta__ = {
 [node name="dmg" type="Label" parent="VBoxContainer"]
 margin_top = 57.0
 margin_right = 280.0
-margin_bottom = 85.0
+margin_bottom = 80.0
 text = "like some damage"
 
 [node name="rof" type="Label" parent="VBoxContainer"]
-margin_top = 89.0
+margin_top = 84.0
 margin_right = 280.0
-margin_bottom = 117.0
+margin_bottom = 107.0
 text = "like some damage"
 
 [node name="crit" type="Label" parent="VBoxContainer"]
-margin_top = 121.0
+margin_top = 111.0
 margin_right = 280.0
-margin_bottom = 149.0
+margin_bottom = 134.0
 text = "damage is like stuff"
 
 [node name="critd" type="Label" parent="VBoxContainer"]
-margin_top = 153.0
+margin_top = 138.0
 margin_right = 280.0
-margin_bottom = 181.0
+margin_bottom = 161.0
 text = "damage is like stuff"
 
 [node name="frost" type="Label" parent="VBoxContainer"]
