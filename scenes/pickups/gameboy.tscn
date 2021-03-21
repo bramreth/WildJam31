@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://kenshape_assets/ammo/misc/gameboy/gameboy.glb" type="PackedScene" id=2]
+[ext_resource path="res://kenshape_assets/ammo/misc/gameboy/gameboy.png" type="Texture" id=3]
+
+[node name="gameboy" instance=ExtResource( 1 )]
+dmg_min = 4
+dmg_max = 8
+icon = ExtResource( 3 )
+electric = 20
+rarity = 2
+
+[node name="gameboy" parent="." index="0" instance=ExtResource( 2 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
