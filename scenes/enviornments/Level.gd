@@ -3,11 +3,10 @@ class_name Level
 
 onready var navigation:Navigation = $Navigation
 var current_wave = []
-var wave = 12
+var wave = 0
 var wave_active = false
 
 var max_mob_count = 24
-
 var spawners
 
 signal wave_start(wave_out)
@@ -17,14 +16,15 @@ var spawners_map = {}
 
 func _ready():
 	randomize()
+	wave = Game.get_wave_selected()-1
 	spawners = get_tree().get_nodes_in_group("spawner")
 	for s in spawners:
 		spawners_map[s] = false
 		s.connect("all_dead", self, "spawner_done")
 	$wave_controller/major_timer.start(0)
 	Event.emit_signal(Event.OPEN_DOORS)
-
-
+	Game.start_level()
+	
 func spawner_done(spawner):
 	spawners_map[spawner] = true
 	check_spawners()

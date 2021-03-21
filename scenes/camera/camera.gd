@@ -118,6 +118,7 @@ func fire_bullet(radius:float) -> void:
 				knockback = knockback * ammo_dat.knockback
 			
 			enemy.damage(dmg, knockback)
+			Game.add_hscore(dmg)
 			enemy.apply_element(ammo_dat)
 		else:
 			$juicy_cam/RayCast/DebugHitDetector/AudioDud.play(0)

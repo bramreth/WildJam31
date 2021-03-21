@@ -20,6 +20,8 @@ onready var ready:bool = false;
 onready var background_audio_player := AudioStreamPlayer2D.new()
 onready var sfx_audio_player := AudioStreamPlayer2D.new()
 
+var hscore = 0
+
 func _ready():
 	Event.connect(Event.GAME_LOADED, self, "_on_game_loaded")
 
@@ -35,6 +37,13 @@ func set_highscore(value):
 	if value > player_data.game.highscore:
 		player_data.game.highscore = value
 		System.update_player_data(player_data)
+
+func add_hscore(added):
+	hscore += added
+	set_highscore(hscore)
+	
+func start_level():
+	hscore = 0
 
 func get_highscore():
 	return player_data.game.highscore
