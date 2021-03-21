@@ -6,10 +6,10 @@
 [ext_resource path="res://assets/materials/demon_night_dark_blue.material" type="Material" id=4]
 [ext_resource path="res://assets/materials/demon_night_red.material" type="Material" id=5]
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 2 )
 uv1_scale = Vector3( 1, 2.4, 0.5 )
 uv1_offset = Vector3( 0, -0.94, 0.5 )
@@ -25,10 +25,10 @@ material/0 = ExtResource( 5 )
 
 [node name="machine" parent="." index="2"]
 material/0 = ExtResource( 3 )
-material/1 = SubResource( 2 )
+material/1 = SubResource( 1 )
 material/2 = ExtResource( 5 )
 material/3 = ExtResource( 4 )
-material/4 = SubResource( 1 )
+material/4 = SubResource( 2 )
 
 [node name="1-stick" parent="." index="3"]
 material/0 = ExtResource( 4 )
@@ -75,3 +75,6 @@ material/0 = ExtResource( 4 )
 
 [node name="2-1" parent="." index="16"]
 material/0 = ExtResource( 4 )
+
+[node name="Timer" parent="." index="17"]
+wait_time = 0.6

@@ -1,26 +1,8 @@
 extends Control
 
 func _ready():
-	$new_ammo/AnimationPlayer.seek(0, true)
-	$new_ammo/AnimationPlayer.play("show")
-	$new_ammo/AnimationPlayer.stop()
-	
-	$wave_info/AnimationPlayer.seek(0, true)
-	$wave_info/AnimationPlayer.play("show")
-	$wave_info/AnimationPlayer.stop()
 	get_tree().get_nodes_in_group("level").front().connect("wave_start", self, "wave_start")
 	get_tree().get_nodes_in_group("level").front().connect("wave_end", self, "wave_end")
-
-func _input(event):
-	if Input.is_action_just_pressed("ui_page_up"):
-		print("reset")
-		$new_ammo/AnimationPlayer.seek(0, true)
-		$new_ammo/AnimationPlayer.play("show")
-		$new_ammo/AnimationPlayer.stop()
-		
-		$wave_info/AnimationPlayer.seek(0, true)
-		$wave_info/AnimationPlayer.play("show")
-		$wave_info/AnimationPlayer.stop()
 
 func update_health(health, armor) -> void:
 	$HealthDisplay/HealthBar.value = health

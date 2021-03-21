@@ -6,16 +6,17 @@
 [ext_resource path="res://assets/materials/cave_caperz_dark_purple.material" type="Material" id=4]
 [ext_resource path="res://assets/materials/cave_caperz_magenta.material" type="Material" id=5]
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 2 )
 uv1_scale = Vector3( 1, 2.4, 0.5 )
 uv1_offset = Vector3( 0, 1.092, 0.5 )
 uv1_triplanar = true
 
 [node name="arcade machine" instance=ExtResource( 1 )]
+script = null
 
 [node name="start" parent="." index="0"]
 material/0 = ExtResource( 4 )
@@ -25,10 +26,10 @@ material/0 = ExtResource( 4 )
 
 [node name="machine" parent="." index="2"]
 material/0 = ExtResource( 3 )
-material/1 = SubResource( 2 )
+material/1 = SubResource( 1 )
 material/2 = ExtResource( 4 )
 material/3 = ExtResource( 4 )
-material/4 = SubResource( 1 )
+material/4 = SubResource( 2 )
 
 [node name="1-stick" parent="." index="3"]
 material/0 = ExtResource( 4 )
