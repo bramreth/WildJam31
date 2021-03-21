@@ -305,6 +305,7 @@ custom_fonts/font = ExtResource( 12 )
 text = "Quit"
 
 [node name="settings_screen" type="Control" parent="juicy_cam/CanvasLayer/PauseMenu"]
+visible = false
 margin_left = 710.0
 margin_top = 240.0
 margin_right = 1210.0
