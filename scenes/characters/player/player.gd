@@ -13,6 +13,10 @@ func _physics_process(_delta: float) -> void:
 	input_direction = get_input_direction()
 	if is_on_floor() and Input.is_action_just_pressed("move_jump"):
 		_jump()
+	if not $WalkCarpet.is_playing() and input_direction and is_on_floor():
+		$AudioStreamPlayer3D2.pitch_scale = 1.5 + randf()/15
+		$WalkCarpet.playback_speed = 0.2 + (current_speed/ 20)
+		$WalkCarpet.play("walk")
 
 #region overrides
 func calculate_move_direction() -> Vector3:
