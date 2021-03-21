@@ -2,10 +2,10 @@ extends Spatial
 
 export (OpenSimplexNoise) var n
 
+
 var time = 0
 
-func _process(delta):
-	time += delta
+func handle_light():
 	var s = n.get_noise_1d(time)
 	if s > 0.1:
 		$OmniLight.light_energy = 5 * s
@@ -13,4 +13,9 @@ func _process(delta):
 	else:
 		$OmniLight.light_energy = 0
 		$MeshInstance2.mesh.material.emission_energy = 0
+
+func _process(delta):
+	time += delta
+	handle_light()
+	
 	
