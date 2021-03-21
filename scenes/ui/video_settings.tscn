@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/ui/video_settings.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/akira_medium.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/akira_large.tres" type="DynamicFont" id=3]
+
+[node name="root" type="VBoxContainer"]
+anchor_left = -0.000402896
+anchor_top = 0.000716259
+anchor_right = 0.999597
+anchor_bottom = 1.00072
+margin_left = 0.925964
+margin_top = -0.926025
+margin_right = 0.926025
+margin_bottom = -0.926025
+custom_constants/separation = 10
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Label" parent="."]
+margin_right = 1920.0
+margin_bottom = 63.0
+custom_fonts/font = ExtResource( 3 )
+text = "Video Settings
+"
+
+[node name="full_screen" type="HBoxContainer" parent="."]
+margin_top = 73.0
+margin_right = 1920.0
+margin_bottom = 113.0
+
+[node name="label" type="Label" parent="full_screen"]
+margin_top = 11.0
+margin_right = 147.0
+margin_bottom = 29.0
+custom_fonts/font = ExtResource( 2 )
+text = "Full Screen"
+
+[node name="toggle" type="CheckButton" parent="full_screen"]
+margin_left = 151.0
+margin_right = 227.0
+margin_bottom = 40.0
+
+[node name="field_of_view_label" type="Label" parent="."]
+margin_top = 123.0
+margin_right = 1920.0
+margin_bottom = 141.0
+custom_fonts/font = ExtResource( 2 )
+text = "Field of View"
+
+[node name="field_of_view_slider" type="HScrollBar" parent="."]
+margin_top = 151.0
+margin_right = 1920.0
+margin_bottom = 163.0
+min_value = 70.0
+max_value = 105.0
+step = 1.0
+value = 70.0
+[connection signal="toggled" from="full_screen/toggle" to="." method="_on_full_screen_toggled"]
+[connection signal="value_changed" from="field_of_view_slider" to="." method="_on_field_of_view_slider_value_changed"]
