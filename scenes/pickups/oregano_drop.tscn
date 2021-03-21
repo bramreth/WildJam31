@@ -20,10 +20,10 @@ albedo_texture = ExtResource( 2 )
 resource_local_to_scene = true
 material = SubResource( 1 )
 
-[node name="drop" instance=ExtResource( 1 )]
+[node name="oregano" instance=ExtResource( 1 )]
 ammo_name = "oregano"
 
-[node name="pickup" parent="pickup_container" index="1" instance=ExtResource( 3 )]
+[node name="oregano" parent="pickup_container" index="0" instance=ExtResource( 3 )]
 
 [node name="Particles" parent="." index="4"]
 draw_pass_1 = SubResource( 2 )

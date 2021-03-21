@@ -71,7 +71,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="QuadMesh" id=3]
-size = Vector2( 8, 8 )
+size = Vector2( 12, 12 )
 
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("ammo_data/Viewport")
@@ -226,7 +226,7 @@ electric_range = 20.0
 electric_jumps = 10
 
 [node name="ammo_data" type="MeshInstance" parent="." index="6"]
-transform = Transform( 0.00155718, 0, 0, 0, 0, 0, 0, 0, 1, 11.2391, 6.088, -5.92 )
+transform = Transform( 0.00207456, 0, 0, 0, 0.0280533, 0, 0, 0, 1, 11.2391, 8.12256, -8.84584 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 5 )
 
