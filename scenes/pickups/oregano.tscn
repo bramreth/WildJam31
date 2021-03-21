@@ -12,7 +12,8 @@ max_ammo = 10
 knockback = 10
 rof = 0.2
 icon = ExtResource( 3 )
-rarity = 3
+flavour = "what and oregano idea"
+rarity = 1
 
 [node name="oregano" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
