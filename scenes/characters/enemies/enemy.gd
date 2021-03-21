@@ -42,7 +42,7 @@ func update_bars():
 	if armor <= 0: 
 		$health_bar/Viewport/root/ArmorBar.visible = false
 	if health <= 0: 
-		$health_bar/Viewport/root/HealthBar.visible = false
+		$health_bar.visible = false
 		
 
 func calculate_move_direction() -> Vector3:
