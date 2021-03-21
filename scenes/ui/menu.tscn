@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/ui/settings_menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ui/menu.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/fonts/akira_medium.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/fonts/akira_large.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/images/title_screen_wip_3_black_text.png" type="Texture" id=6]
+[ext_resource path="res://scenes/ui/Tut.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0.0811768, 0.296875, 1 )
@@ -110,7 +111,7 @@ __meta__ = {
 [node name="single_player" parent="contents/game_modes/list" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 400.0
+margin_right = 300.0
 margin_bottom = 70.0
 button_text = "Play"
 
@@ -140,6 +141,7 @@ custom_fonts/font = ExtResource( 5 )
 visible = false
 
 [node name="credits" type="VBoxContainer" parent="contents"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 30
@@ -286,6 +288,9 @@ bbcode_text = "[url=https://soundcloud.com/revsorg/]Soundcloud[/url]"
 text = "Soundcloud"
 fit_content_height = true
 
+[node name="tut" parent="contents" instance=ExtResource( 7 )]
+visible = false
+
 [node name="buttons" type="Control" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
@@ -302,7 +307,8 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -251.0
-margin_right = 215.0
+margin_right = 195.0
+margin_bottom = 1.0
 rect_min_size = Vector2( 0, 60 )
 alignment = 1
 __meta__ = {
@@ -312,32 +318,45 @@ __meta__ = {
 [node name="Game Mode" parent="buttons/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 400.0
-margin_bottom = 99.0
+margin_right = 300.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 300, 100 )
 button_text = "Game"
 
 [node name="Options" parent="buttons/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 466.0
-margin_right = 866.0
-margin_bottom = 99.0
+margin_left = 369.0
+margin_right = 669.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 300, 100 )
 button_text = "Settings"
+
+[node name="How to play" parent="buttons/HBoxContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 738.0
+margin_right = 1068.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 330, 100 )
+button_text = "How to play"
 
 [node name="Credits" parent="buttons/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 933.0
-margin_right = 1333.0
-margin_bottom = 99.0
+margin_left = 1108.0
+margin_right = 1408.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 300, 100 )
 button_text = "Credits"
 
 [node name="Quit" parent="buttons/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1400.0
-margin_right = 1800.0
-margin_bottom = 99.0
+margin_left = 1477.0
+margin_right = 1777.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 300, 100 )
 button_text = "Exit"
 
 [node name="loading_overlay" type="ColorRect" parent="."]
@@ -360,6 +379,7 @@ anims/dip_to_black = SubResource( 3 )
 [connection signal="meta_clicked" from="contents/credits/VBoxContainer5/social4" to="." method="_on_social_meta_clicked"]
 [connection signal="on_pressed" from="buttons/HBoxContainer/Game Mode" to="." method="_on_Game_Mode_on_pressed"]
 [connection signal="on_pressed" from="buttons/HBoxContainer/Options" to="." method="_on_Options_on_pressed"]
+[connection signal="on_pressed" from="buttons/HBoxContainer/How to play" to="." method="_on_How_to_play_on_pressed"]
 [connection signal="on_pressed" from="buttons/HBoxContainer/Credits" to="." method="_on_Credits_on_pressed"]
 [connection signal="on_pressed" from="buttons/HBoxContainer/Quit" to="." method="_on_Quit_on_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
