@@ -42,7 +42,7 @@ func update_bars():
 	if armor <= 0: 
 		$health_bar/Viewport/root/ArmorBar.visible = false
 	if health <= 0: 
-		$health_bar/Viewport/root/HealthBar.visible = false
+		$health_bar.visible = false
 		
 
 func calculate_move_direction() -> Vector3:
@@ -276,6 +276,8 @@ func loot_drop():
 		get_tree().get_nodes_in_group("col_spawner").front().add_health(global_transform.origin)
 	elif loot_val < 0.1:
 		get_tree().get_nodes_in_group("col_spawner").front().add_armor(global_transform.origin)
+	elif loot_val < 0.2:
+		get_tree().get_nodes_in_group("gam_spawner").front().add_ammo(global_transform.origin)
 
 func _on_DeathPlayer_animation_finished(anim_name):
 	if anim_name == "die":

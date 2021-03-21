@@ -30,7 +30,7 @@ size = Vector3( 0.5, 0.7, 0.5 )
 
 [sub_resource type="QuadMesh" id=5]
 flip_faces = true
-size = Vector2( 2, 0.25 )
+size = Vector2( 2, 0.112 )
 
 [sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("health_bar/Viewport")
@@ -158,13 +158,13 @@ mesh = SubResource( 5 )
 material/0 = SubResource( 7 )
 
 [node name="Viewport" type="Viewport" parent="health_bar" index="0"]
-size = Vector2( 200, 25 )
+size = Vector2( 712, 40 )
 transparent_bg = true
 render_target_v_flip = true
 
 [node name="root" parent="health_bar/Viewport" index="0" instance=ExtResource( 10 )]
-margin_right = 200.0
-margin_bottom = 55.0
+margin_right = 712.0
+margin_bottom = 40.0
 
 [node name="PlayerLineOfSight" type="RayCast" parent="." index="3"]
 collision_mask = 4
