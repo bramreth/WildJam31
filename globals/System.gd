@@ -3,6 +3,10 @@ extends Node
 onready var player_file = File.new()
 var player_data_path:String = ProjectSettings.globalize_path("user://") + "player_data.cfg"
 var player_data_default:Dictionary = {
+	"game":{
+		"wave_selected": 1,
+		"highscore":0,
+	},
 	"audio": {
 		"master_volume": 1,
 		"master_volume_on": true,
@@ -29,6 +33,8 @@ func _ready():
 
 func _load_game():
 	player_data = _load_dictionary(player_file, player_data_path, player_data)
+	if not player_data.has("game"):
+		player_data.game = player_data_default.game.duplicate(true)
 	if not player_data.has("video"):
 		player_data.video = player_data_default.video.duplicate(true)
 	if not player_data.has("audio"):
