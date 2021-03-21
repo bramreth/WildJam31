@@ -142,15 +142,20 @@ func _on_gun_fired(spread, is_projectile, projectile = null):
 		fire_bullet(spread)
 #	add_trauma(0.1)
 
-func _on_gun_reload():
+func _on_gun_reload(clip, reserve):
+	print(str(clip) + ' - ' + str(reserve))
+	$juicy_cam/CanvasLayer/gui/ammo.text = str(clip)
+	$juicy_cam/CanvasLayer/gui/maxammo.text = str(reserve)
 	$juicy_cam/CanvasLayer/gui/clipflat/AnimationPlayer.play("reload")
 
 
-func _on_gun_update_ammo(ammo, spread):
-	$juicy_cam/CanvasLayer/gui/ammo.text = str(ammo)
+func _on_gun_update_ammo(clip, reserve, spread):
+	$juicy_cam/CanvasLayer/gui/ammo.text = str(clip)
+	$juicy_cam/CanvasLayer/gui/maxammo.text = str(reserve)
 
-func _on_gun_change_ammo_type(ammo_ref):
-	$juicy_cam/CanvasLayer/gui/maxammo.text = str(ammo_ref.max_ammo)
+func _on_gun_change_ammo_type(ammo_ref, clip, reserve):
+	$juicy_cam/CanvasLayer/gui/ammo.text = str(clip)
+	$juicy_cam/CanvasLayer/gui/maxammo.text = str(reserve)
 	$juicy_cam/CanvasLayer/gui/ammo_type.texture = ammo_ref.icon
 	$juicy_cam/CanvasLayer/gui/ammo_type/AnimationPlayer.play("set_ammo")
 

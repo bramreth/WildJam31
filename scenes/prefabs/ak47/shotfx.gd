@@ -18,7 +18,7 @@ func _process(delta):
 func fire():
 	var shot = randf()
 	var shot_queue = [$shot1, $shot3, $shot4]
-	print(shot_queue[index], n.get_noise_1d(time))
+#	print(shot_queue[index], n.get_noise_1d(time))
 	shot_queue[index].pitch_scale = 1.0 + (n.get_noise_1d(time)/10)
 	shot_queue[index].playing = true
 	index = (index + 1) % 3
