@@ -28,7 +28,7 @@ _global_script_class_icons={
 
 config/name="WildJam31"
 run/main_scene="res://scenes/ui/splash.tscn"
-config/icon="res://icon.png"
+config/icon="res://kenshape_assets/gun/x gun.png"
 
 [autoload]
 
