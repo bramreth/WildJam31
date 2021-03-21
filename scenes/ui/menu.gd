@@ -3,6 +3,7 @@ extends Control
 onready var contents = $contents/
 onready var game_modes = $contents/game_modes
 onready var settings = $contents/settings
+onready var how_to_play = $contents/tut
 onready var credits = $contents/credits
 
 onready var start_wave_selection:OptionButton = $contents/game_modes/list/wave/select
@@ -24,6 +25,9 @@ func _on_Options_on_pressed():
 
 func _on_Credits_on_pressed():
 	_show(credits)
+
+func _on_How_to_play_on_pressed():
+	_show(how_to_play)
 
 func _on_Game_Mode_on_pressed():
 	_show(game_modes)
