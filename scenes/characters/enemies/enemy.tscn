@@ -130,7 +130,7 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
 [node name="sprite_container" type="Spatial" parent="MeshInstance" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, -3.5527e-15, 0, 3.5527e-15, 1, 0, 0, 0 )
+transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0 )
 
 [node name="Hitbox" type="Area" parent="MeshInstance/sprite_container" index="0" groups=[
 "hitbox",
@@ -205,6 +205,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 [node name="eaudio" type="AudioStreamPlayer3D" parent="." index="14"]
 stream = ExtResource( 12 )
 unit_db = 35.0
+unit_size = 0.4
 max_db = -7.0
 bus = "Sfx"
 
@@ -230,6 +231,7 @@ bus = "Sfx"
 stream = ExtResource( 16 )
 unit_db = 35.0
 max_db = -12.0
+pitch_scale = 2.5
 bus = "Sfx"
 
 [node name="spawn_animation" type="AnimationPlayer" parent="." index="19"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color19.material" type="Material" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color20.material" type="Material" id=7]
 [ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color21.material" type="Material" id=8]
 [ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color16.material" type="Material" id=9]
+[ext_resource path="res://assets/Gun Sounds/elemental/space-invader-attack.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/Gun Sounds/ghost/ghost3.wav" type="AudioStream" id=11]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://scenes/characters/character.gd\"
@@ -417,6 +419,18 @@ tracks/3/keys = {
 "method": "_attack_player"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("../../../AudioStreamPlayer3D2:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="CapsuleShape" id=4]
 radius = 2.0
@@ -484,3 +498,16 @@ material/0 = SubResource( 6 )
 
 [node name="AnimationPlayer" parent="." index="10"]
 playback_speed = 0.66
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="20"]
+stream = ExtResource( 11 )
+unit_db = 2.0
+max_db = -5.0
+autoplay = true
+bus = "Sfx"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="." index="21"]
+stream = ExtResource( 10 )
+unit_db = -6.0
+max_db = -5.0
+bus = "Sfx"
