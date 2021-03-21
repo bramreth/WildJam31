@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scenes/prefabs/clip.gd" type="Script" id=1]
 [ext_resource path="res://assets/kenshapes/clip.glb" type="PackedScene" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://scenes/pickups/fries.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/pickups/soda.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/pickups/burger.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/pickups/oregano.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/pickups/gameboy.tscn" type="PackedScene" id=24]
 
 [sub_resource type="Animation" id=1]
 resource_name = "show"
@@ -202,7 +204,6 @@ visible = false
 [node name="fire_extinguisher" parent="ammo_container" index="13" instance=ExtResource( 18 )]
 visible = false
 dmg_col = Color( 0, 0.694118, 1, 1 )
-flavour = "I'll just put this over here with the rest of the fire."
 
 [node name="pencil" parent="ammo_container" index="14" instance=ExtResource( 19 )]
 visible = false
@@ -215,6 +216,14 @@ visible = false
 
 [node name="burger" parent="ammo_container" index="17" instance=ExtResource( 22 )]
 visible = false
+
+[node name="oregano" parent="ammo_container" index="18" instance=ExtResource( 23 )]
+visible = false
+
+[node name="gameboy" parent="ammo_container" index="19" instance=ExtResource( 24 )]
+visible = false
+electric_range = 20.0
+electric_jumps = 10
 
 [node name="ammo_data" type="MeshInstance" parent="." index="6"]
 transform = Transform( 0.00155718, 0, 0, 0, 0, 0, 0, 0, 1, 11.2391, 6.088, -5.92 )

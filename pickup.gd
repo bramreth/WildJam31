@@ -3,6 +3,9 @@ extends Spatial
 export(bool) var is_projectile = false
 export(PackedScene) var projectile
 
+export(bool) var is_shotgun = false
+export(int) var pellets = 5
+
 export (int) var dmg_min = 1
 export (int) var dmg_max = 1
 export (int) var weapon_spread = 144

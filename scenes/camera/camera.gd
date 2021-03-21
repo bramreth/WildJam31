@@ -67,6 +67,7 @@ func _on_gun_spread(amount):
 func fire_bullet(radius:float) -> void:
 	var x:float = rand_range(0, radius * .1) * sin(rand_range(0, 2 * PI))
 	var y:float = rand_range(0, radius * .1) * cos(rand_range(0, 2 * PI))
+	print(str(x) + ' - ' + str(y))
 	$juicy_cam/RayCast.enabled = true
 	$juicy_cam/RayCast.cast_to = Vector3(x,y,-100)
 	$juicy_cam/RayCast.force_raycast_update()
@@ -143,7 +144,13 @@ func _on_gun_fired(spread, is_projectile, projectile = null):
 	if is_projectile:
 		fire_projectile(spread, projectile)
 	else:
-		fire_bullet(spread)
+		var ammo_dat =  $juicy_cam/gun.selected_ammo
+		if ammo_dat.is_shotgun:
+			for i in range(ammo_dat.pellets):
+				fire_bullet(spread+200)
+				yield(get_tree(),"idle_frame")
+		else:
+			fire_bullet(spread)
 #	add_trauma(0.1)
 
 func _on_gun_reload(clip, reserve):
