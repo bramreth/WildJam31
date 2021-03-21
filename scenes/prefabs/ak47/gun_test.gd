@@ -36,7 +36,6 @@ func _process(delta):
 	if not $AnimationPlayer.is_playing() and not out:
 		if Input.is_action_pressed("click"):
 			$shot.pitch_scale = ((3 * selected_ammo.rof) + rand_range(-0.02,0.02))
-			print(spread)
 			$shot.max_db = 1.0 - (6*spread)
 			if ammo <= 0: 
 				reload()

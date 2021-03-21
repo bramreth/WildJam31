@@ -420,6 +420,8 @@ margin_top = 100.0
 margin_right = 1160.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 400, 200 )
+rect_rotation = -90.0
+rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 200, 100 )
 custom_styles/panel = SubResource( 7 )
 

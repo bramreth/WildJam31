@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://kenshape_assets/environment/color14.material" type="Material" id=1]
+[ext_resource path="res://kenshape_assets/environment/demon poster.png" type="Texture" id=2]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "generatedClone"
@@ -17,11 +18,12 @@ surfaces/0 = {
 "vertex_count": 86
 }
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=4]
 flags_unshaded = true
+albedo_texture = ExtResource( 2 )
 
 [sub_resource type="QuadMesh" id=3]
-material = SubResource( 2 )
+material = SubResource( 4 )
 size = Vector2( 20, 30 )
 
 [node name="poster" type="Spatial"]
