@@ -7,14 +7,13 @@
 [ext_resource path="res://assets/fonts/akira_large.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/images/title_screen_wip_3_black_text.png" type="Texture" id=6]
 
-[sub_resource type="Gradient" id=2]
+[sub_resource type="Gradient" id=1]
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0.0811768, 0.296875, 1 )
 
-[sub_resource type="GradientTexture" id=3]
-gradient = SubResource( 2 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "dip_to_black"
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("loading_overlay:color")
@@ -42,7 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 0, 700 )
 mouse_filter = 2
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 expand = true
 
 [node name="contents" type="Control" parent="."]
@@ -141,7 +140,6 @@ custom_fonts/font = ExtResource( 5 )
 visible = false
 
 [node name="credits" type="VBoxContainer" parent="contents"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 30
@@ -176,38 +174,10 @@ bbcode_text = "[url=https://twitter.com/bramreth]Twitter[/url] - [url=https://t.
 text = "Twitter - Youtube -  Instagram - Discord - Buy me a coffee"
 fit_content_height = true
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="contents/credits"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="contents/credits"]
 margin_top = 113.0
 margin_right = 1792.0
 margin_bottom = 196.0
-custom_constants/separation = 10
-
-[node name="name" type="Label" parent="contents/credits/VBoxContainer3"]
-margin_right = 1792.0
-margin_bottom = 30.0
-custom_fonts/font = ExtResource( 5 )
-text = "Maximilian Taubert"
-
-[node name="role" type="Label" parent="contents/credits/VBoxContainer3"]
-margin_top = 40.0
-margin_right = 1792.0
-margin_bottom = 58.0
-custom_fonts/font = ExtResource( 4 )
-text = "Developer"
-
-[node name="social2" type="RichTextLabel" parent="contents/credits/VBoxContainer3"]
-margin_top = 68.0
-margin_right = 1792.0
-margin_bottom = 83.0
-bbcode_enabled = true
-bbcode_text = "[url=https://twitter.com/MaxTaubert7]Twitter[/url] - [url=https://www.instagram.com/mtaubert14/]Instagram[/url] "
-text = "Twitter - Instagram "
-fit_content_height = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="contents/credits"]
-margin_top = 226.0
-margin_right = 1792.0
-margin_bottom = 309.0
 custom_constants/separation = 10
 
 [node name="name" type="Label" parent="contents/credits/VBoxContainer2"]
@@ -229,6 +199,34 @@ margin_right = 1792.0
 margin_bottom = 83.0
 bbcode_enabled = true
 bbcode_text = "[url=https://twitter.com/SamLeCornu_]Twitter[/url] - [url=https://www.instagram.com/slecornu_/]Instagram[/url] "
+text = "Twitter - Instagram "
+fit_content_height = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="contents/credits"]
+margin_top = 226.0
+margin_right = 1792.0
+margin_bottom = 309.0
+custom_constants/separation = 10
+
+[node name="name" type="Label" parent="contents/credits/VBoxContainer3"]
+margin_right = 1792.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 5 )
+text = "Maximilian Taubert"
+
+[node name="role" type="Label" parent="contents/credits/VBoxContainer3"]
+margin_top = 40.0
+margin_right = 1792.0
+margin_bottom = 58.0
+custom_fonts/font = ExtResource( 4 )
+text = "Developer"
+
+[node name="social2" type="RichTextLabel" parent="contents/credits/VBoxContainer3"]
+margin_top = 68.0
+margin_right = 1792.0
+margin_bottom = 83.0
+bbcode_enabled = true
+bbcode_text = "[url=https://twitter.com/MaxTaubert7]Twitter[/url] - [url=https://www.instagram.com/mtaubert14/]Instagram[/url] "
 text = "Twitter - Instagram "
 fit_content_height = true
 
@@ -260,6 +258,34 @@ bbcode_text = "[url=https://twitter.com/xaviermuth]Twitter[/url] - [url=https://
 text = "Twitter - Instagram "
 fit_content_height = true
 
+[node name="VBoxContainer5" type="VBoxContainer" parent="contents/credits"]
+margin_top = 452.0
+margin_right = 1792.0
+margin_bottom = 535.0
+custom_constants/separation = 10
+
+[node name="name" type="Label" parent="contents/credits/VBoxContainer5"]
+margin_right = 1792.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 5 )
+text = "matt Williams"
+
+[node name="role" type="Label" parent="contents/credits/VBoxContainer5"]
+margin_top = 40.0
+margin_right = 1792.0
+margin_bottom = 58.0
+custom_fonts/font = ExtResource( 4 )
+text = "Audio Engineer"
+
+[node name="social4" type="RichTextLabel" parent="contents/credits/VBoxContainer5"]
+margin_top = 68.0
+margin_right = 1792.0
+margin_bottom = 83.0
+bbcode_enabled = true
+bbcode_text = "[url=https://soundcloud.com/revsorg/]Soundcloud[/url]"
+text = "Soundcloud"
+fit_content_height = true
+
 [node name="buttons" type="Control" parent="."]
 anchor_top = 1.0
 anchor_right = 1.0
@@ -288,7 +314,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 400.0
 margin_bottom = 99.0
-button_text = "Game Modes"
+button_text = "Game"
 
 [node name="Options" parent="buttons/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -324,13 +350,14 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/dip_to_black = SubResource( 1 )
+anims/dip_to_black = SubResource( 3 )
 [connection signal="on_pressed" from="contents/game_modes/list/single_player" to="." method="_on_single_player_on_pressed"]
 [connection signal="item_selected" from="contents/game_modes/list/wave/select" to="." method="_on_selected_item_selected"]
 [connection signal="meta_clicked" from="contents/credits/VBoxContainer/social" to="." method="_on_social_meta_clicked"]
-[connection signal="meta_clicked" from="contents/credits/VBoxContainer3/social2" to="." method="_on_social_meta_clicked"]
 [connection signal="meta_clicked" from="contents/credits/VBoxContainer2/social3" to="." method="_on_social_meta_clicked"]
+[connection signal="meta_clicked" from="contents/credits/VBoxContainer3/social2" to="." method="_on_social_meta_clicked"]
 [connection signal="meta_clicked" from="contents/credits/VBoxContainer4/social4" to="." method="_on_social_meta_clicked"]
+[connection signal="meta_clicked" from="contents/credits/VBoxContainer5/social4" to="." method="_on_social_meta_clicked"]
 [connection signal="on_pressed" from="buttons/HBoxContainer/Game Mode" to="." method="_on_Game_Mode_on_pressed"]
 [connection signal="on_pressed" from="buttons/HBoxContainer/Options" to="." method="_on_Options_on_pressed"]
 [connection signal="on_pressed" from="buttons/HBoxContainer/Credits" to="." method="_on_Credits_on_pressed"]
