@@ -59,10 +59,6 @@ func divvy_wave(wave):
 				enemy_count -= batch
 			# should be an enum and a number of enemies
 
-func _input(event):
-	if not wave_active and Input.is_action_just_pressed("ui_page_up"):
-		start_wave()
-
 func start_wave():
 	print("start_wave")
 	wave_active = true

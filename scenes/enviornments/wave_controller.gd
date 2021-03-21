@@ -13,22 +13,19 @@ func _ready():
 		print(get_wave(x))
 
 func trash_wave(level: int):
-	if level <= 30:
-		return {mobs.TRASH: common(level)}
+	return {mobs.TRASH: common(level)}
 		
 func fast_wave(level: int):
-	if level <= 30:
-		return {mobs.FAST: uncommon(level)}
+	return {mobs.FAST: uncommon(level)}
 		
 func range_wave(level: int):
-	if level <= 30:
-		return {mobs.RANGE: uncommon(level)}
+	return {mobs.RANGE: uncommon(level)}
 		
 func tank_wave(level: int):
-	if level <= 30:
-		return {mobs.TANK: common(level)}
+	return {mobs.TANK: common(level)}
 
 func get_wave(iter: int):
+	
 	var wave = []
 #	print(tier)
 	if iter < 3:
@@ -46,23 +43,20 @@ func get_wave(iter: int):
 	elif iter < 12:
 		wave.append(trash_wave(iter))
 		wave.append(tank_wave(max(iter-7, 0)))
-	elif iter < 15:
+	else:
 		wave.append(trash_wave(iter))
 		wave.append(fast_wave(max(iter-8, 0)))
 		wave.append(range_wave(max(iter-8, 0)))
 		wave.append(tank_wave(max(iter-8, 0)))
-	else:
-		wave.append("restart")
+	print(wave)
 	return wave
 
 func common(iter: int):
-	assert(iter < 20, "careful cowboy")
 	if iter <= 0: return 5
 	elif iter == 1: return 8
 	return iter + common(iter-1)
 	
 func uncommon(iter: int):
-	assert(iter < 20, "careful cowboy")
 	if iter <= 0: return 0
 	elif iter == 1: return 1
 	return iter + uncommon(iter-1)
