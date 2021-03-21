@@ -21,7 +21,7 @@ func _on_Game_Mode_on_pressed():
 	_show(game_modes)
 
 func _on_Quit_on_pressed():
-	get_tree().exit()
+	get_tree().quit()
 
 func _show(node:Control) -> void:
 	for view in contents.get_children():
