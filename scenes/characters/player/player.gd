@@ -59,6 +59,7 @@ func _on_death() -> void:
 	dead = true
 	$AnimationPlayer.play("die")
 	$camera.fade_out()
+	Event.emit_signal("on_game_over_wave_reached", get_tree().get_nodes_in_group('level').front().wave)
 #	get_tree().reload_current_scene()
 
 
