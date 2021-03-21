@@ -5,8 +5,8 @@
 [ext_resource path="res://kenshape_assets/objects/tokens/token.png" type="Texture" id=3]
 
 [node name="pickup" instance=ExtResource( 2 )]
-dmg_min = 3
-dmg_max = 5
+dmg_min = 2
+dmg_max = 4
 max_ammo = 60
 rof = 1.5
 icon = ExtResource( 3 )
