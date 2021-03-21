@@ -20,12 +20,17 @@ func _ready():
 	fade_in()
 	
 func set_fov(fov_in):
-	$juicy_cam.fov = fov_in
+	$juicy_cam.basefov = fov_in
+	$juicy_cam.fov = $juicy_cam.basefov
 
 func _physics_process(delta):
 	var rot = $juicy_cam/CanvasLayer/CenterContainer/anchor/cross.rotation_degrees
 	var tilt = PI/30
-	if is_sprinting: tilt *= 2
+	if is_sprinting: 
+		tilt *= 2
+		$juicy_cam.fov = lerp($juicy_cam.fov, $juicy_cam.basefov + 15, delta*5)
+	else:
+		$juicy_cam.fov = lerp($juicy_cam.fov, $juicy_cam.basefov, delta)
 	var lean_speed = delta * 2
 	if not get_parent().is_on_floor(): lean_speed *= 5
 	if Input.is_action_pressed("move_left"):

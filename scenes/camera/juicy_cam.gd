@@ -11,6 +11,8 @@ export var time_scale = 150
 
 export(float, 0, 1) var decay = 0.6
 
+var basefov = fov
+
 var time = 0
 
 func add_trauma(trauma_in):
