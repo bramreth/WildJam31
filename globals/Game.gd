@@ -7,6 +7,8 @@ const AUDIO_DIRECTORY = "res://assets/audio/"
 const AUDIO_TRACK_DEFAULT = "temp/Final Planck.wav"
 const AUDIO_SOUND_HURT = "temp/hurt.wav"
 
+const MAX_WAVES = 15
+
 onready var master_bus_index = AudioServer.get_bus_index(AUDIO_BUS_MASTER)
 onready var background_bus_index = AudioServer.get_bus_index(AUDIO_BUS_BACKGROUND)
 onready var sfx_bus_index = AudioServer.get_bus_index(AUDIO_BUS_SFX)
@@ -27,6 +29,27 @@ func _on_game_loaded(player_data:Dictionary) -> void:
 	_set_up_video()
 	_set_up_audio()
 	Event.emit_signal(Event.GAME_INITIALISED)
+
+#region game
+func set_highscore(value):
+	if value > player_data.game.highscore:
+		player_data.game.highscore = value
+		System.update_player_data(player_data)
+
+func get_highscore():
+	return player_data.game.highscore
+
+func set_wave_selected_index(wave):
+	if wave >= 0 and wave < Game.MAX_WAVES:
+		player_data.game.wave_selected = wave
+		System.update_player_data(player_data)
+
+func get_wave_selected_index():
+	return player_data.game.wave_selected
+	
+func get_wave_selected():
+	return player_data.game.wave_selected + 1
+#endregion
 
 #region video
 func _set_up_video():
