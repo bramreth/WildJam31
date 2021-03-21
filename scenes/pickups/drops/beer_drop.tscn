@@ -23,7 +23,7 @@ material = SubResource( 1 )
 [node name="beer" instance=ExtResource( 2 )]
 ammo_name = "beer"
 
-[node name="beer" parent="pickup_container" index="1" instance=ExtResource( 3 )]
+[node name="beer" parent="pickup_container" index="0" instance=ExtResource( 3 )]
 
 [node name="Particles" parent="." index="4"]
 draw_pass_1 = SubResource( 2 )

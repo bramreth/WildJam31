@@ -5,12 +5,16 @@
 [ext_resource path="res://kenshape_assets/ammo/food/piss water/public domain beer.png" type="Texture" id=3]
 
 [node name="pickup" instance=ExtResource( 1 )]
-dmg_min = 2
-dmg_max = 5
-max_ammo = 20
+dmg_min = 25
+dmg_max = 30
+weapon_spread = 77
+max_ammo = 6
 crit_rate = 0.5
-rof = 3.0
+crit_mul = 4
+rof = 2.0
 icon = ExtResource( 3 )
+flavour = "made of hops, skips and jumps"
+rarity = 3
 
 [node name="public domain beer" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )

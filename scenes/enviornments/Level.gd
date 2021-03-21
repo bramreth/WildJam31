@@ -99,7 +99,7 @@ func start_spawning():
 			
 func spawn_ammo():
 	for aspawner in get_tree().get_nodes_in_group("ammo_spawner"):
-		aspawner.spawn_pickup(rand_range(0, 3))
+		aspawner.spawn_pickup(randf())
 
 func _on_major_timer_timeout():
 	start_wave()

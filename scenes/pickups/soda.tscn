@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://kenshape_assets/objects/soda/soda/soda.png" type="Texture" id=1]
+[ext_resource path="res://kenshape_assets/objects/soda/soda/soda.glb" type="PackedScene" id=2]
+[ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=3]
+
+[node name="pickup" instance=ExtResource( 3 )]
+dmg_min = 10
+dmg_max = 12
+max_ammo = 7
+knockback = 10
+rof = 0.66
+icon = ExtResource( 1 )
+frost = 5
+flavour = "Buy one get one freeze"
+rarity = 1
+
+[node name="soda" parent="." index="0" instance=ExtResource( 2 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )

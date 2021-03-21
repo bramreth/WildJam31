@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://kenshape_assets/objects/fries/fries/fries.png" type="Texture" id=1]
+[ext_resource path="res://kenshape_assets/objects/fries/fries/fries.glb" type="PackedScene" id=2]
+[ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=3]
+
+[node name="pickup" instance=ExtResource( 3 )]
+dmg_min = 5
+dmg_max = 10
+weapon_spread = 32
+max_ammo = 42
+knockback = 3
+rof = 1.4
+icon = ExtResource( 1 )
+flavour = "it turns out fries can become up to 74% sawdust before the customers start coughing"
+
+[node name="fries" parent="." index="0" instance=ExtResource( 2 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )

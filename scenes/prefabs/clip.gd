@@ -6,7 +6,7 @@ var ammo = null
 
 var new_ammo = 0
 
-var starting_ammo = ["beer", "pencil", "cigarette", "cupcake", "eyeball", "vhs", "token"]
+var starting_ammo = ["fries", "soda", "burger"]
 var ammo_amounts = {}
 
 signal init()
