@@ -12,7 +12,6 @@ var ammo_amounts = {}
 signal init()
 
 func add_ammo(name_in: String, amount:int = -1):
-	print(name_in)
 	var already_had = false
 	var added_ammo
 	for i in ammo_types.keys():
@@ -39,7 +38,7 @@ func add_ammo(name_in: String, amount:int = -1):
 					'reserve': amount
 					}
 	new_ammo = ammo_types.keys().find(added_ammo)
-	if added_ammo == ammo_types.keys()[ammo_index]: owner.emit_signal('update_ammo', ammo_types[added_ammo]['clip'], ammo_types[added_ammo]['reserve'], 0)
+	if name_in == ammo_types.keys()[ammo_index].name: owner.emit_signal('update_ammo', added_ammo, ammo_types[added_ammo]['clip'], ammo_types[added_ammo]['reserve'], 0)
 	
 #func swap_last_ammo():
 #	print(last_index, " ", ammo_index)
