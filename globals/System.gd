@@ -13,6 +13,7 @@ var player_data_default:Dictionary = {
 	},
 	"video": {
 		"field_of_view": 70,
+		"full_screen": false,
 	}
 }
 onready var player_data:Dictionary = player_data_default.duplicate(true)

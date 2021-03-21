@@ -24,18 +24,22 @@ func _ready():
 func _on_game_loaded(player_data:Dictionary) -> void:
 	self.player_data = player_data
 	ready = true	
+	_set_up_video()
 	_set_up_audio()
 	Event.emit_signal(Event.GAME_INITIALISED)
 
 #region video
+func _set_up_video():
+	OS.window_fullscreen = player_data.video.full_screen
+
 func get_full_screen() -> bool:
-	return ProjectSettings.get("display/window/size/fullscreen")
+	return OS.window_fullscreen
 
 func set_full_screen(on) -> void:
 	Event.emit_signal(Event.ON_FULL_SCREEN_TOGGLED, on)
-	ProjectSettings.set("display/window/size/fullscreen", on)
-	ProjectSettings.save()
+	player_data.video.full_screen = on
 	OS.window_fullscreen = on
+	System.update_player_data(player_data)
 
 func get_field_of_view() -> bool:
 	return player_data.video.field_of_view 
