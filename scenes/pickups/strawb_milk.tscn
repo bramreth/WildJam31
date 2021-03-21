@@ -5,11 +5,22 @@
 [ext_resource path="res://kenshape_assets/ammo/food/milk/strawberry milk.png" type="Texture" id=3]
 
 [node name="pickup" instance=ExtResource( 1 )]
+dmg_min = 8
+dmg_max = 8
+weapon_spread = 88
+max_ammo = 12
+dmg_col = Color( 0.960784, 0.305882, 0.584314, 1 )
+crit_mul = 8
+rof = 1.66
 icon = ExtResource( 3 )
-fire = 2
-frost = 2
-poison = 2
-bleed = 2
+fire = 8
+frost = 8
+poison = 8
+bleed = 8
+electric = 8
+electric_range = 8.0
+electric_jumps = 8
+flavour = "did somebody put something in this?"
 rarity = 3
 
 [node name="milk" parent="." index="0" instance=ExtResource( 2 )]

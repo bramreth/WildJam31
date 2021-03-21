@@ -18,7 +18,7 @@ electric = 10
 electric_range = 30.0
 electric_jumps = 5
 flavour = "The H stands for Hi-Fi"
-rarity = 2
+rarity = 1
 
 [node name="vhs tape" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )

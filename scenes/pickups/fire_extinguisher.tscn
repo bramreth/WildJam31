@@ -9,13 +9,14 @@
 [node name="pickup" instance=ExtResource( 1 )]
 is_projectile = true
 projectile = ExtResource( 5 )
-dmg_min = 20
-dmg_max = 25
+dmg_min = 30
+dmg_max = 45
 max_ammo = 1
 knockback = 500
 rof = 0.33
 icon = ExtResource( 2 )
 frost = 20
+flavour = "I'll just put this over here with the rest of the fire."
 rarity = 1
 
 [node name="fire extuingisher" parent="." index="0" instance=ExtResource( 3 )]

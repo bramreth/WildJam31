@@ -2,7 +2,7 @@ extends Area
 
 
 export(float) var explosion_radius = 10.0
-export(int) var explosion_damage = 10
+export(int) var explosion_damage = 40
 export(float) var explosion_force = 50.0
 
 

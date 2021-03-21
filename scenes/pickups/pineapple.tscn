@@ -5,8 +5,8 @@
 [ext_resource path="res://kenshape_assets/ammo/food/pineapple/pineapple.png" type="Texture" id=3]
 
 [node name="pickup" instance=ExtResource( 1 )]
-dmg_min = 10
-dmg_max = 15
+dmg_min = 40
+dmg_max = 50
 max_ammo = 1
 knockback = 50
 dmg_col = Color( 1, 1, 0, 1 )

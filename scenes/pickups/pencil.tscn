@@ -5,9 +5,9 @@
 [ext_resource path="res://kenshape_assets/ammo/misc/pencil/pencil/pencil.png" type="Texture" id=3]
 
 [node name="pickup" instance=ExtResource( 2 )]
-dmg_min = 50
-dmg_max = 120
-weapon_spread = 66
+dmg_min = 10
+dmg_max = 12
+weapon_spread = 90
 max_ammo = 12
 knockback = 15
 rof = 0.5

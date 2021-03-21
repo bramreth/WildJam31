@@ -5,7 +5,7 @@ export (PackedScene) var upickup
 export (PackedScene) var rpickup
 export (PackedScene) var epickup
 
-func spawn_pickup(r: int):
+func spawn_pickup(r: float):
 	if get_child_count() <= 0:
 		if r < 0.5:
 			add_child(cpickup.instance())

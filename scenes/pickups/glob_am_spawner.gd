@@ -17,6 +17,7 @@ func add_ammo(loc: Vector3):
 	var new_pack = null
 	if len(ammo_list) >= max_drops:
 		ammo_list.pop_front().queue_free()
+	randomize()
 	var choice = randf()
 	if choice < 0.2:
 		new_pack = common_1.instance()

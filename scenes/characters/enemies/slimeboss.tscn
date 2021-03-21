@@ -1,0 +1,435 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://kenshape_assets/enemies/slime skelly/final final skelly w border USE THIS ONE.glb" type="PackedScene" id=1]
+[ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/prefabs/projectiles/Projectile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/characters/WeakSpot.tscn" type="PackedScene" id=4]
+[ext_resource path="res://godot_tools/CommonAssets/particles/shocksheet2.png" type="Texture" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://scenes/characters/character.gd\"
+
+signal damage_anim(color, num, pos)
+
+enum STATES {
+	IDLE,
+	TRACKING_PLAYER,
+	SEARCHING,
+	ATTACKING
+}
+var _current_state:int = STATES.SEARCHING
+
+export(float) var attack_speed = 1.0
+export(bool) var is_ranged = false
+export(float) var attack_range = 5.0
+export(PackedScene) var ranged_attack_projectile
+
+onready var _player = get_tree().get_nodes_in_group(\"player\").front()
+onready var _level = get_tree().get_nodes_in_group('level').front()
+
+var _velocity:Vector3 = Vector3()
+var _path:Array = []
+var _last_facing_direction:Vector3 = Vector3.ZERO
+var _can_attack:bool = true
+var attack_animator = null
+export (NodePath) var attack_anim
+export (NodePath) var walk_audio
+
+func _ready():
+	randomize()
+	attack_animator = get_node(attack_anim)
+	update_bars()
+	$AttackTimer.wait_time = attack_speed
+
+func update_bars():
+	$health_bar/Viewport/root/HealthBar.max_value = max_health
+	$health_bar/Viewport/root/HealthBar.value = health
+	$health_bar/Viewport/root/HealthBar/health.text = str(health)
+	$health_bar/Viewport/root/ArmorBar.max_value = max_armor
+	$health_bar/Viewport/root/ArmorBar.value = armor
+	$health_bar/Viewport/root/ArmorBar/armor.text = str(armor)
+	if armor <= 0: 
+		$health_bar/Viewport/root/ArmorBar.visible = false
+	if health <= 0: 
+		$health_bar.visible = false
+		
+
+func calculate_move_direction() -> Vector3:
+	match _current_state:
+		STATES.IDLE: 
+			return Vector3.ZERO
+		STATES.SEARCHING:
+			if _has_line_of_sight_to_player():
+				move_state(STATES.TRACKING_PLAYER)
+				return Vector3.ZERO
+			
+			if not _path.empty():
+				var move_direction = _calculate_direction_to_next_path_point()
+				_face_move_direction(move_direction)
+				return move_direction
+			else:
+				_get_path()
+				return Vector3.ZERO
+		STATES.TRACKING_PLAYER:
+			if not _has_line_of_sight_to_player():
+				_get_path()
+				move_state(STATES.SEARCHING)
+				return Vector3.ZERO
+			return _calculate_direction_to_player()
+		STATES.ATTACKING:
+			if _can_attack:
+				if _has_line_of_sight_to_player() and _distance_to_player() < attack_range:
+					if attack_animator: 
+						attack_animator.play(\"fire\")
+					else:
+						_attack_player()
+				else: move_state(STATES.TRACKING_PLAYER)
+			return Vector3.ZERO
+		_: return Vector3.ZERO
+
+
+func _attack_player():
+	if dead: return
+	if not is_ranged:
+		_player.damage(10)
+	else:
+		var projectile = ranged_attack_projectile.instance()
+		var direction_to_player:Vector3 = (_player.global_transform.origin - global_transform.origin).normalized() 
+		get_parent().add_child(projectile)
+		projectile.global_transform.origin = $MeshInstance/sprite_container/RangedOrigin.global_transform.origin
+		projectile.fire_at(direction_to_player)
+	$AttackTimer.start()
+	_can_attack = false
+
+
+func _calculate_direction_to_player() -> Vector3:
+	var move_direction:Vector3 = _player.global_transform.origin - global_transform.origin 
+	var distance_to_player = move_direction.length()
+	if distance_to_player < attack_range:
+		_current_state = STATES.ATTACKING
+		return Vector3.ZERO
+	else:
+		move_direction.y = 0
+		move_direction = move_direction.normalized()
+		_face_move_direction(move_direction)
+		return move_direction
+
+
+func _get_path() -> void:
+	_path = _level.calculate_path(global_transform.origin, _player.global_transform.origin)
+
+
+func _calculate_direction_to_next_path_point() -> Vector3:
+	var point:Vector3 = _path.front()
+	
+	if global_transform.origin.distance_to(point) < 1.7:
+		_path.pop_front()
+	
+	return _calculate_direction_to_point(point)
+
+
+func _calculate_direction_to_point(point:Vector3) -> Vector3:
+	var direction:Vector3 = point - global_transform.origin
+	direction.y = 0
+	return direction.normalized()
+
+
+func _face_move_direction(move_direction:Vector3) -> void:
+	if move_direction != Vector3.ZERO:
+		_last_facing_direction = lerp(_last_facing_direction, move_direction, 0.05)
+		$MeshInstance.look_at(_last_facing_direction + global_transform.origin, Vector3.UP)
+		$MeshInstance.rotation = Vector3(
+			-PI/2,
+			$MeshInstance.rotation.y + PI,
+			0
+		)
+		$MeshInstance.orthonormalize()
+
+
+#func detected_body(body:KinematicBody):
+#	if not body: return
+#	if body.is_in_group('player') and _has_line_of_sight_to_player():
+#		_path.clear()
+#		move_state(STATES.TRACKING_PLAYER)
+
+
+func _distance_to_player() -> float:
+	return global_transform.origin.distance_to(_player.global_transform.origin)
+
+
+func _has_line_of_sight_to_player() -> bool:
+	$PlayerLineOfSight.enabled = true
+	$PlayerLineOfSight.cast_to = _player.global_transform.origin - global_transform.origin
+	$PlayerLineOfSight.force_raycast_update()
+	if $PlayerLineOfSight.is_colliding():
+		if $PlayerLineOfSight.get_collider().is_in_group('player'):
+			return true
+	$PlayerLineOfSight.enabled = false
+	return false
+
+func move_state(_state_in: int):
+#	assert(_state_in in STATES.keys(), \"invalid target state\")
+	if _current_state == _state_in: return
+	if _state_in == STATES.IDLE:
+		_get_path()
+		_current_state = STATES.SEARCHING
+	else:
+		_current_state = _state_in
+	
+	match _current_state:
+		STATES.IDLE:
+			$AnimationPlayer.stop()
+		STATES.ATTACKING:
+			$AnimationPlayer.stop()
+		STATES.SEARCHING:
+			$AnimationPlayer.play(\"walk\")
+		STATES.TRACKING_PLAYER:
+			$AnimationPlayer.play(\"walk\")
+	
+
+
+func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
+	if dead: return
+	move_state(STATES.TRACKING_PLAYER)
+	.damage(amount, knockback)
+	update_bars()
+
+# if the ammo has elemental effects apply them to the character
+func apply_element(ammo_source):
+	if dead: return
+	if ammo_source.fire:
+		$effect_handler.add_burn(ammo_source.fire)
+	if ammo_source.frost:
+		$effect_handler.add_frost(ammo_source.frost)
+	if ammo_source.poison:
+		$effect_handler.add_poison(ammo_source.poison)
+	if ammo_source.bleed:
+		$effect_handler.add_bleed(ammo_source.bleed)
+	if  ammo_source.electric:
+		$effect_handler.add_electric(ammo_source.electric, ammo_source.electric_range, ammo_source.electric_jumps)
+	
+		
+func poison_dmg(dmg):
+	if dead: return
+	$paudio.play(0)
+	var post_armor_dmg = dmg
+	if armor > 0:
+		post_armor_dmg = post_armor_dmg * 0.5
+	damage(post_armor_dmg)
+	_player.add_dmg_anim(Color.limegreen, post_armor_dmg, global_transform.origin)
+	
+func frost_dmg(dmg):
+	if dead: return
+	$faudio.play(0)
+	var post_armor_dmg = dmg
+	if armor > 0:
+		post_armor_dmg = post_armor_dmg * 0.5
+	damage(post_armor_dmg)
+	_player.add_dmg_anim(Color.skyblue, post_armor_dmg, global_transform.origin)
+
+func bleed_dmg(dmg):
+	if dead: return
+	$baudio.play(0)
+	var post_armor_dmg = dmg
+	if armor > 0:
+		post_armor_dmg = post_armor_dmg * 0.5
+	damage(post_armor_dmg)
+	_player.add_dmg_anim(Color.red, post_armor_dmg, global_transform.origin)
+	
+func burn_dmg(dmg):
+	if dead: return
+	$buaudio.play(0)
+	var post_armor_dmg = dmg
+	if armor > dmg: post_armor_dmg = min(5 * post_armor_dmg, armor)
+	damage(post_armor_dmg)
+	_player.add_dmg_anim(Color.orangered, post_armor_dmg, global_transform.origin)
+
+func electric_dmg(dmg, max_distance, jumps):
+	if dead: return
+	$eaudio.play(0)
+	var post_armor_dmg = dmg
+	if armor > 0:
+		post_armor_dmg = post_armor_dmg * 0.5
+	damage(post_armor_dmg)
+	_player.add_dmg_anim(Color.yellow, post_armor_dmg, global_transform.origin)
+	$effect_handler.start_electric_particle()
+	jumps -= 1
+	if jumps > 0:
+		yield(get_tree().create_timer(0.05),\"timeout\")
+		$effect_handler.add_electric(dmg, max_distance, jumps)
+
+func explosion_dmg(dmg, knockback):
+	if dead: return
+	damage(dmg, knockback)
+	_player.add_dmg_anim(Color.white, dmg, global_transform.origin)
+
+func _on_death() -> void:
+	dead = true
+#	$MeshInstance/DetectionArea/CollisionShape.disabled = true
+	$MeshInstance/sprite_container.rotation.y = 0
+	for area in $MeshInstance/sprite_container.get_children():
+		if area is Area: area.queue_free()
+	$collision.disabled = true
+	$effect_handler.die()
+	$DeathPlayer.play(\"die\")
+	$deathburst.restart()
+	if walk_audio:
+		get_node(walk_audio).stop()
+	loot_drop()
+	
+
+func loot_drop():
+	var loot_val = randf()
+	# 10% of the time drop a health pack
+	if loot_val < 0.06:
+		get_tree().get_nodes_in_group(\"col_spawner\").front().add_health(global_transform.origin)
+	elif loot_val < 0.1:
+		get_tree().get_nodes_in_group(\"col_spawner\").front().add_armor(global_transform.origin)
+	elif loot_val < 0.2:
+		get_tree().get_nodes_in_group(\"gam_spawner\").front().add_ammo(global_transform.origin)
+
+func _on_DeathPlayer_animation_finished(anim_name):
+	if anim_name == \"die\":
+		queue_free()
+
+
+func _on_AttackTimer_timeout():
+	_can_attack = true
+"
+
+[sub_resource type="Animation" id=2]
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2, 0.25, 0.3, 0.4 ),
+"transitions": PoolRealArray( 0.5, 0.05, 0.05, 0.05, 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 4.5, 4.5, 4.5 ), Vector3( 5, 5, 5 ), Vector3( 3.5, 3.5, 3.5 ), Vector3( 4, 4, 4 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1.59028e-14, -8.01601e-32, -2.88807e-16 ), Vector3( 0, 0, -360 ), Vector3( 0, 0, -360 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.5, 0 ), Vector3( 0, 0.5, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("..:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector3( 0.1, 0.1, 0.1 ), Vector3( 0.1, 0.15, 0.1 ), Vector3( 0.1, 0.15, 0.1 ), Vector3( 0.1, 0.1, 0.1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("../../../..")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.15 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_attack_player"
+} ]
+}
+
+[sub_resource type="CapsuleShape" id=3]
+radius = 0.846152
+height = 0.192583
+
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("health_bar/Viewport")
+
+[sub_resource type="SpatialMaterial" id=5]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+params_billboard_mode = 2
+params_billboard_keep_scale = true
+albedo_texture = SubResource( 4 )
+
+[node name="enemy" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51219, 0 )
+script = SubResource( 1 )
+max_health = 800
+max_armor = 800
+speed = 3.0
+attack_speed = 0.2
+is_ranged = true
+attack_range = 800.0
+ranged_attack_projectile = ExtResource( 3 )
+attack_anim = NodePath("MeshInstance/sprite_container/final final skelly w border USE THIS ONE/attack_anim/AnimationPlayer")
+
+[node name="MeshInstance" parent="." index="1"]
+layers = 0
+
+[node name="sprite_container" parent="MeshInstance" index="0"]
+transform = Transform( 0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0 )
+
+[node name="final final skelly w border USE THIS ONE" parent="MeshInstance/sprite_container" index="0" instance=ExtResource( 1 )]
+transform = Transform( 0.1, 1.24176e-09, -5.42792e-17, 0, -4.37114e-09, -0.1, -1.24176e-09, 0.1, -4.37114e-09, 0, 0, 0 )
+
+[node name="attack_anim" type="Sprite3D" parent="MeshInstance/sprite_container/final final skelly w border USE THIS ONE" index="1"]
+transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.185777, -1.05359, 0.748457 )
+billboard = 2
+texture = ExtResource( 5 )
+hframes = 2
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance/sprite_container/final final skelly w border USE THIS ONE/attack_anim" index="0"]
+anims/fire = SubResource( 2 )
+
+[node name="CollisionShape" parent="MeshInstance/sprite_container/Hitbox" index="0"]
+transform = Transform( 1, 0, -7.10543e-15, -7.10542e-15, -1.62921e-07, 1, 8.9407e-08, -1, -1.62921e-07, 0, -0.503878, 6.00669e-08 )
+shape = SubResource( 3 )
+
+[node name="Weakspot" parent="MeshInstance/sprite_container" index="3" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.0143084, -3.60176e-09, 0.0811466 )
+
+[node name="MeshInstance" parent="MeshInstance" index="1"]
+layers = 0
+
+[node name="health_bar" parent="." index="2"]
+material/0 = SubResource( 5 )

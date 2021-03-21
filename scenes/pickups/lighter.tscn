@@ -6,14 +6,15 @@
 [ext_resource path="res://kenshape_assets/ammo/misc/lighter/lighter/lighter pink.png" type="Texture" id=4]
 
 [node name="pickup" instance=ExtResource( 3 )]
-dmg_min = 10
-dmg_max = 15
+dmg_min = 40
+dmg_max = 50
 weapon_spread = 1
 max_ammo = 5
 dmg_col = Color( 1, 0, 0.631373, 1 )
 rof = 0.66
 icon = ExtResource( 4 )
 fire = 10
+electric = 5
 flavour = "the green version is heavy but the pink one is a little lighter"
 rarity = 3
 

@@ -6,14 +6,16 @@
 [ext_resource path="res://scenes/particles/bleed.tscn" type="PackedScene" id=4]
 
 [node name="pickup" instance=ExtResource( 2 )]
-dmg_max = 3
+dmg_min = 15
+dmg_max = 20
 max_ammo = 50
 crit_rate = 0.3
+crit_mul = 3
 rof = 2.0
 icon = ExtResource( 3 )
-bleed = 1
+bleed = 3
 flavour = "It hurts! It hurts!"
-rarity = 1
+rarity = 2
 
 [node name="ninja star" parent="." index="0" instance=ExtResource( 1 )]
 transform = Transform( 0.259808, 0.15, 0, -0.15, 0.259808, 0, 0, 0, 0.3, 0, 0, 0 )

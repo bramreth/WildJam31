@@ -6,10 +6,17 @@
 [ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=5]
 
 [node name="pickup" instance=ExtResource( 5 )]
-dmg_min = 2
-dmg_max = 3
+dmg_min = 75
+dmg_max = 100
+max_ammo = 1
 knockback = 35
+crit_rate = 1.0
+rof = 0.3
 icon = ExtResource( 1 )
+fire = 15
+bleed = 15
+flavour = "Who shoots someone \"with\" a gun?"
+rarity = 3
 
 [node name="x clip" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )

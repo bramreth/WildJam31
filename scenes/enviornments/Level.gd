@@ -3,7 +3,7 @@ class_name Level
 
 onready var navigation:Navigation = $Navigation
 var current_wave = []
-var wave = 10
+var wave = 0
 var wave_active = false
 
 var max_mob_count = 24
@@ -98,6 +98,7 @@ func start_spawning():
 				return
 			
 func spawn_ammo():
+	randomize()
 	for aspawner in get_tree().get_nodes_in_group("ammo_spawner"):
 		aspawner.spawn_pickup(randf())
 

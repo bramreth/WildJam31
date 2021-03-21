@@ -21,7 +21,7 @@ scale_curve = SubResource( 2 )
 anim_offset = 1.0
 anim_offset_random = 1.0
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=4]
 flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 3
@@ -30,10 +30,10 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_texture = ExtResource( 4 )
 
-[sub_resource type="QuadMesh" id=6]
-material = SubResource( 5 )
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=6]
 gravity = Vector3( 0, 0, 0 )
 angle = 720.0
 angle_random = 1.0
@@ -42,7 +42,7 @@ scale_random = 1.0
 anim_offset = 1.0
 anim_offset_random = 1.0
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=7]
 flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 3
@@ -52,7 +52,7 @@ particles_anim_loop = false
 albedo_texture = ExtResource( 5 )
 
 [sub_resource type="QuadMesh" id=8]
-material = SubResource( 4 )
+material = SubResource( 7 )
 
 [node name="PlayerProjectile" instance=ExtResource( 1 )]
 collision_layer = 1
@@ -72,7 +72,7 @@ one_shot = true
 speed_scale = 3.0
 explosiveness = 1.0
 process_material = SubResource( 3 )
-draw_pass_1 = SubResource( 6 )
+draw_pass_1 = SubResource( 5 )
 
 [node name="Particles2" type="Particles" parent="." index="6"]
 emitting = false
@@ -81,5 +81,5 @@ lifetime = 0.3
 one_shot = true
 speed_scale = 3.0
 explosiveness = 1.0
-process_material = SubResource( 9 )
+process_material = SubResource( 6 )
 draw_pass_1 = SubResource( 8 )
