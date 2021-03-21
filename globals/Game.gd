@@ -29,12 +29,12 @@ func _on_game_loaded(player_data:Dictionary) -> void:
 
 #region video
 func get_full_screen() -> bool:
-	return player_data.video.full_screen
+	return ProjectSettings.get("display/window/size/fullscreen")
 
 func set_full_screen(on) -> void:
 	Event.emit_signal(Event.ON_FULL_SCREEN_TOGGLED, on)
-	player_data.video.full_screen = on
-	System.update_player_data(player_data)
+	ProjectSettings.set("display/window/size/fullscreen", on)
+	ProjectSettings.save()
 	OS.window_fullscreen = on
 
 func get_field_of_view() -> bool:
