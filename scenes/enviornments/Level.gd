@@ -47,6 +47,7 @@ func divvy_wave(wave):
 		for enemy_type in cluster:
 			var enemy_count = cluster[enemy_type]
 	#		for i in range(enemy_count):
+			spawners.shuffle()
 			for s in spawners:
 				spawners_map[s] = false
 				var batch = (enemy_count/ len(spawners)) + 1

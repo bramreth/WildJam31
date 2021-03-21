@@ -374,6 +374,9 @@ size_flags_vertical = 3
 max_value = 50.0
 value = 50.0
 texture_progress = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="armor" type="Label" parent="HealthDisplay/ArmorBar"]
 anchor_right = 1.0
@@ -404,15 +407,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="new_ammo" type="CenterContainer" parent="."]
+[node name="new_ammo" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.00012207
 margin_bottom = -680.0
 theme = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="Panel" parent="new_ammo"]
 margin_left = 760.0
@@ -420,6 +420,8 @@ margin_top = 100.0
 margin_right = 1160.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 400, 200 )
+rect_rotation = -90.0
+rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 200, 100 )
 custom_styles/panel = SubResource( 7 )
 
@@ -490,13 +492,10 @@ anims/show = SubResource( 8 )
 wait_time = 3.0
 one_shot = true
 
-[node name="wave_info" type="CenterContainer" parent="."]
+[node name="wave_info" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="Panel" parent="wave_info"]
 margin_left = 760.0
@@ -504,6 +503,7 @@ margin_top = 440.0
 margin_right = 1160.0
 margin_bottom = 640.0
 rect_min_size = Vector2( 400, 200 )
+rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 200, 100 )
 custom_styles/panel = SubResource( 9 )
 

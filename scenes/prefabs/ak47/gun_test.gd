@@ -46,6 +46,8 @@ func _process(delta):
 				emit_signal("update_ammo", $ak47/clip/animclip.ammo_types[selected_ammo]['clip'], $ak47/clip/animclip.ammo_types[selected_ammo]['reserve'], spread)
 				emit_signal("fired", selected_ammo.weapon_spread * spread_curve.interpolate(spread), selected_ammo.is_projectile, selected_ammo.projectile)
 				bullet_spread()
+				$shot.pitch_scale = ((3 * selected_ammo.rof) + rand_range(-0.02,0.02))
+				$shot.max_db = 1.0 - (6*spread)
 			else:
 				reload()
 		$ak47.translation = $ak47.translation.linear_interpolate(Vector3.ZERO, delta * 5)
