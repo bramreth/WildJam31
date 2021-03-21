@@ -16,6 +16,8 @@ signal close_doors()
 signal on_full_screen_toggle(toggled)
 signal on_field_of_view_changed(value)
 
+signal on_game_over_wave_reached(wave)
+
 func connect_signal(signal_name:String, reference:Node, function:String):
 		if connect(signal_name, reference, function):
 			print("Event: Failed to connect signal: " + signal_name + "to " + reference.name + "." + function)
