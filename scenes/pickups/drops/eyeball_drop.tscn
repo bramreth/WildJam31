@@ -21,6 +21,7 @@ resource_local_to_scene = true
 material = SubResource( 1 )
 
 [node name="eyeball" instance=ExtResource( 1 )]
+ammo_name = "eyeball"
 
 [node name="eyeball" parent="pickup_container" index="1" instance=ExtResource( 2 )]
 

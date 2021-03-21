@@ -43,7 +43,7 @@ func _process(delta):
 				$AnimationPlayer.playback_speed = selected_ammo.rof
 				$AnimationPlayer.play("fire")
 				
-				emit_signal("update_ammo", $ak47/clip/animclip.ammo_types[selected_ammo]['clip'], $ak47/clip/animclip.ammo_types[selected_ammo]['reserve'], spread)
+				emit_signal("update_ammo", selected_ammo, $ak47/clip/animclip.ammo_types[selected_ammo]['clip'], $ak47/clip/animclip.ammo_types[selected_ammo]['reserve'], spread)
 				emit_signal("fired", selected_ammo.weapon_spread * spread_curve.interpolate(spread), selected_ammo.is_projectile, selected_ammo.projectile)
 				bullet_spread()
 				$shot.pitch_scale = ((3 * selected_ammo.rof) + rand_range(-0.02,0.02))
@@ -117,7 +117,7 @@ func reload():
 func reset_ammo():
 #	ammo = max_ammo
 	selected_ammo = $ak47/clip/animclip.get_ammo_data()
-	emit_signal("update_ammo", $ak47/clip/animclip.ammo_types[selected_ammo]['clip'], $ak47/clip/animclip.ammo_types[selected_ammo]['reserve'], spread)
+	emit_signal("update_ammo", selected_ammo, $ak47/clip/animclip.ammo_types[selected_ammo]['clip'], $ak47/clip/animclip.ammo_types[selected_ammo]['reserve'], spread)
 
 func drop():
 	$AnimationPlayer.play("drop")

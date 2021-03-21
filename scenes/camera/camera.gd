@@ -149,7 +149,8 @@ func _on_gun_reload(clip, reserve):
 	$juicy_cam/CanvasLayer/gui/clipflat/AnimationPlayer.play("reload")
 
 
-func _on_gun_update_ammo(clip, reserve, spread):
+func _on_gun_update_ammo(ammo_ref, clip, reserve, spread):
+	$juicy_cam/CanvasLayer/gui/ammo_type.texture = ammo_ref.icon
 	$juicy_cam/CanvasLayer/gui/ammo.text = str(clip)
 	$juicy_cam/CanvasLayer/gui/maxammo.text = str(reserve)
 

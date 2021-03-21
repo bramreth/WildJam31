@@ -6,22 +6,40 @@ var ammo = null
 
 var new_ammo = 0
 
-var starting_ammo = ["beer", "pencil", "sock", "cigarette", 'fire_extinguisher', "cupcake", "eyeball", "vhs"]
+var starting_ammo = ["beer", "pencil", "cigarette", "cupcake", "eyeball", "vhs", "token"]
 var ammo_amounts = {}
 
 signal init()
 
 func add_ammo(name_in: String, amount:int = -1):
+	print(name_in)
+	var already_had = false
+	var added_ammo
 	for i in ammo_types.keys():
 		if i.name == name_in:
-			return
-	for amm in $ammo_container.get_children():
-		if amm.name == name_in:
-			ammo_types[amm] = {
-				'clip': amm.max_ammo,
-				'reserve': amm.max_ammo
-				}
-			new_ammo = ammo_types.keys().find(amm)
+			added_ammo = i
+			if amount < 0:
+				ammo_types[added_ammo]['reserve'] += added_ammo.max_ammo * 2
+			else:
+				ammo_types[added_ammo]['reserve'] += amount
+			already_had = true
+	
+	if not already_had:
+		for amm in $ammo_container.get_children():
+			if amm.name == name_in:
+				added_ammo = amm
+				if amount < 0:
+					ammo_types[added_ammo] = {
+					'clip': 0,
+					'reserve': added_ammo.max_ammo * 2
+					}
+				else:
+					ammo_types[added_ammo] = {
+					'clip': 0,
+					'reserve': amount
+					}
+	new_ammo = ammo_types.keys().find(added_ammo)
+	if added_ammo == ammo_types.keys()[ammo_index]: owner.emit_signal('update_ammo', ammo_types[added_ammo]['clip'], ammo_types[added_ammo]['reserve'], 0)
 	
 #func swap_last_ammo():
 #	print(last_index, " ", ammo_index)
@@ -53,7 +71,9 @@ func swap_to_ammo():
 	$ammo_data/Viewport/ammo_data.setup(ammo)
 	$AnimationPlayer.play("show")
 	ammo.visible = true
-	
+	owner.emit_signal('update_ammo', ammo, ammo_types[ammo]['clip'], ammo_types[ammo]['reserve'], 0)
+
+
 func _ready():
 	for amm in $ammo_container.get_children():
 		if amm.name in starting_ammo:
