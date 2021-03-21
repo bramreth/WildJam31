@@ -5,7 +5,6 @@ extends Control
 #	$AnimationPlayer.playback_speed = 5
 #	unpause_game()
 
-
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
@@ -33,8 +32,8 @@ func _on_Continue_pressed():
 
 
 func _on_Settings_pressed():
-	pass # Replace with function body.
-
+	$main.hide()
+	$settings_screen.show()
 
 func _on_Reset_pressed():
 	unpause_game()
@@ -44,3 +43,8 @@ func _on_Reset_pressed():
 func _on_Quit_pressed():
 	unpause_game()
 	Scene.change(Scene.MAIN_MENU)
+
+
+func _on_settings_back_pressed():
+	$main.show()
+	$settings_screen.hide()

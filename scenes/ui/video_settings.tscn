@@ -55,7 +55,7 @@ margin_top = 151.0
 margin_right = 1920.0
 margin_bottom = 163.0
 min_value = 70.0
-max_value = 105.0
+max_value = 110.0
 step = 1.0
 value = 70.0
 [connection signal="toggled" from="full_screen/toggle" to="." method="_on_full_screen_toggled"]

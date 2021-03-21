@@ -18,29 +18,27 @@ onready var ready:bool = false;
 onready var background_audio_player := AudioStreamPlayer2D.new()
 onready var sfx_audio_player := AudioStreamPlayer2D.new()
 
-var full_screen = false
-var field_of_view = 70
-
 func _ready():
 	Event.connect(Event.GAME_LOADED, self, "_on_game_loaded")
 
 func _on_game_loaded(player_data:Dictionary) -> void:
 	self.player_data = player_data
 	ready = true	
-	_set_up_video()
 	_set_up_audio()
 	Event.emit_signal(Event.GAME_INITIALISED)
 
 #region video
-func _set_up_video():
-	full_screen = player_data.video.full_screen
-	field_of_view = player_data.video.field_of_view
+func get_full_screen() -> bool:
+	return player_data.video.full_screen
 
 func set_full_screen(on) -> void:
 	Event.emit_signal(Event.ON_FULL_SCREEN_TOGGLED, on)
 	player_data.video.full_screen = on
 	System.update_player_data(player_data)
 
+func get_field_of_view() -> bool:
+	return player_data.video.field_of_view 
+	
 func set_field_of_view(value) -> void:
 	Event.emit_signal(Event.ON_FIELD_OF_VIEW_CHANGED, value)
 	player_data.video.field_of_view = value

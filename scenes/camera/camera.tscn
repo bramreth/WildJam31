@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://scenes/particles/sprite.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/particles/damage_number.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/Gun Sounds/hits1/hit3.ogg" type="AudioStream" id=15]
+[ext_resource path="res://scenes/ui/settings_menu.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/Gun Sounds/hits1/hit1.ogg" type="AudioStream" id=17]
 
 [sub_resource type="OpenSimplexNoise" id=1]
@@ -50,15 +51,11 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=4]
-size = 64
-font_data = ExtResource( 11 )
-
 [sub_resource type="Animation" id=5]
 resource_name = "pause"
 length = 0.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:color")
+tracks/0/path = NodePath("main/ColorRect:color")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -70,7 +67,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.392157 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("PauseMenuHeader:rect_position")
+tracks/1/path = NodePath("main/PauseMenuHeader:rect_position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -82,7 +79,7 @@ tracks/1/keys = {
 "values": [ Vector2( 785, -200 ), Vector2( 785, 200 ), Vector2( 785, 200 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Continue:rect_position")
+tracks/2/path = NodePath("main/Continue:rect_position")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -94,7 +91,7 @@ tracks/2/keys = {
 "values": [ Vector2( -2000, 400 ), Vector2( -760, 400 ), Vector2( 710, 400 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Settings:rect_position")
+tracks/3/path = NodePath("main/Settings:rect_position")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -106,7 +103,7 @@ tracks/3/keys = {
 "values": [ Vector2( -2000, 520 ), Vector2( -2000, 520 ), Vector2( 760, 520 ), Vector2( 710, 520 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Reset:rect_position")
+tracks/4/path = NodePath("main/Reset:rect_position")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -118,7 +115,7 @@ tracks/4/keys = {
 "values": [ Vector2( -2000, 640 ), Vector2( -2000, 640 ), Vector2( 760, 640 ), Vector2( 710, 640 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Quit:rect_position")
+tracks/5/path = NodePath("main/Quit:rect_position")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -129,6 +126,10 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( -2000, 760 ), Vector2( -2000, 760 ), Vector2( 760, 760 ), Vector2( 710, 760 ) ]
 }
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+font_data = ExtResource( 11 )
 
 [sub_resource type="Curve" id=6]
 _data = [ Vector2( 0, 0 ), 0.0, 3.0344, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
@@ -217,7 +218,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="juicy_cam/CanvasLayer/PauseMenu"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="juicy_cam/CanvasLayer/PauseMenu"]
+anims/pause = SubResource( 5 )
+
+[node name="main" type="Control" parent="juicy_cam/CanvasLayer/PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="juicy_cam/CanvasLayer/PauseMenu/main"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
@@ -225,12 +236,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseMenuHeader" type="Label" parent="juicy_cam/CanvasLayer/PauseMenu"]
+[node name="PauseMenuHeader" type="Label" parent="juicy_cam/CanvasLayer/PauseMenu/main"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -175.0
+margin_left = 765.0
 margin_top = -200.0
-margin_right = 175.0
+margin_right = 1115.0
 margin_bottom = -132.0
 custom_fonts/font = SubResource( 4 )
 text = "Paused"
@@ -240,15 +251,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Continue" type="Button" parent="juicy_cam/CanvasLayer/PauseMenu"]
+[node name="Continue" type="Button" parent="juicy_cam/CanvasLayer/PauseMenu/main"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -2960.0
-margin_top = -140.0
-margin_right = -2460.0
-margin_bottom = -39.9999
+margin_left = -2020.0
+margin_top = 380.0
+margin_right = -1520.0
+margin_bottom = 480.0
 rect_min_size = Vector2( 500, 100 )
 custom_fonts/font = ExtResource( 12 )
 text = "Continue"
@@ -256,15 +267,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings" type="Button" parent="juicy_cam/CanvasLayer/PauseMenu"]
+[node name="Settings" type="Button" parent="juicy_cam/CanvasLayer/PauseMenu/main"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -2960.0
-margin_top = -20.0
-margin_right = -2460.0
-margin_bottom = 80.0002
+margin_left = -2020.0
+margin_top = 500.0
+margin_right = -1520.0
+margin_bottom = 600.0
 rect_min_size = Vector2( 500, 100 )
 custom_fonts/font = ExtResource( 12 )
 text = "Settings"
@@ -272,7 +283,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Reset" type="Button" parent="juicy_cam/CanvasLayer/PauseMenu"]
+[node name="Reset" type="Button" parent="juicy_cam/CanvasLayer/PauseMenu/main"]
 margin_left = -2000.0
 margin_top = 640.0
 margin_right = -1500.0
@@ -284,7 +295,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Quit" type="Button" parent="juicy_cam/CanvasLayer/PauseMenu"]
+[node name="Quit" type="Button" parent="juicy_cam/CanvasLayer/PauseMenu/main"]
 margin_left = -2000.0
 margin_top = 760.0
 margin_right = -1500.0
@@ -293,8 +304,44 @@ rect_min_size = Vector2( 500, 100 )
 custom_fonts/font = ExtResource( 12 )
 text = "Quit"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="juicy_cam/CanvasLayer/PauseMenu"]
-anims/pause = SubResource( 5 )
+[node name="settings_screen" type="Control" parent="juicy_cam/CanvasLayer/PauseMenu"]
+visible = false
+margin_left = 710.0
+margin_top = 240.0
+margin_right = 1210.0
+margin_bottom = 866.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="juicy_cam/CanvasLayer/PauseMenu/settings_screen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -24.0
+margin_top = -20.0
+margin_right = 21.9999
+margin_bottom = 24.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="settings_control" parent="juicy_cam/CanvasLayer/PauseMenu/settings_screen" instance=ExtResource( 16 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 500.0
+margin_bottom = 626.0
+
+[node name="back" type="Button" parent="juicy_cam/CanvasLayer/PauseMenu/settings_screen/settings_control"]
+margin_top = 526.0
+margin_right = 500.0
+margin_bottom = 626.0
+rect_min_size = Vector2( 500, 100 )
+custom_fonts/font = ExtResource( 12 )
+text = "back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="gun" parent="juicy_cam" instance=ExtResource( 5 )]
 transform = Transform( -0.0118058, 0.00042665, 0.0485844, 0.00210992, 0.0499554, 7.4012e-05, -0.0485405, 0.00206766, -0.0118133, 1.47358, -0.844503, -1.68106 )
@@ -348,10 +395,11 @@ unit_db = 50.0
 max_db = -5.0
 max_distance = 250.0
 bus = "Sfx"
-[connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Continue" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Continue_pressed"]
-[connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Settings" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Settings_pressed"]
-[connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Reset" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Reset_pressed"]
-[connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/Quit" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Quit_pressed"]
+[connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/main/Continue" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Continue_pressed"]
+[connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/main/Settings" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Settings_pressed"]
+[connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/main/Reset" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Reset_pressed"]
+[connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/main/Quit" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_Quit_pressed"]
+[connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/settings_screen/settings_control/back" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_settings_back_pressed"]
 [connection signal="change_ammo_type" from="juicy_cam/gun" to="." method="_on_gun_change_ammo_type"]
 [connection signal="fired" from="juicy_cam/gun" to="." method="_on_gun_fired"]
 [connection signal="reload" from="juicy_cam/gun" to="." method="_on_gun_reload"]
