@@ -1,6 +1,5 @@
 
 # Godot-specific ignores
-*.glb.import
 *.lmbake
 *.stex
 *.md5
