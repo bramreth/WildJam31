@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pistol-reload-sound.ogg-ed16c583a0220bdb6f79d65ff7937092.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/pistol-reload-sound.ogg"
+dest_files=[ "res://.import/pistol-reload-sound.ogg-ed16c583a0220bdb6f79d65ff7937092.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/shot-and-reload.ogg-78775ec6190d69998e4b36f4dc75b8e6.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/shot-and-reload.ogg"
+dest_files=[ "res://.import/shot-and-reload.ogg-78775ec6190d69998e4b36f4dc75b8e6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

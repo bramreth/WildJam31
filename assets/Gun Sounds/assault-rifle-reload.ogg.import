@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/assault-rifle-reload.ogg-123efa424e5a4ae9fa76d336d35ffd1d.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/assault-rifle-reload.ogg"
+dest_files=[ "res://.import/assault-rifle-reload.ogg-123efa424e5a4ae9fa76d336d35ffd1d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

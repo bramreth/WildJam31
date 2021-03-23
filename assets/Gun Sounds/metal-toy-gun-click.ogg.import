@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/metal-toy-gun-click.ogg-243c562c3fd7272d9da8c777497f56d4.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/metal-toy-gun-click.ogg"
+dest_files=[ "res://.import/metal-toy-gun-click.ogg-243c562c3fd7272d9da8c777497f56d4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mag-reload.ogg-4de8ceae92d10fa7fa79c3b87bc81909.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/mag-reload.ogg"
+dest_files=[ "res://.import/mag-reload.ogg-4de8ceae92d10fa7fa79c3b87bc81909.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

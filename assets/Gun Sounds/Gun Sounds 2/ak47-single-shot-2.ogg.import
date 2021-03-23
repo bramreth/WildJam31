@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ak47-single-shot-2.ogg-45cc11687bc159fce8bcd680143765c1.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/Gun Sounds 2/ak47-single-shot-2.ogg"
+dest_files=[ "res://.import/ak47-single-shot-2.ogg-45cc11687bc159fce8bcd680143765c1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/footstep-carpet.ogg-17f700f5ff3a8aefacad90d294fe4fd3.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/elemental/footstep-carpet.ogg"
+dest_files=[ "res://.import/footstep-carpet.ogg-17f700f5ff3a8aefacad90d294fe4fd3.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

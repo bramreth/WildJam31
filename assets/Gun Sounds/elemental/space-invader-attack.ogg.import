@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/space-invader-attack.ogg-8f61196f08c428b498e34350c31ebec0.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/elemental/space-invader-attack.ogg"
+dest_files=[ "res://.import/space-invader-attack.ogg-8f61196f08c428b498e34350c31ebec0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

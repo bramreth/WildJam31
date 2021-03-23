@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/demon-attack.ogg-ec2491f1caac27f04f075e6b8bab5f66.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/elemental/demon-attack.ogg"
+dest_files=[ "res://.import/demon-attack.ogg-ec2491f1caac27f04f075e6b8bab5f66.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

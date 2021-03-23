@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bar-music.ogg-78f350960b4d1d0737bf5499cd20c593.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/elemental/bar-music.ogg"
+dest_files=[ "res://.import/bar-music.ogg-78f350960b4d1d0737bf5499cd20c593.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

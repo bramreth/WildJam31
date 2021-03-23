@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/arcade-with-sequencer.ogg-75c6712dd562902a763837a3f3dab1b6.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/elemental/arcade-with-sequencer.ogg"
+dest_files=[ "res://.import/arcade-with-sequencer.ogg-75c6712dd562902a763837a3f3dab1b6.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

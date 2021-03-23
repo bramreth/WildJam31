@@ -61,4 +61,4 @@ mesh = SubResource( 5 )
 material/0 = null
 
 [node name="AudioStreamPlayer3D" parent="." instance=ExtResource( 3 )]
-pitch_scale = 1.4
+bus = "tst"

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/glitch-electric.ogg-481581745b9f80f0b1cebd9dee9e9e3c.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/elemental/glitch-electric.ogg"
+dest_files=[ "res://.import/glitch-electric.ogg-481581745b9f80f0b1cebd9dee9e9e3c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

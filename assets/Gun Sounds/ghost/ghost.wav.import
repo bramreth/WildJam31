@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ghost.wav-e7c7ae449153bd4b5765e2e778285135.sample"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/ghost/ghost.wav"
+dest_files=[ "res://.import/ghost.wav-e7c7ae449153bd4b5765e2e778285135.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

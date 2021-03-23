@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/stair_test.obj-33efbc4e0807dea291ea315208bf3e7d.mesh"
+
+[deps]
+
+files=[ "res://.import/stair_test.obj-33efbc4e0807dea291ea315208bf3e7d.mesh" ]
+
+source_file="res://assets/blender/arcade_room/stair_test.obj"
+dest_files=[ "res://.import/stair_test.obj-33efbc4e0807dea291ea315208bf3e7d.mesh", "res://.import/stair_test.obj-33efbc4e0807dea291ea315208bf3e7d.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

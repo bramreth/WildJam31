@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/gun-cock-effected.ogg-58d236ad5af04246bd7c0cf3bc84103d.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/gun-cock-effected.ogg"
+dest_files=[ "res://.import/gun-cock-effected.ogg-58d236ad5af04246bd7c0cf3bc84103d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/winchester-rifle-cock-reload.ogg-51145a9572e68988cf20afd55ee4ded5.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/winchester-rifle-cock-reload.ogg"
+dest_files=[ "res://.import/winchester-rifle-cock-reload.ogg-51145a9572e68988cf20afd55ee4ded5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

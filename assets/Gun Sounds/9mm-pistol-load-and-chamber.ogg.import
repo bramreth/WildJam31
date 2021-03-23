@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/9mm-pistol-load-and-chamber.ogg-65bf397b890fda58fd4c01326bb68eb9.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/9mm-pistol-load-and-chamber.ogg"
+dest_files=[ "res://.import/9mm-pistol-load-and-chamber.ogg-65bf397b890fda58fd4c01326bb68eb9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

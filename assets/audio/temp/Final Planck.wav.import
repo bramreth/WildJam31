@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Final Planck.wav-d84ea26de0357a4f58a8a881f92fe046.sample"
+
+[deps]
+
+source_file="res://assets/audio/temp/Final Planck.wav"
+dest_files=[ "res://.import/Final Planck.wav-d84ea26de0357a4f58a8a881f92fe046.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

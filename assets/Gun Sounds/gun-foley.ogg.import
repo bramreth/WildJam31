@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/gun-foley.ogg-9bc762e6a301b0c659c1f9153fbc0ea4.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/gun-foley.ogg"
+dest_files=[ "res://.import/gun-foley.ogg-9bc762e6a301b0c659c1f9153fbc0ea4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

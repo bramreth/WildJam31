@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/splodge.ogg-1aa2aabf9eb07191f02fff3086a9c58f.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/elemental/splodge.ogg"
+dest_files=[ "res://.import/splodge.ogg-1aa2aabf9eb07191f02fff3086a9c58f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

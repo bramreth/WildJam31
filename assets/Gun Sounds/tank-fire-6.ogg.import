@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tank-fire-6.ogg-5997bce951bf5d639c1de5f07cdf3064.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/tank-fire-6.ogg"
+dest_files=[ "res://.import/tank-fire-6.ogg-5997bce951bf5d639c1de5f07cdf3064.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

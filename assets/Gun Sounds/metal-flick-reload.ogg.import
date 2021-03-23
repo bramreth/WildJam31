@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/metal-flick-reload.ogg-c38df59e7713a1affce71365b24e387d.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/metal-flick-reload.ogg"
+dest_files=[ "res://.import/metal-flick-reload.ogg-c38df59e7713a1affce71365b24e387d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

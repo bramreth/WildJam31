@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/clipload2.ogg-b458d8a3f1514bfd40974ca6e3ec70bc.oggstr"
+
+[deps]
+
+source_file="res://assets/Gun Sounds/clipload2.ogg"
+dest_files=[ "res://.import/clipload2.ogg-b458d8a3f1514bfd40974ca6e3ec70bc.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
