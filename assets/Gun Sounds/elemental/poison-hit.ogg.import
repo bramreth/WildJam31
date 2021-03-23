@@ -11,5 +11,5 @@ dest_files=[ "res://.import/poison-hit.ogg-3fe2055d9c4353900f5bc551616489ab.oggs
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

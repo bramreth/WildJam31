@@ -1,8 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://kenshape_assets/environment/counter idk/color3.material" type="Material" id=1]
-[ext_resource path="res://kenshape_assets/environment/counter idk/color14.material" type="Material" id=2]
-[ext_resource path="res://kenshape_assets/environment/counter idk/color8.material" type="Material" id=3]
+[ext_resource path="res://assets/kenshape_assets/environment/counter idk/color3.material" type="Material" id=1]
+[ext_resource path="res://assets/kenshape_assets/environment/counter idk/color14.material" type="Material" id=2]
+[ext_resource path="res://assets/kenshape_assets/environment/counter idk/color8.material" type="Material" id=3]
+
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "generatedClone"

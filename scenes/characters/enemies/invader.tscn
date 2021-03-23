@@ -1,16 +1,17 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color19.material" type="Material" id=1]
+[ext_resource path="res://assets/kenshape_assets/enemies/space invader rip off/space invader rip off/color19.material" type="Material" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/characters/WeakSpot.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/characters/attack_mark.tscn" type="PackedScene" id=4]
-[ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color17.material" type="Material" id=5]
-[ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color18.material" type="Material" id=6]
-[ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color20.material" type="Material" id=7]
-[ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color21.material" type="Material" id=8]
-[ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color16.material" type="Material" id=9]
+[ext_resource path="res://assets/kenshape_assets/enemies/space invader rip off/space invader rip off/color17.material" type="Material" id=5]
+[ext_resource path="res://assets/kenshape_assets/enemies/space invader rip off/space invader rip off/color18.material" type="Material" id=6]
+[ext_resource path="res://assets/kenshape_assets/enemies/space invader rip off/space invader rip off/color20.material" type="Material" id=7]
+[ext_resource path="res://assets/kenshape_assets/enemies/space invader rip off/space invader rip off/color21.material" type="Material" id=8]
+[ext_resource path="res://assets/kenshape_assets/enemies/space invader rip off/space invader rip off/color16.material" type="Material" id=9]
 [ext_resource path="res://assets/Gun Sounds/elemental/space-invader-attack.ogg" type="AudioStream" id=10]
 [ext_resource path="res://assets/Gun Sounds/ghost/ghost3.wav" type="AudioStream" id=11]
+
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://scenes/characters/character.gd\"

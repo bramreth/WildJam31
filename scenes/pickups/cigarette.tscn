@@ -1,9 +1,10 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://kenshape_assets/ammo/misc/cigarette/cigarette/cigarette.glb" type="PackedScene" id=1]
+[ext_resource path="res://assets/kenshape_assets/ammo/misc/cigarette/cigarette/cigarette.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=2]
-[ext_resource path="res://kenshape_assets/ammo/misc/cigarette/cigarette/cigarette.png" type="Texture" id=3]
-[ext_resource path="res://kenshape_assets/particles/fire/fire.png" type="Texture" id=4]
+[ext_resource path="res://assets/kenshape_assets/ammo/misc/cigarette/cigarette/cigarette.png" type="Texture" id=3]
+[ext_resource path="res://assets/kenshape_assets/particles/fire/fire.png" type="Texture" id=4]
+
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.614815, 1 )

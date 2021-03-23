@@ -359,6 +359,7 @@ collide_with_areas = true
 [node name="DebugHitDetector" type="MeshInstance" parent="juicy_cam/RayCast"]
 transform = Transform( 1, 0, 1.49012e-08, 0, 1, 0, -1.49012e-08, 0, 1, 0, 0, 0 )
 layers = 0
+cast_shadow = 0
 mesh = SubResource( 7 )
 material/0 = SubResource( 8 )
 

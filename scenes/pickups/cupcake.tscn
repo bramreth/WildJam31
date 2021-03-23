@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=1]
-[ext_resource path="res://kenshape_assets/ammo/food/cupcake/cupcake.glb" type="PackedScene" id=2]
-[ext_resource path="res://kenshape_assets/ammo/food/cupcake/cupcake.png" type="Texture" id=3]
+[ext_resource path="res://assets/kenshape_assets/ammo/food/cupcake/cupcake.glb" type="PackedScene" id=2]
+[ext_resource path="res://assets/kenshape_assets/ammo/food/cupcake/cupcake.png" type="Texture" id=3]
 [ext_resource path="res://scenes/particles/frost.tscn" type="PackedScene" id=4]
+
 
 [node name="pickup" instance=ExtResource( 1 )]
 dmg_min = 4

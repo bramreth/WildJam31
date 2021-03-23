@@ -11,5 +11,5 @@ dest_files=[ "res://.import/bleed-hit.ogg-9de96040778c099a19121fd72e7ff0e8.oggst
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
