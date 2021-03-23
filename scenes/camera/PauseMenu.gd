@@ -6,7 +6,7 @@ extends Control
 #	unpause_game()
 
 func _input(event):
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("escape"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 			unpause_game()
 		else:
