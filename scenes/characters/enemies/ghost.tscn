@@ -2,7 +2,7 @@
 
 [ext_resource path="res://kenshape_assets/enemies/we have pac man at home/we have pac man at home.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/characters/Weakspot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/characters/WeakSpot.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/characters/attack_mark.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Gun Sounds/ghost/ghost.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/Gun Sounds/ghost/ghost2.wav" type="AudioStream" id=6]
@@ -99,9 +99,6 @@ walk_audio = NodePath("walk_player")
 [node name="MeshInstance" parent="." index="1"]
 layers = 0
 
-[node name="sprite_container" parent="MeshInstance" index="0"]
-transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0 )
-
 [node name="we have pac man at home" parent="MeshInstance/sprite_container" index="0" instance=ExtResource( 1 )]
 transform = Transform( 0.1, -2.98023e-09, 1.3027e-16, 0, -4.37114e-09, -0.1, 2.98023e-09, 0.1, -4.37114e-09, 0, 0, 0 )
 
@@ -114,8 +111,8 @@ anims/fire = SubResource( 1 )
 transform = Transform( 1, 1.24345e-14, -2.98023e-08, 2.98023e-08, -1.62921e-07, 1, -7.99361e-15, -1, -1.62921e-07, 0.0726476, -0.0317879, 4.36187e-09 )
 shape = SubResource( 2 )
 
-[node name="Weakspot2" parent="MeshInstance/sprite_container" index="2" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, -2.98023e-08, -3.55271e-15, 1, 0, 2.98023e-08, 0, 1, -0.0661591, -0.754919, 0.289793 )
+[node name="Weakspot" parent="MeshInstance/sprite_container" index="3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -2.98023e-08, -3.55271e-15, 1, 0, 2.98023e-08, 0, 1, 0.0330191, -0.296975, 0.187261 )
 
 [node name="MeshInstance" parent="MeshInstance" index="1"]
 layers = 0

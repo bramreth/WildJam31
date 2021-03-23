@@ -2,7 +2,7 @@
 
 [ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color19.material" type="Material" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/characters/Weakspot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/characters/WeakSpot.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/characters/attack_mark.tscn" type="PackedScene" id=4]
 [ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color17.material" type="Material" id=5]
 [ext_resource path="res://kenshape_assets/enemies/space invader rip off/space invader rip off/color18.material" type="Material" id=6]
@@ -456,9 +456,6 @@ attack_anim = NodePath("MeshInstance/sprite_container/space invader rip off/Anim
 [node name="MeshInstance" parent="." index="1"]
 layers = 0
 
-[node name="sprite_container" parent="MeshInstance" index="0"]
-transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0 )
-
 [node name="space invader rip off" type="Spatial" parent="MeshInstance/sprite_container" index="0"]
 transform = Transform( 0.1, -3.72529e-09, 1.62838e-16, 0, -4.37114e-09, -0.1, 3.72529e-09, 0.1, -4.37114e-09, 0, 0, 0 )
 
@@ -484,11 +481,11 @@ transform = Transform( 1, -2.98023e-08, 8.88178e-16, 0, -1.62921e-07, -1, 2.9802
 transform = Transform( 1, 1.24345e-14, -2.98023e-08, 2.98023e-08, -1.62921e-07, 1, -7.99361e-15, -1, -1.62921e-07, 0.0726476, -0.0317879, 4.36187e-09 )
 shape = SubResource( 4 )
 
-[node name="Weakspot2" parent="MeshInstance/sprite_container" index="2" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, -2.98023e-08, -1.42109e-14, 1, 0, 2.98023e-08, 0, 1, -0.91745, -1.03733, -0.487972 )
+[node name="Weakspot" parent="MeshInstance/sprite_container" index="3" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -2.98023e-08, -3.55271e-15, 1, 0, 2.98023e-08, 0, 1, -0.905259, -0.492044, -0.640535 )
 
-[node name="Weakspot3" parent="MeshInstance/sprite_container" index="3" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, -2.98023e-08, -1.77636e-14, 1, 0, 2.98023e-08, 0, 1, 0.502294, -1.03733, -0.537937 )
+[node name="Weakspot2" parent="MeshInstance/sprite_container" index="4" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, -2.98023e-08, -7.10543e-15, 1, 0, 2.98023e-08, 0, 1, 0.613801, -0.492044, -0.641507 )
 
 [node name="MeshInstance" parent="MeshInstance" index="1"]
 layers = 0
