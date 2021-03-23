@@ -6,6 +6,8 @@ var current_wave = []
 var wave = 0
 var wave_active = false
 
+export (bool) var debug = false
+
 var max_mob_count = 24
 var spawners
 
@@ -21,6 +23,9 @@ func _ready():
 	for s in spawners:
 		spawners_map[s] = false
 		s.connect("all_dead", self, "spawner_done")
+	if debug: 
+		Game.debug = true
+		return
 	$wave_controller/major_timer.start(0)
 	Event.emit_signal(Event.OPEN_DOORS)
 	Game.start_level()

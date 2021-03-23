@@ -22,6 +22,7 @@ normal_bias = 0.0
 propagation = 0.7
 
 [node name="Level" instance=ExtResource( 1 )]
+debug = true
 
 [node name="NavigationMeshInstance" parent="Navigation" index="0"]
 navmesh = SubResource( 1 )
