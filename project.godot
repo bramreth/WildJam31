@@ -160,4 +160,5 @@ debug={
 
 [rendering]
 
+quality/filters/msaa=3
 environment/default_environment="res://default_env.tres"

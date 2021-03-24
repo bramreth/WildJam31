@@ -1,0 +1,24 @@
+[gd_resource type="Environment" load_steps=3 format=2]
+
+[ext_resource path="res://assets/materials/autoshop_01_4k.hdr" type="Texture" id=1]
+
+[sub_resource type="PanoramaSky" id=1]
+panorama = ExtResource( 1 )
+
+[resource]
+background_mode = 3
+background_sky = SubResource( 1 )
+background_energy = 0.1
+fog_enabled = true
+fog_depth_begin = 50.0
+fog_depth_end = 200.0
+fog_height_enabled = true
+fog_height_min = 0.0
+fog_height_max = -10.0
+tonemap_white = 3.0
+ss_reflections_depth_tolerance = 3.7
+dof_blur_far_quality = 2
+glow_enabled = true
+adjustment_brightness = 0.8
+adjustment_contrast = 1.1
+adjustment_saturation = 1.1

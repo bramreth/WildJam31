@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/enviornments/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enviornments/shop_mesh.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/characters/player/player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/characters/enemies/wave_spawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://awesome_wenv.tres" type="Environment" id=5]
 [ext_resource path="res://scenes/pickups/glob_am_spawner.tscn" type="PackedScene" id=6]
 
 [sub_resource type="NavigationMesh" id=1]
@@ -29,21 +30,24 @@ navmesh = SubResource( 1 )
 
 [node name="Spatial" parent="Navigation/NavigationMeshInstance" index="0" instance=ExtResource( 2 )]
 
-[node name="player" parent="." index="4" instance=ExtResource( 3 )]
+[node name="player" parent="." index="3" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.84194, -32.4084 )
 
-[node name="Spawner" parent="." index="5" instance=ExtResource( 4 )]
+[node name="Spawner" parent="." index="4" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7811, 4.66892, -8.19566 )
 
-[node name="glob_am_spawner" parent="." index="6" instance=ExtResource( 6 )]
+[node name="glob_am_spawner" parent="." index="5" instance=ExtResource( 6 )]
 
-[node name="DirectionalLight" type="DirectionalLight" parent="." index="7"]
+[node name="DirectionalLight" type="DirectionalLight" parent="." index="6"]
 transform = Transform( 0.876389, 0.105768, -0.469846, 0.212012, 0.79124, 0.573577, 0.432427, -0.602289, 0.67101, 0, 50, 0 )
 shadow_enabled = true
 shadow_bias = 1.0
 directional_shadow_mode = 1
 directional_shadow_blend_splits = true
 
-[node name="GIProbe" type="GIProbe" parent="." index="8"]
+[node name="GIProbe" type="GIProbe" parent="." index="7"]
 extents = Vector3( 50, 30, 50 )
 data = SubResource( 2 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="8"]
+environment = ExtResource( 5 )
