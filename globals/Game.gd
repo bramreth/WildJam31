@@ -10,6 +10,7 @@ const AUDIO_SOUND_HURT = "temp/hurt.wav"
 const MAX_WAVES = 15
 
 var debug = false
+var continuous_waves = true
 
 onready var master_bus_index = AudioServer.get_bus_index(AUDIO_BUS_MASTER)
 onready var background_bus_index = AudioServer.get_bus_index(AUDIO_BUS_BACKGROUND)

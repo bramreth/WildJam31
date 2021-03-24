@@ -5,12 +5,18 @@ extends Control
 #	$AnimationPlayer.playback_speed = 5
 #	unpause_game()
 
+func toggle_pause():
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+		unpause_game()
+	else:
+		pause_game()
+
 func _input(event):
+	if Game.debug and Input.is_action_just_pressed("debug"):
+		toggle_pause()
+		$debug.show_debug(get_tree().paused)
 	if event.is_action_pressed("escape"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-			unpause_game()
-		else:
-			pause_game()
+		toggle_pause()
 
 
 func pause_game():
@@ -25,6 +31,7 @@ func unpause_game():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().paused = false
 	$AnimationPlayer.play_backwards("pause")
+	$debug.show_debug(false)
 
 
 func _on_Continue_pressed():

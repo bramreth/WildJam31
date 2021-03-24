@@ -63,10 +63,6 @@ func spread(radius: float):
 func _on_gun_spread(amount):
 	spread(amount)
 
-func _input(event):
-	if Game.debug and Input.is_action_just_pressed("debug"):
-		print("debug")
-
 func fire_bullet(radius:float) -> void:
 	var x:float = rand_range(0, radius * .1) * sin(rand_range(0, 2 * PI))
 	var y:float = rand_range(0, radius * .1) * cos(rand_range(0, 2 * PI))

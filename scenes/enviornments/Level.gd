@@ -17,18 +17,21 @@ signal wave_end()
 var spawners_map = {}
 
 func _ready():
+	Event.connect(Event.START_WAVE, self, "start_wave")
 	randomize()
 	wave = Game.get_wave_selected()-1
 	spawners = get_tree().get_nodes_in_group("spawner")
 	for s in spawners:
 		spawners_map[s] = false
 		s.connect("all_dead", self, "spawner_done")
-	if debug: 
-		Game.debug = true
-		return
-	$wave_controller/major_timer.start(0)
 	Event.emit_signal(Event.OPEN_DOORS)
 	Game.start_level()
+	if debug: 
+		Game.debug = true
+		Event.emit_signal(Event.SETUP_DEBUG)
+		return
+	$wave_controller/major_timer.start(0)
+	
 	
 func spawner_done(spawner):
 	spawners_map[spawner] = true
@@ -65,6 +68,7 @@ func divvy_wave(wave):
 			# should be an enum and a number of enemies
 
 func start_wave():
+	if wave_active: return
 	print("start_wave")
 	wave_active = true
 	current_wave = $wave_controller.get_wave(wave)
@@ -78,10 +82,9 @@ func end_wave():
 	wave_active = false
 	wave += 1
 	emit_signal("wave_end")
-	start_wave()
-#	$wave_controller/major_timer.wait_time = 8
-#	$wave_controller/major_timer.start(0)
-
+	if Game.continuous_waves:
+		start_wave()
+	
 func check_spawning_done(map):
 	for k in map:
 		if map[k] == true: return false
@@ -104,4 +107,4 @@ func spawn_ammo():
 		aspawner.spawn_pickup(randf())
 
 func _on_major_timer_timeout():
-	start_wave()
+	Event.emit_signal(Event.START_WAVE)

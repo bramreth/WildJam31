@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/Gun Sounds/hits1/hit3.ogg" type="AudioStream" id=15]
 [ext_resource path="res://scenes/ui/settings_menu.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/Gun Sounds/hits1/hit1.ogg" type="AudioStream" id=17]
+[ext_resource path="res://scenes/ui/debug.tscn" type="PackedScene" id=18]
 
 [sub_resource type="OpenSimplexNoise" id=1]
 period = 32.0
@@ -346,6 +347,8 @@ text = "back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="debug" parent="juicy_cam/CanvasLayer/PauseMenu" instance=ExtResource( 18 )]
 
 [node name="gun" parent="juicy_cam" instance=ExtResource( 5 )]
 transform = Transform( -0.0118058, 0.00042665, 0.0485844, 0.00210992, 0.0499554, 7.4012e-05, -0.0485405, 0.00206766, -0.0118133, 1.47358, -0.844503, -1.68106 )
