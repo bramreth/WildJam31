@@ -7,11 +7,6 @@ enum mobs {
 	TANK
 }
 
-func _ready():
-	randomize()
-	for x in range(20):
-		print(get_wave(x))
-
 func trash_wave(level: int):
 	return {mobs.TRASH: common(level)}
 		
@@ -27,7 +22,6 @@ func tank_wave(level: int):
 func get_wave(iter: int):
 	
 	var wave = []
-#	print(tier)
 	if iter < 3:
 		wave.append(trash_wave(iter))
 	elif iter < 6:
@@ -48,7 +42,6 @@ func get_wave(iter: int):
 		wave.append(fast_wave(max(iter-8, 0)))
 		wave.append(range_wave(max(iter-8, 0)))
 		wave.append(tank_wave(max(iter-8, 0)))
-	print(wave)
 	return wave
 
 func common(iter: int):

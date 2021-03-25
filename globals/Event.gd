@@ -10,6 +10,7 @@ const SETUP_DEBUG = "setup_debug"
 
 const ON_FULL_SCREEN_TOGGLED = "on_full_screen_toggled"
 const ON_FIELD_OF_VIEW_CHANGED = "on_field_of_view_changed"
+const EQUIP_AMMO = "equip_ammo"
 
 signal game_loaded(player_data)
 signal game_initialised()
@@ -17,6 +18,7 @@ signal open_doors()
 signal close_doors()
 signal start_wave()
 signal setup_debug()
+signal equip_ammo(name_out)
 
 signal on_full_screen_toggle(toggled)
 signal on_field_of_view_changed(value)

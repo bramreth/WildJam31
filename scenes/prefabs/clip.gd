@@ -6,94 +6,91 @@ var ammo = null
 
 var new_ammo = 0
 
-var starting_ammo = ["pencil", "token"]
+var starting_ammo = ["pencil"]
 var ammo_amounts = {}
 
+var ammo_slots = {}
+onready var active_slot = get_node("held_ammo/ammo_slot1")
+
 signal init()
+signal added_ammo(slot)
 
-func add_ammo(name_in: String, amount:int = -1):
-	var already_had = false
-	var added_ammo
-	for i in ammo_types.keys():
-		if i.name == name_in:
-			added_ammo = i
-			if amount < 0:
-				ammo_types[added_ammo]['reserve'] += added_ammo.max_ammo * 2
-			else:
-				ammo_types[added_ammo]['reserve'] += amount
-			already_had = true
-	
-	if not already_had:
-		for amm in $ammo_container.get_children():
-			if amm.name == name_in:
-				added_ammo = amm
-				if amount < 0:
-					ammo_types[added_ammo] = {
-					'clip': 0,
-					'reserve': added_ammo.max_ammo * 2
-					}
-				else:
-					ammo_types[added_ammo] = {
-					'clip': 0,
-					'reserve': amount
-					}
-	new_ammo = ammo_types.keys().find(added_ammo)
-	if name_in == ammo_types.keys()[ammo_index].name: owner.emit_signal('update_ammo', added_ammo, ammo_types[added_ammo]['clip'], ammo_types[added_ammo]['reserve'], 0)
-	
-#func swap_last_ammo():
-#	print(last_index, " ", ammo_index)
-#	var new_last = ammo_index
-#	ammo_index = last_index
-#	last_index = new_last
-func swap_new_ammo():
-	ammo_types.keys()[ammo_index].visible = false
-	ammo_index = new_ammo
-	swap_to_ammo()
-
-func swap_ammo(forward: bool):
-	if ammo: ammo.visible = false
-	if len(ammo_types) == 1:
-		swap_to_ammo()
+func equip_ammo(name_in: String):
+	var chosen = $ammo_container.get_node(name_in).duplicate()
+	if chosen == null:
+		print("invalid ammo name: " + name_in)
 		return
-	if forward:
-		ammo_index = (ammo_index + 1) % len(ammo_types.keys())
+	var free_slot = $held_ammo.next_free_slot(active_slot)
+	if free_slot:
+		print("empty slot found, picking up: " + name_in)
+		active_slot.visible = false
+		free_slot.replace_ammo(chosen)
+		active_slot = free_slot
+		emit_signal("added_ammo", free_slot)
+		return
+	print("no empty slots, replacing " + active_slot.name)
+	active_slot.replace_ammo(chosen)
+	emit_signal("added_ammo", active_slot)
+	
+#
+func add_ammo(name_in: String, amount:int = -1):
+	$held_ammo.add_ammo(name_in, amount)
+	owner.emit_signal('update_ammo', active_slot.get_ammo(), active_slot.get_clip(), active_slot.get_reserve(), 0)
+
+func swap_ammo(forward=true):
+	active_slot.visible = false
+	var next_slot = active_slot.next_slot() if forward else active_slot.last_slot()
+	while not next_slot.slot_taken():
+		next_slot = next_slot.next_slot() if forward else next_slot.last_slot()
+	active_slot = next_slot
+	active_slot.visible = true
+	make_visible()
+	
+func swap_ammo_slot(slot: Node):
+	active_slot.visible = false
+	active_slot = slot
+	make_visible()
+	
+func swap_ammo_num(slot: int):
+	active_slot.visible = false
+	active_slot = $held_ammo.get_node("ammo_slot"+str(slot))
+	if not active_slot.slot_taken():
+		swap_ammo()
 	else:
-		ammo_index = (ammo_index - 1) % (len(ammo_types.keys())-1)
-		if sign(ammo_index) == -1:
-			ammo_index = (len(ammo_types.keys())-2)-ammo_index
-			
-	swap_to_ammo()
+		make_visible()
 	
-	
-func swap_to_ammo():
-	ammo = ammo_types.keys()[ammo_index]
-	$ammo_data/Viewport/ammo_data.setup(ammo)
+func make_visible():
+	active_slot.visible = true
+	$ammo_data/Viewport/ammo_data.setup(active_slot.get_ammo())
 	$AnimationPlayer.play("show")
-	ammo.visible = true
-	owner.emit_signal('update_ammo', ammo, ammo_types[ammo]['clip'], ammo_types[ammo]['reserve'], 0)
+	owner.emit_signal('update_ammo', active_slot.get_ammo(), active_slot.get_clip(), active_slot.get_reserve(), 0)
 
 
 func _ready():
-	for amm in $ammo_container.get_children():
-		if amm.name in starting_ammo:
-			ammo_types[amm] = {
-				'clip': amm.max_ammo,
-				'reserve': amm.max_ammo
-				}
-#	ammo_types = $ammo_container.get_children()
-	ammo = ammo_types.keys()[ammo_index]
-	ammo.visible = true
-	$ammo_data/Viewport/ammo_data.setup(ammo)
-
+	Event.connect(Event.EQUIP_AMMO, self, "equip_ammo")
+	for n in starting_ammo:
+		equip_ammo(n)
+	print("ammo equiped")
+#	for amm in $ammo_container.get_children():
+#		if amm.name in starting_ammo:
+#			ammo_types[amm] = {
+#				'clip': amm.max_ammo,
+#				'reserve': amm.max_ammo
+#				}
+##	ammo_types = $ammo_container.get_children()
+#	ammo = ammo_types.keys()[ammo_index]
+#	ammo.visible = true
+#	$ammo_data/Viewport/ammo_data.setup(ammo)
+#
 func show_ammo(show: bool):
-	$ammo_container.visible = true
+	active_slot.visible = true
 	if show:
 		$AnimationPlayer.play("show")
 	else:
 		$AnimationPlayer.play_backwards("show")
-		
+
 func tuck_ammo():
-	$ammo_container.visible = false
+	active_slot.visible = false
 	$AnimationPlayer.seek(0, true)
 
 func show_dat(on):
@@ -102,29 +99,22 @@ func show_dat(on):
 	else:
 		$ammo_data/AnimationPlayer.play_backwards("show_dat")
 
-#func save_new_ammo():
-#	if last_index != ammo_index:
-#		last_index = ammo_index
-
 func get_ammo_data():
-	return ammo_types.keys()[ammo_index]
-
+	return active_slot
 
 func can_fire():
-	var amm = ammo_types.keys()[ammo_index]
-	if ammo_types[amm]['clip'] > 0:
-		ammo_types[amm]['clip'] -= 1 
+	if active_slot.clip > 0:
+		active_slot.clip -= 1 
 		return true
 	return false
 
-
 func reload_current():
-	var amm = ammo_types.keys()[ammo_index]
-	if ammo_types[amm]['reserve'] > 0:
-		var amount_to_reload = amm.max_ammo - ammo_types[amm]['clip']
-		if ammo_types[amm]['reserve'] > amount_to_reload:
-			ammo_types[amm]['reserve'] -= amount_to_reload
-			ammo_types[amm]['clip'] = amm.max_ammo
+	var max_ammo = active_slot.get_ammo().max_ammo
+	if active_slot.reserve > 0:
+		var amount_to_reload = max_ammo - active_slot.clip
+		if active_slot.reserve > amount_to_reload:
+			active_slot.reserve -= amount_to_reload
+			active_slot.clip = max_ammo
 		else:
-			ammo_types[amm]['clip'] += ammo_types[amm]['reserve']
-			ammo_types[amm]['reserve'] = 0
+			active_slot.clip += active_slot.reserve
+			active_slot.reserve = 0

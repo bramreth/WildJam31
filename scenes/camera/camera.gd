@@ -66,7 +66,6 @@ func _on_gun_spread(amount):
 func fire_bullet(radius:float) -> void:
 	var x:float = rand_range(0, radius * .1) * sin(rand_range(0, 2 * PI))
 	var y:float = rand_range(0, radius * .1) * cos(rand_range(0, 2 * PI))
-	print(str(x) + ' - ' + str(y))
 	$juicy_cam/RayCast.enabled = true
 	$juicy_cam/RayCast.cast_to = Vector3(x,y,-100)
 	$juicy_cam/RayCast.force_raycast_update()
@@ -85,13 +84,13 @@ func fire_bullet(radius:float) -> void:
 		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_cloud.trigger()
 		var sprite = $juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_sprite.get_next_particle()
 		sprite.look_at(norm, Vector3(0,1,0))
-		if $juicy_cam/gun.selected_ammo.icon:
-			sprite.draw_pass_1.material.albedo_texture = $juicy_cam/gun.selected_ammo.icon
+		if $juicy_cam/gun.selected_ammo.get_ammo().icon:
+			sprite.draw_pass_1.material.albedo_texture = $juicy_cam/gun.selected_ammo.get_ammo().icon
 		$juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_sprite.trigger()
 		
 		if collider.is_in_group('hitbox'):
 			var enemy = collider.owner
-			var ammo_dat =  $juicy_cam/gun.selected_ammo
+			var ammo_dat =  $juicy_cam/gun.selected_ammo.get_ammo()
 			var dmg = floor(rand_range(ammo_dat.dmg_min, ammo_dat.dmg_max+1))
 			if collider.is_weakspot:
 				collider.trigger()
@@ -143,7 +142,7 @@ func _on_gun_fired(spread, is_projectile, projectile = null):
 	if is_projectile:
 		fire_projectile(spread, projectile)
 	else:
-		var ammo_dat =  $juicy_cam/gun.selected_ammo
+		var ammo_dat =  $juicy_cam/gun.selected_ammo.get_ammo()
 		if ammo_dat.is_shotgun:
 			for i in range(ammo_dat.pellets):
 				fire_bullet(spread+200)
@@ -153,9 +152,7 @@ func _on_gun_fired(spread, is_projectile, projectile = null):
 #	add_trauma(0.1)
 
 func _on_gun_reload(clip, reserve):
-	print(str(clip) + ' - ' + str(reserve))
-	$juicy_cam/CanvasLayer/gui/ammo.text = str(clip)
-	$juicy_cam/CanvasLayer/gui/maxammo.text = str(reserve)
+	get_node("juicy_cam/CanvasLayer/gui").preppreload(str(clip), str(reserve))
 	$juicy_cam/CanvasLayer/gui/clipflat/AnimationPlayer.play("reload")
 
 

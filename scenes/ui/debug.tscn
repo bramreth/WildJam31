@@ -32,7 +32,6 @@ rect_min_size = Vector2( 1200, 400 )
 custom_styles/panel = SubResource( 1 )
 
 [node name="debug_controls" type="VBoxContainer" parent="CenterContainer/Panel"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 33.0
@@ -54,7 +53,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/debug_controls"]
+margin_top = 77.0
+margin_right = 1200.0
+margin_bottom = 110.0
+
+[node name="add_ammo_lab" type="Label" parent="CenterContainer/Panel/debug_controls/HBoxContainer"]
+margin_top = 5.0
+margin_right = 152.0
+margin_bottom = 28.0
+text = "add ammo by name"
+valign = 1
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/Panel/debug_controls/HBoxContainer"]
+margin_left = 156.0
+margin_right = 1200.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
+max_length = 12
+selecting_enabled = false
+
 [node name="debug_data" type="VBoxContainer" parent="CenterContainer/Panel"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 33.0
@@ -108,6 +128,7 @@ __meta__ = {
 }
 [connection signal="toggled" from="CenterContainer/Panel/debug_controls/contwave" to="." method="_on_CheckButton_toggled"]
 [connection signal="pressed" from="CenterContainer/Panel/debug_controls/startwave" to="." method="_on_startwave_pressed"]
+[connection signal="text_entered" from="CenterContainer/Panel/debug_controls/HBoxContainer/LineEdit" to="." method="_on_LineEdit_text_entered"]
 [connection signal="toggled" from="CenterContainer/Panel/debug_data/show_data" to="." method="_on_show_data_toggled"]
 [connection signal="toggled" from="CenterContainer/Panel/debug_data/fps_view" to="." method="_on_fps_view_toggled"]
 [connection signal="toggled" from="CenterContainer/Panel/debug_data/ocount" to="." method="_on_ocount_toggled"]

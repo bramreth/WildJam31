@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=1]
+
+[node name="empty" instance=ExtResource( 1 )]
+max_ammo = 0
+crit_rate = 0.0
+crit_mul = 0

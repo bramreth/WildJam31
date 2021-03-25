@@ -50,7 +50,6 @@ func calculate_path(start_pos:Vector3, end_pos:Vector3) -> Array:
 	return path_array
 
 func divvy_wave(wave):
-	print(wave)
 	for cluster in wave:
 		for enemy_type in cluster:
 			var enemy_count = cluster[enemy_type]
@@ -59,7 +58,6 @@ func divvy_wave(wave):
 			for s in spawners:
 				spawners_map[s] = false
 				var batch = (enemy_count/ len(spawners)) + 1
-				print(batch)
 				if batch < enemy_count:
 					s.add_enemies(enemy_type, batch)
 				else:
