@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/enviornments/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/enviornments/shop_mesh.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/characters/enemies/wave_spawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://awesome_wenv.tres" type="Environment" id=5]
 [ext_resource path="res://scenes/pickups/glob_am_spawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/pickups/drops/burger_drop.tscn" type="PackedScene" id=7]
 
 [sub_resource type="NavigationMesh" id=1]
 resource_local_to_scene = true
@@ -51,3 +52,9 @@ data = SubResource( 2 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="8"]
 environment = ExtResource( 5 )
+
+[node name="burger" parent="." index="9" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2508, 6.32677, 31.0246 )
+
+[node name="burger2" parent="." index="10" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6678, 6.32677, 31.0246 )

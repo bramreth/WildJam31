@@ -90,7 +90,7 @@ func fire_bullet(radius:float) -> void:
 		
 		if collider.is_in_group('hitbox'):
 			var enemy = collider.owner
-			var ammo_dat =  $juicy_cam/gun.selected_ammo
+			var ammo_dat =  $juicy_cam/gun.selected_ammo.get_ammo()
 			var dmg = floor(rand_range(ammo_dat.dmg_min, ammo_dat.dmg_max+1))
 			if collider.is_weakspot:
 				collider.trigger()

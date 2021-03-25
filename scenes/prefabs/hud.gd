@@ -16,21 +16,6 @@ func update_health(health, armor) -> void:
 		$HealthDisplay/ArmorBar/armor.visible = false
 	else:
 		$HealthDisplay/ArmorBar/armor.visible = true
-
-func add_ammo(ammo_dat):
-	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_ico.texture = ammo_dat.get_ammo().icon
-	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.text = ammo_dat.get_ammo().name
-	match(ammo_dat.rarity):
-		ammo_dat.rarities.COMMON:
-			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.whitesmoke)
-		ammo_dat.rarities.UNCOMMON:
-			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.deepskyblue)
-		ammo_dat.rarities.RARE:
-			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.yellow)
-		ammo_dat.rarities.EPIC:
-			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.fuchsia)
-	$new_ammo/AnimationPlayer.play("show")
-	$new_ammo/Timer.start()
 	
 func update_ammo_counter():
 	$ammo.text = cache_clip
@@ -65,3 +50,20 @@ func _on_Timer_timeout():
 
 func _on_waveTimer_timeout():
 	$wave_info/AnimationPlayer.play_backwards("show")
+
+
+func _on_gun_new_ammo(node):
+	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_ico.texture = node.get_ammo().icon
+	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.text = node.get_ammo().name
+	var rarities = node.get_ammo().rarities
+	match(node.get_ammo().rarity):
+		rarities.COMMON:
+			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.whitesmoke)
+		rarities.UNCOMMON:
+			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.deepskyblue)
+		rarities.RARE:
+			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.yellow)
+		rarities.EPIC:
+			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.fuchsia)
+	$new_ammo/AnimationPlayer.play("show")
+	$new_ammo/Timer.start()

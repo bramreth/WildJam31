@@ -30,7 +30,7 @@ func equip_ammo(name_in: String):
 		return
 	print("no empty slots, replacing " + active_slot.name)
 	active_slot.replace_ammo(chosen)
-	emit_signal("added_ammo")
+	emit_signal("added_ammo", active_slot)
 	
 #
 func add_ammo(name_in: String, amount:int = -1):

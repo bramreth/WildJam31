@@ -16,6 +16,7 @@ signal fired(spread, ammo_type)
 signal update_ammo(ammo, spread)
 signal reload()
 signal change_ammo_type(ammo_ref, clip, reserve)
+signal new_ammo(node)
 
 var out = false
 
@@ -128,8 +129,10 @@ func get_projectile_spawn():
 
 func _on_animclip_added_ammo(node):
 	print("open ammo view")
+	emit_signal("new_ammo", node)
 	selected_ammo = $ak47/clip/animclip.get_ammo_data()
 	load_ammo_data()
 	if not out:
 		open_ammo_view()
+	
 	$ak47/clip/animclip.swap_ammo_slot(node)

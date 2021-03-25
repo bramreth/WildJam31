@@ -410,6 +410,7 @@ bus = "Sfx"
 [connection signal="pressed" from="juicy_cam/CanvasLayer/PauseMenu/settings_screen/settings_control/back" to="juicy_cam/CanvasLayer/PauseMenu" method="_on_settings_back_pressed"]
 [connection signal="change_ammo_type" from="juicy_cam/gun" to="." method="_on_gun_change_ammo_type"]
 [connection signal="fired" from="juicy_cam/gun" to="." method="_on_gun_fired"]
+[connection signal="new_ammo" from="juicy_cam/gun" to="juicy_cam/CanvasLayer/gui" method="_on_gun_new_ammo"]
 [connection signal="reload" from="juicy_cam/gun" to="." method="_on_gun_reload"]
 [connection signal="spread" from="juicy_cam/gun" to="." method="_on_gun_spread"]
 [connection signal="update_ammo" from="juicy_cam/gun" to="." method="_on_gun_update_ammo"]

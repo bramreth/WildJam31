@@ -34,9 +34,8 @@ func _on_Area_body_entered(body):
 	$Particles.emitting = false
 	print(body.name)
 	var dat = $pickup_container.get_child(0)
-	var ammo_amount = int(rand_range(dat.max_ammo * 3, dat.max_ammo * 6))
-	player_ammo.add_ammo(ammo_name, ammo_amount)
-	hud.add_ammo($pickup_container.get_child(0))
+#	var ammo_amount = int(rand_range(dat.max_ammo * 3, dat.max_ammo * 6))
+	Event.emit_signal(Event.EQUIP_AMMO, ammo_name)
 	picking_up = true
 	$pickup_container/bouncer.stop()
 	$AnimationPlayer.play("pickup")
