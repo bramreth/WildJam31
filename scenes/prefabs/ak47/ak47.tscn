@@ -21,7 +21,6 @@
 [ext_resource path="res://assets/kenshape_assets/gun/color3.material" type="Material" id=19]
 [ext_resource path="res://assets/kenshape_assets/gun/color17.material" type="Material" id=20]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "drop"
 length = 3.0
@@ -567,7 +566,7 @@ tracks/8/keys = {
 } ]
 }
 
-[sub_resource type="ArrayMesh" id=8]
+[sub_resource type="ArrayMesh" id=6]
 resource_name = "generatedClone"
 surfaces/0 = {
 "aabb": AABB( -16, -4, -2.5, 32, 12, 5 ),
@@ -666,7 +665,7 @@ surfaces/7 = {
 "vertex_count": 1810
 }
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=7]
 script/source = "extends Spatial
 
 export (PackedScene) var particle
@@ -686,7 +685,7 @@ func trigger():
 	index = (index + 1) % queue_count
 "
 
-[sub_resource type="OpenSimplexNoise" id=7]
+[sub_resource type="OpenSimplexNoise" id=8]
 period = 8.0
 persistence = 0.2
 lacunarity = 3.0
@@ -702,7 +701,7 @@ anims/reload = SubResource( 3 )
 "anims/reload (copy) (copy)" = SubResource( 5 )
 
 [node name="ak47" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1 )
+transform = Transform( 0.481909, -0.793149, 0.372396, 0.426797, -0.158699, -0.890314, 0.76525, 0.587988, 0.262035, -7, -15, 21.949 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -711,7 +710,7 @@ __meta__ = {
 
 [node name="generatedClone" type="MeshInstance" parent="ak47/ak_back"]
 cast_shadow = 0
-mesh = SubResource( 8 )
+mesh = SubResource( 6 )
 material/0 = null
 material/1 = null
 material/2 = null
@@ -731,24 +730,24 @@ one_shot = true
 
 [node name="click" type="Spatial" parent="ak47"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95037, 2.27087, 0 )
-script = SubResource( 6 )
+script = SubResource( 7 )
 particle = ExtResource( 5 )
 queue_count = 4
 
 [node name="spatial_blast_queue" type="Spatial" parent="ak47"]
 transform = Transform( 0.997564, 0.069757, 0, -0.069757, 0.997564, 0, 0, 0, 1, 15.2298, 3.92589, 0 )
-script = SubResource( 6 )
+script = SubResource( 7 )
 particle = ExtResource( 1 )
 queue_count = 16
 
 [node name="flash_queue" type="Spatial" parent="ak47"]
 transform = Transform( 0.997564, 0.069757, 0, -0.069757, 0.997564, 0, 0, 0, 1, 15.5811, 4.19253, 0 )
-script = SubResource( 6 )
+script = SubResource( 7 )
 particle = ExtResource( 3 )
 
 [node name="shell_queue" type="Spatial" parent="ak47"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87897, 4.63678, 1.63172 )
-script = SubResource( 6 )
+script = SubResource( 7 )
 particle = ExtResource( 7 )
 queue_count = 16
 
@@ -758,7 +757,7 @@ light_color = Color( 1, 0.631373, 0, 1 )
 light_energy = 5.0
 light_indirect_energy = 5.0
 light_specular = 0.0
-omni_range = 11.0
+omni_range = 0.0
 omni_attenuation = 0.707104
 
 [node name="OmniLight2" type="OmniLight" parent="ak47"]
@@ -766,7 +765,7 @@ transform = Transform( 0.997564, 0.0697569, 0, -0.0697569, 0.997564, 0, 0, 0, 1,
 light_energy = 10.0
 light_indirect_energy = 10.0
 light_specular = 0.0
-omni_range = 4.0
+omni_range = 0.0
 omni_attenuation = 0.707104
 
 [node name="clip" type="AudioStreamPlayer3D" parent="."]
@@ -797,7 +796,7 @@ doppler_tracking = 1
 
 [node name="shotfx" type="Spatial" parent="."]
 script = ExtResource( 16 )
-n = SubResource( 7 )
+n = SubResource( 8 )
 
 [node name="shot1" type="AudioStreamPlayer3D" parent="shotfx"]
 stream = ExtResource( 14 )
@@ -810,4 +809,5 @@ bus = "shotsfx"
 [node name="shot4" type="AudioStreamPlayer3D" parent="shotfx"]
 stream = ExtResource( 14 )
 bus = "shotsfx"
+[connection signal="added_ammo" from="ak47/clip/animclip" to="." method="_on_animclip_added_ammo"]
 [connection signal="timeout" from="ak47/clip/view_timeout" to="." method="_on_view_timeout_timeout"]

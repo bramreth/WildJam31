@@ -1,5 +1,8 @@
 extends Control
 
+var cache_clip = 0
+var cache_res = 0
+
 func _ready():
 	get_tree().get_nodes_in_group("level").front().connect("wave_start", self, "wave_start")
 	get_tree().get_nodes_in_group("level").front().connect("wave_end", self, "wave_end")
@@ -15,8 +18,8 @@ func update_health(health, armor) -> void:
 		$HealthDisplay/ArmorBar/armor.visible = true
 
 func add_ammo(ammo_dat):
-	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_ico.texture = ammo_dat.icon
-	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.text = ammo_dat.name
+	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_ico.texture = ammo_dat.get_ammo().icon
+	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.text = ammo_dat.get_ammo().name
 	match(ammo_dat.rarity):
 		ammo_dat.rarities.COMMON:
 			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.whitesmoke)
@@ -28,6 +31,14 @@ func add_ammo(ammo_dat):
 			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.fuchsia)
 	$new_ammo/AnimationPlayer.play("show")
 	$new_ammo/Timer.start()
+	
+func update_ammo_counter():
+	$ammo.text = cache_clip
+	$maxammo.text = cache_res
+	
+func preppreload(clip, res):
+	cache_clip = clip
+	cache_res = res
 	
 func heal():
 	$HealthDisplay/pqueue.trigger()

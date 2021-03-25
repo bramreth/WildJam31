@@ -44,3 +44,7 @@ func _on_ocount_toggled(button_pressed):
 	if button_pressed:
 		data.get_node("show_data").pressed = true
 	$realtime/ocount.visible = button_pressed
+
+func _on_LineEdit_text_entered(new_text):
+	controls.get_node("HBoxContainer/LineEdit").text = ""
+	Event.emit_signal(Event.EQUIP_AMMO, new_text)
