@@ -1,0 +1,241 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/camera/PauseMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/pause_menu_buttons.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/themes/hud.tres" type="Theme" id=3]
+[ext_resource path="res://scenes/ui/debug.gd" type="Script" id=4]
+[ext_resource path="res://scenes/ui/settings_menu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ui/debug.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/fonts/Akira Expanded Demo.otf" type="DynamicFontData" id=7]
+
+[sub_resource type="Animation" id=4]
+resource_name = "pause"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("main/ColorRect:color")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.392157 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("main/PauseMenuHeader:rect_position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 2.21914, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 785, -200 ), Vector2( 785, 200 ), Vector2( 785, 200 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("main/Continue:rect_position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 2.5, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2000, 400 ), Vector2( -760, 400 ), Vector2( 710, 400 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("main/Settings:rect_position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4 ),
+"transitions": PoolRealArray( 2.5, 2.5, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2000, 520 ), Vector2( -2000, 520 ), Vector2( 760, 520 ), Vector2( 710, 520 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("main/Reset:rect_position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.5 ),
+"transitions": PoolRealArray( 2.5, 2.5, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2000, 640 ), Vector2( -2000, 640 ), Vector2( 760, 640 ), Vector2( 710, 640 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("main/Quit:rect_position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5, 0.6 ),
+"transitions": PoolRealArray( 2.5, 2.5, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2000, 760 ), Vector2( -2000, 760 ), Vector2( 760, 760 ), Vector2( 710, 760 ) ]
+}
+
+[sub_resource type="DynamicFont" id=5]
+size = 64
+font_data = ExtResource( 7 )
+
+[node name="PauseMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/pause = SubResource( 4 )
+
+[node name="main" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="main"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseMenuHeader" type="Label" parent="main"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -175.0
+margin_top = -200.0
+margin_right = 175.0
+margin_bottom = -132.0
+custom_fonts/font = SubResource( 5 )
+text = "Paused"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Button" parent="main"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -2960.0
+margin_top = -140.0
+margin_right = -2460.0
+margin_bottom = -40.0
+rect_min_size = Vector2( 500, 100 )
+custom_fonts/font = ExtResource( 2 )
+text = "Continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Button" parent="main"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -2960.0
+margin_top = -20.0
+margin_right = -2460.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 500, 100 )
+custom_fonts/font = ExtResource( 2 )
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reset" type="Button" parent="main"]
+margin_left = -2000.0
+margin_top = 640.0
+margin_right = -1500.0
+margin_bottom = 740.0
+rect_min_size = Vector2( 500, 100 )
+custom_fonts/font = ExtResource( 2 )
+text = "Reset"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="main"]
+margin_left = -2000.0
+margin_top = 760.0
+margin_right = -1500.0
+margin_bottom = 860.0
+rect_min_size = Vector2( 500, 100 )
+custom_fonts/font = ExtResource( 2 )
+text = "Quit"
+
+[node name="settings_screen" type="Control" parent="."]
+visible = false
+margin_left = 710.0
+margin_top = 240.0
+margin_right = 1210.0
+margin_bottom = 866.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="settings_screen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -24.0
+margin_top = -20.0
+margin_right = 21.9999
+margin_bottom = 24.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="settings_control" type="VBoxContainer" parent="settings_screen" instance=ExtResource( 5 )]
+margin_right = 500.0
+margin_bottom = 626.0
+custom_constants/separation = 60
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="back" type="Button" parent="settings_screen/settings_control"]
+margin_top = 526.0
+margin_right = 500.0
+margin_bottom = 626.0
+rect_min_size = Vector2( 500, 100 )
+custom_fonts/font = ExtResource( 2 )
+text = "back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="debug" type="Control" parent="." instance=ExtResource( 6 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 1920, 1080 )
+theme = ExtResource( 3 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="main/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="main/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="main/Reset" to="." method="_on_Reset_pressed"]
+[connection signal="pressed" from="main/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="settings_screen/settings_control/back" to="." method="_on_settings_back_pressed"]

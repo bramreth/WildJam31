@@ -1,17 +1,12 @@
 extends Control
 
-
-#func _ready():
-#	$AnimationPlayer.playback_speed = 5
-#	unpause_game()
-
-func toggle_pause():
+func toggle_pause() -> void:
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 		unpause_game()
 	else:
 		pause_game()
 
-func _input(event):
+func _input(event:InputEvent) -> void:
 	if Game.debug and Input.is_action_just_pressed("debug"):
 		toggle_pause()
 		$debug.show_debug(get_tree().paused)
@@ -19,14 +14,14 @@ func _input(event):
 		toggle_pause()
 
 
-func pause_game():
+func pause_game() -> void:
 	$AnimationPlayer.playback_speed = 1
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().paused = true
 	$AnimationPlayer.play("pause")
 
 
-func unpause_game():
+func unpause_game() -> void:
 	$AnimationPlayer.playback_speed = 1.5
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().paused = false

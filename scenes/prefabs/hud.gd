@@ -3,33 +3,43 @@ extends Control
 var cache_clip = 0
 var cache_res = 0
 
+onready var health_bar:TextureProgress = $HealthDisplay/HealthBar
+onready var health_bar_label:Label = $HealthDisplay/HealthBar/health
+onready var health_pqueue = $HealthDisplay/pqueue
+onready var armor_bar:TextureProgress = $HealthDisplay/ArmorBar
+onready var armor_bar_label:Label = $HealthDisplay/ArmorBar/armor
+onready var armor_pqueue = $HealthDisplay/pqueuearmor
+
+onready var ammo_label:Label = $ammo
+onready var max_ammo_label:Label = $maxammo
+
 func _ready():
 	get_tree().get_nodes_in_group("level").front().connect("wave_start", self, "wave_start")
 	get_tree().get_nodes_in_group("level").front().connect("wave_end", self, "wave_end")
 
 func update_health(health, armor) -> void:
-	$HealthDisplay/HealthBar.value = health
-	$HealthDisplay/HealthBar/health.text = String(health)
-	$HealthDisplay/ArmorBar.value = armor
-	$HealthDisplay/ArmorBar/armor.text = String(armor)
+	health_bar.value = health
+	health_bar_label.text = String(health)
+	armor_bar.value = armor
+	armor_bar_label.text = String(armor)
 	if armor <= 0:
-		$HealthDisplay/ArmorBar/armor.visible = false
+		armor_bar_label.visible = false
 	else:
-		$HealthDisplay/ArmorBar/armor.visible = true
+		armor_bar_label.visible = true
 	
 func update_ammo_counter():
-	$ammo.text = cache_clip
-	$maxammo.text = cache_res
+	ammo_label.text = cache_clip
+	max_ammo_label.text = cache_res
 	
 func preppreload(clip, res):
 	cache_clip = clip
 	cache_res = res
 	
 func heal():
-	$HealthDisplay/pqueue.trigger()
+	health_pqueue.trigger()
 	
 func armor():
-	$HealthDisplay/pqueuearmor.trigger()
+	armor_pqueue.trigger()
 
 func wave_start(arg):
 	$wave_info/Panel/Particles2D.amount = 48
@@ -67,3 +77,20 @@ func _on_gun_new_ammo(node):
 			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.fuchsia)
 	$new_ammo/AnimationPlayer.play("show")
 	$new_ammo/Timer.start()
+
+
+func _on_gun_reload(clip, reserve):
+	preppreload(str(clip), str(reserve))
+	$clipflat/AnimationPlayer.play("reload")
+
+
+func _on_gun_update_ammo(ammo_ref, clip, reserve, spread):
+	$ammo_type.texture = ammo_ref.icon
+	ammo_label.text = str(clip)
+	max_ammo_label.text = str(reserve)
+
+func _on_gun_change_ammo_type(ammo_ref, clip, reserve):
+	ammo_label.text = str(clip)
+	max_ammo_label.text = str(reserve)
+	$ammo_type.texture = ammo_ref.icon
+	$ammo_type/AnimationPlayer.play("set_ammo")
