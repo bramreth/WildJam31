@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float amount : hint_range(0, 1);
+uniform float scale : hint_range(0, 12);
+uniform float darkscale : hint_range(0, 1);
+
+void fragment(){
+	COLOR = textureLod(SCREEN_TEXTURE, SCREEN_UV, amount * scale);
+	COLOR.rgb *= 1f - (0.1 * darkscale);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/amount = 0.5
+shader_param/scale = 0.5
+shader_param/darkscale = 0.5
+
+[node name="reward_panel" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 60.0
+margin_right = -100.0
+margin_bottom = -60.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+material = SubResource( 2 )
+margin_right = 1720.0
+margin_bottom = 960.0

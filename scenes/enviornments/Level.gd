@@ -6,6 +6,11 @@ var current_wave = []
 var wave = 0
 var wave_active = false
 
+var player_world_pos = null
+
+export(Resource) var level_env
+export(Resource) var reward_env
+
 export (bool) var debug = false
 
 var max_mob_count = 24
@@ -29,9 +34,16 @@ func _ready():
 	if debug: 
 		Game.debug = true
 		Event.emit_signal(Event.SETUP_DEBUG)
-		return
-	$wave_controller/major_timer.start(0)
+	else:
+		$wave_controller/major_timer.start(0)
+	player_world_pos = $player.transform
+	goto_reward(false)
 	
+func _input(event):
+	if Input.is_action_just_pressed("ui_end"):
+		goto_reward(true)
+	elif Input.is_action_just_pressed("ui_home"):
+		goto_reward(false)
 	
 func spawner_done(spawner):
 	spawners_map[spawner] = true
@@ -106,3 +118,20 @@ func spawn_ammo():
 
 func _on_major_timer_timeout():
 	Event.emit_signal(Event.START_WAVE)
+	
+func goto_reward(going):
+	$reward_room.goto_reward(going)
+	if going:
+		$WorldEnvironment.environment = reward_env
+		player_world_pos = $player.transform
+		var spawn = get_tree().get_nodes_in_group("spawn_point").front()
+		$player.global_transform = spawn.global_transform
+		$player.rotation = spawn.rotation
+		$Navigation.visible = false
+		$reward_room.visible = true
+	else:
+		$WorldEnvironment.environment = level_env
+		$player.transform = player_world_pos
+		$Navigation.visible = true
+		$reward_room.visible = false
+	print("SETUP")

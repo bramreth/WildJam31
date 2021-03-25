@@ -1,14 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/camera/PauseMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/pause_menu_buttons.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/themes/hud.tres" type="Theme" id=3]
-[ext_resource path="res://scenes/ui/debug.gd" type="Script" id=4]
+[ext_resource path="res://assets/shaders/reward_panel.shader" type="Shader" id=4]
 [ext_resource path="res://scenes/ui/settings_menu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/ui/debug.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/fonts/Akira Expanded Demo.otf" type="DynamicFontData" id=7]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "pause"
 length = 0.6
 tracks/0/type = "value"
@@ -16,7 +16,7 @@ tracks/0/path = NodePath("main/ColorRect:color")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
@@ -83,9 +83,32 @@ tracks/5/keys = {
 "update": 0,
 "values": [ Vector2( -2000, 760 ), Vector2( -2000, 760 ), Vector2( 760, 760 ), Vector2( 710, 760 ) ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("main/ColorRect:material:shader_param/amount")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/amount = 0.0
+shader_param/scale = 7.0
+shader_param/darkscale = null
+
+[sub_resource type="DynamicFont" id=3]
 size = 64
+outline_size = 12
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+extra_spacing_char = 8
 font_data = ExtResource( 7 )
 
 [node name="PauseMenu" type="Control"]
@@ -98,19 +121,21 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/pause = SubResource( 4 )
+anims/pause = SubResource( 1 )
 
 [node name="main" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorRect" type="ColorRect" parent="main"]
+material = SubResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0 )
+color = Color( 0, 0, 0, 0.392157 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -120,9 +145,9 @@ anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -175.0
 margin_top = -200.0
-margin_right = 175.0
+margin_right = 215.0
 margin_bottom = -132.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 text = "Paused"
 align = 1
 valign = 1
@@ -193,29 +218,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="settings_screen"]
+[node name="ColorRect" type="TextureRect" parent="settings_screen"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -24.0
 margin_top = -20.0
 margin_right = 21.9999
 margin_bottom = 24.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="settings_control" type="VBoxContainer" parent="settings_screen" instance=ExtResource( 5 )]
+[node name="settings_control" parent="settings_screen" instance=ExtResource( 5 )]
 margin_right = 500.0
 margin_bottom = 626.0
-custom_constants/separation = 60
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="back" type="Button" parent="settings_screen/settings_control"]
 margin_top = 526.0
-margin_right = 500.0
+margin_right = 1000.0
 margin_bottom = 626.0
 rect_min_size = Vector2( 500, 100 )
 custom_fonts/font = ExtResource( 2 )
@@ -224,16 +241,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="debug" type="Control" parent="." instance=ExtResource( 6 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 1920, 1080 )
-theme = ExtResource( 3 )
-script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
+[node name="debug" parent="." instance=ExtResource( 6 )]
 [connection signal="pressed" from="main/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="main/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="main/Reset" to="." method="_on_Reset_pressed"]
