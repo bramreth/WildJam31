@@ -12,6 +12,7 @@ onready var hit_sprite = $juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_spri
 onready var hit_number = $juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_num
 
 var is_sprinting = false
+var respawn = false
 
 func add_trauma(trauma_in: float):
 	camera.add_trauma(trauma_in)
@@ -142,15 +143,14 @@ func sprint_spread_multiplier(is_sprinting:bool):
 	self.is_sprinting = is_sprinting
 	gun.is_sprinting = is_sprinting
 	
-func warp(warp_in):
-	if warp_in:
+func warp(respawn_in):
+	if not $CurveTween.is_active():
+		respawn = respawn_in
 		$CurveTween.play(0.3, $juicy_cam.fov, 1)
-	else:
-		pass
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_page_up"):
-		warp(true)
+		warp(false)
 
 func _on_CurveTween_curve_tween(sat):
 	$juicy_cam.fov = sat
@@ -158,4 +158,7 @@ func _on_CurveTween_curve_tween(sat):
 
 
 func _on_CurveTween_tween_all_completed():
-	Event.emit_signal(Event.WARP)
+	if respawn:
+		Event.emit_signal(Event.RESPAWN)
+	else:
+		Event.emit_signal(Event.WARP)

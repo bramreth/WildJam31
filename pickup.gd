@@ -52,5 +52,6 @@ func _ready():
 	assert(get_child(0), "must have child glb")
 	if held_camera:
 		get_child(0).get_child(0).set_layer_mask_bit(0, false)
+		get_child(0).get_child(0).set_layer_mask_bit(1, true)
 		get_child(0).get_child(0).cast_shadow = false
 	

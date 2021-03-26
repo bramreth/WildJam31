@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="WildJam31"
-run/main_scene="res://audio_test_room/audio_test.tscn"
+run/main_scene="res://scenes/enviornments/test_room/TestLevel.tscn"
 config/icon="res://assets/kenshape_assets/gun/x gun.png"
 
 [autoload]

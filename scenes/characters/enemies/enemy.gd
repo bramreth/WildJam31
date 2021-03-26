@@ -32,6 +32,10 @@ func _ready():
 	update_bars()
 	$AttackTimer.wait_time = attack_speed
 
+func _physics_process(delta):
+	if _hang_time > 8:
+		damage(10000)
+
 func update_bars():
 	$health_bar/Viewport/root/HealthBar.max_value = max_health
 	$health_bar/Viewport/root/HealthBar.value = health

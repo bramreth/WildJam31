@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/enviornments/wave_controller.gd" type="Script" id=1]
 [ext_resource path="res://scenes/enviornments/Level.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/enviornments/reward_room.tscn" type="PackedScene" id=4]
 [ext_resource path="res://awesome_wenv.tres" type="Environment" id=5]
 [ext_resource path="res://scenes/characters/player/player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/prefabs/spawn_pad.tscn" type="PackedScene" id=7]
 
 [sub_resource type="NavigationMesh" id=1]
 resource_local_to_scene = true
@@ -43,4 +44,7 @@ one_shot = true
 
 [node name="player" parent="." instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+
+[node name="spawn_pad" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 [connection signal="timeout" from="wave_controller/major_timer" to="." method="_on_major_timer_timeout"]

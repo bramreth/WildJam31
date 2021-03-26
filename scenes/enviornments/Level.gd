@@ -6,8 +6,6 @@ var current_wave = []
 var wave = 0
 var wave_active = false
 
-var player_world_pos = null
-
 export(Resource) var level_env
 export(Resource) var reward_env
 
@@ -26,6 +24,7 @@ var spawners_map = {}
 func _ready():
 	Event.connect(Event.START_WAVE, self, "start_wave")
 	Event.connect(Event.WARP, self, "goto_reward")
+	Event.connect(Event.RESPAWN, self, "respawn")
 	randomize()
 	wave = Game.get_wave_selected()-1
 	spawners = get_tree().get_nodes_in_group("spawner")
@@ -39,7 +38,7 @@ func _ready():
 		Event.emit_signal(Event.SETUP_DEBUG)
 	else:
 		$wave_controller/major_timer.start(0)
-	player_world_pos = $player.transform
+	$player.transform = $spawn_pad/Spatial.global_transform
 	
 func spawner_done(spawner):
 	spawners_map[spawner] = true
@@ -115,19 +114,21 @@ func spawn_ammo():
 func _on_major_timer_timeout():
 	Event.emit_signal(Event.START_WAVE)
 	
+func respawn():
+	at_reward = false
+	$WorldEnvironment.environment = level_env
+	$player.transform = $spawn_pad/Spatial.global_transform
+	$Navigation.visible = true
+	$reward_room.visible = false
+	
 func goto_reward():
-	at_reward = not at_reward
 	$reward_room.goto_reward(at_reward)
-	if at_reward:
+	if not at_reward:
+		at_reward = true
 		$WorldEnvironment.environment = reward_env
-		player_world_pos = $player.transform
 		var spawn = get_tree().get_nodes_in_group("spawn_point").front()
-		$player.global_transform = spawn.global_transform
-#		$player.rotation = spawn.rotation
+		$player.global_transform = $reward_room.get_reward_spawn()
 		$Navigation.visible = false
 		$reward_room.visible = true
 	else:
-		$WorldEnvironment.environment = level_env
-		$player.transform = player_world_pos
-		$Navigation.visible = true
-		$reward_room.visible = false
+		respawn()

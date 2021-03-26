@@ -10,6 +10,10 @@ func add_dmg_anim(col, num, pos):
 
 func _physics_process(_delta: float) -> void:
 	if dead: return
+	if _hang_time > 1:
+		damage(25)
+		_hang_time = 0
+		$camera.warp(true)
 	input_direction = get_input_direction()
 	if is_on_floor() and Input.is_action_just_pressed("move_jump"):
 		_jump()
