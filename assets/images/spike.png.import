@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/texture_02.png-aa1bb055b55bdc7c20e196b7286eebdf.s3tc.stex"
-path.etc2="res://.import/texture_02.png-aa1bb055b55bdc7c20e196b7286eebdf.etc2.stex"
+path.s3tc="res://.import/spike.png-761799ddcdc89f2cac8959a9409d2ca6.s3tc.stex"
+path.etc2="res://.import/spike.png-761799ddcdc89f2cac8959a9409d2ca6.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/kenney_prototype_textures/green/texture_02.png"
-dest_files=[ "res://.import/texture_02.png-aa1bb055b55bdc7c20e196b7286eebdf.s3tc.stex", "res://.import/texture_02.png-aa1bb055b55bdc7c20e196b7286eebdf.etc2.stex" ]
+source_file="res://assets/images/spike.png"
+dest_files=[ "res://.import/spike.png-761799ddcdc89f2cac8959a9409d2ca6.s3tc.stex", "res://.import/spike.png-761799ddcdc89f2cac8959a9409d2ca6.etc2.stex" ]
 
 [params]
 

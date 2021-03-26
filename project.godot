@@ -177,6 +177,10 @@ ammo_4={
 
 3d_physics/layer_5="player_interactible"
 
+[physics]
+
+3d/default_gravity=98.0
+
 [rendering]
 
 quality/filters/msaa=3

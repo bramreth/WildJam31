@@ -122,9 +122,9 @@ func respawn():
 	$reward_room.visible = false
 	
 func goto_reward():
-	$reward_room.goto_reward(at_reward)
 	if not at_reward:
 		at_reward = true
+		$reward_room.goto_reward(at_reward)
 		$WorldEnvironment.environment = reward_env
 		var spawn = get_tree().get_nodes_in_group("spawn_point").front()
 		$player.global_transform = $reward_room.get_reward_spawn()
