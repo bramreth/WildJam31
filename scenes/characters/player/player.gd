@@ -32,7 +32,7 @@ func calculate_move_direction() -> Vector3:
 	return move_direction.normalized()
 
 func is_running() -> bool:
-	var is_running = Input.is_action_pressed("move_sprint")
+	var is_running = Input.is_action_pressed("move_sprint") and input_direction.z < 0
 	$camera.sprint_spread_multiplier(is_running)
 	return is_running
 #region end

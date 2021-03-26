@@ -33,9 +33,6 @@ navmesh = SubResource( 1 )
 
 [node name="Spatial" parent="Navigation/NavigationMeshInstance" index="0" instance=ExtResource( 2 )]
 
-[node name="player" parent="." index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.84194, -32.4084 )
-
 [node name="Spawner" parent="." index="4" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7811, 4.66892, -8.19566 )
 
@@ -51,3 +48,9 @@ directional_shadow_blend_splits = true
 [node name="GIProbe" type="GIProbe" parent="." index="7"]
 extents = Vector3( 50, 30, 50 )
 data = SubResource( 2 )
+
+[node name="player" parent="." index="9"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.84194, -32.4084 )
+
+[node name="spawn_pad" parent="." index="10"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0 )
