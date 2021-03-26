@@ -5,7 +5,6 @@
 [ext_resource path="res://assets/kenshape_assets/gun/x gun no clip.glb" type="PackedScene" id=4]
 [ext_resource path="res://scenes/pickups/pickup.tscn" type="PackedScene" id=5]
 
-
 [node name="pickup" instance=ExtResource( 5 )]
 dmg_min = 75
 dmg_max = 100

@@ -29,6 +29,9 @@ func _ready():
 	Event.connect(Event.ON_FIELD_OF_VIEW_CHANGED, self, "set_fov")
 	fade_in()
 	
+func set_cam_env(env_in):
+	$juicy_cam/ViewportContainer/Viewport/GunCamera.environment = env_in
+	
 func set_fov(fov_in):
 	camera.basefov = fov_in
 	camera.fov = camera.basefov
@@ -37,9 +40,9 @@ func _physics_process(delta):
 	var tilt = PI/30
 	if is_sprinting: 
 		tilt *= 2
-		camera.fov = lerp(camera.fov, camera.basefov + 15, delta*5)
+		camera.fov = lerp(camera.fov, camera.basefov + 15, delta*15)
 	else:
-		camera.fov = lerp(camera.fov, camera.basefov, delta)
+		camera.fov = lerp(camera.fov, camera.basefov, delta*5)
 	var lean_speed = delta * 2
 	if not get_parent().is_on_floor(): lean_speed *= 5
 	if Input.is_action_pressed("move_left"):
@@ -138,3 +141,21 @@ func update_health(health, armor) -> void:
 func sprint_spread_multiplier(is_sprinting:bool):
 	self.is_sprinting = is_sprinting
 	gun.is_sprinting = is_sprinting
+	
+func warp(warp_in):
+	if warp_in:
+		$CurveTween.play(0.3, $juicy_cam.fov, 1)
+	else:
+		pass
+
+func _input(event):
+	if Input.is_action_just_pressed("ui_page_up"):
+		warp(true)
+
+func _on_CurveTween_curve_tween(sat):
+	$juicy_cam.fov = sat
+	$juicy_cam/ViewportContainer/Viewport/GunCamera.fov = sat
+
+
+func _on_CurveTween_tween_all_completed():
+	Event.emit_signal(Event.WARP)

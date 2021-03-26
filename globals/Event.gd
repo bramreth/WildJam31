@@ -8,6 +8,8 @@ const START_WAVE = "start_wave"
 
 const SETUP_DEBUG = "setup_debug"
 
+const WARP = "warp"
+
 const ON_FULL_SCREEN_TOGGLED = "on_full_screen_toggled"
 const ON_FIELD_OF_VIEW_CHANGED = "on_field_of_view_changed"
 const EQUIP_AMMO = "equip_ammo"
@@ -19,6 +21,7 @@ signal close_doors()
 signal start_wave()
 signal setup_debug()
 signal equip_ammo(name_out)
+signal warp()
 
 signal on_full_screen_toggle(toggled)
 signal on_field_of_view_changed(value)

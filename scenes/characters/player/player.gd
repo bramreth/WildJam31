@@ -36,6 +36,9 @@ func is_running() -> bool:
 static func get_input_direction() -> Vector3:
 	return Vector3(Input.get_action_strength("move_right") - Input.get_action_strength("move_left"), 0, Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward"))
 
+func set_cam_env(env):
+	$camera.set_cam_env(env)
+
 func _jump() -> void:
 	velocity.y = jump_force
 	current_snap = Vector3.ZERO

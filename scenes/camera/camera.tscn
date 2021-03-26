@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
@@ -9,15 +9,20 @@
 [ext_resource path="res://scenes/particles/spatial_pqueue.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/particles/hit.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/particles/cloud.tscn" type="PackedScene" id=9]
+[ext_resource path="res://godot_tools/CurveTween/CurveTween.gd" type="Script" id=10]
+[ext_resource path="res://scenes/camera/GunCamera.gd" type="Script" id=11]
 [ext_resource path="res://scenes/particles/sprite.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/particles/damage_number.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/Gun Sounds/hits1/hit3.ogg" type="AudioStream" id=15]
 [ext_resource path="res://assets/Gun Sounds/hits1/hit1.ogg" type="AudioStream" id=17]
 
-[sub_resource type="OpenSimplexNoise" id=1]
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, -3.07432, 0, 0, Vector2( 1, 1 ), 4.85692, 0.0, 0, 0 ]
+
+[sub_resource type="OpenSimplexNoise" id=2]
 period = 32.0
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
@@ -31,28 +36,54 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Curve" id=3]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0 ), 0.0, 3.0344, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="SphereMesh" id=4]
+[sub_resource type="SphereMesh" id=5]
 radius = 0.1
 height = 0.2
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=6]
 albedo_color = Color( 1, 0, 0, 1 )
 
 [node name="cam_container" type="Spatial"]
 script = ExtResource( 2 )
 
+[node name="CurveTween" type="Tween" parent="."]
+script = ExtResource( 10 )
+curve = SubResource( 1 )
+
 [node name="juicy_cam" type="Camera" parent="."]
 transform = Transform( 1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 0, 0 )
+cull_mask = 1048573
 current = true
 fov = 90.0
 far = 300.0
 script = ExtResource( 1 )
-noise = SubResource( 1 )
+noise = SubResource( 2 )
 max_r = 2
 decay = 0.8
+
+[node name="ViewportContainer" type="ViewportContainer" parent="juicy_cam"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="juicy_cam/ViewportContainer"]
+size = Vector2( 1920, 1080 )
+transparent_bg = true
+handle_input_locally = false
+msaa = 2
+hdr = false
+render_target_update_mode = 3
+shadow_atlas_size = 1
+
+[node name="GunCamera" type="Camera" parent="juicy_cam/ViewportContainer/Viewport"]
+cull_mask = 2
+fov = 90.0
+script = ExtResource( 11 )
 
 [node name="UILayer" type="CanvasLayer" parent="juicy_cam"]
 follow_viewport_enable = true
@@ -71,13 +102,13 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="juicy_cam/UILayer/fader"]
-anims/fade_in = SubResource( 2 )
+anims/fade_in = SubResource( 3 )
 
 [node name="PauseMenu" parent="juicy_cam/UILayer" instance=ExtResource( 4 )]
 
 [node name="gun" parent="juicy_cam" instance=ExtResource( 5 )]
 transform = Transform( -0.0118058, 0.00042665, 0.0485844, 0.00210992, 0.0499554, 7.4012e-05, -0.0485405, 0.00206766, -0.0118133, 1.47358, -0.844503, -1.68106 )
-spread_curve = SubResource( 3 )
+spread_curve = SubResource( 4 )
 
 [node name="RayCast" type="RayCast" parent="juicy_cam"]
 cast_to = Vector3( 0, 0, -100 )
@@ -88,8 +119,8 @@ collide_with_areas = true
 transform = Transform( 1, 0, 1.49012e-08, 0, 1, 0, -1.49012e-08, 0, 1, 0, 0, 0 )
 layers = 0
 cast_shadow = 0
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
 
 [node name="spatial_pqueue" parent="juicy_cam/RayCast/DebugHitDetector" instance=ExtResource( 7 )]
 particle = ExtResource( 8 )
@@ -128,7 +159,8 @@ unit_db = 50.0
 max_db = -5.0
 max_distance = 250.0
 bus = "Sfx"
-
+[connection signal="curve_tween" from="CurveTween" to="." method="_on_CurveTween_curve_tween"]
+[connection signal="tween_all_completed" from="CurveTween" to="." method="_on_CurveTween_tween_all_completed"]
 [connection signal="change_ammo_type" from="juicy_cam/gun" to="juicy_cam/UILayer/gui" method="_on_gun_change_ammo_type"]
 [connection signal="fired" from="juicy_cam/gun" to="." method="_on_gun_fired"]
 [connection signal="new_ammo" from="juicy_cam/gun" to="juicy_cam/UILayer/gui" method="_on_gun_new_ammo"]

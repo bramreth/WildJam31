@@ -15,11 +15,14 @@ var basefov = fov
 
 var time = 0
 
+onready var guncam = get_node("ViewportContainer/Viewport/GunCamera")
+
 func add_trauma(trauma_in):
 	trauma = clamp(trauma + trauma_in, 0, 1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	guncam.global_transform = global_transform
 	time += delta
 	var shake = pow(trauma, 2)
 	translation.x = noise.get_noise_4d(time * time_scale, 0, 0, 0) * max_x * shake

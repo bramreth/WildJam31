@@ -709,6 +709,7 @@ __meta__ = {
 [node name="ak_back" type="Spatial" parent="ak47"]
 
 [node name="generatedClone" type="MeshInstance" parent="ak47/ak_back"]
+layers = 2
 cast_shadow = 0
 mesh = SubResource( 6 )
 material/0 = null

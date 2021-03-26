@@ -30,6 +30,7 @@ albedo_texture = ExtResource( 1 )
 material = SubResource( 4 )
 
 [node name="muzle_flash" type="Particles"]
+layers = 2
 emitting = false
 amount = 3
 lifetime = 0.1

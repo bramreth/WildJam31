@@ -1,4 +1,7 @@
 extends Spatial
 
 func goto_reward(goto):
-	$DirectionalLight.visible = goto
+	visible = goto
+	if goto:
+		$MeshInstance/AnimationPlayer.seek(0, true)
+		$MeshInstance/AnimationPlayer.play("title")
