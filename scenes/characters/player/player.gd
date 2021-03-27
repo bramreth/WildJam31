@@ -4,9 +4,7 @@ onready var camera:Camera = $camera/juicy_cam
 
 func _ready():
 	$camera.update_health(health, armor)
-	
-func add_dmg_anim(col, num, pos):
-	$camera.set_enemy_dmg(col, num, pos)
+
 
 func _physics_process(_delta: float) -> void:
 	if dead: return

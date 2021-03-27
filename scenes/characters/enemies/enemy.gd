@@ -211,7 +211,7 @@ func poison_dmg(dmg):
 	if armor > 0:
 		post_armor_dmg = post_armor_dmg * 0.5
 	damage(post_armor_dmg)
-	_player.add_dmg_anim(Color.limegreen, post_armor_dmg, global_transform.origin)
+	add_dmg_anim(Color.limegreen, post_armor_dmg, global_transform.origin)
 	
 func frost_dmg(dmg):
 	if dead: return
@@ -220,7 +220,7 @@ func frost_dmg(dmg):
 	if armor > 0:
 		post_armor_dmg = post_armor_dmg * 0.5
 	damage(post_armor_dmg)
-	_player.add_dmg_anim(Color.skyblue, post_armor_dmg, global_transform.origin)
+	add_dmg_anim(Color.skyblue, post_armor_dmg, global_transform.origin)
 
 func bleed_dmg(dmg):
 	if dead: return
@@ -229,7 +229,7 @@ func bleed_dmg(dmg):
 	if armor > 0:
 		post_armor_dmg = post_armor_dmg * 0.5
 	damage(post_armor_dmg)
-	_player.add_dmg_anim(Color.red, post_armor_dmg, global_transform.origin)
+	add_dmg_anim(Color.red, post_armor_dmg, global_transform.origin)
 	
 func burn_dmg(dmg):
 	if dead: return
@@ -237,7 +237,7 @@ func burn_dmg(dmg):
 	var post_armor_dmg = dmg
 	if armor > dmg: post_armor_dmg = min(5 * post_armor_dmg, armor)
 	damage(post_armor_dmg)
-	_player.add_dmg_anim(Color.orangered, post_armor_dmg, global_transform.origin)
+	add_dmg_anim(Color.orangered, post_armor_dmg, global_transform.origin)
 
 func electric_dmg(dmg, max_distance, jumps):
 	if dead: return
@@ -246,7 +246,7 @@ func electric_dmg(dmg, max_distance, jumps):
 	if armor > 0:
 		post_armor_dmg = post_armor_dmg * 0.5
 	damage(post_armor_dmg)
-	_player.add_dmg_anim(Color.yellow, post_armor_dmg, global_transform.origin)
+	add_dmg_anim(Color.yellow, post_armor_dmg, global_transform.origin)
 	$effect_handler.start_electric_particle()
 	jumps -= 1
 	if jumps > 0:
@@ -256,7 +256,7 @@ func electric_dmg(dmg, max_distance, jumps):
 func explosion_dmg(dmg, knockback):
 	if dead: return
 	damage(dmg, knockback)
-	_player.add_dmg_anim(Color.white, dmg, global_transform.origin)
+	add_dmg_anim(Color.white, dmg, global_transform.origin)
 
 func _on_death() -> void:
 	dead = true
@@ -290,3 +290,16 @@ func _on_DeathPlayer_animation_finished(anim_name):
 
 func _on_AttackTimer_timeout():
 	_can_attack = true
+
+
+func add_dmg_anim(color:Color, damage:int, global_position:Vector3) -> void:
+	ParticleEventBus.request_particles(
+		[ParticleEventBus.DAMAGE],
+		global_position,
+		{
+			'norm': Vector3(0,1,0),
+			'dmg': damage,
+			'color': color,
+			'crit': false
+		}
+	)

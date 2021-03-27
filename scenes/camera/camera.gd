@@ -6,10 +6,6 @@ onready var gun = $juicy_cam/gun
 
 onready var shot_raycast:RayCast = $juicy_cam/RayCast
 onready var debug_hit_detector = $juicy_cam/RayCast/DebugHitDetector
-onready var hit_particles = $juicy_cam/RayCast/DebugHitDetector/spatial_pqueue
-onready var hit_cloud = $juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_cloud
-onready var hit_sprite = $juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_sprite
-onready var hit_number = $juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_num
 
 var is_sprinting = false
 var respawn = false
@@ -64,17 +60,21 @@ func fire_bullet(radius:float) -> void:
 	shot_raycast.force_raycast_update()
 	if shot_raycast.is_colliding():
 		debug_hit_detector.global_transform.origin = shot_raycast.get_collision_point()
-
-		hit_particles.trigger()
+		ParticleEventBus.request_particles(
+			[ParticleEventBus.HIT, ParticleEventBus.CLOUD], 
+			shot_raycast.get_collision_point(), 
+			{'norm': shot_raycast.get_collision_normal()}
+			)
+		ParticleEventBus.request_particles(
+			[ParticleEventBus.SPRITE],
+			shot_raycast.get_collision_point(), 
+			{
+				'norm': shot_raycast.get_collision_normal(),
+				'icon': gun.selected_ammo.get_ammo().icon
+			}
+			)
 		var collider = shot_raycast.get_collider()
 		var norm = shot_raycast.get_collision_normal()
-		hit_cloud.get_next_particle().look_at(norm, Vector3(0,1,0))
-		hit_cloud.trigger()
-		var sprite = hit_sprite.get_next_particle()
-		sprite.look_at(norm, Vector3(0,1,0))
-		if gun.selected_ammo.get_ammo().icon:
-			sprite.draw_pass_1.material.albedo_texture = gun.selected_ammo.get_ammo().icon
-		hit_sprite.trigger()
 		
 		if collider.is_in_group('hitbox'):
 			var enemy = collider.owner
@@ -87,15 +87,22 @@ func fire_bullet(radius:float) -> void:
 			else:
 				$juicy_cam/RayCast/DebugHitDetector/AudioHit.play(0)
 			$juicy_cam/UILayer/CenterContainer.hit_confirmed()
-			var dmg_num = hit_number.get_next_particle()
 			
+			var crit = false
 			if randf() < ammo_dat.crit_rate:
+				crit = true
 				dmg *= ammo_dat.crit_mul
-				dmg_num.set_number_col_crit(dmg, ammo_dat.dmg_col)
-			else:
-				dmg_num.set_number_col(dmg, ammo_dat.dmg_col)
-			dmg_num.look_at(norm, Vector3(0,1,0))
-			hit_number.trigger()
+			
+			ParticleEventBus.request_particles(
+				[ParticleEventBus.DAMAGE],
+				shot_raycast.get_collision_point(), 
+				{
+					'norm': shot_raycast.get_collision_normal(),
+					'dmg': dmg,
+					'crit': crit,
+					'color': ammo_dat.dmg_col
+				}
+			)
 			
 			var knockback = Vector3.ZERO
 			if ammo_dat.knockback > 0:
@@ -117,12 +124,6 @@ func fire_projectile(spread, projectile = null):
 	p.global_transform.origin = gun.get_projectile_spawn()
 	p.fire_at(-global_transform.basis.z)
 
-
-func set_enemy_dmg(col, dmg, pos):
-	var dmg_num = hit_number.get_next_particle()
-	dmg_num.set_number_col(dmg, col)
-	dmg_num.global_transform.origin = pos
-	hit_number.trigger()
 
 func _on_gun_fired(spread, is_projectile, projectile = null):
 	if is_projectile:

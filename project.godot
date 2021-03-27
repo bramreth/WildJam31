@@ -37,6 +37,7 @@ System="*res://globals/System.gd"
 Event="*res://globals/Event.gd"
 ThreadUtils="*res://globals/ThreadUtils.gd"
 Scene="*res://globals/Scene.gd"
+ParticleEventBus="*res://globals/ParticleEventBus.gd"
 
 [display]
 
