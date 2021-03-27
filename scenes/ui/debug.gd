@@ -48,3 +48,11 @@ func _on_ocount_toggled(button_pressed):
 func _on_LineEdit_text_entered(new_text):
 	controls.get_node("HBoxContainer/LineEdit").text = ""
 	Event.emit_signal(Event.EQUIP_AMMO, new_text)
+
+
+func _on_reward_pressed():
+	get_tree().get_nodes_in_group("player").front().get_node("camera").warp(false)
+
+
+func _on_respawn_pressed():
+	get_tree().get_nodes_in_group("player").front().get_node("camera").warp(true)
