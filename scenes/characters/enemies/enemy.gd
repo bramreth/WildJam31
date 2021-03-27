@@ -1,4 +1,4 @@
-extends "res://scenes/characters/character.gd"
+extends "res://scenes/characters/rigidcharacter.gd"
 
 signal damage_anim(color, num, pos)
 
@@ -31,10 +31,6 @@ func _ready():
 	attack_animator = get_node(attack_anim)
 	update_bars()
 	$AttackTimer.wait_time = attack_speed
-
-func _physics_process(delta):
-	if _hang_time > 8:
-		damage(10000)
 
 func update_bars():
 	$health_bar/Viewport/root/HealthBar.max_value = max_health

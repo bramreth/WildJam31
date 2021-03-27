@@ -242,11 +242,10 @@ surfaces/0 = {
 }
 
 [node name="pickup" instance=ExtResource( 2 )]
-dmg_min = 10
-dmg_max = 12
+dmg_max = 2
 weapon_spread = 90
-max_ammo = 12
-knockback = 15
+max_ammo = 120
+knockback = 400
 rof = 0.5
 icon = ExtResource( 3 )
 flavour = "The pencil is mightier than the 7.62mm bullet."

@@ -1,6 +1,5 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
-[ext_resource path="res://scenes/characters/character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/characters/enemies/enemy.gd" type="Script" id=2]
 [ext_resource path="res://scenes/characters/effect_handler.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/characters/enemies/Hitbox.gd" type="Script" id=4]
@@ -17,34 +16,39 @@
 [ext_resource path="res://assets/Gun Sounds/elemental/bleed-hit.ogg" type="AudioStream" id=15]
 [ext_resource path="res://assets/Gun Sounds/elemental/fire-hit.ogg" type="AudioStream" id=16]
 
-[sub_resource type="CapsuleMesh" id=1]
+[sub_resource type="PhysicsMaterial" id=13]
+friction = 0.5
+rough = true
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="CapsuleShape" id=2]
+
+[sub_resource type="CapsuleMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
 albedo_color = Color( 0.513726, 0, 0, 1 )
 
-[sub_resource type="CapsuleShape" id=3]
+[sub_resource type="CapsuleShape" id=5]
 height = 0.152059
 
-[sub_resource type="CubeMesh" id=4]
+[sub_resource type="CubeMesh" id=6]
 size = Vector3( 0.5, 0.7, 0.5 )
 
-[sub_resource type="QuadMesh" id=5]
+[sub_resource type="QuadMesh" id=7]
 flip_faces = true
 size = Vector2( 2, 0.112 )
 
-[sub_resource type="ViewportTexture" id=6]
+[sub_resource type="ViewportTexture" id=8]
 viewport_path = NodePath("health_bar/Viewport")
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=9]
 resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
 params_billboard_mode = 2
 params_billboard_keep_scale = true
-albedo_texture = SubResource( 6 )
+albedo_texture = SubResource( 8 )
 
-[sub_resource type="Animation" id=8]
-resource_name = "walk"
+[sub_resource type="Animation" id=10]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -60,8 +64,7 @@ tracks/0/keys = {
 "values": [ Vector3( 0, -10, 0 ), Vector3( 0, 10, 0 ) ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "die"
+[sub_resource type="Animation" id=11]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("MeshInstance/sprite_container:scale")
@@ -100,8 +103,7 @@ tracks/2/keys = {
 "values": [ Vector3( 2.03555e-13, 0, 0 ), Vector3( 0, 0, 720 ) ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "spawn"
+[sub_resource type="Animation" id=12]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -116,23 +118,31 @@ tracks/0/keys = {
 "values": [ Vector3( 0.01, 0.01, 0.01 ), Vector3( 1, 1, 1 ) ]
 }
 
-[node name="enemy" groups=[
+[node name="enemy" type="RigidBody" groups=[
+"character",
 "enemy",
-] instance=ExtResource( 1 )]
+]]
 transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 1.51219, 0 )
+mode = 2
+mass = 10.0
+physics_material_override = SubResource( 13 )
 script = ExtResource( 2 )
 max_health = 75
 max_armor = 25
 
-[node name="MeshInstance" type="MeshInstance" parent="." index="1"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+[node name="collision" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 2 )
 
-[node name="sprite_container" type="Spatial" parent="MeshInstance" index="0"]
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="sprite_container" type="Spatial" parent="MeshInstance"]
 transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0 )
 
-[node name="Hitbox" type="Area" parent="MeshInstance/sprite_container" index="0" groups=[
+[node name="Hitbox" type="Area" parent="MeshInstance/sprite_container" groups=[
 "hitbox",
 ]]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0 )
@@ -140,103 +150,103 @@ collision_layer = 2
 collision_mask = 2147483650
 script = ExtResource( 4 )
 
-[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/sprite_container/Hitbox" index="0"]
+[node name="CollisionShape" type="CollisionShape" parent="MeshInstance/sprite_container/Hitbox"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
-[node name="RangedOrigin" type="Spatial" parent="MeshInstance/sprite_container" index="1"]
+[node name="RangedOrigin" type="Spatial" parent="MeshInstance/sprite_container"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="MeshInstance" index="1"]
+[node name="MeshInstance" type="MeshInstance" parent="MeshInstance"]
 transform = Transform( 0.125, 0, 0, 0, -1.01825e-08, -0.125, 0, 0.0625, -2.03651e-08, 0, -0.0695639, 0.00396252 )
-mesh = SubResource( 4 )
+mesh = SubResource( 6 )
 material/0 = null
 
-[node name="health_bar" type="MeshInstance" parent="." index="2"]
+[node name="health_bar" type="MeshInstance" parent="."]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.25917, -7.10543e-15 )
-mesh = SubResource( 5 )
-material/0 = SubResource( 7 )
+mesh = SubResource( 7 )
+material/0 = SubResource( 9 )
 
-[node name="Viewport" type="Viewport" parent="health_bar" index="0"]
+[node name="Viewport" type="Viewport" parent="health_bar"]
 size = Vector2( 712, 40 )
 transparent_bg = true
 render_target_v_flip = true
 
-[node name="root" parent="health_bar/Viewport" index="0" instance=ExtResource( 10 )]
+[node name="root" parent="health_bar/Viewport" instance=ExtResource( 10 )]
 margin_right = 712.0
 margin_bottom = 40.0
 
-[node name="PlayerLineOfSight" type="RayCast" parent="." index="3"]
+[node name="PlayerLineOfSight" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2, 0 )
 collision_mask = 4
 
-[node name="effect_handler" parent="." index="4" instance=ExtResource( 3 )]
+[node name="effect_handler" parent="." instance=ExtResource( 3 )]
 frost_particles_path = NodePath("../frost")
 poison_particles_path = NodePath("../poison")
 bleed_particles_path = NodePath("../bleed")
 burn_particles_path = NodePath("../burn")
 electric_particles_path = NodePath("../electric")
 
-[node name="frost" parent="." index="5" instance=ExtResource( 6 )]
+[node name="frost" parent="." instance=ExtResource( 6 )]
 emitting = false
 
-[node name="poison" parent="." index="6" instance=ExtResource( 7 )]
+[node name="poison" parent="." instance=ExtResource( 7 )]
 emitting = false
 
-[node name="bleed" parent="." index="7" instance=ExtResource( 8 )]
+[node name="bleed" parent="." instance=ExtResource( 8 )]
 emitting = false
 
-[node name="burn" parent="." index="8" instance=ExtResource( 9 )]
+[node name="burn" parent="." instance=ExtResource( 9 )]
 emitting = false
 
-[node name="electric" parent="." index="9" instance=ExtResource( 5 )]
+[node name="electric" parent="." instance=ExtResource( 5 )]
 emitting = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
-anims/walk = SubResource( 8 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/walk = SubResource( 10 )
 
-[node name="DeathPlayer" type="AnimationPlayer" parent="." index="11"]
-anims/die = SubResource( 9 )
+[node name="DeathPlayer" type="AnimationPlayer" parent="."]
+anims/die = SubResource( 11 )
 
-[node name="deathburst" parent="." index="12" instance=ExtResource( 11 )]
+[node name="deathburst" parent="." instance=ExtResource( 11 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
-[node name="AttackTimer" type="Timer" parent="." index="13"]
+[node name="AttackTimer" type="Timer" parent="."]
 
-[node name="eaudio" type="AudioStreamPlayer3D" parent="." index="14"]
+[node name="eaudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 12 )
 unit_db = 35.0
 unit_size = 0.4
 max_db = -7.0
 bus = "Sfx"
 
-[node name="paudio" type="AudioStreamPlayer3D" parent="." index="15"]
+[node name="paudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 13 )
 unit_db = 35.0
 max_db = -12.0
 bus = "Sfx"
 
-[node name="faudio" type="AudioStreamPlayer3D" parent="." index="16"]
+[node name="faudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 14 )
 unit_db = 35.0
 max_db = -12.0
 bus = "Sfx"
 
-[node name="baudio" type="AudioStreamPlayer3D" parent="." index="17"]
+[node name="baudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 15 )
 unit_db = 35.0
 max_db = -12.0
 bus = "Sfx"
 
-[node name="buaudio" type="AudioStreamPlayer3D" parent="." index="18"]
+[node name="buaudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 16 )
 unit_db = 35.0
 max_db = -12.0
 pitch_scale = 2.5
 bus = "Sfx"
 
-[node name="spawn_animation" type="AnimationPlayer" parent="." index="19"]
+[node name="spawn_animation" type="AnimationPlayer" parent="."]
 autoplay = "spawn"
-anims/spawn = SubResource( 10 )
+anims/spawn = SubResource( 12 )
 [connection signal="animation_finished" from="DeathPlayer" to="." method="_on_DeathPlayer_animation_finished"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]
