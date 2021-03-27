@@ -12,7 +12,6 @@
 [ext_resource path="res://assets/Gun Sounds/elemental/space-invader-attack.ogg" type="AudioStream" id=10]
 [ext_resource path="res://assets/Gun Sounds/ghost/ghost3.wav" type="AudioStream" id=11]
 
-
 [sub_resource type="GDScript" id=1]
 script/source = "extends \"res://scenes/characters/character.gd\"
 
@@ -451,7 +450,7 @@ albedo_texture = SubResource( 5 )
 script = SubResource( 1 )
 max_health = 100
 max_armor = 100
-speed = 15.0
+speed = 1.0
 attack_anim = NodePath("MeshInstance/sprite_container/space invader rip off/AnimationPlayer")
 
 [node name="MeshInstance" parent="." index="1"]

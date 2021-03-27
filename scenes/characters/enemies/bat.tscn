@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/Gun Sounds/elemental/bat-attack.ogg" type="AudioStream" id=4]
 [ext_resource path="res://assets/Gun Sounds/elemental/peek-boo.ogg" type="AudioStream" id=5]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "fire"
 length = 0.3
@@ -90,7 +89,7 @@ albedo_texture = SubResource( 3 )
 [node name="enemy" instance=ExtResource( 2 )]
 max_health = 35
 max_armor = 0
-speed = 22.0
+speed = 32.0
 acceleration = 12.0
 attack_anim = NodePath("MeshInstance/sprite_container/bat/AnimationPlayer")
 walk_audio = NodePath("AudioStreamPlayer3D")
