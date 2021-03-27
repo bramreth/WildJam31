@@ -18,8 +18,14 @@ func _ready():
 	randomize()
 
 func reset_lid():
+	$Particles.emitting = false
 	$lid.global_transform = anim_origin
 	$reward_container/AnimationPlayer.seek(0, true)
 
 func add_reward(inst):
 	$reward_container.add_child(inst)
+	inst.connect("taken", self, "reward_taken")
+	
+func reward_taken():
+	$body/aura.emitting = false
+	$body/aura/pickup.restart()

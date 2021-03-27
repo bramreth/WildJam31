@@ -14,6 +14,8 @@ onready var hit_number = $juicy_cam/RayCast/DebugHitDetector/spatial_pqueue_num
 var is_sprinting = false
 var respawn = false
 
+var selected_interactible = null
+
 func add_trauma(trauma_in: float):
 	camera.add_trauma(trauma_in)
 
@@ -149,6 +151,8 @@ func warp(respawn_in):
 		$CurveTween.play(0.3, $juicy_cam.fov, 1)
 
 func _input(event):
+	if Input.is_action_just_pressed("interact") and selected_interactible:
+		selected_interactible.pickup()
 	if Input.is_action_just_pressed("ui_page_up"):
 		warp(false)
 
@@ -162,3 +166,15 @@ func _on_CurveTween_tween_all_completed():
 		Event.emit_signal(Event.RESPAWN)
 	else:
 		Event.emit_signal(Event.WARP)
+
+
+func _on_InteractibleArea_area_entered(area):
+	if area.is_in_group("drop"):
+		selected_interactible = area.get_parent()
+		selected_interactible.select(true)
+		$juicy_cam/UILayer/gui._on_gun_new_ammo(area.get_parent().get_pickup())
+
+func _on_InteractibleArea_area_exited(area):
+	if selected_interactible: selected_interactible.select(false)
+	$juicy_cam/UILayer/gui.tuck_ammo()
+	selected_interactible = null

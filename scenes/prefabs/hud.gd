@@ -63,10 +63,10 @@ func _on_waveTimer_timeout():
 
 
 func _on_gun_new_ammo(node):
-	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_ico.texture = node.get_ammo().icon
-	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.text = node.get_ammo().name
-	var rarities = node.get_ammo().rarities
-	match(node.get_ammo().rarity):
+	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_ico.texture = node.icon
+	$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.text = node.name
+	var rarities = node.rarities
+	match(node.rarity):
 		rarities.COMMON:
 			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.whitesmoke)
 		rarities.UNCOMMON:
@@ -76,7 +76,9 @@ func _on_gun_new_ammo(node):
 		rarities.EPIC:
 			$new_ammo/Panel/VBoxContainer/HBoxContainer/ammo_name.set("custom_colors/font_color", Color.fuchsia)
 	$new_ammo/AnimationPlayer.play("show")
-	$new_ammo/Timer.start()
+
+func tuck_ammo():
+	$new_ammo/AnimationPlayer.play_backwards("show")
 
 
 func _on_gun_reload(clip, reserve):

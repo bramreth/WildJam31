@@ -129,7 +129,7 @@ func get_projectile_spawn():
 
 func _on_animclip_added_ammo(node):
 	print("open ammo view")
-	emit_signal("new_ammo", node)
+	emit_signal("new_ammo", node.get_ammo())
 	selected_ammo = $ak47/clip/animclip.get_ammo_data()
 	load_ammo_data()
 	if not out:
