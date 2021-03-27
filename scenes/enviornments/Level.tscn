@@ -72,4 +72,8 @@ queue_count = 32
 [node name="damage_particles" parent="GlobalParticles" instance=ExtResource( 8 )]
 particle = ExtResource( 12 )
 queue_count = 32
+
+[node name="balloon_queue" type="Spatial" parent="." groups=[
+"bqueue",
+]]
 [connection signal="timeout" from="wave_controller/major_timer" to="." method="_on_major_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://scenes/prefabs/clip.gd" type="Script" id=1]
 [ext_resource path="res://assets/kenshape_assets/clip.glb" type="PackedScene" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://assets/kenshape_assets/gun/color3.material" type="Material" id=27]
 [ext_resource path="res://scenes/ui/ammo_slot.tscn" type="PackedScene" id=28]
 [ext_resource path="res://scenes/prefabs/held_ammo.gd" type="Script" id=29]
+[ext_resource path="res://scenes/pickups/balloon.tscn" type="PackedScene" id=30]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "generatedClone"
@@ -288,6 +289,9 @@ held_camera = true
 electric_range = 20.0
 electric_jumps = 10
 held_camera = true
+
+[node name="balloon" parent="ammo_container" index="20" instance=ExtResource( 30 )]
+outline_path = NodePath("../balloon/cupcake/generatedClone/MeshInstance")
 
 [node name="held_ammo" type="Spatial" parent="." index="6"]
 transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 7, 0 )

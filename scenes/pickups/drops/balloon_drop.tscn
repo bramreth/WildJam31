@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/pickups/drops/drop.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/pickups/cupcake.tscn" type="PackedScene" id=2]
+[ext_resource path="res://godot_tools/CommonAssets/particles/random_selection.png" type="Texture" id=3]
+[ext_resource path="res://godot_tools/CommonAssets/particles/offset_glow.png" type="Texture" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=2]
+resource_local_to_scene = true
+material = SubResource( 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 4 )
+
+[sub_resource type="QuadMesh" id=4]
+resource_local_to_scene = true
+material = SubResource( 3 )
+size = Vector2( 1, 4 )
+
+[node name="balloon" instance=ExtResource( 1 )]
+ammo_name = "balloon"
+
+[node name="cupcake" parent="pickup_container" index="0" instance=ExtResource( 2 )]
+outline_path = NodePath("../../../balloon/pickup_container/cupcake/cupcake/generatedClone/MeshInstance")
+
+[node name="Particles" parent="." index="5"]
+draw_pass_1 = SubResource( 2 )
+
+[node name="aura" parent="." index="6"]
+draw_pass_1 = SubResource( 4 )

@@ -16,7 +16,7 @@
 [ext_resource path="res://assets/Gun Sounds/elemental/bleed-hit.ogg" type="AudioStream" id=15]
 [ext_resource path="res://assets/Gun Sounds/elemental/fire-hit.ogg" type="AudioStream" id=16]
 
-[sub_resource type="PhysicsMaterial" id=13]
+[sub_resource type="PhysicsMaterial" id=1]
 friction = 0.5
 rough = true
 
@@ -125,7 +125,7 @@ tracks/0/keys = {
 transform = Transform( 0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 1.51219, 0 )
 mode = 2
 mass = 10.0
-physics_material_override = SubResource( 13 )
+physics_material_override = SubResource( 1 )
 script = ExtResource( 2 )
 max_health = 75
 max_armor = 25

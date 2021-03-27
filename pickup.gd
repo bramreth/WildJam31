@@ -36,6 +36,7 @@ export (int) var electric_jumps = 5
 #export (bool) var projectile
 export (int) var ricochet
 export (String) var flavour
+export (bool) var balloon = false
 
 enum rarities{
 	COMMON,

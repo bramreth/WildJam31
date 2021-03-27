@@ -7,3 +7,4 @@ func get_class():
 
 func trigger():
 	$CollisionShape/spatial_pqueue.trigger()
+	

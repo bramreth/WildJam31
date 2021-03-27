@@ -7,6 +7,8 @@ onready var gun = $juicy_cam/gun
 onready var shot_raycast:RayCast = $juicy_cam/RayCast
 onready var debug_hit_detector = $juicy_cam/RayCast/DebugHitDetector
 
+var balloon = preload("res://scenes/prefabs/balloon.tscn")
+
 var is_sprinting = false
 var respawn = false
 
@@ -109,7 +111,12 @@ func fire_bullet(radius:float) -> void:
 				knockback = get_parent().global_transform.origin.direction_to(collider.global_transform.origin)
 				knockback.normalized()
 				knockback = knockback * ammo_dat.knockback
-			
+			if ammo_dat.balloon:
+				if get_tree().get_nodes_in_group("bqueue").front().get_child_count() > 32:
+					get_tree().get_nodes_in_group("bqueue").front().get_children().pop_back().queue_free()
+				var b = balloon.instance()
+				get_tree().get_nodes_in_group("bqueue").front().add_child(b)
+				b.attach(enemy)
 			enemy.damage(dmg, knockback)
 			Game.add_hscore(dmg)
 			enemy.apply_element(ammo_dat)
