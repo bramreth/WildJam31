@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
@@ -43,6 +43,21 @@ height = 0.2
 
 [sub_resource type="SpatialMaterial" id=7]
 albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0912166, 0, 0, Vector2( 1, 1 ), 3.19611, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+direction = Vector3( 0, 0, 1 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 10.0
+scale_curve = SubResource( 9 )
+
+[sub_resource type="CubeMesh" id=11]
+size = Vector3( 0.1, 0.1, 0.3 )
 
 [node name="cam_container" type="Spatial"]
 script = ExtResource( 2 )
@@ -150,6 +165,14 @@ unit_db = 50.0
 max_db = -5.0
 max_distance = 250.0
 bus = "Sfx"
+
+[node name="Particles" type="Particles" parent="juicy_cam"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
+visible = false
+layers = 2
+lifetime = 0.5
+process_material = SubResource( 10 )
+draw_pass_1 = SubResource( 11 )
 [connection signal="curve_tween" from="CurveTween" to="." method="_on_CurveTween_curve_tween"]
 [connection signal="tween_all_completed" from="CurveTween" to="." method="_on_CurveTween_tween_all_completed"]
 [connection signal="area_entered" from="juicy_cam/InteractibleArea" to="." method="_on_InteractibleArea_area_entered"]

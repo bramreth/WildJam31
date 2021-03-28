@@ -5,6 +5,8 @@ onready var camera:Camera = $camera/juicy_cam
 func _ready():
 	$camera.update_health(health, armor)
 
+func warp(on):
+	$camera.warp(on)
 
 func _physics_process(_delta: float) -> void:
 	if dead: return

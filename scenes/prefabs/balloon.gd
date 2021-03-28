@@ -2,7 +2,6 @@ extends Spatial
 
 func attach(node):
 	$balloon/CurveTween.play(0.3, Vector3.ZERO, Vector3.ONE) 
-	print("atach ", node)
 	global_transform.origin = node.global_transform.origin
 	global_transform.origin.y += 3
 	$PinJoint.set("nodes/node_a", node.get_path())
@@ -17,4 +16,4 @@ func _on_Timer_timeout():
 
 
 func _on_CurveTween_curve_tween(sat):
-	$balloon/MeshInstance.scale = sat
+	$balloon/balloon/generatedClone.scale = sat

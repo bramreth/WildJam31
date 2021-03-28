@@ -34,6 +34,7 @@ material = SubResource( 6 )
 
 [node name="click" type="Particles"]
 transform = Transform( 0.473272, -0.193749, 0.859346, 0.369619, 0.929165, 0.00592842, -0.799623, 0.314825, 0.51136, 4.05312e-06, 5.18176, 0 )
+layers = 2
 emitting = false
 amount = 3
 one_shot = true

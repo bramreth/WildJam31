@@ -87,7 +87,10 @@ func end_wave():
 	wave_active = false
 	wave += 1
 	emit_signal("wave_end")
-	if Game.continuous_waves:
+	if int(wave) % 1 == 0:
+		print("reward")
+		$player.warp(false)
+	elif Game.continuous_waves:
 		start_wave()
 	
 func check_spawning_done(map):
