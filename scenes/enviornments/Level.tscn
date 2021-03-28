@@ -33,7 +33,7 @@ reward_env = ExtResource( 5 )
 navmesh = SubResource( 1 )
 
 [node name="reward_room" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0 )
 
 [node name="wave_controller" type="Node" parent="."]
 script = ExtResource( 1 )

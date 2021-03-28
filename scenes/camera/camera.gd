@@ -78,6 +78,16 @@ func fire_bullet(radius:float) -> void:
 		var collider = shot_raycast.get_collider()
 		var norm = shot_raycast.get_collision_normal()
 		
+		if collider.is_in_group('playbody'):
+			var ammo_dat =  gun.selected_ammo.get_ammo()
+			collider.apply_central_impulse(-50 * shot_raycast.get_collision_normal())
+			if ammo_dat.balloon:
+				if get_tree().get_nodes_in_group("bqueue").front().get_child_count() > 32:
+					get_tree().get_nodes_in_group("bqueue").front().get_children().pop_back().queue_free()
+				var b = balloon.instance()
+				get_tree().get_nodes_in_group("bqueue").front().add_child(b)
+				b.attach(collider)
+		
 		if collider.is_in_group('hitbox'):
 			var enemy = collider.owner
 			var ammo_dat =  gun.selected_ammo.get_ammo()

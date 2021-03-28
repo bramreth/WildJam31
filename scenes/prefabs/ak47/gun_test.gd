@@ -57,6 +57,9 @@ func _input(event):
 	if out:
 		if Input.is_action_just_pressed("click") or Input.is_action_just_pressed("reload"):
 			shut_ammo_view()
+	else:
+		if Input.is_action_just_pressed("melee"):
+			$AnimationPlayer.play("melee_1")
 	if not $AnimationPlayer.is_playing():
 		if Input.is_action_just_pressed("reload"):
 			reload()

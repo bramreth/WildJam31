@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/images/spark.png" type="Texture" id=4]
 [ext_resource path="res://godot_tools/CommonAssets/particles/cloud_sheet.png" type="Texture" id=5]
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=1]
 resource_name = "reward"
 length = 0.5
 tracks/0/type = "value"
@@ -34,44 +34,44 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 1.1, 1.33, 1.1 ), Vector3( 1, 1, 1 ) ]
 }
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 2 )
 uv1_triplanar = true
 
-[sub_resource type="CubeMesh" id=18]
-material = SubResource( 1 )
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
 size = Vector3( 1.5, 0.1, 1 )
 
-[sub_resource type="CubeMesh" id=2]
-material = SubResource( 1 )
+[sub_resource type="CubeMesh" id=4]
+material = SubResource( 2 )
 size = Vector3( 0.5, 1, 1 )
 
-[sub_resource type="CubeMesh" id=3]
-material = SubResource( 1 )
+[sub_resource type="CubeMesh" id=5]
+material = SubResource( 2 )
 size = Vector3( 2.5, 1, 0.5 )
 
-[sub_resource type="BoxShape" id=4]
+[sub_resource type="BoxShape" id=6]
 extents = Vector3( 1.25, 0.5, 1 )
 
-[sub_resource type="Gradient" id=13]
+[sub_resource type="Gradient" id=7]
 offsets = PoolRealArray( 0.0185185, 1 )
 colors = PoolColorArray( 1, 1, 1, 0.981481, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=14]
-gradient = SubResource( 13 )
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=15]
+[sub_resource type="ParticlesMaterial" id=9]
 emission_shape = 2
 emission_box_extents = Vector3( 0.5, 0.1, 0.25 )
 gravity = Vector3( 0, 0.5, 0 )
 angle = 720.0
 angle_random = 1.0
 scale_random = 1.0
-color_ramp = SubResource( 14 )
+color_ramp = SubResource( 8 )
 anim_offset = 1.0
 anim_offset_random = 1.0
 
-[sub_resource type="SpatialMaterial" id=16]
+[sub_resource type="SpatialMaterial" id=10]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_diffuse_mode = 4
@@ -82,10 +82,10 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_texture = ExtResource( 5 )
 
-[sub_resource type="QuadMesh" id=17]
-material = SubResource( 16 )
+[sub_resource type="QuadMesh" id=11]
+material = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=20]
+[sub_resource type="ParticlesMaterial" id=12]
 emission_shape = 1
 emission_sphere_radius = 1.0
 direction = Vector3( 0, 1, 0 )
@@ -103,7 +103,7 @@ scale = 12.0
 scale_random = 1.0
 anim_speed = 1.0
 
-[sub_resource type="SpatialMaterial" id=21]
+[sub_resource type="SpatialMaterial" id=13]
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
@@ -114,24 +114,24 @@ particles_anim_v_frames = 7
 particles_anim_loop = false
 albedo_texture = ExtResource( 1 )
 
-[sub_resource type="QuadMesh" id=22]
-material = SubResource( 21 )
+[sub_resource type="QuadMesh" id=14]
+material = SubResource( 13 )
 
-[sub_resource type="Curve" id=8]
+[sub_resource type="Curve" id=15]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.01257, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=9]
-curve = SubResource( 8 )
+[sub_resource type="CurveTexture" id=16]
+curve = SubResource( 15 )
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticlesMaterial" id=17]
 gravity = Vector3( 0, 0, 0 )
 angle = -90.0
 angle_random = 1.0
 scale = 4.0
 scale_random = 1.0
-scale_curve = SubResource( 9 )
+scale_curve = SubResource( 16 )
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=18]
 flags_transparent = true
 flags_unshaded = true
 params_diffuse_mode = 4
@@ -144,19 +144,19 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_texture = ExtResource( 4 )
 
-[sub_resource type="QuadMesh" id=12]
-material = SubResource( 11 )
+[sub_resource type="QuadMesh" id=19]
+material = SubResource( 18 )
 size = Vector2( 5, 5 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=20]
 albedo_texture = ExtResource( 2 )
 uv1_triplanar = true
 
-[sub_resource type="CubeMesh" id=6]
-material = SubResource( 5 )
+[sub_resource type="CubeMesh" id=21]
+material = SubResource( 20 )
 size = Vector3( 2.5, 0.5, 2 )
 
-[sub_resource type="ConvexPolygonShape" id=7]
+[sub_resource type="ConvexPolygonShape" id=22]
 points = PoolVector3Array( -1.25, 0.25, 1, 1.25, 0.25, -1, 1.25, 0.25, 1, -1.25, 0.25, -1, -1.25, -0.25, 1, 1.25, -0.25, -1, 1.25, -0.25, 1, -1.25, -0.25, -1, 1.25, 0.25, 1, -1.25, 0.25, -1, 1.25, 0.25, -1, -1.25, 0.25, 1, 1.25, -0.25, 1, -1.25, -0.25, -1, 1.25, -0.25, -1, -1.25, -0.25, 1, 1.25, 0.25, 1, -1.25, -0.25, 1, -1.25, 0.25, 1, 1.25, -0.25, 1, 1.25, 0.25, -1, -1.25, -0.25, -1, -1.25, 0.25, -1, 1.25, -0.25, -1 )
 
 [node name="chest" type="Spatial" groups=[
@@ -168,7 +168,7 @@ script = ExtResource( 3 )
 transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.75, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="reward_container"]
-anims/reward = SubResource( 19 )
+anims/reward = SubResource( 1 )
 
 [node name="body" type="StaticBody" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
@@ -177,31 +177,31 @@ collision_mask = 7
 
 [node name="base" type="MeshInstance" parent="body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0 )
-mesh = SubResource( 18 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="side1" type="MeshInstance" parent="body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 )
-mesh = SubResource( 2 )
+mesh = SubResource( 4 )
 material/0 = null
 
 [node name="side2" type="MeshInstance" parent="body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0 )
-mesh = SubResource( 2 )
+mesh = SubResource( 4 )
 material/0 = null
 
 [node name="MeshInstance3" type="MeshInstance" parent="body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.75 )
-mesh = SubResource( 3 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="MeshInstance4" type="MeshInstance" parent="body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.75 )
-mesh = SubResource( 3 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="body"]
-shape = SubResource( 4 )
+shape = SubResource( 6 )
 
 [node name="aura" type="Particles" parent="body"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.420247, 0 )
@@ -209,15 +209,15 @@ emitting = false
 amount = 48
 lifetime = 2.0
 speed_scale = 1.5
-process_material = SubResource( 15 )
-draw_pass_1 = SubResource( 17 )
+process_material = SubResource( 9 )
+draw_pass_1 = SubResource( 11 )
 
 [node name="pickup" type="Particles" parent="body/aura"]
 emitting = false
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 20 )
-draw_pass_1 = SubResource( 22 )
+process_material = SubResource( 12 )
+draw_pass_1 = SubResource( 14 )
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -0.317 )
@@ -226,18 +226,20 @@ lifetime = 0.5
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
-process_material = SubResource( 10 )
-draw_pass_1 = SubResource( 12 )
+process_material = SubResource( 17 )
+draw_pass_1 = SubResource( 19 )
 
-[node name="lid" type="RigidBody" parent="."]
+[node name="lid" type="RigidBody" parent="." groups=[
+"playbody",
+]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0 )
-collision_layer = 7
-collision_mask = 7
+collision_layer = 15
+collision_mask = 15
 mass = 5.0
 
 [node name="MeshInstance" type="MeshInstance" parent="lid"]
-mesh = SubResource( 6 )
+mesh = SubResource( 21 )
 material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="lid"]
-shape = SubResource( 7 )
+shape = SubResource( 22 )
