@@ -39,10 +39,12 @@ func set_fov(fov_in):
 
 func _physics_process(delta):
 	var tilt = PI/30
-	if is_sprinting: 
+	if is_sprinting:
+		$juicy_cam/Particles.emitting = true 
 		tilt *= 2
 		camera.fov = lerp(camera.fov, camera.basefov + 15, delta*15)
 	else:
+		$juicy_cam/Particles.emitting = false 
 		camera.fov = lerp(camera.fov, camera.basefov, delta*5)
 	var lean_speed = delta * 2
 	if not get_parent().is_on_floor(): lean_speed *= 5
@@ -166,6 +168,7 @@ func sprint_spread_multiplier(is_sprinting:bool):
 func warp(respawn_in):
 	if not $CurveTween.is_active():
 		respawn = respawn_in
+		$juicy_cam/Particles.emitting = true
 		$CurveTween.play(0.3, $juicy_cam.fov, 1)
 
 func _input(event):
@@ -184,6 +187,7 @@ func _on_CurveTween_tween_all_completed():
 		Event.emit_signal(Event.RESPAWN)
 	else:
 		Event.emit_signal(Event.WARP)
+	$juicy_cam/Particles.emitting = false
 
 
 func _on_InteractibleArea_area_entered(area):

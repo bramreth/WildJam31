@@ -54,6 +54,7 @@ export(rarities) var rarity
 func _ready():
 	assert(get_child(0), "must have child glb")
 	outline = get_node(outline_path)
+	print(outline_path, " ", outline)
 	outline.visible = false
 	if held_camera:
 		get_child(0).get_child(0).set_layer_mask_bit(0, false)

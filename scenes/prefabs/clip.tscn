@@ -291,7 +291,7 @@ electric_jumps = 10
 held_camera = true
 
 [node name="balloon" parent="ammo_container" index="20" instance=ExtResource( 30 )]
-outline_path = NodePath("../balloon/cupcake/generatedClone/MeshInstance")
+outline_path = NodePath("../balloon/balloon/generatedClone/MeshInstance")
 
 [node name="held_ammo" type="Spatial" parent="." index="6"]
 transform = Transform( 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 7, 0 )

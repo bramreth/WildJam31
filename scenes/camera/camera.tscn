@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
@@ -53,11 +53,19 @@ curve = SubResource( 8 )
 [sub_resource type="ParticlesMaterial" id=10]
 direction = Vector3( 0, 0, 1 )
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 10.0
+initial_velocity = 12.0
+scale = 2.0
+scale_random = 1.0
 scale_curve = SubResource( 9 )
 
-[sub_resource type="CubeMesh" id=11]
-size = Vector3( 0.1, 0.1, 0.3 )
+[sub_resource type="SpatialMaterial" id=11]
+flags_unshaded = true
+params_diffuse_mode = 4
+params_specular_mode = 3
+
+[sub_resource type="CubeMesh" id=12]
+material = SubResource( 11 )
+size = Vector3( 0.05, 0.05, 0.5 )
 
 [node name="cam_container" type="Spatial"]
 script = ExtResource( 2 )
@@ -167,12 +175,13 @@ max_distance = 250.0
 bus = "Sfx"
 
 [node name="Particles" type="Particles" parent="juicy_cam"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5 )
-visible = false
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
 layers = 2
-lifetime = 0.5
+cast_shadow = 0
+amount = 24
+lifetime = 0.4
 process_material = SubResource( 10 )
-draw_pass_1 = SubResource( 11 )
+draw_pass_1 = SubResource( 12 )
 [connection signal="curve_tween" from="CurveTween" to="." method="_on_CurveTween_curve_tween"]
 [connection signal="tween_all_completed" from="CurveTween" to="." method="_on_CurveTween_tween_all_completed"]
 [connection signal="area_entered" from="juicy_cam/InteractibleArea" to="." method="_on_InteractibleArea_area_entered"]
