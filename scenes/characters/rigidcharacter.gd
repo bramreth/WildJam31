@@ -23,12 +23,18 @@ var frost_speed_mod = 1.0
 
 var _hang_time:float = 0.0
 
-func _ready():
-	pass
+var fallg = 0
 	
 func _integrate_forces(state):
-	if state.linear_velocity.y < -300:
-		damage(10)
+	if state.linear_velocity.y < -50:
+		fallg = state.linear_velocity.y
+	elif fallg != 0 and state.linear_velocity.y > -50:
+		damage(pow(abs(fallg)-50, 0.75))
+		print(pow(abs(fallg)-50, 0.75))
+		fallg = 0
+	if state.linear_velocity.y < -200:
+		state.linear_velocity.y = -200
+		damage(1)
 	apply_central_impulse(velocity * sqrt(clamp(1-(state.linear_velocity.length()/speed), 0, 1)))
 
 func _physics_process(_delta: float) -> void:

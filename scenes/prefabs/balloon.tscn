@@ -38,7 +38,7 @@ nodes/node_b = NodePath("../balloon")
 collision/exclude_nodes = false
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 9.0
+wait_time = 3.0
 one_shot = true
 autostart = true
 [connection signal="curve_tween" from="balloon/CurveTween" to="." method="_on_CurveTween_curve_tween"]

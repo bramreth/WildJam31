@@ -10,6 +10,7 @@ enum STATES {
 }
 var _current_state:int = STATES.SEARCHING
 
+export(int) var melee_range = 7
 export(float) var attack_speed = 1.0
 export(bool) var is_ranged = false
 export(float) var attack_range = 5.0
@@ -82,7 +83,9 @@ func calculate_move_direction() -> Vector3:
 func _attack_player():
 	if dead: return
 	if not is_ranged:
-		_player.damage(10)
+		var distance = (_player.global_transform.origin - global_transform.origin).length()
+		if distance < melee_range:
+			_player.damage(10)
 	else:
 		var projectile = ranged_attack_projectile.instance()
 		var direction_to_player:Vector3 = (_player.global_transform.origin - global_transform.origin).normalized() 
