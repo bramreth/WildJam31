@@ -25,8 +25,8 @@ remote func shoot() -> void:
 
 
 func _physics_process(delta:float) -> void:
-	global_transform.origin = lerp(global_transform.origin, _target_global_pos, delta)
-	rotation.y = lerp_angle(rotation.y, _target_rotation_y, delta)
-	$GunRig.rotation.z = lerp_angle($GunRig.rotation.z, _target_rotation_z, delta)
+	global_transform.origin = lerp(global_transform.origin, _target_global_pos, 0.5)
+	rotation.y = lerp_angle(rotation.y, _target_rotation_y, 0.5)
+	$GunRig.rotation.z = lerp_angle($GunRig.rotation.z, _target_rotation_z, 0.5)
 	orthonormalize()
 	$GunRig.orthonormalize()
