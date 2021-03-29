@@ -9,6 +9,8 @@ onready var credits = $contents/credits
 onready var start_wave_selection:OptionButton = $contents/game_modes/list/wave/select
 onready var highscore:Label = $contents/game_modes/highscore/value
 func _ready():
+	NetworkHelper.connect("connected_to_server", self, "_connected_to_server")
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	for wave_num in Game.MAX_WAVES + 1:
 		if wave_num != 0: 
@@ -19,7 +21,8 @@ func _ready():
 
 func _on_single_player_on_pressed():
 	$AnimationPlayer.play("dip_to_black")
-	
+
+
 func _on_Options_on_pressed():
 	_show(settings)
 
@@ -51,3 +54,16 @@ func _on_social_meta_clicked(meta):
 
 func _on_selected_item_selected(index):
 	Game.set_wave_selected_index(index)
+
+
+func _on_Host_on_pressed():
+	NetworkHelper.host_server()
+	Scene.change(Scene.MULTIPLAYER)
+
+
+func _on_Join_on_pressed():
+	$JoinGameDialog.show()
+
+
+func _connected_to_server() -> void:
+	Scene.change(Scene.MULTIPLAYER)

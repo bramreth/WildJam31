@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/particles/cloud.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/enviornments/GlobalParticles.gd" type="Script" id=2]
+[ext_resource path="res://scenes/particles/spatial_pqueue.gd" type="Script" id=3]
+[ext_resource path="res://scenes/particles/spatial_pqueue.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/particles/hit.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/particles/sprite.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/particles/damage_number.tscn" type="PackedScene" id=7]
+
+[node name="GlobalParticles" type="Node"]
+script = ExtResource( 2 )
+
+[node name="hit_particles" type="Spatial" parent="." instance=ExtResource( 4 )]
+script = ExtResource( 3 )
+particle = ExtResource( 5 )
+queue_count = 32
+
+[node name="cloud_particles" type="Spatial" parent="." instance=ExtResource( 4 )]
+script = ExtResource( 3 )
+particle = ExtResource( 1 )
+queue_count = 32
+
+[node name="sprite_particles" type="Spatial" parent="." instance=ExtResource( 4 )]
+script = ExtResource( 3 )
+particle = ExtResource( 6 )
+queue_count = 32
+
+[node name="damage_particles" type="Spatial" parent="." instance=ExtResource( 4 )]
+script = ExtResource( 3 )
+particle = ExtResource( 7 )
+queue_count = 32

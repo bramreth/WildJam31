@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Level",
 "language": "GDScript",
 "path": "res://scenes/enviornments/Level.gd"
+}, {
+"base": "Spatial",
+"class": "NetworkPlayer",
+"language": "GDScript",
+"path": "res://scenes/enviornments/multiplayer_compatible_level/NetworkPlayer.gd"
 } ]
 _global_script_class_icons={
 "CurveTween": "",
-"Level": ""
+"Level": "",
+"NetworkPlayer": ""
 }
 
 [application]
@@ -38,6 +44,7 @@ Event="*res://globals/Event.gd"
 ThreadUtils="*res://globals/ThreadUtils.gd"
 Scene="*res://globals/Scene.gd"
 ParticleEventBus="*res://globals/ParticleEventBus.gd"
+NetworkHelper="*res://globals/NetworkHelper.gd"
 
 [display]
 

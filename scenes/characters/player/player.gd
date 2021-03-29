@@ -35,6 +35,8 @@ func _physics_process(_delta: float) -> void:
 		$AudioStreamPlayer3D2.pitch_scale = 1.5 + randf()/15
 		$WalkCarpet.playback_speed = 0.2 + (current_speed/ 20)
 		$WalkCarpet.play("walk")
+	
+	if NetworkHelper.is_multiplayer: _sync_movement_with_network()
 
 #region overrides
 func calculate_move_direction() -> Vector3:
@@ -86,3 +88,7 @@ func _on_death() -> void:
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "die":
 		get_tree().reload_current_scene()
+
+
+func _sync_movement_with_network() -> void:
+	rpc('update_position', global_transform.origin, rotation.y, 0.0)

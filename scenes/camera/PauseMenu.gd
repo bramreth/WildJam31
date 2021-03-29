@@ -17,14 +17,14 @@ func _input(event:InputEvent) -> void:
 func pause_game() -> void:
 	$AnimationPlayer.playback_speed = 1
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_tree().paused = true
+	if not NetworkHelper.is_multiplayer: get_tree().paused = true
 	$AnimationPlayer.play("pause")
 
 
 func unpause_game() -> void:
 	$AnimationPlayer.playback_speed = 1.5
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_tree().paused = false
+	if not NetworkHelper.is_multiplayer: get_tree().paused = false
 	$AnimationPlayer.play_backwards("pause")
 	$debug.show_debug(false)
 
