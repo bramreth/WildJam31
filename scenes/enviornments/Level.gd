@@ -38,7 +38,7 @@ func _ready():
 		Event.emit_signal(Event.SETUP_DEBUG)
 	else:
 		$wave_controller/major_timer.start(0)
-	$player.transform = $spawn_pad/Spatial.global_transform
+	$Players/player.transform = $spawn_pad/Spatial.global_transform
 	
 func spawner_done(spawner):
 	spawners_map[spawner] = true
@@ -89,7 +89,7 @@ func end_wave():
 	emit_signal("wave_end")
 	if int(wave) % 1 == 0:
 		print("reward")
-		$player.warp(false)
+		$Players/player.warp(false)
 	elif Game.continuous_waves:
 		start_wave()
 	
@@ -120,7 +120,7 @@ func _on_major_timer_timeout():
 func respawn():
 	at_reward = false
 	$WorldEnvironment.environment = level_env
-	$player.transform = $spawn_pad/Spatial.global_transform
+	$Players/player.transform = $spawn_pad/Spatial.global_transform
 	$Navigation.visible = true
 	$reward_room.visible = false
 	
@@ -130,7 +130,7 @@ func goto_reward():
 		$reward_room.goto_reward(at_reward)
 		$WorldEnvironment.environment = reward_env
 		var spawn = get_tree().get_nodes_in_group("spawn_point").front()
-		$player.global_transform = $reward_room.get_reward_spawn()
+		$Players/player.global_transform = $reward_room.get_reward_spawn()
 		$Navigation.visible = false
 		$reward_room.visible = true
 	else:

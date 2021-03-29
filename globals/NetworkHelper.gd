@@ -30,12 +30,14 @@ func host_server(port:int = DEFAULT_PORT) -> void:
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_server(port, MAX_PLAYERS)
 	get_tree().network_peer = peer
+	is_multiplayer = true
 
 
 func join_server(ip:String, port:int = DEFAULT_PORT) -> void:
 	var peer = NetworkedMultiplayerENet.new()
 	peer.create_client(ip, port)
 	get_tree().network_peer = peer
+	is_multiplayer = true
 
 
 func _player_connected(id:int) -> void:
@@ -54,10 +56,12 @@ func _connected_ok() -> void:
 
 func _server_disconnected() -> void:
 	emit_signal("server_disconnected")
+	is_multiplayer = false
 
 
 func _connected_fail() -> void:
 	emit_signal("failed_to_connect_to_server")
+	is_multiplayer = false
 
 
 remote func register_player(info:Dictionary) -> void:

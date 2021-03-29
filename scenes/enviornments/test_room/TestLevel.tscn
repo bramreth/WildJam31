@@ -35,9 +35,6 @@ navmesh = SubResource( 1 )
 
 [node name="Spatial" parent="Navigation/NavigationMeshInstance" index="0" instance=ExtResource( 2 )]
 
-[node name="player" parent="." index="5"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8509, 8.50384, 0 )
-
 [node name="GIProbe" type="GIProbe" parent="." index="6"]
 extents = Vector3( 100, 100, 100 )
 data = SubResource( 2 )
