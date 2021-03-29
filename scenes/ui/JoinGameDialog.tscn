@@ -1,0 +1,116 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/fonts/SmallMenu.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/ui/JoinGameDialog.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/SmallMenuInput.tres" type="DynamicFont" id=3]
+
+[node name="JoinGameDialog" type="Panel"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 450, 300 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IP" type="HBoxContainer" parent="Container"]
+margin_right = 410.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="Label" type="Label" parent="Container/IP"]
+margin_right = 101.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "IP"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="TextEdit" type="TextEdit" parent="Container/IP"]
+margin_left = 105.0
+margin_right = 410.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+custom_fonts/font = ExtResource( 3 )
+
+[node name="Port" type="HBoxContainer" parent="Container"]
+margin_top = 54.0
+margin_right = 410.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="Label" type="Label" parent="Container/Port"]
+margin_right = 101.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Port"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="TextEdit" type="TextEdit" parent="Container/Port"]
+margin_left = 105.0
+margin_right = 410.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+custom_fonts/font = ExtResource( 3 )
+
+[node name="Warning" type="Label" parent="Container"]
+margin_top = 108.0
+margin_right = 410.0
+margin_bottom = 196.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Warning Text"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Buttons" type="HBoxContainer" parent="Container"]
+margin_top = 200.0
+margin_right = 410.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 0, 60 )
+
+[node name="Cancel" type="Button" parent="Container/Buttons"]
+margin_left = 26.0
+margin_right = 176.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 150, 60 )
+size_flags_horizontal = 6
+custom_fonts/font = ExtResource( 1 )
+text = "Cancel"
+
+[node name="Join" type="Button" parent="Container/Buttons"]
+margin_left = 233.0
+margin_right = 383.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 150, 60 )
+size_flags_horizontal = 6
+custom_fonts/font = ExtResource( 1 )
+text = "Join"
+[connection signal="pressed" from="Container/Buttons/Cancel" to="." method="_on_Cancel_pressed"]
+[connection signal="pressed" from="Container/Buttons/Join" to="." method="_on_Join_pressed"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/enviornments/wave_controller.gd" type="Script" id=1]
+
+[node name="wave_controller" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="major_timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true

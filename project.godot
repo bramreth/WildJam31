@@ -38,6 +38,7 @@ Event="*res://globals/Event.gd"
 ThreadUtils="*res://globals/ThreadUtils.gd"
 Scene="*res://globals/Scene.gd"
 ParticleEventBus="*res://globals/ParticleEventBus.gd"
+NetworkHelper="*res://globals/NetworkHelper.gd"
 
 [display]
 
