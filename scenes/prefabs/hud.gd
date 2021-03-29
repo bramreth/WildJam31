@@ -80,6 +80,8 @@ func _on_gun_new_ammo(node):
 func tuck_ammo():
 	$new_ammo/AnimationPlayer.play_backwards("show")
 
+func warp():
+	$WarpPlayer.play("warp")
 
 func _on_gun_reload(clip, reserve):
 	preppreload(str(clip), str(reserve))

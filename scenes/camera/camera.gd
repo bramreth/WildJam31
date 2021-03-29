@@ -168,8 +168,9 @@ func sprint_spread_multiplier(is_sprinting:bool):
 func warp(respawn_in):
 	if not $CurveTween.is_active():
 		respawn = respawn_in
-		$juicy_cam/Particles.emitting = true
-		$CurveTween.play(0.3, $juicy_cam.fov, 1)
+		$juicy_cam/UILayer/gui.warp()
+		$juicy_cam/Particles2.emitting = true
+		$CurveTween.play(0.9, $juicy_cam.fov, 1)
 
 func _input(event):
 	if Input.is_action_just_pressed("interact") and selected_interactible:
@@ -178,6 +179,7 @@ func _input(event):
 		warp(false)
 
 func _on_CurveTween_curve_tween(sat):
+	$juicy_cam/Particles2.speed_scale = 2 * clamp((180.0 - sat) / 180.0, 0,1)
 	$juicy_cam.fov = sat
 	$juicy_cam/ViewportContainer/Viewport/GunCamera.fov = sat
 
@@ -187,7 +189,7 @@ func _on_CurveTween_tween_all_completed():
 		Event.emit_signal(Event.RESPAWN)
 	else:
 		Event.emit_signal(Event.WARP)
-	$juicy_cam/Particles.emitting = false
+	$juicy_cam/Particles2.emitting = false
 
 
 func _on_InteractibleArea_area_entered(area):

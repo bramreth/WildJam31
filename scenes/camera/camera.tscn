@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/camera/juicy_cam.gd" type="Script" id=1]
 [ext_resource path="res://scenes/camera/camera.gd" type="Script" id=2]
@@ -12,7 +12,8 @@
 [ext_resource path="res://assets/Gun Sounds/hits1/hit1.ogg" type="AudioStream" id=17]
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0 ), 0.0, -3.07432, 0, 0, Vector2( 1, 1 ), 4.85692, 0.0, 0, 0 ]
+min_value = -1.0
+_data = [ Vector2( 0, 0.009009 ), 0.0, -0.434662, 0, 0, Vector2( 0.74359, -0.297297 ), -0.422588, -0.422588, 0, 0, Vector2( 0.782051, -0.558559 ), -6.6924, -6.6924, 0, 0, Vector2( 1, 1 ), 12.7764, 0.0, 0, 0 ]
 
 [sub_resource type="OpenSimplexNoise" id=2]
 period = 32.0
@@ -66,6 +67,14 @@ params_specular_mode = 3
 [sub_resource type="CubeMesh" id=12]
 material = SubResource( 11 )
 size = Vector3( 0.05, 0.05, 0.5 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+direction = Vector3( 0, 0, 1 )
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 12.0
+scale = 5.0
+scale_random = 1.0
+scale_curve = SubResource( 9 )
 
 [node name="cam_container" type="Spatial"]
 script = ExtResource( 2 )
@@ -178,9 +187,20 @@ bus = "Sfx"
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
 layers = 2
 cast_shadow = 0
+emitting = false
 amount = 24
 lifetime = 0.4
 process_material = SubResource( 10 )
+draw_pass_1 = SubResource( 12 )
+
+[node name="Particles2" type="Particles" parent="juicy_cam"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
+layers = 2
+cast_shadow = 0
+emitting = false
+amount = 96
+lifetime = 0.4
+process_material = SubResource( 13 )
 draw_pass_1 = SubResource( 12 )
 [connection signal="curve_tween" from="CurveTween" to="." method="_on_CurveTween_curve_tween"]
 [connection signal="tween_all_completed" from="CurveTween" to="." method="_on_CurveTween_tween_all_completed"]

@@ -1,5 +1,6 @@
 extends Spatial
 
+signal item_taken()
 var anim_origin
 
 func open_chest():
@@ -29,3 +30,11 @@ func add_reward(inst):
 func reward_taken():
 	$body/aura.emitting = false
 	$body/aura/pickup.restart()
+	emit_signal("item_taken")
+	
+func wipe():
+	$body/aura.emitting = false
+	var rewards = $reward_container.get_children()
+	for r in rewards:
+		if not r is AnimationPlayer:
+			r.queue_free()

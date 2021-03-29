@@ -50,70 +50,70 @@ size = Vector3( 1, 10, 40 )
 [sub_resource type="ConcavePolygonShape" id=13]
 data = PoolVector3Array( -0.5, 5, 20, 0.5, 5, 20, -0.5, -5, 20, 0.5, 5, 20, 0.5, -5, 20, -0.5, -5, 20, 0.5, 5, -20, -0.5, 5, -20, 0.5, -5, -20, -0.5, 5, -20, -0.5, -5, -20, 0.5, -5, -20, 0.5, 5, 20, 0.5, 5, -20, 0.5, -5, 20, 0.5, 5, -20, 0.5, -5, -20, 0.5, -5, 20, -0.5, 5, -20, -0.5, 5, 20, -0.5, -5, -20, -0.5, 5, 20, -0.5, -5, 20, -0.5, -5, -20, 0.5, 5, 20, -0.5, 5, 20, 0.5, 5, -20, -0.5, 5, 20, -0.5, 5, -20, 0.5, 5, -20, -0.5, -5, 20, 0.5, -5, 20, -0.5, -5, -20, 0.5, -5, 20, 0.5, -5, -20, -0.5, -5, -20 )
 
-[sub_resource type="CubeMesh" id=20]
+[sub_resource type="CubeMesh" id=14]
 material = SubResource( 11 )
 size = Vector3( 1, 10, 20 )
 
-[sub_resource type="ConcavePolygonShape" id=24]
+[sub_resource type="ConcavePolygonShape" id=15]
 data = PoolVector3Array( -0.5, 5, 10, 0.5, 5, 10, -0.5, -5, 10, 0.5, 5, 10, 0.5, -5, 10, -0.5, -5, 10, 0.5, 5, -10, -0.5, 5, -10, 0.5, -5, -10, -0.5, 5, -10, -0.5, -5, -10, 0.5, -5, -10, 0.5, 5, 10, 0.5, 5, -10, 0.5, -5, 10, 0.5, 5, -10, 0.5, -5, -10, 0.5, -5, 10, -0.5, 5, -10, -0.5, 5, 10, -0.5, -5, -10, -0.5, 5, 10, -0.5, -5, 10, -0.5, -5, -10, 0.5, 5, 10, -0.5, 5, 10, 0.5, 5, -10, -0.5, 5, 10, -0.5, 5, -10, 0.5, 5, -10, -0.5, -5, 10, 0.5, -5, 10, -0.5, -5, -10, 0.5, -5, 10, 0.5, -5, -10, -0.5, -5, -10 )
 
-[sub_resource type="CubeMesh" id=23]
+[sub_resource type="CubeMesh" id=16]
 material = SubResource( 11 )
 size = Vector3( 1, 10, 11 )
 
-[sub_resource type="ConcavePolygonShape" id=25]
+[sub_resource type="ConcavePolygonShape" id=17]
 data = PoolVector3Array( -0.5, 5, 5.5, 0.5, 5, 5.5, -0.5, -5, 5.5, 0.5, 5, 5.5, 0.5, -5, 5.5, -0.5, -5, 5.5, 0.5, 5, -5.5, -0.5, 5, -5.5, 0.5, -5, -5.5, -0.5, 5, -5.5, -0.5, -5, -5.5, 0.5, -5, -5.5, 0.5, 5, 5.5, 0.5, 5, -5.5, 0.5, -5, 5.5, 0.5, 5, -5.5, 0.5, -5, -5.5, 0.5, -5, 5.5, -0.5, 5, -5.5, -0.5, 5, 5.5, -0.5, -5, -5.5, -0.5, 5, 5.5, -0.5, -5, 5.5, -0.5, -5, -5.5, 0.5, 5, 5.5, -0.5, 5, 5.5, 0.5, 5, -5.5, -0.5, 5, 5.5, -0.5, 5, -5.5, 0.5, 5, -5.5, -0.5, -5, 5.5, 0.5, -5, 5.5, -0.5, -5, -5.5, 0.5, -5, 5.5, 0.5, -5, -5.5, -0.5, -5, -5.5 )
 
-[sub_resource type="ConcavePolygonShape" id=26]
+[sub_resource type="ConcavePolygonShape" id=18]
 data = PoolVector3Array( -0.5, 5, 5.5, 0.5, 5, 5.5, -0.5, -5, 5.5, 0.5, 5, 5.5, 0.5, -5, 5.5, -0.5, -5, 5.5, 0.5, 5, -5.5, -0.5, 5, -5.5, 0.5, -5, -5.5, -0.5, 5, -5.5, -0.5, -5, -5.5, 0.5, -5, -5.5, 0.5, 5, 5.5, 0.5, 5, -5.5, 0.5, -5, 5.5, 0.5, 5, -5.5, 0.5, -5, -5.5, 0.5, -5, 5.5, -0.5, 5, -5.5, -0.5, 5, 5.5, -0.5, -5, -5.5, -0.5, 5, 5.5, -0.5, -5, 5.5, -0.5, -5, -5.5, 0.5, 5, 5.5, -0.5, 5, 5.5, 0.5, 5, -5.5, -0.5, 5, 5.5, -0.5, 5, -5.5, 0.5, 5, -5.5, -0.5, -5, 5.5, 0.5, -5, 5.5, -0.5, -5, -5.5, 0.5, -5, 5.5, 0.5, -5, -5.5, -0.5, -5, -5.5 )
 
-[sub_resource type="ConcavePolygonShape" id=27]
+[sub_resource type="ConcavePolygonShape" id=19]
 data = PoolVector3Array( -0.5, 5, 10, 0.5, 5, 10, -0.5, -5, 10, 0.5, 5, 10, 0.5, -5, 10, -0.5, -5, 10, 0.5, 5, -10, -0.5, 5, -10, 0.5, -5, -10, -0.5, 5, -10, -0.5, -5, -10, 0.5, -5, -10, 0.5, 5, 10, 0.5, 5, -10, 0.5, -5, 10, 0.5, 5, -10, 0.5, -5, -10, 0.5, -5, 10, -0.5, 5, -10, -0.5, 5, 10, -0.5, -5, -10, -0.5, 5, 10, -0.5, -5, 10, -0.5, -5, -10, 0.5, 5, 10, -0.5, 5, 10, 0.5, 5, -10, -0.5, 5, 10, -0.5, 5, -10, 0.5, 5, -10, -0.5, -5, 10, 0.5, -5, 10, -0.5, -5, -10, 0.5, -5, 10, 0.5, -5, -10, -0.5, -5, -10 )
 
-[sub_resource type="CubeMesh" id=21]
+[sub_resource type="CubeMesh" id=20]
 material = SubResource( 11 )
 size = Vector3( 1, 10, 18 )
 
-[sub_resource type="ConcavePolygonShape" id=28]
+[sub_resource type="ConcavePolygonShape" id=21]
 data = PoolVector3Array( -0.5, 5, 9, 0.5, 5, 9, -0.5, -5, 9, 0.5, 5, 9, 0.5, -5, 9, -0.5, -5, 9, 0.5, 5, -9, -0.5, 5, -9, 0.5, -5, -9, -0.5, 5, -9, -0.5, -5, -9, 0.5, -5, -9, 0.5, 5, 9, 0.5, 5, -9, 0.5, -5, 9, 0.5, 5, -9, 0.5, -5, -9, 0.5, -5, 9, -0.5, 5, -9, -0.5, 5, 9, -0.5, -5, -9, -0.5, 5, 9, -0.5, -5, 9, -0.5, -5, -9, 0.5, 5, 9, -0.5, 5, 9, 0.5, 5, -9, -0.5, 5, 9, -0.5, 5, -9, 0.5, 5, -9, -0.5, -5, 9, 0.5, -5, 9, -0.5, -5, -9, 0.5, -5, 9, 0.5, -5, -9, -0.5, -5, -9 )
 
-[sub_resource type="ConcavePolygonShape" id=29]
+[sub_resource type="ConcavePolygonShape" id=22]
 data = PoolVector3Array( -0.5, 5, 9, 0.5, 5, 9, -0.5, -5, 9, 0.5, 5, 9, 0.5, -5, 9, -0.5, -5, 9, 0.5, 5, -9, -0.5, 5, -9, 0.5, -5, -9, -0.5, 5, -9, -0.5, -5, -9, 0.5, -5, -9, 0.5, 5, 9, 0.5, 5, -9, 0.5, -5, 9, 0.5, 5, -9, 0.5, -5, -9, 0.5, -5, 9, -0.5, 5, -9, -0.5, 5, 9, -0.5, -5, -9, -0.5, 5, 9, -0.5, -5, 9, -0.5, -5, -9, 0.5, 5, 9, -0.5, 5, 9, 0.5, 5, -9, -0.5, 5, 9, -0.5, 5, -9, 0.5, 5, -9, -0.5, -5, 9, 0.5, -5, 9, -0.5, -5, -9, 0.5, -5, 9, 0.5, -5, -9, -0.5, -5, -9 )
 
-[sub_resource type="CubeMesh" id=22]
+[sub_resource type="CubeMesh" id=23]
 material = SubResource( 11 )
 size = Vector3( 1, 10, 4.5 )
 
-[sub_resource type="ConcavePolygonShape" id=30]
+[sub_resource type="ConcavePolygonShape" id=24]
 data = PoolVector3Array( -0.5, 5, 2.25, 0.5, 5, 2.25, -0.5, -5, 2.25, 0.5, 5, 2.25, 0.5, -5, 2.25, -0.5, -5, 2.25, 0.5, 5, -2.25, -0.5, 5, -2.25, 0.5, -5, -2.25, -0.5, 5, -2.25, -0.5, -5, -2.25, 0.5, -5, -2.25, 0.5, 5, 2.25, 0.5, 5, -2.25, 0.5, -5, 2.25, 0.5, 5, -2.25, 0.5, -5, -2.25, 0.5, -5, 2.25, -0.5, 5, -2.25, -0.5, 5, 2.25, -0.5, -5, -2.25, -0.5, 5, 2.25, -0.5, -5, 2.25, -0.5, -5, -2.25, 0.5, 5, 2.25, -0.5, 5, 2.25, 0.5, 5, -2.25, -0.5, 5, 2.25, -0.5, 5, -2.25, 0.5, 5, -2.25, -0.5, -5, 2.25, 0.5, -5, 2.25, -0.5, -5, -2.25, 0.5, -5, 2.25, 0.5, -5, -2.25, -0.5, -5, -2.25 )
 
-[sub_resource type="ConcavePolygonShape" id=31]
+[sub_resource type="ConcavePolygonShape" id=25]
 data = PoolVector3Array( -0.5, 5, 2.25, 0.5, 5, 2.25, -0.5, -5, 2.25, 0.5, 5, 2.25, 0.5, -5, 2.25, -0.5, -5, 2.25, 0.5, 5, -2.25, -0.5, 5, -2.25, 0.5, -5, -2.25, -0.5, 5, -2.25, -0.5, -5, -2.25, 0.5, -5, -2.25, 0.5, 5, 2.25, 0.5, 5, -2.25, 0.5, -5, 2.25, 0.5, 5, -2.25, 0.5, -5, -2.25, 0.5, -5, 2.25, -0.5, 5, -2.25, -0.5, 5, 2.25, -0.5, -5, -2.25, -0.5, 5, 2.25, -0.5, -5, 2.25, -0.5, -5, -2.25, 0.5, 5, 2.25, -0.5, 5, 2.25, 0.5, 5, -2.25, -0.5, 5, 2.25, -0.5, 5, -2.25, 0.5, 5, -2.25, -0.5, -5, 2.25, 0.5, -5, 2.25, -0.5, -5, -2.25, 0.5, -5, 2.25, 0.5, -5, -2.25, -0.5, -5, -2.25 )
 
-[sub_resource type="ConcavePolygonShape" id=32]
+[sub_resource type="ConcavePolygonShape" id=26]
 data = PoolVector3Array( -0.5, 5, 2.25, 0.5, 5, 2.25, -0.5, -5, 2.25, 0.5, 5, 2.25, 0.5, -5, 2.25, -0.5, -5, 2.25, 0.5, 5, -2.25, -0.5, 5, -2.25, 0.5, -5, -2.25, -0.5, 5, -2.25, -0.5, -5, -2.25, 0.5, -5, -2.25, 0.5, 5, 2.25, 0.5, 5, -2.25, 0.5, -5, 2.25, 0.5, 5, -2.25, 0.5, -5, -2.25, 0.5, -5, 2.25, -0.5, 5, -2.25, -0.5, 5, 2.25, -0.5, -5, -2.25, -0.5, 5, 2.25, -0.5, -5, 2.25, -0.5, -5, -2.25, 0.5, 5, 2.25, -0.5, 5, 2.25, 0.5, 5, -2.25, -0.5, 5, 2.25, -0.5, 5, -2.25, 0.5, 5, -2.25, -0.5, -5, 2.25, 0.5, -5, 2.25, -0.5, -5, -2.25, 0.5, -5, 2.25, 0.5, -5, -2.25, -0.5, -5, -2.25 )
 
-[sub_resource type="ConcavePolygonShape" id=33]
+[sub_resource type="ConcavePolygonShape" id=27]
 data = PoolVector3Array( -0.5, 5, 2.25, 0.5, 5, 2.25, -0.5, -5, 2.25, 0.5, 5, 2.25, 0.5, -5, 2.25, -0.5, -5, 2.25, 0.5, 5, -2.25, -0.5, 5, -2.25, 0.5, -5, -2.25, -0.5, 5, -2.25, -0.5, -5, -2.25, 0.5, -5, -2.25, 0.5, 5, 2.25, 0.5, 5, -2.25, 0.5, -5, 2.25, 0.5, 5, -2.25, 0.5, -5, -2.25, 0.5, -5, 2.25, -0.5, 5, -2.25, -0.5, 5, 2.25, -0.5, -5, -2.25, -0.5, 5, 2.25, -0.5, -5, 2.25, -0.5, -5, -2.25, 0.5, 5, 2.25, -0.5, 5, 2.25, 0.5, 5, -2.25, -0.5, 5, 2.25, -0.5, 5, -2.25, 0.5, 5, -2.25, -0.5, -5, 2.25, 0.5, -5, 2.25, -0.5, -5, -2.25, 0.5, -5, 2.25, 0.5, -5, -2.25, -0.5, -5, -2.25 )
 
-[sub_resource type="CubeMesh" id=14]
+[sub_resource type="CubeMesh" id=28]
 material = SubResource( 11 )
 size = Vector3( 1, 10, 60 )
 
-[sub_resource type="ConcavePolygonShape" id=16]
+[sub_resource type="ConcavePolygonShape" id=29]
 data = PoolVector3Array( -0.5, 5, 30, 0.5, 5, 30, -0.5, -5, 30, 0.5, 5, 30, 0.5, -5, 30, -0.5, -5, 30, 0.5, 5, -30, -0.5, 5, -30, 0.5, -5, -30, -0.5, 5, -30, -0.5, -5, -30, 0.5, -5, -30, 0.5, 5, 30, 0.5, 5, -30, 0.5, -5, 30, 0.5, 5, -30, 0.5, -5, -30, 0.5, -5, 30, -0.5, 5, -30, -0.5, 5, 30, -0.5, -5, -30, -0.5, 5, 30, -0.5, -5, 30, -0.5, -5, -30, 0.5, 5, 30, -0.5, 5, 30, 0.5, 5, -30, -0.5, 5, 30, -0.5, 5, -30, 0.5, 5, -30, -0.5, -5, 30, 0.5, -5, 30, -0.5, -5, -30, 0.5, -5, 30, 0.5, -5, -30, -0.5, -5, -30 )
 
-[sub_resource type="ConcavePolygonShape" id=17]
+[sub_resource type="ConcavePolygonShape" id=30]
 data = PoolVector3Array( -0.5, 5, 30, 0.5, 5, 30, -0.5, -5, 30, 0.5, 5, 30, 0.5, -5, 30, -0.5, -5, 30, 0.5, 5, -30, -0.5, 5, -30, 0.5, -5, -30, -0.5, 5, -30, -0.5, -5, -30, 0.5, -5, -30, 0.5, 5, 30, 0.5, 5, -30, 0.5, -5, 30, 0.5, 5, -30, 0.5, -5, -30, 0.5, -5, 30, -0.5, 5, -30, -0.5, 5, 30, -0.5, -5, -30, -0.5, 5, 30, -0.5, -5, 30, -0.5, -5, -30, 0.5, 5, 30, -0.5, 5, 30, 0.5, 5, -30, -0.5, 5, 30, -0.5, 5, -30, 0.5, 5, -30, -0.5, -5, 30, 0.5, -5, 30, -0.5, -5, -30, 0.5, -5, 30, 0.5, -5, -30, -0.5, -5, -30 )
 
-[sub_resource type="CubeMesh" id=15]
+[sub_resource type="CubeMesh" id=31]
 material = SubResource( 11 )
 size = Vector3( 1, 10, 80 )
 
-[sub_resource type="ConcavePolygonShape" id=18]
+[sub_resource type="ConcavePolygonShape" id=32]
 data = PoolVector3Array( -0.5, 5, 40, 0.5, 5, 40, -0.5, -5, 40, 0.5, 5, 40, 0.5, -5, 40, -0.5, -5, 40, 0.5, 5, -40, -0.5, 5, -40, 0.5, -5, -40, -0.5, 5, -40, -0.5, -5, -40, 0.5, -5, -40, 0.5, 5, 40, 0.5, 5, -40, 0.5, -5, 40, 0.5, 5, -40, 0.5, -5, -40, 0.5, -5, 40, -0.5, 5, -40, -0.5, 5, 40, -0.5, -5, -40, -0.5, 5, 40, -0.5, -5, 40, -0.5, -5, -40, 0.5, 5, 40, -0.5, 5, 40, 0.5, 5, -40, -0.5, 5, 40, -0.5, 5, -40, 0.5, 5, -40, -0.5, -5, 40, 0.5, -5, 40, -0.5, -5, -40, 0.5, -5, 40, 0.5, -5, -40, -0.5, -5, -40 )
 
-[sub_resource type="ConcavePolygonShape" id=19]
+[sub_resource type="ConcavePolygonShape" id=33]
 data = PoolVector3Array( -0.5, 5, 40, 0.5, 5, 40, -0.5, -5, 40, 0.5, 5, 40, 0.5, -5, 40, -0.5, -5, 40, 0.5, 5, -40, -0.5, 5, -40, 0.5, -5, -40, -0.5, 5, -40, -0.5, -5, -40, 0.5, -5, -40, 0.5, 5, 40, 0.5, 5, -40, 0.5, -5, 40, 0.5, 5, -40, 0.5, -5, -40, 0.5, -5, 40, -0.5, 5, -40, -0.5, 5, 40, -0.5, -5, -40, -0.5, 5, 40, -0.5, -5, 40, -0.5, -5, -40, 0.5, 5, 40, -0.5, 5, 40, 0.5, 5, -40, -0.5, 5, 40, -0.5, 5, -40, 0.5, 5, -40, -0.5, -5, 40, 0.5, -5, 40, -0.5, -5, -40, 0.5, -5, 40, 0.5, -5, -40, -0.5, -5, -40 )
 
 [node name="Spatial" type="Spatial"]
@@ -202,7 +202,9 @@ use_in_baked_light = true
 mesh = SubResource( 12 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x1"]
+[node name="StaticBody" type="StaticBody" parent="wall1x1" groups=[
+"wall",
+]]
 collision_layer = 2147483655
 collision_mask = 7
 
@@ -212,181 +214,209 @@ shape = SubResource( 13 )
 [node name="wall1x6" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 3, 0 )
 use_in_baked_light = true
-mesh = SubResource( 20 )
+mesh = SubResource( 14 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x6"]
+[node name="StaticBody" type="StaticBody" parent="wall1x6" groups=[
+"wall",
+]]
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x6/StaticBody"]
-shape = SubResource( 24 )
+shape = SubResource( 15 )
 
 [node name="wall1x14" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 3, -14.5 )
 use_in_baked_light = true
-mesh = SubResource( 23 )
+mesh = SubResource( 16 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x14"]
+[node name="StaticBody" type="StaticBody" parent="wall1x14" groups=[
+"wall",
+]]
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x14/StaticBody"]
-shape = SubResource( 25 )
+shape = SubResource( 17 )
 
 [node name="wall1x15" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 3, 14.5 )
 use_in_baked_light = true
-mesh = SubResource( 23 )
+mesh = SubResource( 16 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x15"]
+[node name="StaticBody" type="StaticBody" parent="wall1x15" groups=[
+"wall",
+]]
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x15/StaticBody"]
-shape = SubResource( 26 )
+shape = SubResource( 18 )
 
 [node name="wall1x7" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 3, 0 )
 use_in_baked_light = true
-mesh = SubResource( 20 )
+mesh = SubResource( 14 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x7"]
+[node name="StaticBody" type="StaticBody" parent="wall1x7" groups=[
+"wall",
+]]
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x7/StaticBody"]
-shape = SubResource( 27 )
+shape = SubResource( 19 )
 
 [node name="wall1x8" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -5, 3, -19.5 )
 use_in_baked_light = true
-mesh = SubResource( 21 )
+mesh = SubResource( 20 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x8"]
+[node name="StaticBody" type="StaticBody" parent="wall1x8" groups=[
+"wall",
+]]
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x8/StaticBody"]
-shape = SubResource( 28 )
+shape = SubResource( 21 )
 
 [node name="wall1x9" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -5, 3, 19.5 )
 use_in_baked_light = true
-mesh = SubResource( 21 )
+mesh = SubResource( 20 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x9"]
+[node name="StaticBody" type="StaticBody" parent="wall1x9" groups=[
+"wall",
+]]
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x9/StaticBody"]
-shape = SubResource( 29 )
+shape = SubResource( 22 )
 
 [node name="wall1x10" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -17.255, 3, 9.5 )
 use_in_baked_light = true
-mesh = SubResource( 22 )
+mesh = SubResource( 23 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x10"]
+[node name="StaticBody" type="StaticBody" parent="wall1x10" groups=[
+"wall",
+]]
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x10/StaticBody"]
-shape = SubResource( 30 )
+shape = SubResource( 24 )
 
 [node name="wall1x11" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -17.255, 3, -9.5 )
 use_in_baked_light = true
-mesh = SubResource( 22 )
+mesh = SubResource( 23 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x11"]
+[node name="StaticBody" type="StaticBody" parent="wall1x11" groups=[
+"wall",
+]]
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x11/StaticBody"]
-shape = SubResource( 31 )
+shape = SubResource( 25 )
 
 [node name="wall1x12" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -32.75, 3, -9.5 )
 use_in_baked_light = true
-mesh = SubResource( 22 )
+mesh = SubResource( 23 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x12"]
+[node name="StaticBody" type="StaticBody" parent="wall1x12" groups=[
+"wall",
+]]
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x12/StaticBody"]
-shape = SubResource( 32 )
+shape = SubResource( 26 )
 
 [node name="wall1x13" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -32.75, 3, 9.5 )
 use_in_baked_light = true
-mesh = SubResource( 22 )
+mesh = SubResource( 23 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x13"]
+[node name="StaticBody" type="StaticBody" parent="wall1x13" groups=[
+"wall",
+]]
 collision_layer = 7
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x13/StaticBody"]
-shape = SubResource( 33 )
+shape = SubResource( 27 )
 
 [node name="wall1x2" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 45.5, 3, 0 )
 use_in_baked_light = true
-mesh = SubResource( 14 )
+mesh = SubResource( 28 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x2"]
+[node name="StaticBody" type="StaticBody" parent="wall1x2" groups=[
+"wall",
+]]
 collision_layer = 2147483655
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x2/StaticBody"]
-shape = SubResource( 16 )
+shape = SubResource( 29 )
 
 [node name="wall1x5" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35.5, 3, 0 )
 use_in_baked_light = true
-mesh = SubResource( 14 )
+mesh = SubResource( 28 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x5"]
+[node name="StaticBody" type="StaticBody" parent="wall1x5" groups=[
+"wall",
+]]
 collision_layer = 2147483655
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x5/StaticBody"]
-shape = SubResource( 17 )
+shape = SubResource( 30 )
 
 [node name="wall1x3" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 5, 3, -30 )
 use_in_baked_light = true
-mesh = SubResource( 15 )
+mesh = SubResource( 31 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x3"]
+[node name="StaticBody" type="StaticBody" parent="wall1x3" groups=[
+"wall",
+]]
 collision_layer = 2147483655
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x3/StaticBody"]
-shape = SubResource( 18 )
+shape = SubResource( 32 )
 
 [node name="wall1x4" type="MeshInstance" parent="."]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 5, 3, 30 )
 use_in_baked_light = true
-mesh = SubResource( 15 )
+mesh = SubResource( 31 )
 material/0 = null
 
-[node name="StaticBody" type="StaticBody" parent="wall1x4"]
+[node name="StaticBody" type="StaticBody" parent="wall1x4" groups=[
+"wall",
+]]
 collision_layer = 2147483655
 collision_mask = 7
 
 [node name="CollisionShape" type="CollisionShape" parent="wall1x4/StaticBody"]
-shape = SubResource( 19 )
+shape = SubResource( 33 )

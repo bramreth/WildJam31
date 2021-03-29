@@ -22,6 +22,7 @@ var current_snap:Vector3 = SNAP_VECTOR
 var frost_speed_mod = 1.0
 
 var _hang_time:float = 0.0
+var wall_run = false
 
 func _ready():
 	pass
@@ -57,6 +58,9 @@ func apply_gravity(delta:float) -> void:
 	if is_on_floor():
 		_hang_time = delta
 		velocity.y += _hang_time * GRAVITY
+	elif wall_run:
+		_hang_time += delta / 3
+		velocity.y = max(velocity.y + (_hang_time * GRAVITY), 0)
 	else:
 		_hang_time += delta / 3
 		velocity.y += _hang_time * GRAVITY
