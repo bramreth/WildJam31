@@ -5,7 +5,7 @@ onready var network_player:PackedScene = load("res://scenes/enviornments/multipl
 
 func _ready() -> void:
 	if NetworkHelper.is_multiplayer:
-		players.get_child(0).name  = get_tree().get_network_unique_id() #Sets the local player's node name to their network ID
+		players.get_child(0).name  = String(get_tree().get_network_unique_id()) #Sets the local player's node name to their network ID
 		_setup_multiplayer()
 		
 
@@ -18,7 +18,7 @@ func _setup_multiplayer() -> void:
 			_spawn_player(player_id, NetworkHelper.player_data[player_id])
 
 
-func _spawn_player(player_id, player_data) -> void:
+func _spawn_player(player_id:int, player_data:Dictionary) -> void:
 	var new_player = network_player.instance()
-	new_player.name = player_id
+	new_player.name = String(player_id)
 	players.add_child(new_player)
