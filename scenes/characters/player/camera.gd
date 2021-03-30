@@ -29,6 +29,7 @@ func _input(event:InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_x(deg2rad(event.relative.y * MOUSE_SENSITIVITY * -1))
 		player.rotate_y(deg2rad(event.relative.x * MOUSE_SENSITIVITY * -1))
+		gun_anim.juicy_gun(event.relative.x, event.relative.y)
 		var camera_rot = rotation_degrees
 		camera_rot.x = clamp(camera_rot.x, -70, 70)
 		rotation_degrees = camera_rot

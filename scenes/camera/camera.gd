@@ -3,6 +3,7 @@ extends Spatial
 onready var fader_animation_player:AnimationPlayer = $juicy_cam/UILayer/fader/AnimationPlayer
 onready var camera:Camera = $juicy_cam
 onready var gun = $juicy_cam/gun
+onready var gun_anim = $juicy_cam/gun/animated_gun
 
 onready var shot_raycast:RayCast = $juicy_cam/RayCast
 onready var debug_hit_detector = $juicy_cam/RayCast/DebugHitDetector

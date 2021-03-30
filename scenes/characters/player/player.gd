@@ -11,13 +11,13 @@ func warp(on):
 
 func _physics_process(_delta: float) -> void:
 	if dead: return
-#	print(calculate_move_direction())
-#	if _hang_time > 1:
-#		damage(25)
-#		_hang_time = 0
-#		$camera.warp(true)
+	if is_on_floor():
+		$camera.gun_anim.try_drop()
+	else:
+		$camera.gun_anim.air_time(_hang_time)
 	input_direction = get_input_direction()
 	if is_on_floor():
+		$camera.gun_anim.try_drop()
 		wall_run = false
 		if Input.is_action_just_pressed("move_jump"):
 			_jump()

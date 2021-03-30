@@ -32,10 +32,10 @@ func _process(delta):
 	if not selected_ammo: return
 	if not $AnimationPlayer.is_playing() and not out:
 		if Input.is_action_pressed("click"):
-			if $ak47/clip/animclip.can_fire():
-				$shot.pitch_scale = ((3 * selected_ammo.get_ammo().rof) + rand_range(-0.02,0.02))
+			if $animated_gun/ak47/clip/animclip.can_fire():
+				$gun_sounds/shot.pitch_scale = ((3 * selected_ammo.get_ammo().rof) + rand_range(-0.02,0.02))
 
-				$shot.max_db = 1.0 - (6*spread)
+				$gun_sounds/shot.max_db = 1.0 - (6*spread)
 
 				$AnimationPlayer.playback_speed = selected_ammo.get_ammo().rof
 				$AnimationPlayer.play("fire")
@@ -43,14 +43,14 @@ func _process(delta):
 				emit_signal("update_ammo", selected_ammo.get_ammo(), selected_ammo.clip, selected_ammo.reserve, spread)
 				emit_signal("fired", selected_ammo.get_ammo().weapon_spread * spread_curve.interpolate(spread), selected_ammo.get_ammo().is_projectile, selected_ammo.get_ammo().projectile)
 				bullet_spread()
-				$shot.pitch_scale = ((3 * selected_ammo.get_ammo().rof) + rand_range(-0.02,0.02))
-				$shot.max_db = 1.0 - (6*spread)
+				$gun_sounds/shot.pitch_scale = ((3 * selected_ammo.get_ammo().rof) + rand_range(-0.02,0.02))
+				$gun_sounds/shot.max_db = 1.0 - (6*spread)
 			else:
 				reload()
-		$ak47.translation = $ak47.translation.linear_interpolate(Vector3.ZERO, delta * 5)
-		$ak47.rotation_degrees.x = lerp_angle($ak47.rotation_degrees.x, 0, delta * 5)
-		$ak47.rotation_degrees.y = lerp_angle($ak47.rotation_degrees.y, 0, delta * 5)
-		$ak47.rotation_degrees.z = lerp_angle($ak47.rotation_degrees.z, 0, delta * 5)
+		$animated_gun/ak47.translation = $animated_gun/ak47.translation.linear_interpolate(Vector3.ZERO, delta * 5)
+		$animated_gun/ak47.rotation_degrees.x = lerp_angle($animated_gun/ak47.rotation_degrees.x, 0, delta * 5)
+		$animated_gun/ak47.rotation_degrees.y = lerp_angle($animated_gun/ak47.rotation_degrees.y, 0, delta * 5)
+		$animated_gun/ak47.rotation_degrees.z = lerp_angle($animated_gun/ak47.rotation_degrees.z, 0, delta * 5)
 	emit_signal("spread", selected_ammo.get_ammo().weapon_spread * spread_curve.interpolate(spread))
 		
 func _input(event):
@@ -66,38 +66,38 @@ func _input(event):
 	if Input.is_action_just_pressed("cycle_ammo") or Input.is_action_just_pressed("cycle_ammo_back"):
 		if not out:
 			open_ammo_view()
-		$ak47/clip/animclip.swap_ammo(Input.is_action_just_pressed("cycle_ammo"))
-		$ak47/clip/view_timeout.start(0)
+		$animated_gun/ak47/clip/animclip.swap_ammo(Input.is_action_just_pressed("cycle_ammo"))
+		$animated_gun/ak47/clip/view_timeout.start(0)
 	for i in range(1,5):
 		if Input.is_action_just_pressed("ammo_" + str(i)):
 			if not out:
 				open_ammo_view()
-			$ak47/clip/animclip.swap_ammo_num(i)
-			$ak47/clip/view_timeout.start(0)
+			$animated_gun/ak47/clip/animclip.swap_ammo_num(i)
+			$animated_gun/ak47/clip/view_timeout.start(0)
 			return
 			
 
 func open_ammo_view():
 	$AnimationPlayer.playback_speed = 1.0
 	$AnimationPlayer.play("reload (copy)")
-	$ak47/clip/animclip/AnimationPlayer.play("show")
+	$animated_gun/ak47/clip/animclip/AnimationPlayer.play("show")
 	out = true
-	$ak47/clip/view_timeout.start(0)
-	$ak47/clip/animclip.show_dat(true)
+	$animated_gun/ak47/clip/view_timeout.start(0)
+	$animated_gun/ak47/clip/animclip.show_dat(true)
 		
 func shut_ammo_view():
 #	$ak47/clip/animclip.save_new_ammo()
 	$AnimationPlayer.playback_speed = 1.0
 	$AnimationPlayer.play_backwards("reload (copy)")
-	$ak47/clip/animclip/AnimationPlayer.play_backwards("show")
+	$animated_gun/ak47/clip/animclip/AnimationPlayer.play_backwards("show")
 	out = false
 	#TODO get the current ammo type
 	load_ammo_data()
 	spread = clamp(spread - 0.2, 0, 1)
-	$ak47/clip/animclip.show_dat(false)
+	$animated_gun/ak47/clip/animclip.show_dat(false)
 	
 func load_ammo_data():
-	selected_ammo = $ak47/clip/animclip.get_ammo_data()
+	selected_ammo = $animated_gun/ak47/clip/animclip.get_ammo_data()
 	max_ammo = selected_ammo.get_ammo().max_ammo
 	emit_signal("change_ammo_type", selected_ammo.get_ammo(), selected_ammo.clip, selected_ammo.clip)
 	reset_ammo()
@@ -106,9 +106,9 @@ func bullet_spread():
 	spread = clamp(spread + 0.1, 0, 1)
 	
 func reload():
-	selected_ammo = $ak47/clip/animclip.get_ammo_data()
+	selected_ammo = $animated_gun/ak47/clip/animclip.get_ammo_data()
 	if selected_ammo.reserve > 0:
-		$ak47/clip/animclip.reload_current()
+		$animated_gun/ak47/clip/animclip.reload_current()
 		$AnimationPlayer.playback_speed = 1.0
 		$AnimationPlayer.play("reload")
 		spread = clamp(spread - 0.2, 0, 1)
@@ -116,7 +116,7 @@ func reload():
 		
 func reset_ammo():
 #	ammo = max_ammo
-	selected_ammo = $ak47/clip/animclip.get_ammo_data()
+	selected_ammo = $animated_gun/ak47/clip/animclip.get_ammo_data()
 	emit_signal("update_ammo", selected_ammo.get_ammo(), selected_ammo.clip, selected_ammo.reserve, spread)
 
 func drop():
@@ -127,15 +127,15 @@ func _on_view_timeout_timeout():
 
 
 func get_projectile_spawn():
-	return $ak47/spatial_blast_queue.global_transform.origin
+	return $animated_gun/ak47/spatial_blast_queue.global_transform.origin
 
 
 func _on_animclip_added_ammo(node):
 	print("open ammo view")
 	emit_signal("new_ammo", node.get_ammo())
-	selected_ammo = $ak47/clip/animclip.get_ammo_data()
+	selected_ammo = $animated_gun/ak47/clip/animclip.get_ammo_data()
 	load_ammo_data()
 	if not out:
 		open_ammo_view()
 	
-	$ak47/clip/animclip.swap_ammo_slot(node)
+	$animated_gun/ak47/clip/animclip.swap_ammo_slot(node)
