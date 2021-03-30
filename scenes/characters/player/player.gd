@@ -1,4 +1,5 @@
 extends "res://scenes/characters/character.gd"
+class_name Player
 
 onready var camera:Camera = $camera/juicy_cam
 
@@ -92,3 +93,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _sync_movement_with_network() -> void:
 	rpc('update_position', global_transform.origin, rotation.y, 0.0)
+
+
+remote func server_update_transform(new_transform: Transform) -> void:
+	global_transform = new_transform
