@@ -24,6 +24,7 @@ func _update_lobby(_steam_lobby_id):
 	var members = []
 	for member in SteamLobby.get_lobby_members():
 		members.append(member)
+	root.get_node("lobby_members/party_count").text = "Party (" + str(len(members)) +"/4)"
 	for player_index in range(lobby_players.get_child_count()):
 		
 		if len(members) > player_index:

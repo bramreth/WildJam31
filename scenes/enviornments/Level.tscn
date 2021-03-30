@@ -29,7 +29,7 @@ navmesh = SubResource( 1 )
 
 [node name="reward_room" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0 )
-player_path = NodePath("../player")
+player_path = NodePath("../Players/player")
 
 [node name="wave_controller" parent="." instance=ExtResource( 1 )]
 

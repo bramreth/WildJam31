@@ -3,7 +3,7 @@ extends Spatial
 var attachee = null
 
 func attach(node):
-	$balloon/CurveTween.play(0.3, Vector3.ZERO, Vector3.ONE) 
+	$balloon/CurveTween.play(2, Vector3.ZERO, Vector3.ONE) 
 	global_transform.origin = node.global_transform.origin
 	global_transform.origin.y += 3
 	$PinJoint.set("nodes/node_a", node.get_path())

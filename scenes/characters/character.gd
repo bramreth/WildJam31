@@ -60,7 +60,11 @@ func apply_gravity(delta:float) -> void:
 		velocity.y += _hang_time * GRAVITY
 	elif wall_run:
 		_hang_time += delta / 3
-		velocity.y = max(velocity.y + (_hang_time * GRAVITY), 0)
+#		velocity.y = max(velocity.y + (_hang_time * GRAVITY), 0)
+		if velocity.y < 0:
+			velocity.y += (_hang_time * GRAVITY * 0.1)
+		else:
+			velocity.y += _hang_time * GRAVITY
 	else:
 		_hang_time += delta / 3
 		velocity.y += _hang_time * GRAVITY

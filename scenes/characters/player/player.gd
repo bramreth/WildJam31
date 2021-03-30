@@ -12,24 +12,26 @@ func warp(on):
 func _physics_process(_delta: float) -> void:
 	if dead: return
 #	print(calculate_move_direction())
-	if _hang_time > 1:
-		damage(25)
-		_hang_time = 0
-		$camera.warp(true)
+#	if _hang_time > 1:
+#		damage(25)
+#		_hang_time = 0
+#		$camera.warp(true)
 	input_direction = get_input_direction()
 	if is_on_floor():
 		wall_run = false
 		if Input.is_action_just_pressed("move_jump"):
 			_jump()
-	elif is_on_wall():
+	elif is_running() and is_on_wall():
 #		if Input.is_action_pressed("move_jump"):
 		for i in get_slide_count():
 			var collision = get_slide_collision(i)
 			if collision.collider.is_in_group("wall"):
 				var dir_to_wall = global_transform.origin.direction_to(collision.position)
 				var move_dir = calculate_move_direction()
-				if dir_to_wall.angle_to(move_dir) < PI/2:
+				if dir_to_wall.angle_to(move_dir) < PI:
 					wall_run = true
+				if Input.is_action_just_pressed("move_jump"):
+					_wall_jump(dir_to_wall)
 	else:
 		wall_run = false
 	if not $WalkCarpet.is_playing() and input_direction and is_on_floor():
@@ -59,6 +61,14 @@ static func get_input_direction() -> Vector3:
 
 func set_cam_env(env):
 	$camera.set_cam_env(env)
+
+
+func _wall_jump(dir_to_wall) -> void:
+	_hang_time = 0
+	velocity.y = 0.75 *  jump_force
+	velocity.x -= 80 * dir_to_wall.x
+	velocity.z -= 80 * dir_to_wall.z
+	current_snap = Vector3.ZERO
 
 func _jump() -> void:
 	velocity.y = jump_force

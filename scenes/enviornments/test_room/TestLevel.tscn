@@ -54,13 +54,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0 )
 [node name="enemy" parent="." index="10" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1891, 5.52147, 0 )
 
-[node name="CSGBox" type="CSGBox" parent="." index="13"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0 )
-use_collision = true
-collision_layer = 7
-collision_mask = 7
-width = 200.0
-depth = 200.0
-
-[node name="objspawner" parent="." index="14" instance=ExtResource( 7 )]
+[node name="objspawner" parent="." index="13" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83201, 2.60415, 0 )

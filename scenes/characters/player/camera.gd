@@ -22,6 +22,8 @@ func _process(delta:float) -> void:
 	camera_rot.x = clamp(camera_rot.x, -70, 70)
 	rotation_degrees = camera_rot
 
+func rotate_to(x_in):
+	rotate_x(x_in)
 
 func _input(event:InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
