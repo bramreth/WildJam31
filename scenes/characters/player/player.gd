@@ -28,7 +28,7 @@ func _physics_process(_delta: float) -> void:
 			if collision.collider.is_in_group("wall"):
 				var dir_to_wall = global_transform.origin.direction_to(collision.position)
 				var move_dir = calculate_move_direction()
-				if dir_to_wall.angle_to(move_dir) < PI:
+				if dir_to_wall.angle_to(move_dir) < PI/2:
 					wall_run = true
 				if Input.is_action_just_pressed("move_jump"):
 					_wall_jump(dir_to_wall)

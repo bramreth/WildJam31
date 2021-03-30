@@ -190,7 +190,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4 )
 layers = 2
 cast_shadow = 0
 emitting = false
-amount = 24
 lifetime = 0.4
 process_material = SubResource( 10 )
 draw_pass_1 = SubResource( 12 )
