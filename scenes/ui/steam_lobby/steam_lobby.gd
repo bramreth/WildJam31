@@ -8,12 +8,17 @@ var friends = []
 func _ready():
 	randomize()
 	SteamLobby.connect("lobby_joined", self, "_update_lobby")
+	SteamLobby.connect("player_joined_lobby", self, "_update_lobby_from_player")
+	SteamLobby.connect("player_left_lobby", self, "_update_lobby_from_player")
+
 	for x in range(3):
 		var player = lobby_player.instance()
 		lobby_players.add_child(player)
 	SteamLobby.connect("lobby_created", self, "_on_lobby_created")
 	SteamLobby.create_lobby(Steam.LOBBY_TYPE_FRIENDS_ONLY, 4)
 
+func _update_lobby_from_player(steam_id):
+	_update_lobby(SteamLobby._steam_lobby_id)
 
 func _update_lobby(_steam_lobby_id):
 	var members = []
@@ -27,6 +32,7 @@ func _update_lobby(_steam_lobby_id):
 			lobby_players.get_child(player_index).set_player(null)
 
 func get_friends():
+
 	var flist = []
 	for i in range(Steam.getFriendCount()):
 		flist.append(Steam.getFriendByIndex(i, 4))
