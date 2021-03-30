@@ -55,4 +55,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1891, 5.52147, 0 )
 
 [node name="objspawner" parent="." index="13" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83201, 2.60415, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -29.09, 2.60415, -21.5674 )

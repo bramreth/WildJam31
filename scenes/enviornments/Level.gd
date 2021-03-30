@@ -40,6 +40,10 @@ func _ready():
 		$wave_controller/major_timer.start(0)
 	$Players/player.transform = $spawn_pad/Spatial.global_transform
 	
+func start_wave_timer():
+	yield(get_tree().create_timer(3.0), "timeout")
+	start_wave()
+	
 func spawner_done(spawner):
 	spawners_map[spawner] = true
 	check_spawners()
@@ -87,7 +91,7 @@ func end_wave():
 	wave_active = false
 	wave += 1
 	emit_signal("wave_end")
-	if int(wave) % 3 == 0:
+	if int(wave) % 2 == 0:
 		print("reward")
 		$Players/player.warp(false)
 	elif Game.continuous_waves:

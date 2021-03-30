@@ -154,6 +154,7 @@ transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 6, 1.25
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -6, 1.25, 6.333 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 [connection signal="item_taken" from="chest" to="." method="_on_chest_item_taken"]
 [connection signal="item_taken" from="chest2" to="." method="_on_chest_item_taken"]

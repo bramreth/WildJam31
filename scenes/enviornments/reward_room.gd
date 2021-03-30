@@ -32,3 +32,4 @@ func _on_chest_item_taken():
 
 func _on_Timer_timeout():
 	player.warp(true)
+	get_parent().start_wave_timer()

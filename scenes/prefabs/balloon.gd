@@ -16,4 +16,5 @@ func _on_Timer_timeout():
 
 
 func _on_CurveTween_curve_tween(sat):
+	$balloon.gravity_scale = -sat.x
 	$balloon/balloon/generatedClone.scale = sat

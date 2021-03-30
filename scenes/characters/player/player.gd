@@ -34,9 +34,9 @@ func _physics_process(_delta: float) -> void:
 					_wall_jump(dir_to_wall)
 	else:
 		wall_run = false
-	if not $WalkCarpet.is_playing() and input_direction and is_on_floor():
+	if not $WalkCarpet.is_playing() and input_direction and (is_on_floor() or is_on_wall()):
 		$AudioStreamPlayer3D2.pitch_scale = 1.5 + randf()/15
-		$WalkCarpet.playback_speed = 0.2 + (current_speed/ 20)
+		$WalkCarpet.playback_speed = 0.2 + (current_speed/ 20) + (int(is_on_wall()) * 0.6)
 		$WalkCarpet.play("walk")
 	
 	if NetworkHelper.is_multiplayer: _sync_movement_with_network()
