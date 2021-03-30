@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/ui/steam_lobby/chat.gd" type="Script" id=1]
+
+[node name="chat" type="VBoxContainer"]
+margin_top = 506.0
+margin_right = 440.0
+margin_bottom = 960.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="log" type="RichTextLabel" parent="."]
+margin_right = 440.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 0, 400 )
+scroll_active = false
+scroll_following = true
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_top = 404.0
+margin_right = 440.0
+margin_bottom = 428.0
+max_length = 32
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]

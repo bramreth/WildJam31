@@ -11,7 +11,6 @@ func set_player(friendID):
 	$player.text = Steam.getFriendPersonaName(friendID)
 	Steam.connect("avatar_loaded", self, "loaded_avatar")
 	Steam.getPlayerAvatar(2, friendID)
-	print(Steam.getFriendPersonaState(friendID))
 
 # Avatar is ready for display
 func loaded_avatar(id: int, size: int, buffer: PoolByteArray) -> void:
@@ -29,7 +28,6 @@ func loaded_avatar(id: int, size: int, buffer: PoolByteArray) -> void:
 	for y in range(0, size):
 		for x in range(0, size):
 			var pixel: int = 4 * (x + y * size)
-#			print("Pixel: "+str(pixel))
 			var r: float = float(buffer[pixel]) / 255
 			var g: float = float(buffer[pixel+1]) / 255
 			var b: float = float(buffer[pixel+2]) / 255

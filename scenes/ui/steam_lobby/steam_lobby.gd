@@ -19,7 +19,6 @@ func _update_lobby(_steam_lobby_id):
 	var members = []
 	for member in SteamLobby.get_lobby_members():
 		members.append(member)
-	print(members)
 	for player_index in range(lobby_players.get_child_count()):
 		
 		if len(members) > player_index:
@@ -37,7 +36,6 @@ func filter_friends():
 	var flist = get_friends()
 	var new_flist = []
 	for f in flist:
-		print(Steam.getFriendPersonaName(f))
 		if Steam.getFriendPersonaName(f) in ["sucubutplug", "SuperFryGuy", "eggsavior", "Darkmax"]:
 			new_flist.append(f)
 	return new_flist
@@ -52,3 +50,7 @@ func _on_invite_pressed():
 	if SteamLobby.in_lobby():
 		#pop up invite
 		Steam.activateGameOverlayInviteDialog(SteamLobby.get_lobby_id())
+
+
+func _on_ready_pressed():
+	print("ready pressed")
