@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "NetworkPlayer",
 "language": "GDScript",
 "path": "res://scenes/enviornments/multiplayer_compatible_level/NetworkPlayer.gd"
+}, {
+"base": "KinematicBody",
+"class": "Player",
+"language": "GDScript",
+"path": "res://scenes/characters/player/player.gd"
 } ]
 _global_script_class_icons={
 "CurveTween": "",
 "Level": "",
-"NetworkPlayer": ""
+"NetworkPlayer": "",
+"Player": ""
 }
 
 [application]

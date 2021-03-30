@@ -24,7 +24,21 @@ var frost_speed_mod = 1.0
 var _hang_time:float = 0.0
 
 var fallg = 0
-	
+
+#Network Sync
+var _target_global_pos:Vector3 = Vector3.ZERO
+var _target_rotation_y:float = 0
+var _target_rotation_z:float = 0
+
+func _ready() -> void:
+	if NetworkHelper.is_multiplayer and not get_tree().is_network_server():
+		_setup_network_enemy()
+
+
+func _setup_network_enemy() -> void:
+	mode = RigidBody.MODE_STATIC
+
+
 func _integrate_forces(state):
 	if state.linear_velocity.y < -50:
 		fallg = state.linear_velocity.y
@@ -37,25 +51,49 @@ func _integrate_forces(state):
 		damage(1)
 	apply_central_impulse(velocity * sqrt(clamp(1-(state.linear_velocity.length()/speed), 0, 1)))
 
+
 func _physics_process(_delta: float) -> void:
 	if dead: return
+	
+	if not NetworkHelper.is_multiplayer:
+		_handle_movement(_delta)
+	elif NetworkHelper.is_multiplayer and get_tree().is_network_server():
+		_handle_movement(_delta)
+		rpc('update_position', global_transform.origin, rotation.y, 0.0)
+	else:
+		_sync_position()
+	
+	
+
+
+func _handle_movement(_delta:float) -> void:
 	var hvel:Vector3 = velocity
 	var move_direction:Vector3 = calculate_move_direction()
 	hvel = hvel.linear_interpolate(move_direction * current_speed, acceleration * _delta)
 	velocity.x = hvel.x
 	
-	apply_gravity(_delta)
-	
 	velocity.z = hvel.z
-#	velocity = move_and_slide_with_snap(velocity, current_snap, Vector3.UP, true)
-#	if current_snap != SNAP_VECTOR and is_on_floor():
-#		current_snap = SNAP_VECTOR
-		
+	
 	if is_running():
 		current_speed = frost_speed_mod * speed * sprint_speed_modifier
 	else: 
 		current_speed = frost_speed_mod * speed
-	
+
+
+#Network syncing
+remote func update_position(global_position:Vector3, rotation_y:float, rotation_z:float) -> void:
+	_target_global_pos = global_position
+	_target_rotation_y = rotation_y
+	_target_rotation_z = rotation_z
+
+
+func _sync_position() -> void:
+	global_transform.origin = lerp(global_transform.origin, _target_global_pos, 0.5)
+	rotation.y = lerp_angle(rotation.y, _target_rotation_y, 0.5)
+	orthonormalize()
+#End Network syncing
+
+
 # region stubs
 func calculate_move_direction() -> Vector3:
 	return Vector3.ZERO
@@ -63,15 +101,7 @@ func calculate_move_direction() -> Vector3:
 func is_running() -> bool:
 	return false
 #end region
-	
-func apply_gravity(delta:float) -> void:
-	return
-#	if is_on_floor():
-#		_hang_time = delta
-#		velocity.y += _hang_time * GRAVITY
-#	else:
-#		_hang_time += delta / 3
-#		velocity.y += _hang_time * GRAVITY
+
 
 func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
 	if dead: return

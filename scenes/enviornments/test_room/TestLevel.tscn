@@ -55,7 +55,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1891, 5.52147, 0 )
 
 [node name="CSGBox" type="CSGBox" parent="." index="13"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.98688, -9.27103, 3.0592 )
 use_collision = true
 collision_layer = 7
 collision_mask = 7

@@ -3,7 +3,6 @@ extends "res://scenes/characters/rigidcharacter.gd"
 signal damage_anim(color, num, pos)
 
 enum STATES {
-	IDLE,
 	TRACKING_PLAYER,
 	SEARCHING,
 	ATTACKING
@@ -33,23 +32,20 @@ func _ready():
 	update_bars()
 	$AttackTimer.wait_time = attack_speed
 
+
+func _setup_network_enemy() -> void:
+	$collision.disabled = true
+	._setup_network_enemy()
+
+
 func update_bars():
-	$health_bar/Viewport/root/HealthBar.max_value = max_health
-	$health_bar/Viewport/root/HealthBar.value = health
-	$health_bar/Viewport/root/HealthBar/health.text = str(health)
-	$health_bar/Viewport/root/ArmorBar.max_value = max_armor
-	$health_bar/Viewport/root/ArmorBar.value = armor
-	$health_bar/Viewport/root/ArmorBar/armor.text = str(armor)
-	if armor <= 0: 
-		$health_bar/Viewport/root/ArmorBar.visible = false
+	$health_bar/Viewport/root.update_bars(max_health, health, max_armor, armor)
 	if health <= 0: 
 		$health_bar.visible = false
 		
 
 func calculate_move_direction() -> Vector3:
 	match _current_state:
-		STATES.IDLE: 
-			return Vector3.ZERO
 		STATES.SEARCHING:
 			if _has_line_of_sight_to_player():
 				move_state(STATES.TRACKING_PLAYER)
@@ -140,13 +136,6 @@ func _face_move_direction(move_direction:Vector3) -> void:
 		$MeshInstance.orthonormalize()
 
 
-#func detected_body(body:KinematicBody):
-#	if not body: return
-#	if body.is_in_group('player') and _has_line_of_sight_to_player():
-#		_path.clear()
-#		move_state(STATES.TRACKING_PLAYER)
-
-
 func _distance_to_player() -> float:
 	return global_transform.origin.distance_to(_player.global_transform.origin)
 
@@ -162,17 +151,10 @@ func _has_line_of_sight_to_player() -> bool:
 	return false
 
 func move_state(_state_in: int):
-#	assert(_state_in in STATES.keys(), "invalid target state")
 	if _current_state == _state_in: return
-	if _state_in == STATES.IDLE:
-		_get_path()
-		_current_state = STATES.SEARCHING
-	else:
-		_current_state = _state_in
+	_current_state = _state_in
 	
 	match _current_state:
-		STATES.IDLE:
-			$AnimationPlayer.stop()
 		STATES.ATTACKING:
 			$AnimationPlayer.stop()
 		STATES.SEARCHING:
