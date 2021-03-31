@@ -74,6 +74,10 @@ func register_ready_player(caller:int, steam_id:int) -> void:
 		_ready_players.append(steam_id)
 		print('READY: ' + String(_ready_players))
 		if SteamNetwork.is_server(): SteamNetwork.rpc_all_clients(self, 'register_ready_player', [steam_id])
+	for lp in lobby_players.get_children():
+		for p in _ready_players:
+			if p == lp.uid:
+				lp.set_ready()
 
 
 func _input(event):

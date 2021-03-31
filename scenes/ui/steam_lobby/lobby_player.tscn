@@ -18,6 +18,7 @@ margin_top = 533.0
 margin_right = 1828.0
 margin_bottom = 547.0
 size_flags_horizontal = 10
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "empty spot"
 
 [node name="PlayerProfile" type="TextureRect" parent="."]

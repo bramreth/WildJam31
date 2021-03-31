@@ -7,10 +7,14 @@ func set_player(friendID):
 		$PlayerProfile.texture = blank
 		$player.text = "empty spot"
 		return
+	$player.set("custom_colors/font_color", Color.white)
 	uid = friendID
 	$player.text = Steam.getFriendPersonaName(friendID)
 	Steam.connect("avatar_loaded", self, "loaded_avatar")
 	Steam.getPlayerAvatar(2, friendID)
+	
+func set_ready():
+	$player.set("custom_colors/font_color", Color.limegreen)
 
 # Avatar is ready for display
 func loaded_avatar(id: int, size: int, buffer: PoolByteArray) -> void:
