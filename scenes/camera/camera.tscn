@@ -138,7 +138,9 @@ anims/fade_in = SubResource( 3 )
 
 [node name="PauseMenu" parent="juicy_cam/UILayer" instance=ExtResource( 4 )]
 
-[node name="InteractibleArea" type="Area" parent="juicy_cam"]
+[node name="InteractibleArea" type="Area" parent="juicy_cam" groups=[
+"interactible_area",
+]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
 collision_layer = 16
 collision_mask = 16
