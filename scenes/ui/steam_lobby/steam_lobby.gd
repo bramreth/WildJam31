@@ -24,6 +24,7 @@ func _ready():
 		[
 			["register_ready_player", SteamNetwork.PERMISSION.CLIENT_ALL],
 			["update_ready_players", SteamNetwork.PERMISSION.SERVER],
+			["start_game", SteamNetwork.PERMISSION.SERVER],
 		]
 	)
 
@@ -83,7 +84,21 @@ func register_ready_player(caller:int, steam_id:int) -> void:
 		_ready_players.append(steam_id)
 		print('READY: ' + String(steam_id))
 		SteamNetwork.rpc_all_clients(self, 'update_ready_players', [_ready_players])
+		if len(_ready_players) == len(SteamNetwork.get_peers().keys()):
+			host_begin_countdown()
+		printt(len(_ready_players), len(SteamNetwork.get_peers().keys()))
 
+func host_begin_countdown():
+	var msgs = ["game starting", "3", "2", "1"]
+	while msgs:
+		SteamLobby.send_chat_message(msgs.pop_front())
+		yield(get_tree().create_timer(1), "timeout")
+	SteamNetwork.rpc_all_clients(self, 'start_game')
+	
+func start_game(caller:int):
+	# TODO start the game
+	get_tree().quit()
+	
 
 func update_ready_players(caller:int, ready_players:Array) -> void:
 	_ready_players = ready_players
