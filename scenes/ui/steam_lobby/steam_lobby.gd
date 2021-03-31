@@ -13,6 +13,7 @@ func _ready():
 	SteamLobby.connect("lobby_joined", self, "_update_lobby")
 	SteamLobby.connect("player_joined_lobby", self, "_update_lobby_from_player")
 	SteamLobby.connect("player_left_lobby", self, "_update_lobby_from_player")
+	SteamLobby.connect("lobby_join_requested", self, "_join_requested_lobby")
 
 	for x in range(3):
 		var player = lobby_player.instance()
@@ -25,6 +26,10 @@ func _ready():
 			["update_ready_players", SteamNetwork.PERMISSION.SERVER],
 		]
 	)
+
+func _join_requested_lobby(lobby_id):
+	SteamLobby.leave_lobby()
+	SteamLobby.join_lobby(lobby_id)
 
 func _update_lobby_from_player(steam_id):
 	_update_lobby(SteamLobby._steam_lobby_id)
