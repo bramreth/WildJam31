@@ -4,6 +4,9 @@ onready var root = get_node("MarginContainer/menu_root")
 onready var lobby_players = root.get_node("lobby_members/lobby_players/")
 export (PackedScene) var lobby_player
 var friends = []
+
+var _ready_players:Array = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -16,6 +19,8 @@ func _ready():
 		lobby_players.add_child(player)
 	SteamLobby.connect("lobby_created", self, "_on_lobby_created")
 	SteamLobby.create_lobby(Steam.LOBBY_TYPE_FRIENDS_ONLY, 4)
+	
+	SteamNetwork.register_rpc(self, 'register_ready_player', SteamNetwork.PERMISSION.CLIENT_ALL)
 
 func _update_lobby_from_player(steam_id):
 	_update_lobby(SteamLobby._steam_lobby_id)
@@ -60,4 +65,22 @@ func _on_invite_pressed():
 
 
 func _on_ready_pressed():
+	SteamNetwork.rpc_on_server(self, 'register_ready_player', [SteamNetwork._my_steam_id])
 	print("ready pressed")
+
+
+func register_ready_player(caller:int, steam_id:int) -> void:
+	if not _ready_players.has(steam_id):
+		_ready_players.append(steam_id)
+		print('READY: ' + String(_ready_players))
+		if SteamNetwork.is_server(): SteamNetwork.rpc_all_clients(self, 'register_ready_player', [steam_id])
+
+
+func _input(event):
+	if event.is_action_pressed("steam_debug"):
+		print('STEAMNETWORK Peers: ' + String(SteamNetwork.get_peers()))
+		print('STEAMNETWORK Server: ' + String(SteamNetwork.get_server_peer().steam_id))
+		print('STEAMNETWORK Server Steam ID: ' + String(SteamNetwork.get_server_steam_id()))
+		print('STEAMLOBBY Peers: ' + String(SteamLobby.get_lobby_members()))
+		print('STEAMLOBBY Owner Steam ID: ' + String(SteamLobby.get_owner()))
+		
