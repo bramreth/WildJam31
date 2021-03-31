@@ -18,9 +18,13 @@ func _ready():
 		var player = lobby_player.instance()
 		lobby_players.add_child(player)
 	SteamLobby.connect("lobby_created", self, "_on_lobby_created")
-	SteamLobby.create_lobby(Steam.LOBBY_TYPE_FRIENDS_ONLY, 4)
 	
-	SteamNetwork.register_rpc(self, 'register_ready_player', SteamNetwork.PERMISSION.CLIENT_ALL)
+	SteamNetwork.register_rpcs(self,
+		[
+			["register_ready_player", SteamNetwork.PERMISSION.CLIENT_ALL],
+			["update_ready_players", SteamNetwork.PERMISSION.SERVER],
+		]
+	)
 
 func _update_lobby_from_player(steam_id):
 	_update_lobby(SteamLobby._steam_lobby_id)
@@ -72,13 +76,17 @@ func _on_ready_pressed():
 func register_ready_player(caller:int, steam_id:int) -> void:
 	if not _ready_players.has(steam_id):
 		_ready_players.append(steam_id)
-		print('READY: ' + String(_ready_players))
-		if SteamNetwork.is_server(): SteamNetwork.rpc_all_clients(self, 'register_ready_player', [steam_id])
+		print('READY: ' + String(steam_id))
+		SteamNetwork.rpc_all_clients(self, 'update_ready_players', [_ready_players])
+
+
+func update_ready_players(caller:int, ready_players:Array) -> void:
+	_ready_players = ready_players
+	print('READY PLAYERS: ' + String(_ready_players))
 	for lp in lobby_players.get_children():
 		for p in _ready_players:
 			if p == lp.uid:
 				lp.set_ready()
-
 
 func _input(event):
 	if event.is_action_pressed("steam_debug"):
@@ -88,3 +96,8 @@ func _input(event):
 		print('STEAMLOBBY Peers: ' + String(SteamLobby.get_lobby_members()))
 		print('STEAMLOBBY Owner Steam ID: ' + String(SteamLobby.get_owner()))
 		
+
+
+func _on_create_lobby_pressed():
+	SteamLobby.leave_lobby()
+	SteamLobby.create_lobby(Steam.LOBBY_TYPE_FRIENDS_ONLY, 4)

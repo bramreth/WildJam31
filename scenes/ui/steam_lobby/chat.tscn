@@ -13,15 +13,15 @@ __meta__ = {
 
 [node name="log" type="RichTextLabel" parent="."]
 margin_right = 440.0
-margin_bottom = 400.0
-rect_min_size = Vector2( 0, 400 )
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 200 )
 scroll_active = false
 scroll_following = true
 
 [node name="LineEdit" type="LineEdit" parent="."]
-margin_top = 404.0
+margin_top = 204.0
 margin_right = 440.0
-margin_bottom = 428.0
+margin_bottom = 228.0
 max_length = 32
 __meta__ = {
 "_edit_use_anchors_": false
