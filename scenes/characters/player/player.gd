@@ -11,6 +11,8 @@ func warp(on):
 
 func _physics_process(_delta: float) -> void:
 	if dead: return
+	if translation.y < -100:
+		warp(true)
 	if is_on_floor():
 		$camera.gun_anim.try_drop()
 	else:
