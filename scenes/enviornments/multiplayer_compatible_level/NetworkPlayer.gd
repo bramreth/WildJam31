@@ -17,7 +17,7 @@ func _remove_player(player_id:int) -> void:
 	if int(name) == player_id: queue_free()
 
 
-remote func update_position(global_position:Vector3, rotation_y:float, rotation_z:float) -> void:
+remote func update_position(sender_id: int, global_position:Vector3, rotation_y:float, rotation_z:float) -> void:
 	_target_global_pos = global_position
 	_target_rotation_y = rotation_y
 	_target_rotation_z = rotation_z

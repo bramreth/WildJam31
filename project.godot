@@ -48,6 +48,7 @@ ThreadUtils="*res://globals/ThreadUtils.gd"
 Scene="*res://globals/Scene.gd"
 ParticleEventBus="*res://globals/ParticleEventBus.gd"
 NetworkHelper="*res://globals/NetworkHelper.gd"
+SteamRpc="*res://globals/steamRPC.gd"
 
 [display]
 

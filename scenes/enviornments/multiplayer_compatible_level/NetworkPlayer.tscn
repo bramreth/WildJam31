@@ -45,7 +45,6 @@
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Spatial
-class_name NetworkPlayer
 
 var player_name:String = ''
 
@@ -64,14 +63,19 @@ func _remove_player(player_id:int) -> void:
 	if int(name) == player_id: queue_free()
 
 
-remote func update_position(global_position:Vector3, rotation_y:float, rotation_z:float) -> void:
+remote func update_position(id, global_position:Vector3, rotation_y:float, rotation_z:float) -> void:
 	_target_global_pos = global_position
 	_target_rotation_y = rotation_y
 	_target_rotation_z = rotation_z
 
 
-remote func shoot() -> void:
-	pass
+remote func shoot(id) -> void:
+	print(id, name)
+	if id == name:
+		$GunRig.shoot()
+	
+remote func reload() -> void:
+	$GunRig.reload()
 
 
 func _physics_process(delta:float) -> void:
