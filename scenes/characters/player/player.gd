@@ -12,7 +12,6 @@ func _ready():
 #			["start_game", SteamNetwork.PERMISSION.SERVER],
 		]
 	)
-	SteamRpc.notify_ready()
 
 func warp(on):
 	$camera.warp(on)

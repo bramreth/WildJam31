@@ -57,7 +57,6 @@ navmesh = SubResource( 1 )
 
 [node name="player" parent="Players" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5525, 9.04, 3.04864 )
-jump_force = 16.0
 
 [node name="Enemies" type="Node" parent="."]
 

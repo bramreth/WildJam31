@@ -107,6 +107,7 @@ func bullet_spread():
 	spread = clamp(spread + 0.1, 0, 1)
 	
 func reload():
+	SteamRpc.tell_server_reload()
 	selected_ammo = $animated_gun/ak47/clip/animclip.get_ammo_data()
 	if selected_ammo.reserve > 0:
 		$animated_gun/ak47/clip/animclip.reload_current()

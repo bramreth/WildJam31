@@ -77,7 +77,7 @@ func update_position(global_position:Vector3, rotation_y:float, rotation_z:float
 func shoot(rof, spread) -> void:
 	$GunRig.shoot(rof, spread)
 	
-remote func reload() -> void:
+func reload() -> void:
 	$GunRig.reload()
 
 

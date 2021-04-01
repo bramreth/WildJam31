@@ -15,6 +15,7 @@ func _ready() -> void:
 #			["start_game", SteamNetwork.PERMISSION.SERVER],
 		]
 	)
+	SteamRpc.notify_ready()
 	
 	if true:#NetworkHelper.is_multiplayer:
 		players.get_child(0).name  = String(SteamLobby._my_steam_id) #Sets the local player's node name to their network ID
