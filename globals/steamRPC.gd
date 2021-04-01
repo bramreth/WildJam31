@@ -1,5 +1,7 @@
 extends Node
 
+signal all_ready()
+
 var network_players = {}
 var pinging = false
 var ping_time = 0
@@ -14,12 +16,36 @@ func _ready():
 			["move_event",  SteamNetwork.PERMISSION.SERVER],
 			["ping_recieved",  SteamNetwork.PERMISSION.CLIENT_ALL],
 			["ping_reply",  SteamNetwork.PERMISSION.SERVER],
+			["client_ready",  SteamNetwork.PERMISSION.CLIENT_ALL],
+			["all_ready",  SteamNetwork.PERMISSION.SERVER],
 		]
 	)
 	
 func _process(delta):
 	if pinging:
 		ping_time += delta
+		
+func notify_ready():
+	SteamNetwork.rpc_on_server(self, 'client_ready', [])
+	
+var ready_peers = {}
+	
+func client_ready(id):
+	print(id)
+	print(SteamNetwork.get_peers())
+	for peer in SteamNetwork.get_peers():
+		if not peer in ready_peers:
+			ready_peers[peer] = false
+		if peer == id:
+			if not peer in ready_peers:
+				ready_peers[peer] = true
+	for peer in ready_peers:
+		if ready_peers[peer] == false:
+			return
+	SteamNetwork.rpc_on_client(id, self, "all_ready")
+	
+func all_ready(id):
+	emit_signal("all_ready")
 	
 func send_ping():
 	pinging = true
@@ -32,7 +58,6 @@ func ping_recieved(id):
 func ping_reply(source):
 	if debug:
 		debug.push_ping(ping_time)
-		print(ping_time)
 	else:
 		debug = get_tree().get_nodes_in_group("debug_panel").front()
 	pinging = false
