@@ -49,7 +49,7 @@ func _physics_process(_delta: float) -> void:
 		$WalkCarpet.play("walk")
 	
 	if true: #NetworkHelper.is_multiplayer: 
-		_sync_movement_with_network()
+		_sync_movement_with_network(_delta)
 
 #region overrides
 func calculate_move_direction() -> Vector3:
@@ -110,9 +110,14 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "die":
 		get_tree().reload_current_scene()
 
+var frame_updater = 0
 
-func _sync_movement_with_network() -> void:
-	SteamRpc.tell_server_moved(global_transform.origin, rotation.y, 0.0)
+func _sync_movement_with_network(_delta) -> void:
+	frame_updater += _delta
+	#20 times per second post data
+	if frame_updater > 0.25:
+		frame_updater = 0
+		SteamRpc.tell_server_moved(global_transform.origin, rotation.y, 0.0)
 #	rpc('update_position', global_transform.origin, rotation.y, 0.0)
 #	if not SteamNetwork.is_server():
 #	SteamNetwork.rpc_on_server(self, 'update_position', [global_transform.origin, rotation.y, 0.0])
