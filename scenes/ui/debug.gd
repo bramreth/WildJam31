@@ -49,6 +49,8 @@ func _on_LineEdit_text_entered(new_text):
 	controls.get_node("HBoxContainer/LineEdit").text = ""
 	Event.emit_signal(Event.EQUIP_AMMO, new_text)
 
+func push_ping(ping_in):
+	$realtime/ping.text = "ping: " + str(ping_in*1000) + "ms"
 
 func _on_reward_pressed():
 	get_tree().get_nodes_in_group("player").front().get_node("camera").warp(false)
@@ -56,3 +58,9 @@ func _on_reward_pressed():
 
 func _on_respawn_pressed():
 	get_tree().get_nodes_in_group("player").front().get_node("camera").warp(true)
+
+
+func _on_ping_view_toggled(button_pressed):
+	if button_pressed:
+		data.get_node("show_data").pressed = true
+	$realtime/ping.visible = button_pressed

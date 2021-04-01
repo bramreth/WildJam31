@@ -3,6 +3,7 @@ extends Node
 var network_players = {}
 var pinging = false
 var ping_time = 0
+var debug = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SteamNetwork.register_rpcs(self,
@@ -29,7 +30,11 @@ func ping_recieved(id):
 	SteamNetwork.rpc_on_client(id, self, "ping_reply")
 	
 func ping_reply(source):
-	prints("PING TIME:", ping_time, "ms")
+	if debug:
+		debug.push_ping(ping_time)
+		print(ping_time)
+	else:
+		debug = get_tree().get_nodes_in_group("debug_panel").front()
 	pinging = false
 	ping_time = 0
 	

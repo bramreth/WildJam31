@@ -28,6 +28,7 @@ propagation = 0.7
 "GameWorld",
 ]]
 script = ExtResource( 5 )
+debug = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 10 )

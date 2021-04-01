@@ -3,8 +3,10 @@ extends Spatial
 onready var players = $Players
 onready var network_player:PackedScene = load("res://scenes/enviornments/multiplayer_compatible_level/NetworkPlayer.tscn")
 onready var local_player:KinematicBody = players.get_child(0)
+export (bool) var debug
 
 func _ready() -> void:
+	Game.debug = debug
 	randomize()
 	SteamNetwork.register_rpcs(self,
 		[
