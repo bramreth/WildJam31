@@ -13,7 +13,6 @@ func _ready():
 		]
 	)
 	SteamRpc.notify_ready()
-	yield(SteamRpc, "all_ready")
 
 func warp(on):
 	$camera.warp(on)

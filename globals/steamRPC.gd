@@ -24,11 +24,13 @@ func _ready():
 func _process(delta):
 	if pinging:
 		ping_time += delta
+	print(ready_peers)
 		
 func notify_ready():
 	SteamNetwork.rpc_on_server(self, 'client_ready', [])
 	
 var ready_peers = {}
+var all_ready = false
 	
 func client_ready(id):
 	print(id)
@@ -37,15 +39,15 @@ func client_ready(id):
 		if not peer in ready_peers:
 			ready_peers[peer] = false
 		if peer == id:
-			if not peer in ready_peers:
-				ready_peers[peer] = true
+			ready_peers[peer] = true
 	for peer in ready_peers:
 		if ready_peers[peer] == false:
 			return
 	SteamNetwork.rpc_on_client(id, self, "all_ready")
+	all_ready = true
 	
 func all_ready(id):
-	emit_signal("all_ready")
+	all_ready = true
 	
 func send_ping():
 	pinging = true
@@ -53,6 +55,7 @@ func send_ping():
 	SteamNetwork.rpc_on_server(self, 'ping_recieved', [])
 	
 func ping_recieved(id):
+	if not all_ready: return
 	SteamNetwork.rpc_on_client(id, self, "ping_reply")
 	
 func ping_reply(source):
@@ -65,28 +68,34 @@ func ping_reply(source):
 	
 	
 func tell_server_shot(rof, spread):
+	if not all_ready: return
 	if SteamNetwork.is_server():
 		client_has_shot(SteamLobby._my_steam_id, rof, spread)
 	else:
 		SteamNetwork.rpc_on_server(self, 'client_has_shot', [rof, spread])
 	
 func tell_server_moved(global_position:Vector3, rotation_y:float, rotation_z:float):
+	if not all_ready: return
 	if SteamNetwork.is_server():
 		client_has_moved(SteamLobby._my_steam_id, global_position, rotation_y, rotation_z)
 	else:
 		SteamNetwork.rpc_on_server(self, 'client_has_moved', [global_position, rotation_y, rotation_z])
 	
 func client_has_shot(shooting_client, rof, spread):
+	if not all_ready: return
 	SteamNetwork.rpc_all_clients(self, 'shoot_event', [shooting_client, rof, spread])
 	
 func client_has_moved(moving_client, global_position, rotation_y, rotation_z):
+	if not all_ready: return
 	SteamNetwork.rpc_all_clients(self, 'move_event', [moving_client, global_position, rotation_y, rotation_z])
 	
 func shoot_event(server_id, shooting_client, rof, spread):
+	if not all_ready: return
 	if shooting_client == SteamLobby._my_steam_id: return
 	get_or_init_client(shooting_client).shoot(rof, spread)
 	
 func move_event(server_id, moving_client, global_position:Vector3, rotation_y:float, rotation_z:float):
+	if not all_ready: return
 	if moving_client == SteamLobby._my_steam_id: return
 	get_or_init_client(moving_client).update_position(global_position, rotation_y, rotation_z)
 
