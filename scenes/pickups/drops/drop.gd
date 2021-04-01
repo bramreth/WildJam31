@@ -11,7 +11,6 @@ func _ready():
 	player_ammo = get_tree().get_nodes_in_group("player_ammo").front()
 	hud = get_tree().get_nodes_in_group("hud").front()
 	var dat = $pickup_container.get_child(0)
-	print("bmarker", dat.rarity)
 	match(dat.rarity):
 		dat.rarities.COMMON:
 			$Particles.draw_pass_1.material.albedo_color = Color.whitesmoke
