@@ -5,6 +5,13 @@ onready var camera:Camera = $camera/juicy_cam
 
 func _ready():
 	$camera.update_health(health, armor)
+	SteamNetwork.register_rpcs(self,
+		[
+			["update_position", SteamNetwork.PERMISSION.CLIENT_ALL],
+#			["update_ready_players", SteamNetwork.PERMISSION.SERVER],
+#			["start_game", SteamNetwork.PERMISSION.SERVER],
+		]
+	)
 
 func warp(on):
 	$camera.warp(on)
@@ -41,7 +48,8 @@ func _physics_process(_delta: float) -> void:
 		$WalkCarpet.playback_speed = 0.2 + (current_speed/ 20) + (int(is_on_wall()) * 0.6)
 		$WalkCarpet.play("walk")
 	
-	if NetworkHelper.is_multiplayer: _sync_movement_with_network()
+	if true: #NetworkHelper.is_multiplayer: 
+		_sync_movement_with_network()
 
 #region overrides
 func calculate_move_direction() -> Vector3:
@@ -104,7 +112,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _sync_movement_with_network() -> void:
-	rpc('update_position', global_transform.origin, rotation.y, 0.0)
+#	rpc('update_position', global_transform.origin, rotation.y, 0.0)
+	SteamNetwork.rpc_on_server(self, 'update_position', [global_transform.origin, rotation.y, 0.0])
 
 
 remote func server_update_transform(new_transform: Transform) -> void:

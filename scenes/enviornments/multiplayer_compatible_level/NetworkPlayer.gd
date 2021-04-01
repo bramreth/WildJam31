@@ -1,5 +1,5 @@
 extends Spatial
-class_name NetworkPlayer
+#class_name NetworkPlayer
 
 var player_name:String = ''
 
@@ -10,7 +10,7 @@ var _target_rotation_z:float = 0
 
 func _ready() -> void:
 	_target_global_pos = global_transform.origin
-	NetworkHelper.connect("player_left", self, "_remove_player")
+#	NetworkHelper.connect("player_left", self, "_remove_player")
 
 
 func _remove_player(player_id:int) -> void:

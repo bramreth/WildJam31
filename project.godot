@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/enviornments/Level.gd"
 }, {
-"base": "Spatial",
-"class": "NetworkPlayer",
-"language": "GDScript",
-"path": "res://scenes/enviornments/multiplayer_compatible_level/NetworkPlayer.gd"
-}, {
 "base": "KinematicBody",
 "class": "Player",
 "language": "GDScript",
@@ -32,7 +27,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "CurveTween": "",
 "Level": "",
-"NetworkPlayer": "",
 "Player": ""
 }
 

@@ -31,6 +31,13 @@ var _target_rotation_y:float = 0
 var _target_rotation_z:float = 0
 
 func _ready() -> void:
+	SteamNetwork.register_rpcs(self,
+		[
+			["update_position", SteamNetwork.PERMISSION.CLIENT_ALL],
+#			["update_ready_players", SteamNetwork.PERMISSION.SERVER],
+#			["start_game", SteamNetwork.PERMISSION.SERVER],
+		]
+	)
 	if NetworkHelper.is_multiplayer and not get_tree().is_network_server():
 		_setup_network_enemy()
 
@@ -59,7 +66,8 @@ func _physics_process(_delta: float) -> void:
 		_handle_movement(_delta)
 	elif NetworkHelper.is_multiplayer and get_tree().is_network_server():
 		_handle_movement(_delta)
-		rpc('update_position', global_transform.origin, rotation.y, 0.0)
+		SteamNetwork.rpc_on_server(self, 'update_position', [global_transform.origin, rotation.y, 0.0])
+#		rpc('update_position', global_transform.origin, rotation.y, 0.0)
 	else:
 		_sync_position()
 	

@@ -6,19 +6,27 @@ onready var local_player:KinematicBody = players.get_child(0)
 
 func _ready() -> void:
 	randomize()
+	SteamNetwork.register_rpcs(self,
+		[
+			["server_update_transform", SteamNetwork.PERMISSION.CLIENT_ALL],
+#			["update_ready_players", SteamNetwork.PERMISSION.SERVER],
+#			["start_game", SteamNetwork.PERMISSION.SERVER],
+		]
+	)
+	
 	if true:#NetworkHelper.is_multiplayer:
-		players.get_child(0).name  = String(get_tree().get_network_unique_id()) #Sets the local player's node name to their network ID
+		players.get_child(0).name  = String(SteamLobby._my_steam_id) #Sets the local player's node name to their network ID
 		_setup_multiplayer()
-		if get_tree().is_network_server(): _move_player_to_spawn_position(local_player)
-		else: rpc_id(1, 'request_respawn')
+		if SteamNetwork.is_server(): _move_player_to_spawn_position(local_player)
+#		else: rpc_id(1, 'request_respawn')
 	else:
 		_move_player_to_spawn_position(local_player)
 
 
 #Network logic
 func _setup_multiplayer() -> void:
-	NetworkHelper.connect("player_joined", self, "_spawn_network_player")
-	NetworkHelper.connect("server_disconnected", self, "_server_disconnected")
+#	NetworkHelper.connect("player_joined", self, "_spawn_network_player")
+#	NetworkHelper.connect("server_disconnected", self, "_server_disconnected")
 	for player_id in SteamNetwork.get_peers():
 			if SteamLobby._my_steam_id != player_id:
 				_spawn_network_player(player_id)
@@ -26,7 +34,7 @@ func _setup_multiplayer() -> void:
 
 func _spawn_network_player(player_id:int) -> void:
 	var new_player = network_player.instance()
-	new_player.name = String(Steam.getFriendPersonaName(player_id))
+	new_player.name = String(player_id)#Steam.getFriendPersonaName(player_id)
 	players.add_child(new_player)
 	if SteamNetwork.is_server():
 		_move_player_to_spawn_position(new_player)
@@ -39,8 +47,9 @@ func _move_player_to_spawn_position(player) -> void:
 
 
 remote func request_respawn() -> void:
-	var player_id:int = get_tree().get_rpc_sender_id()
-	var player = players.get_node(String(player_id))
+#	var player_id:int = get_tree().get_rpc_sender_id()
+	var player = players.get_node(String(SteamLobby._my_steam_id))
 	
 	_move_player_to_spawn_position(player)
-	player.rpc_id(player_id, 'server_update_transform', player.global_transform)
+#	SteamNetwork.rpc_on_server(self, 'server_update_transform', [player.global_transform])
+#	player.rpc_id(player_id, 'server_update_transform', player.global_transform)
