@@ -46,27 +46,10 @@ func _update_lobby(_steam_lobby_id):
 			lobby_players.get_child(player_index).set_player(members[player_index])
 		else:
 			lobby_players.get_child(player_index).set_player(null)
-
-func get_friends():
-
-	var flist = []
-	for i in range(Steam.getFriendCount()):
-		flist.append(Steam.getFriendByIndex(i, 4))
-	return flist
-	
-func filter_friends():
-	var flist = get_friends()
-	var new_flist = []
-	for f in flist:
-		if Steam.getFriendPersonaName(f) in ["sucubutplug", "SuperFryGuy", "eggsavior", "Darkmax"]:
-			new_flist.append(f)
-	return new_flist
-
 	
 func _on_lobby_created(lobby_id):
 	_update_lobby(lobby_id)
 	print(lobby_id)
-
 
 func _on_invite_pressed():
 	if SteamLobby.in_lobby():
@@ -86,7 +69,6 @@ func register_ready_player(caller:int, steam_id:int) -> void:
 		SteamNetwork.rpc_all_clients(self, 'update_ready_players', [_ready_players])
 		if len(_ready_players) == len(SteamNetwork.get_peers().keys()):
 			host_begin_countdown()
-		printt(len(_ready_players), len(SteamNetwork.get_peers().keys()))
 
 func host_begin_countdown():
 	var msgs = ["game starting", "3", "2", "1"]
@@ -97,7 +79,7 @@ func host_begin_countdown():
 	
 func start_game(caller:int):
 	# TODO start the game
-	get_tree().quit()
+	Scene.change(Scene.STEAM_MULTIPLAYER)
 	
 
 func update_ready_players(caller:int, ready_players:Array) -> void:

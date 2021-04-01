@@ -6,7 +6,7 @@ var ammo = null
 
 var new_ammo = 0
 
-var starting_ammo = ["pencil", "balloon"]
+var starting_ammo = ["pencil"]
 var ammo_amounts = {}
 
 var ammo_slots = {}

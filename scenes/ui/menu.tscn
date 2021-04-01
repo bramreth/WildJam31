@@ -11,7 +11,7 @@
 [ext_resource path="res://scenes/ui/JoinGameDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/ui/menugrad.tres" type="Texture" id=10]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("loading_overlay:color")
@@ -404,7 +404,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/dip_to_black = SubResource( 3 )
+anims/dip_to_black = SubResource( 1 )
 
 [node name="JoinGameDialog" parent="." instance=ExtResource( 9 )]
 anchor_left = 0.5
