@@ -18,6 +18,7 @@ remote func client_has_shot(shooting_client, rof, spread):
 	SteamNetwork.rpc_all_clients(self, 'shoot_event', [shooting_client, rof, spread])
 	
 remote func shoot_event(server_id, shooting_client, rof, spread):
+	if shooting_client == server_id: return
 	get_or_init_client(shooting_client).shoot(rof, spread)
 
 func get_or_init_client(client_id):
