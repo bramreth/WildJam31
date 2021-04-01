@@ -7,7 +7,7 @@ func _ready():
 	$camera.update_health(health, armor)
 	SteamNetwork.register_rpcs(self,
 		[
-			["update_position", SteamNetwork.PERMISSION.CLIENT_ALL],
+			["update_position", SteamNetwork.PERMISSION.SERVER],
 #			["update_ready_players", SteamNetwork.PERMISSION.SERVER],
 #			["start_game", SteamNetwork.PERMISSION.SERVER],
 		]
@@ -113,6 +113,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _sync_movement_with_network() -> void:
 #	rpc('update_position', global_transform.origin, rotation.y, 0.0)
+#	if not SteamNetwork.is_server():
 	SteamNetwork.rpc_on_server(self, 'update_position', [global_transform.origin, rotation.y, 0.0])
 
 

@@ -89,7 +89,7 @@ func _handle_movement(_delta:float) -> void:
 
 
 #Network syncing
-remote func update_position(global_position:Vector3, rotation_y:float, rotation_z:float) -> void:
+remote func update_position(client_id: int, global_position:Vector3, rotation_y:float, rotation_z:float) -> void:
 	_target_global_pos = global_position
 	_target_rotation_y = rotation_y
 	_target_rotation_z = rotation_z
