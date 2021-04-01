@@ -74,10 +74,8 @@ remote func update_position(id, global_position:Vector3, rotation_y:float, rotat
 	_target_rotation_z = rotation_z
 
 
-remote func shoot(id) -> void:
-	print(id, name)
-	if id == name:
-		$GunRig.shoot()
+func shoot(rof, spread) -> void:
+	$GunRig.shoot(rof, spread)
 	
 remote func reload() -> void:
 	$GunRig.reload()
@@ -879,7 +877,9 @@ period = 8.0
 persistence = 0.2
 lacunarity = 3.0
 
-[node name="NetworkPlayer" type="Spatial"]
+[node name="NetworkPlayer" type="Spatial" groups=[
+"network_player",
+]]
 script = SubResource( 1 )
 
 [node name="NamePlate" type="Sprite3D" parent="."]

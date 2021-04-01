@@ -44,7 +44,7 @@ script = ExtResource( 9 )
 [node name="Navigation" type="Navigation" parent="Level"]
 
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Level/Navigation"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0353, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6358, 0, 0 )
 navmesh = SubResource( 1 )
 
 [node name="Spatial" parent="Level/Navigation/NavigationMeshInstance" instance=ExtResource( 7 )]
@@ -66,7 +66,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8982, 8.47272, 0 )
 [node name="Spawns" type="Node" parent="."]
 
 [node name="PlayerSpawn" parent="Spawns" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 39.7507, 0, 24.5555 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0281, 0, 24.5555 )
 
 [node name="PlayerSpawn2" parent="Spawns" instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -30.2768, 0, -22.4391 )
