@@ -115,9 +115,10 @@ var frame_updater = 0
 func _sync_movement_with_network(_delta) -> void:
 	frame_updater += _delta
 	#20 times per second post data
-	if frame_updater > 0.25:
+	if frame_updater > 0.1:
 		frame_updater = 0
 		SteamRpc.tell_server_moved(global_transform.origin, rotation.y, 0.0)
+		SteamRpc.send_ping()
 #	rpc('update_position', global_transform.origin, rotation.y, 0.0)
 #	if not SteamNetwork.is_server():
 #	SteamNetwork.rpc_on_server(self, 'update_position', [global_transform.origin, rotation.y, 0.0])

@@ -1,7 +1,8 @@
 extends Node
 
 var network_players = {}
-
+var pinging = false
+var ping_time = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	SteamNetwork.register_rpcs(self,
@@ -10,8 +11,28 @@ func _ready():
 			["shoot_event",  SteamNetwork.PERMISSION.SERVER],
 			["client_has_moved",  SteamNetwork.PERMISSION.CLIENT_ALL],
 			["move_event",  SteamNetwork.PERMISSION.SERVER],
+			["ping_recieved",  SteamNetwork.PERMISSION.CLIENT_ALL],
+			["ping_reply",  SteamNetwork.PERMISSION.SERVER],
 		]
 	)
+	
+func _process(delta):
+	if pinging:
+		ping_time += delta
+	
+func send_ping():
+	pinging = true
+	ping_time = 0
+	SteamNetwork.rpc_on_server(self, 'ping_recieved', [])
+	
+func ping_recieved(id):
+	SteamNetwork.rpc_on_client(id, self, "ping_reply")
+	
+func ping_reply(source):
+	prints("PING TIME:", ping_time, "ms")
+	pinging = false
+	ping_time = 0
+	
 	
 func tell_server_shot(rof, spread):
 	SteamNetwork.rpc_on_server(self, 'client_has_shot', [rof, spread])
