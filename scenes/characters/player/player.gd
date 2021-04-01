@@ -112,7 +112,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _sync_movement_with_network() -> void:
-	pass
+	SteamRpc.tell_server_moved(global_transform.origin, rotation.y, 0.0)
 #	rpc('update_position', global_transform.origin, rotation.y, 0.0)
 #	if not SteamNetwork.is_server():
 #	SteamNetwork.rpc_on_server(self, 'update_position', [global_transform.origin, rotation.y, 0.0])
