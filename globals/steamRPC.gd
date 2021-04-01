@@ -40,10 +40,16 @@ func ping_reply(source):
 	
 	
 func tell_server_shot(rof, spread):
-	SteamNetwork.rpc_on_server(self, 'client_has_shot', [rof, spread])
+	if SteamNetwork.is_server():
+		client_has_shot(SteamLobby._my_steam_id, rof, spread)
+	else:
+		SteamNetwork.rpc_on_server(self, 'client_has_shot', [rof, spread])
 	
 func tell_server_moved(global_position:Vector3, rotation_y:float, rotation_z:float):
-	SteamNetwork.rpc_on_server(self, 'client_has_moved', [global_position, rotation_y, rotation_z])
+	if SteamNetwork.is_server():
+		client_has_moved(SteamLobby._my_steam_id, global_position, rotation_y, rotation_z)
+	else:
+		SteamNetwork.rpc_on_server(self, 'client_has_moved', [global_position, rotation_y, rotation_z])
 	
 func client_has_shot(shooting_client, rof, spread):
 	SteamNetwork.rpc_all_clients(self, 'shoot_event', [shooting_client, rof, spread])
