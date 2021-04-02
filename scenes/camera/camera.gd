@@ -69,7 +69,8 @@ func fire_bullet(radius:float) -> void:
 			SteamRpc.tell_server_shot(
 				gun.selected_ammo.get_ammo().rof, 
 				shot_raycast.get_collision_point(), 
-				shot_raycast.get_collision_normal()
+				shot_raycast.get_collision_normal(),
+				gun.selected_ammo.get_ammo().name
 			)
 		ParticleEventBus.request_particles(
 			[ParticleEventBus.HIT, ParticleEventBus.CLOUD], 

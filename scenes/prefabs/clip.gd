@@ -15,6 +15,9 @@ onready var active_slot = get_node("held_ammo/ammo_slot1")
 signal init()
 signal added_ammo(slot)
 
+func get_icon_by_name(ammo_name: String):
+	return $ammo_container.get_node(ammo_name).icon
+
 func equip_ammo(name_in: String):
 	var chosen = $ammo_container.get_node(name_in).duplicate()
 	if chosen == null:

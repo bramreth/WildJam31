@@ -24,12 +24,21 @@ func update_position(global_position:Vector3, rotation_y:float, rotation_x:float
 	_target_rotation_x = rotation_x
 
 
-func shoot(rof, hit_loc, normal) -> void:
+func shoot(rof, hit_loc, normal, ammo_name) -> void:
 	$GunRig.shoot(rof)
 	ParticleEventBus.request_particles(
 			[ParticleEventBus.HIT, ParticleEventBus.CLOUD], 
 			hit_loc, 
 			{'norm': normal}
+			)
+	
+	ParticleEventBus.request_particles(
+			[ParticleEventBus.SPRITE],
+			hit_loc, 
+			{
+				'norm': normal,
+				'icon': get_tree().get_nodes_in_group("player_ammo").front().get_icon_by_name(ammo_name)
+			}
 			)
 
 
