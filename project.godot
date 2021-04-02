@@ -38,9 +38,9 @@ config/icon="res://assets/kenshape_assets/gun/x gun.png"
 
 [autoload]
 
-SteamInit="*res://addons/GodotSteamHL/steam_init.gd"
-SteamLobby="*res://addons/GodotSteamHL/steam_lobby.gd"
-SteamNetwork="*res://addons/GodotSteamHL/steam_network.gd"
+SteamInit="*res://globals/steam_init.gd"
+SteamLobby="*res://globals/steam_lobby.gd"
+SteamNetwork="*res://globals/steam_network.gd"
 Game="*res://globals/Game.gd"
 System="*res://globals/System.gd"
 Event="*res://globals/Event.gd"

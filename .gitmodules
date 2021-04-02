@@ -1,6 +1,3 @@
 [submodule "godot_tools"]
 	path = godot_tools
 	url = https://github.com/bramreth/godot_tools.git
-[submodule "addons/GodotSteamHL"]
-	path = addons/GodotSteamHL
-	url = https://github.com/JDare/GodotSteamHL.git
