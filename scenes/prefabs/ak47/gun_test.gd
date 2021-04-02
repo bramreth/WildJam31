@@ -33,8 +33,6 @@ func _process(delta):
 	if not $AnimationPlayer.is_playing() and not out:
 		if Input.is_action_pressed("click"):
 			if $animated_gun/ak47/clip/animclip.can_fire():
-				if SteamLobby.in_lobby():
-					SteamRpc.tell_server_shot(selected_ammo.get_ammo().rof, spread)
 				$gun_sounds/shot.pitch_scale = ((3 * selected_ammo.get_ammo().rof) + rand_range(-0.02,0.02))
 
 				$gun_sounds/shot.max_db = 1.0 - (6*spread)

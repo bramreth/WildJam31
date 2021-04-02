@@ -20,6 +20,8 @@ func _ready():
 			["ping_reply",  SteamNetwork.PERMISSION.SERVER],
 			["client_ready",  SteamNetwork.PERMISSION.CLIENT_ALL],
 			["all_ready",  SteamNetwork.PERMISSION.SERVER],
+			["client_particle",  SteamNetwork.PERMISSION.CLIENT_ALL],
+			["particle_event",  SteamNetwork.PERMISSION.SERVER],
 		]
 	)
 	
@@ -65,10 +67,9 @@ func ping_reply(source):
 	pinging = false
 	ping_time = 0
 	
-	
-func tell_server_shot(rof, spread):
+func tell_server_shot(rof, hit_loc, normal):
 	if not all_ready: return
-	SteamNetwork.rpc_on_server(self, 'client_has_shot', [rof, spread])
+	SteamNetwork.rpc_on_server(self, 'client_has_shot', [rof, hit_loc, normal])
 		
 func tell_server_reload():
 	if not all_ready: return
@@ -78,9 +79,9 @@ func tell_server_moved(global_position:Vector3, rotation_y:float, rotation_z:flo
 	if not all_ready: return
 	SteamNetwork.rpc_on_server(self, 'client_has_moved', [global_position, rotation_y, rotation_z])
 	
-func client_has_shot(shooting_client, rof, spread):
+func client_has_shot(shooting_client, rof, hit_loc, normal):
 	if not all_ready: return
-	SteamNetwork.rpc_all_clients(self, 'shoot_event', [shooting_client, rof, spread])
+	SteamNetwork.rpc_all_clients(self, 'shoot_event', [shooting_client, rof, hit_loc, normal])
 	
 func client_has_reloaded(client):
 	if not all_ready: return
@@ -90,10 +91,10 @@ func client_has_moved(moving_client, global_position, rotation_y, rotation_z):
 	if not all_ready: return
 	SteamNetwork.rpc_all_clients(self, 'move_event', [moving_client, global_position, rotation_y, rotation_z])
 	
-func shoot_event(server_id, shooting_client, rof, spread):
+func shoot_event(server_id, shooting_client, rof, hit_loc, normal):
 	if not all_ready: return
 	if shooting_client == SteamLobby._my_steam_id: return
-	get_or_init_client(shooting_client).shoot(rof, spread)
+	get_or_init_client(shooting_client).shoot(rof, hit_loc, normal)
 	
 func reload_event(server_id, client):
 	if not all_ready: return

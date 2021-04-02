@@ -24,8 +24,13 @@ func update_position(global_position:Vector3, rotation_y:float, rotation_x:float
 	_target_rotation_x = rotation_x
 
 
-func shoot(rof, spread) -> void:
-	$GunRig.shoot(rof, spread)
+func shoot(rof, hit_loc, normal) -> void:
+	$GunRig.shoot(rof)
+	ParticleEventBus.request_particles(
+			[ParticleEventBus.HIT, ParticleEventBus.CLOUD], 
+			hit_loc, 
+			{'norm': normal}
+			)
 
 
 func reload() -> void:

@@ -3,7 +3,7 @@ extends Spatial
 func _ready():
 	randomize()
 
-func shoot(rate_of_fire, spread):
+func shoot(rate_of_fire, spread = 1):
 	$Gun/AnimationPlayer.play("reload")
 	$Gun/AnimationPlayer.seek(0, true)
 	$Gun/gun_sounds/shot.pitch_scale = ((3 * rate_of_fire) + rand_range(-0.02,0.02))

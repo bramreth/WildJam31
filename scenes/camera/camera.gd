@@ -65,6 +65,12 @@ func fire_bullet(radius:float) -> void:
 	shot_raycast.force_raycast_update()
 	if shot_raycast.is_colliding():
 		debug_hit_detector.global_transform.origin = shot_raycast.get_collision_point()
+		if SteamLobby.in_lobby():
+			SteamRpc.tell_server_shot(
+				gun.selected_ammo.get_ammo().rof, 
+				shot_raycast.get_collision_point(), 
+				shot_raycast.get_collision_normal()
+			)
 		ParticleEventBus.request_particles(
 			[ParticleEventBus.HIT, ParticleEventBus.CLOUD], 
 			shot_raycast.get_collision_point(), 
