@@ -24,14 +24,18 @@ func update_position(global_position:Vector3, rotation_y:float, rotation_x:float
 	_target_rotation_x = rotation_x
 
 
-remote func shoot() -> void:
-	pass
+func shoot(rof, spread) -> void:
+	$GunRig.shoot(rof, spread)
+
+
+func reload() -> void:
+	$GunRig.reload()
 
 
 func _physics_process(delta:float) -> void:
 	_sync_position()
 	_scale_nameplate()
-	
+
 
 
 func _sync_position() -> void:
