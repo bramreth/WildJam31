@@ -4,7 +4,6 @@ var target = Vector2.ZERO
 
 func air_time(time_in):
 	translation.y = clamp(13 * pow(time_in, 0.5), 0, 10)
-	print(translation.y)
 
 func try_drop():
 	if translation.y > 0 and not $CurveTween.is_active():

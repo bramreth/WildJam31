@@ -20,7 +20,6 @@ func _ready():
 			$Particles.draw_pass_1.material.albedo_color = Color.yellow
 		dat.rarities.EPIC:
 			$Particles.draw_pass_1.material.albedo_color = Color.fuchsia
-	print($Particles.draw_pass_1.material.albedo_color)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

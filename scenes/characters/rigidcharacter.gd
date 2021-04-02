@@ -51,7 +51,6 @@ func _integrate_forces(state):
 		fallg = state.linear_velocity.y
 	elif fallg != 0 and state.linear_velocity.y > -50:
 		damage(pow(abs(fallg)-50, 0.75))
-		print(pow(abs(fallg)-50, 0.75))
 		fallg = 0
 	if state.linear_velocity.y < -200:
 		state.linear_velocity.y = -200

@@ -33,7 +33,8 @@ func _process(delta):
 	if not $AnimationPlayer.is_playing() and not out:
 		if Input.is_action_pressed("click"):
 			if $animated_gun/ak47/clip/animclip.can_fire():
-				SteamRpc.tell_server_shot(selected_ammo.get_ammo().rof, spread)
+				if SteamLobby.in_lobby():
+					SteamRpc.tell_server_shot(selected_ammo.get_ammo().rof, spread)
 				$gun_sounds/shot.pitch_scale = ((3 * selected_ammo.get_ammo().rof) + rand_range(-0.02,0.02))
 
 				$gun_sounds/shot.max_db = 1.0 - (6*spread)
@@ -107,7 +108,8 @@ func bullet_spread():
 	spread = clamp(spread + 0.1, 0, 1)
 	
 func reload():
-	SteamRpc.tell_server_reload()
+	if SteamLobby.in_lobby():
+		SteamRpc.tell_server_reload()
 	selected_ammo = $animated_gun/ak47/clip/animclip.get_ammo_data()
 	if selected_ammo.reserve > 0:
 		$animated_gun/ak47/clip/animclip.reload_current()

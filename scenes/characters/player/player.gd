@@ -48,7 +48,7 @@ func _physics_process(_delta: float) -> void:
 		$WalkCarpet.playback_speed = 0.2 + (current_speed/ 20) + (int(is_on_wall()) * 0.6)
 		$WalkCarpet.play("walk")
 	
-	if true: #NetworkHelper.is_multiplayer: 
+	if SteamLobby.in_lobby(): #NetworkHelper.is_multiplayer: 
 		_sync_movement_with_network(_delta)
 
 #region overrides
