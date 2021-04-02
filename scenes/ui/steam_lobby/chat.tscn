@@ -6,6 +6,7 @@
 margin_top = 506.0
 margin_right = 440.0
 margin_bottom = 960.0
+rect_min_size = Vector2( 140, 0 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -15,6 +16,7 @@ __meta__ = {
 margin_right = 440.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
+mouse_filter = 1
 scroll_active = false
 scroll_following = true
 
@@ -22,6 +24,7 @@ scroll_following = true
 margin_top = 204.0
 margin_right = 440.0
 margin_bottom = 228.0
+mouse_filter = 1
 max_length = 32
 __meta__ = {
 "_edit_use_anchors_": false

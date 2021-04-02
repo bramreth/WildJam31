@@ -1,20 +1,77 @@
 extends HBoxContainer
 var uid = 0
 var blank = preload("res://godot_tools/CommonAssets/buttons/qmark.png")
+export var collapsed = false
+var hidden = false
+var state = 0
+var in_game = false
 
-func set_player(friendID):
+signal invite(id)
+signal join(id)
+
+func _ready():
+	$name.visible = not collapsed
+	
+func collapse():
+#	$name/player.clip_text = true
+	$name/status.clip_text = true
+	$name/player.rect_size.x = 140
+	$name.visible = false
+	if uid != SteamLobby._my_steam_id:
+		$VBoxContainer.visible = false
+	
+func expand():
+	if hidden: return
+#	$name/player.clip_text = false
+	$name/status.clip_text = false
+	$name/player.rect_size.x = 440
+	$name.visible = true
+	if uid != SteamLobby._my_steam_id:
+		$VBoxContainer.visible = true
+	
+func set_player(friendID, hidden_in = false):
+	uid = friendID
 	if friendID == null:
 		$PlayerProfile.texture = blank
-		$player.text = "empty spot"
+		$name/player.text = "empty spot"
+		visible = false
 		return
-	$player.set("custom_colors/font_color", Color.white)
-	uid = friendID
-	$player.text = Steam.getFriendPersonaName(friendID)
+	visible = true
+	state = Steam.getFriendPersonaState(uid)
+#	print(Steam.getFriendRichPresence(uid))
+	$name/player.set("custom_colors/font_color", Color.white)
+	$name/player.text = Steam.getFriendPersonaName(friendID)
 	Steam.connect("avatar_loaded", self, "loaded_avatar")
-	Steam.getPlayerAvatar(2, friendID)
+	if uid == SteamLobby._my_steam_id:
+		$VBoxContainer.visible = false
+		$name/status.visible = false
+		$PlayerProfile.rect_min_size = Vector2(100,100)
+		Steam.getPlayerAvatar(3, friendID)
+	else:
+		Steam.getPlayerAvatar(2, friendID)
+		
+	var play_dat = Steam.getFriendGamePlayed(uid)
+	if play_dat.has("id") and play_dat.has("lobby"):
+		if Steam.getAppID() == play_dat["id"]:
+			$VBoxContainer/join.visible = true
+			in_game = true
+			$name/status.text = "All Out Ammo"
+			$name/status.set("custom_colors/font_color", Color.forestgreen)
+		else:
+			$name/status.text = "in another game"
+			$name/status.set("custom_colors/font_color", Color.dodgerblue)
+	else:
+		if state > 0:
+			$name/status.set("custom_colors/font_color", Color.dodgerblue)
+			$name/status.text = "online"
+		else:
+			$name/status.set("custom_colors/font_color", Color.gray)
+			$name/status.text = "offline"
+	hidden = hidden_in
+	collapse()
 	
 func set_ready():
-	$player.set("custom_colors/font_color", Color.limegreen)
+	$name/player.set("custom_colors/font_color", Color.limegreen)
 
 # Avatar is ready for display
 func loaded_avatar(id: int, size: int, buffer: PoolByteArray) -> void:
@@ -51,3 +108,20 @@ func loaded_avatar(id: int, size: int, buffer: PoolByteArray) -> void:
 		print("Large Avatar - 128 x 128 pixels (Retrieved as "+str(size)+" pixels)")
 		$PlayerProfile.set_texture(AVATAR_TEXTURE)
 
+
+
+func _on_invite_pressed():
+	emit_signal("invite", uid)
+
+
+func _on_join_pressed():
+	var play_dat = Steam.getFriendGamePlayed(uid)
+	if play_dat.has("id") and play_dat.has("lobby"):
+		if Steam.getAppID() == play_dat["id"]:
+			emit_signal("join", play_dat["lobby"])
+
+
+func _on_PlayerProfile_gui_input(event):
+	if event is InputEventMouseButton and uid == SteamLobby._my_steam_id:
+		if event.pressed:
+			SteamLobby.leave_lobby()

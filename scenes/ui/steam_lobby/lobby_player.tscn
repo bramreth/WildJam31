@@ -3,32 +3,84 @@
 [ext_resource path="res://scenes/ui/steam_lobby/lobby_player.gd" type="Script" id=1]
 [ext_resource path="res://godot_tools/CommonAssets/buttons/qmark.png" type="Texture" id=2]
 
-[node name="lobby_player" type="HBoxContainer"]
+[node name="lobby_player" type="HBoxContainer" groups=[
+"lobby_profile",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 440, 88 )
+rect_min_size = Vector2( 140, 88 )
+size_flags_horizontal = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="player" type="Label" parent="."]
-margin_left = 1755.0
-margin_top = 533.0
-margin_right = 1828.0
-margin_bottom = 547.0
-size_flags_horizontal = 10
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "empty spot"
+[node name="spacer" type="Control" parent="."]
+margin_right = 12.0
+margin_bottom = 1080.0
+rect_min_size = Vector2( 12, 0 )
 
 [node name="PlayerProfile" type="TextureRect" parent="."]
-margin_left = 1832.0
-margin_top = 496.0
-margin_right = 1920.0
-margin_bottom = 584.0
-rect_min_size = Vector2( 88, 88 )
+margin_left = 16.0
+margin_top = 507.0
+margin_right = 82.0
+margin_bottom = 573.0
+rect_min_size = Vector2( 66, 66 )
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="name" type="VBoxContainer" parent="."]
+margin_left = 86.0
+margin_right = 226.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+
+[node name="player" type="Label" parent="name"]
+margin_right = 140.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 140, 0 )
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "empty spot asldfkasdlkfjs"
+clip_text = true
+
+[node name="status" type="Label" parent="name"]
+margin_top = 18.0
+margin_right = 140.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+text = "online"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 1872.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_horizontal = 10
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="invite" type="Button" parent="VBoxContainer"]
+margin_right = 48.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+text = "invite"
+
+[node name="join" type="Button" parent="VBoxContainer"]
+visible = false
+margin_top = 35.0
+margin_right = 958.0
+margin_bottom = 66.0
+size_flags_vertical = 3
+text = "join"
+[connection signal="gui_input" from="PlayerProfile" to="." method="_on_PlayerProfile_gui_input"]
+[connection signal="pressed" from="VBoxContainer/invite" to="." method="_on_invite_pressed"]
+[connection signal="pressed" from="VBoxContainer/join" to="." method="_on_join_pressed"]

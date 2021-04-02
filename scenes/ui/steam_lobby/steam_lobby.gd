@@ -1,25 +1,47 @@
 extends Control
 
-onready var root = get_node("MarginContainer/menu_root")
-onready var lobby_players = root.get_node("lobby_members/lobby_players/")
+onready var lobby_players = get_node("lobby_members/lobby_players")
 export (PackedScene) var lobby_player
 var friends = []
 
 var _ready_players:Array = []
+var origin = Vector2.ZERO
+var tuck_point = Vector2.ZERO
 
+var collapsed = true
+var tuck_margin = 140
+var full_margin = 440
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if collapsed:
+		margin_left = -tuck_margin
+		collapse()
+	else:
+		margin_left = -full_margin
+		expand()
 	randomize()
 	SteamLobby.connect("lobby_joined", self, "_update_lobby")
 	SteamLobby.connect("player_joined_lobby", self, "_update_lobby_from_player")
 	SteamLobby.connect("player_left_lobby", self, "_update_lobby_from_player")
 	SteamLobby.connect("lobby_join_requested", self, "_join_requested_lobby")
-
+	$lobby_members/you.set_player(SteamLobby._my_steam_id)
+	friends = get_friends()
+	for fren in friends:
+		var player = lobby_player.instance()
+		$lobby_members/ScrollContainer/friends.add_child(player)
+		player.set_player(fren)
+		if player.state > 0:
+			$lobby_members/ScrollContainer/friends.move_child(player, 0)
+		player.name = str(fren)
+		player.connect("join", self, "_join_requested_lobby")
+		player.connect("invite", self, "_invite_by_id")
+	for child in $lobby_members/ScrollContainer/friends.get_children():
+		if child.in_game:
+			$lobby_members/ScrollContainer/friends.move_child(child, 0)
 	for x in range(3):
 		var player = lobby_player.instance()
 		lobby_players.add_child(player)
 	SteamLobby.connect("lobby_created", self, "_on_lobby_created")
-	
 	SteamNetwork.register_rpcs(self,
 		[
 			["register_ready_player", SteamNetwork.PERMISSION.CLIENT_ALL],
@@ -27,6 +49,8 @@ func _ready():
 			["start_game", SteamNetwork.PERMISSION.SERVER],
 		]
 	)
+	create_lobby()
+	
 
 func _join_requested_lobby(lobby_id):
 	SteamLobby.leave_lobby()
@@ -36,16 +60,31 @@ func _update_lobby_from_player(steam_id):
 	_update_lobby(SteamLobby._steam_lobby_id)
 
 func _update_lobby(_steam_lobby_id):
+	print("BMARKER")
 	var members = []
 	for member in SteamLobby.get_lobby_members():
 		members.append(member)
-	root.get_node("lobby_members/party_count").text = "Party (" + str(len(members)) +"/4)"
+	get_node("lobby_members/party_count").text = "Party (" + str(len(members)) +"/4)"
 	for player_index in range(lobby_players.get_child_count()):
 		
-		if len(members) > player_index:
-			lobby_players.get_child(player_index).set_player(members[player_index])
+		if len(members) > player_index and members[player_index] != SteamLobby._my_steam_id:
+			
+			lobby_players.get_child(player_index).set_player(members[player_index], true)
 		else:
 			lobby_players.get_child(player_index).set_player(null)
+			
+	# hide lobby pals
+	var idlist = []
+	for child in $lobby_members/lobby_players.get_children():
+		idlist.append(child.uid)
+	for child in $lobby_members/ScrollContainer/friends.get_children():
+		if child.uid in idlist:
+			child.visible = false
+		else:
+			child.visible = true
+			
+func _invite_by_id(friend_id):
+	Steam.inviteUserToLobby(SteamLobby._steam_lobby_id, friend_id)
 	
 func _on_lobby_created(lobby_id):
 	_update_lobby(lobby_id)
@@ -61,6 +100,11 @@ func _on_ready_pressed():
 	SteamNetwork.rpc_on_server(self, 'register_ready_player', [SteamNetwork._my_steam_id])
 	print("ready pressed")
 
+func get_friends():
+	var flist = []
+	for i in range(Steam.getFriendCount()):
+		flist.append(Steam.getFriendByIndex(i, 4))
+	return flist
 
 func register_ready_player(caller:int, steam_id:int) -> void:
 	if not _ready_players.has(steam_id):
@@ -99,7 +143,38 @@ func _input(event):
 		print('STEAMLOBBY Owner Steam ID: ' + String(SteamLobby.get_owner()))
 		
 
-
-func _on_create_lobby_pressed():
+func create_lobby():
 	SteamLobby.leave_lobby()
 	SteamLobby.create_lobby(Steam.LOBBY_TYPE_FRIENDS_ONLY, 4)
+
+
+func _on_steam_lobby_mouse_exited():
+	collapse()
+	$CurveTween.play(0.25, margin_left, -tuck_margin)
+
+func _on_steam_lobby_mouse_entered():
+	expand()
+	$CurveTween.play(0.25, margin_left, -full_margin)
+
+func expand():
+	collapsed = false
+	for m in get_tree().get_nodes_in_group("lobby_profile"):
+		m.expand()
+	$lobby_members.rect_size.x = 440
+	$lobby_members/lobby_players.columns = 3
+#	$lobby_members/chat.visible = false
+#	$lobby_members/invite.visible = true
+	
+
+func collapse():
+	collapsed = true
+	for m in get_tree().get_nodes_in_group("lobby_profile"):
+		m.collapse()
+	$lobby_members.rect_size.x = 140
+	$lobby_members/lobby_players.columns = 1
+#	$lobby_members/chat.visible = false
+#	$lobby_members/invite.visible = false
+	
+
+func _on_CurveTween_curve_tween(sat):
+	margin_left = sat

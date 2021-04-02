@@ -9,6 +9,8 @@ onready var credits = $contents/credits
 onready var start_wave_selection:OptionButton = $contents/game_modes/list/wave/select
 onready var highscore:Label = $contents/game_modes/highscore/value
 func _ready():
+	$AnimationPlayer.seek(0.5, true)
+	$AnimationPlayer.play_backwards("dip_to_black")
 	NetworkHelper.connect("connected_to_server", self, "_connected_to_server")
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
