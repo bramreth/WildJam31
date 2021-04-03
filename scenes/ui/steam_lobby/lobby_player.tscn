@@ -81,6 +81,11 @@ margin_right = 958.0
 margin_bottom = 66.0
 size_flags_vertical = 3
 text = "join"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 [connection signal="gui_input" from="PlayerProfile" to="." method="_on_PlayerProfile_gui_input"]
 [connection signal="pressed" from="VBoxContainer/invite" to="." method="_on_invite_pressed"]
 [connection signal="pressed" from="VBoxContainer/join" to="." method="_on_join_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

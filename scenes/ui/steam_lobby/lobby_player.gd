@@ -37,7 +37,6 @@ func set_player(friendID, hidden_in = false):
 		visible = false
 		return
 	visible = true
-	state = Steam.getFriendPersonaState(uid)
 #	print(Steam.getFriendRichPresence(uid))
 	$name/player.set("custom_colors/font_color", Color.white)
 	$name/player.text = Steam.getFriendPersonaName(friendID)
@@ -49,24 +48,8 @@ func set_player(friendID, hidden_in = false):
 		Steam.getPlayerAvatar(3, friendID)
 	else:
 		Steam.getPlayerAvatar(2, friendID)
-		
-	var play_dat = Steam.getFriendGamePlayed(uid)
-	if play_dat.has("id") and play_dat.has("lobby"):
-		if Steam.getAppID() == play_dat["id"]:
-			$VBoxContainer/join.visible = true
-			in_game = true
-			$name/status.text = "All Out Ammo"
-			$name/status.set("custom_colors/font_color", Color.forestgreen)
-		else:
-			$name/status.text = "in another game"
-			$name/status.set("custom_colors/font_color", Color.dodgerblue)
-	else:
-		if state > 0:
-			$name/status.set("custom_colors/font_color", Color.dodgerblue)
-			$name/status.text = "online"
-		else:
-			$name/status.set("custom_colors/font_color", Color.gray)
-			$name/status.text = "offline"
+	
+	update_data()
 	hidden = hidden_in
 	collapse()
 	
@@ -125,3 +108,28 @@ func _on_PlayerProfile_gui_input(event):
 	if event is InputEventMouseButton and uid == SteamLobby._my_steam_id:
 		if event.pressed:
 			SteamLobby.leave_lobby()
+
+func update_data():
+	if uid == SteamLobby._my_steam_id or uid == null:
+		return
+	state = Steam.getFriendPersonaState(uid)
+	var play_dat = Steam.getFriendGamePlayed(uid)
+	if play_dat.has("id") and play_dat.has("lobby"):
+		if Steam.getAppID() == play_dat["id"]:
+			$VBoxContainer/join.visible = true
+			in_game = true
+			$name/status.text = "All Out Ammo"
+			$name/status.set("custom_colors/font_color", Color.forestgreen)
+		else:
+			$name/status.text = "in another game"
+			$name/status.set("custom_colors/font_color", Color.dodgerblue)
+	else:
+		if state > 0:
+			$name/status.set("custom_colors/font_color", Color.dodgerblue)
+			$name/status.text = "online"
+		else:
+			$name/status.set("custom_colors/font_color", Color.gray)
+			$name/status.text = "offline"
+
+func _on_Timer_timeout():
+	update_data()

@@ -31,7 +31,7 @@ func _ready():
 	for s in spawners:
 		spawners_map[s] = false
 		s.connect("all_dead", self, "spawner_done")
-	Event.emit_signal(Event.OPEN_DOORS)
+#	Event.emit_signal(Event.OPEN_DOORS)
 	Game.start_level()
 	if debug: 
 		Game.debug = true
