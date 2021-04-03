@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/fonts/pause_menu_buttons.tres" type="DynamicFont" id=8]
 [ext_resource path="res://scenes/ui/JoinGameDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/vignette/vignette.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/ui/overlay_container.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/ui/steam_lobby/steam_lobby.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/camera/Viewport.gd" type="Script" id=12]
 
 [sub_resource type="ViewportTexture" id=2]
@@ -407,13 +407,16 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 300, 100 )
 button_text = "Exit"
 
-[node name="Control" parent="." instance=ExtResource( 11 )]
+[node name="steam_lobby" parent="." instance=ExtResource( 11 )]
+anchor_left = 1.0
+margin_right = 0.0
+wipe_path = NodePath("../AnimationPlayer")
 
 [node name="loading_overlay" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0, 0, 0, 0 )
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

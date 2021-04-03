@@ -8,11 +8,14 @@ var _ready_players:Array = []
 var origin = Vector2.ZERO
 var tuck_point = Vector2.ZERO
 
+export (NodePath) var wipe_path
+var wipe = null
 var collapsed = true
 var tuck_margin = 140
 var full_margin = 440
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	wipe = get_node(wipe_path)
 	if collapsed:
 		margin_left = -tuck_margin
 		collapse()
@@ -125,6 +128,8 @@ func host_begin_countdown():
 	
 func start_game(caller:int):
 	# TODO start the game
+	wipe.play("dip_to_black")
+	yield(wipe, "animation_finished")
 	Scene.change(Scene.STEAM_MULTIPLAYER)
 	
 

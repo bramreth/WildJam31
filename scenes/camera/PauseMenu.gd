@@ -22,11 +22,14 @@ func pause_game() -> void:
 
 
 func unpause_game() -> void:
+	$main/VBoxContainer.show()
+	$settings_screen.hide()
 	$AnimationPlayer.playback_speed = 1.5
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if not NetworkHelper.is_multiplayer: get_tree().paused = false
 	$AnimationPlayer.play_backwards("pause")
 	$debug.show_debug(false)
+	
 
 
 func _on_Continue_pressed():

@@ -9,8 +9,8 @@ onready var credits = $contents/credits
 onready var start_wave_selection:OptionButton = $contents/game_modes/list/wave/select
 onready var highscore:Label = $contents/game_modes/highscore/value
 func _ready():
-#	$AnimationPlayer.seek(0.5, true)
-#	$AnimationPlayer.play_backwards("dip_to_black")
+	$AnimationPlayer.seek(0.5, true)
+	$AnimationPlayer.play_backwards("dip_to_black")
 	NetworkHelper.connect("connected_to_server", self, "_connected_to_server")
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -22,7 +22,10 @@ func _ready():
 	highscore.text = str(Game.get_highscore())
 
 func _on_single_player_on_pressed():
+	if $AnimationPlayer.is_playing(): return
 	$AnimationPlayer.play("dip_to_black")
+	yield($AnimationPlayer, "animation_finished")
+	Scene.change(Scene.SAMCADE)
 
 
 func _on_Options_on_pressed():
@@ -48,8 +51,9 @@ func _show(node:Control) -> void:
 			view.show()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "dip_to_black":
-		Scene.change(Scene.SAMCADE)
+	pass
+#	if anim_name == "dip_to_black":
+#		Scene.change(Scene.SAMCADE)
 
 func _on_social_meta_clicked(meta):
 	OS.shell_open(meta)
@@ -68,4 +72,6 @@ func _on_Join_on_pressed():
 
 
 func _connected_to_server() -> void:
+	$AnimationPlayer.play("dip_to_black")
+	yield($AnimationPlayer, "finished")
 	Scene.change(Scene.MULTIPLAYER)

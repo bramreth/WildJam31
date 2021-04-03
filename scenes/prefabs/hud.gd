@@ -10,8 +10,8 @@ onready var armor_bar:TextureProgress = $HealthDisplay/ArmorBar
 onready var armor_bar_label:Label = $HealthDisplay/ArmorBar/armor
 onready var armor_pqueue = $HealthDisplay/pqueuearmor
 
-onready var ammo_label:Label = $ammo
-onready var max_ammo_label:Label = $maxammo
+onready var ammo_label:Label = $ammocorner/ammo
+onready var max_ammo_label:Label = $ammocorner/maxammo
 
 func _ready():
 	get_tree().get_nodes_in_group("level").front().connect("wave_start", self, "wave_start")
@@ -85,16 +85,16 @@ func warp():
 
 func _on_gun_reload(clip, reserve):
 	preppreload(str(clip), str(reserve))
-	$clipflat/AnimationPlayer.play("reload")
+	$ammocorner/clipflat/AnimationPlayer.play("reload")
 
 
 func _on_gun_update_ammo(ammo_ref, clip, reserve, spread):
-	$ammo_type.texture = ammo_ref.icon
+	$ammocorner/ammo_type.texture = ammo_ref.icon
 	ammo_label.text = str(clip)
 	max_ammo_label.text = str(reserve)
 
 func _on_gun_change_ammo_type(ammo_ref, clip, reserve):
 	ammo_label.text = str(clip)
 	max_ammo_label.text = str(reserve)
-	$ammo_type.texture = ammo_ref.icon
-	$ammo_type/AnimationPlayer.play("set_ammo")
+	$ammocorner/ammo_type.texture = ammo_ref.icon
+	$ammocorner/ammo_type/AnimationPlayer.play("set_ammo")

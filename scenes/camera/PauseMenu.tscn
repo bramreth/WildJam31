@@ -230,17 +230,12 @@ margin_left = 710.0
 margin_top = 240.0
 margin_right = 1210.0
 margin_bottom = 866.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="TextureRect" parent="settings_screen"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -24.0
-margin_top = -20.0
-margin_right = 21.9999
-margin_bottom = 24.0
+margin_left = 250.0
+margin_top = 313.0
+margin_right = 250.0
+margin_bottom = 313.0
 
 [node name="settings_control" parent="settings_screen" instance=ExtResource( 5 )]
 anchor_right = 0.0
