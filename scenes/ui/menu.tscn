@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/ui/settings_menu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ui/menu.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/ui/JoinGameDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/vignette/vignette.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/ui/overlay_container.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/camera/Viewport.gd" type="Script" id=12]
 
 [sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("Viewport")
@@ -53,7 +54,7 @@ __meta__ = {
 anchor_right = 1.0
 margin_left = 78.0
 margin_top = 40.0
-margin_right = -50.0
+margin_right = -500.0
 margin_bottom = 842.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -83,6 +84,7 @@ __meta__ = {
 }
 
 [node name="highscore" type="HBoxContainer" parent="contents/game_modes"]
+visible = false
 margin_left = 1000.0
 margin_right = 1260.0
 margin_bottom = 70.0
@@ -107,8 +109,9 @@ text = "0"
 
 [node name="list" type="HBoxContainer" parent="contents/game_modes"]
 anchor_right = 1.0
-margin_right = -992.0
+margin_right = -542.0
 margin_bottom = 70.0
+size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -116,29 +119,32 @@ __meta__ = {
 [node name="single_player" parent="contents/game_modes/list" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 300.0
+margin_right = 398.0
 margin_bottom = 70.0
+size_flags_horizontal = 3
 button_text = "Play"
 
 [node name="wave" type="HBoxContainer" parent="contents/game_modes/list"]
-margin_left = 503.0
+margin_left = 402.0
 margin_right = 800.0
 margin_bottom = 70.0
+size_flags_horizontal = 3
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="contents/game_modes/list/wave"]
+margin_left = 101.0
 margin_top = 20.0
-margin_right = 264.0
+margin_right = 365.0
 margin_bottom = 50.0
 custom_fonts/font = ExtResource( 5 )
 text = "Start Wave"
 
 [node name="select" type="OptionButton" parent="contents/game_modes/list/wave"]
-margin_left = 268.0
-margin_right = 297.0
+margin_left = 369.0
+margin_right = 398.0
 margin_bottom = 70.0
 custom_fonts/font = ExtResource( 5 )
 
@@ -401,6 +407,8 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 300, 100 )
 button_text = "Exit"
 
+[node name="Control" parent="." instance=ExtResource( 11 )]
+
 [node name="loading_overlay" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -423,13 +431,14 @@ margin_top = -150.0
 margin_right = 225.0
 margin_bottom = 150.0
 
-[node name="Control" parent="." instance=ExtResource( 11 )]
-
-[node name="Viewport" type="Viewport" parent="."]
+[node name="Viewport" type="Viewport" parent="." groups=[
+"viewport",
+]]
 size = Vector2( 1920, 1080 )
 handle_input_locally = false
 msaa = 3
 render_target_v_flip = true
+script = ExtResource( 12 )
 
 [node name="Spatial" parent="Viewport" instance=ExtResource( 10 )]
 [connection signal="on_pressed" from="contents/game_modes/list/single_player" to="." method="_on_single_player_on_pressed"]

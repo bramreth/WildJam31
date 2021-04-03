@@ -18,6 +18,7 @@ var player_data_default:Dictionary = {
 	"video": {
 		"field_of_view": 70,
 		"full_screen": false,
+		"resolution": Vector2(1920, 1080)
 	}
 }
 onready var player_data:Dictionary = player_data_default.duplicate(true)
