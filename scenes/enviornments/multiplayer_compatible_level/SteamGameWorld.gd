@@ -4,17 +4,15 @@ onready var players = $Players
 onready var network_player:PackedScene = load("res://scenes/enviornments/multiplayer_compatible_level/NetworkPlayer.tscn")
 onready var local_player:KinematicBody = players.get_child(0)
 export (bool) var debug
+export(Resource) var level_env
+export(Resource) var reward_env
 
 func _ready() -> void:
 	Game.debug = debug
 	randomize()
-	SteamNetwork.register_rpcs(self,
-		[
-			["server_update_transform", SteamNetwork.PERMISSION.CLIENT_ALL],
-#			["update_ready_players", SteamNetwork.PERMISSION.SERVER],
-#			["start_game", SteamNetwork.PERMISSION.SERVER],
-		]
-	)
+	Event.connect(Event.START_WAVE, self, "start_wave")
+	Event.connect(Event.WARP, self, "goto_reward")
+	Event.connect(Event.RESPAWN, self, "respawn")
 	SteamRpc.notify_ready()
 	
 	if true:#NetworkHelper.is_multiplayer:
@@ -25,11 +23,25 @@ func _ready() -> void:
 	else:
 		_move_player_to_spawn_position(local_player)
 
+func start_wave():
+	pass
+	
+func goto_reward():
+	$RewardRoom.goto_reward(true)
+	$WorldEnvironment.environment = reward_env
+	local_player.global_transform = $RewardRoom.get_reward_spawn()
+	$Level.visible = false
+	$RewardRoom.visible = true
+	
+func respawn():
+	$WorldEnvironment.environment = level_env
+	local_player.global_transform = $Spawns.get_children()[randi() % $Spawns.get_child_count()].global_transform
+	local_player.global_transform.origin.y += 2
+	$Level.visible = true
+	$RewardRoom.visible = false
 
 #Network logic
 func _setup_multiplayer() -> void:
-#	NetworkHelper.connect("player_joined", self, "_spawn_network_player")
-#	NetworkHelper.connect("server_disconnected", self, "_server_disconnected")
 	for player_id in SteamNetwork.get_peers():
 			if SteamLobby._my_steam_id != player_id:
 				_spawn_network_player(player_id)
@@ -50,9 +62,5 @@ func _move_player_to_spawn_position(player) -> void:
 
 
 remote func request_respawn() -> void:
-#	var player_id:int = get_tree().get_rpc_sender_id()
 	var player = players.get_node(String(SteamLobby._my_steam_id))
-	
 	_move_player_to_spawn_position(player)
-#	SteamNetwork.rpc_on_server(self, 'server_update_transform', [player.global_transform])
-#	player.rpc_id(player_id, 'server_update_transform', player.global_transform)
