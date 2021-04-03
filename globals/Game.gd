@@ -51,8 +51,8 @@ func start_level():
 func get_highscore():
 	return player_data.game.highscore
 	
-func get_resolution():
-	return player_data.video.resolution
+#func get_resolution():
+#	return player_data.video.resolution
 
 func set_wave_selected_index(wave):
 	if wave >= 0 and wave < Game.MAX_WAVES:
@@ -79,14 +79,14 @@ func set_full_screen(on) -> void:
 	OS.window_fullscreen = on
 	System.update_player_data(player_data)
 	
-func set_resolution(res: Vector2):
-	var x = res[0]
-	var y = res[1]
-	OS.window_size = Vector2(x, y)
-	for v in get_tree().get_nodes_in_group("viewport"):
-		v.update_dim(Vector2(x, y))
-	player_data.video.resolution = Vector2(x, y)
-	System.update_player_data(player_data)
+#func set_resolution(res: Vector2):
+#	var x = res[0]
+#	var y = res[1]
+#	OS.window_size = Vector2(x, y)
+#	for v in get_tree().get_nodes_in_group("viewport"):
+#		v.update_dim(Vector2(x, y))
+#	player_data.video.resolution = Vector2(x, y)
+#	System.update_player_data(player_data)
 	
 	
 func get_field_of_view() -> bool:

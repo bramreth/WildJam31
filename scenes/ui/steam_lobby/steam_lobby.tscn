@@ -106,9 +106,9 @@ mouse_filter = 2
 
 [node name="invite" type="Button" parent="lobby_members"]
 visible = false
-margin_top = 148.0
+margin_top = 104.0
 margin_right = 440.0
-margin_bottom = 194.0
+margin_bottom = 141.0
 mouse_filter = 1
 text = "invite friend"
 clip_text = true
@@ -116,13 +116,15 @@ clip_text = true
 [node name="ScrollContainer" type="ScrollContainer" parent="lobby_members"]
 margin_top = 104.0
 margin_right = 440.0
-margin_bottom = 790.0
+margin_bottom = 461.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+scroll_horizontal_enabled = false
 
 [node name="friends" type="VBoxContainer" parent="lobby_members/ScrollContainer"]
 margin_right = 440.0
-margin_bottom = 686.0
+margin_bottom = 357.0
+rect_clip_content = true
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -131,26 +133,26 @@ __meta__ = {
 }
 
 [node name="HSeparator2" type="HSeparator" parent="lobby_members"]
-visible = false
-margin_top = 818.0
+margin_top = 465.0
 margin_right = 440.0
-margin_bottom = 822.0
+margin_bottom = 469.0
 mouse_filter = 2
-size_flags_vertical = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="chat" parent="lobby_members" instance=ExtResource( 5 )]
-margin_top = 794.0
-margin_bottom = 1039.0
+margin_top = 473.0
+margin_bottom = 718.0
 mouse_filter = 2
+size_flags_vertical = 0
 
 [node name="ready" type="Button" parent="lobby_members"]
-margin_top = 1043.0
+margin_top = 722.0
 margin_right = 440.0
 margin_bottom = 1080.0
-size_flags_vertical = 8
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "ready"
 clip_text = true
 

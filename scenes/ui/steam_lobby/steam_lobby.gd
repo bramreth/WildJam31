@@ -51,6 +51,8 @@ func _ready():
 	)
 	create_lobby()
 	
+#func update_dim(dim):
+#	rect_size.y = dim.y
 
 func _join_requested_lobby(lobby_id):
 	SteamLobby.leave_lobby()

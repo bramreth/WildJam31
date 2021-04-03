@@ -24,11 +24,11 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.392157 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("main/PauseMenuHeader:rect_position")
+tracks/1/path = NodePath("main/VBoxContainer/PauseMenuHeader:rect_position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2, 0.5 ),
 "transitions": PoolRealArray( 2.21914, 1, 1 ),
@@ -36,11 +36,11 @@ tracks/1/keys = {
 "values": [ Vector2( 785, -200 ), Vector2( 785, 200 ), Vector2( 785, 200 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("main/Continue:rect_position")
+tracks/2/path = NodePath("main/VBoxContainer/Continue:rect_position")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/keys = {
 "times": PoolRealArray( 0, 0.2, 0.3 ),
 "transitions": PoolRealArray( 2.5, 1, 1 ),
@@ -48,11 +48,11 @@ tracks/2/keys = {
 "values": [ Vector2( -2000, 400 ), Vector2( -760, 400 ), Vector2( 710, 400 ) ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("main/Settings:rect_position")
+tracks/3/path = NodePath("main/VBoxContainer/Settings:rect_position")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/keys = {
 "times": PoolRealArray( 0, 0.1, 0.3, 0.4 ),
 "transitions": PoolRealArray( 2.5, 2.5, 1, 1 ),
@@ -60,11 +60,11 @@ tracks/3/keys = {
 "values": [ Vector2( -2000, 520 ), Vector2( -2000, 520 ), Vector2( 760, 520 ), Vector2( 710, 520 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("main/Reset:rect_position")
+tracks/4/path = NodePath("main/VBoxContainer/Reset:rect_position")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/imported = false
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.5 ),
 "transitions": PoolRealArray( 2.5, 2.5, 1, 1 ),
@@ -72,11 +72,11 @@ tracks/4/keys = {
 "values": [ Vector2( -2000, 640 ), Vector2( -2000, 640 ), Vector2( 760, 640 ), Vector2( 710, 640 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("main/Quit:rect_position")
+tracks/5/path = NodePath("main/VBoxContainer/Quit:rect_position")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/keys = {
 "times": PoolRealArray( 0, 0.3, 0.5, 0.6 ),
 "transitions": PoolRealArray( 2.5, 2.5, 1, 1 ),
@@ -94,6 +94,18 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 0.5, 0.5 ),
 "update": 0,
 "values": [ 0.0, 1.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("main/VBoxContainer:rect_scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.2, 0.6 ),
+"transitions": PoolRealArray( 0.5, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1, 0 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="ShaderMaterial" id=2]
@@ -140,13 +152,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseMenuHeader" type="Label" parent="main"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -175.0
-margin_top = -200.0
-margin_right = 215.0
-margin_bottom = -132.0
+[node name="VBoxContainer" type="VBoxContainer" parent="main"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 400.0
+margin_top = 240.0
+margin_right = -400.0
+margin_bottom = -260.0
+rect_scale = Vector2( 1, 1e-05 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseMenuHeader" type="Label" parent="main/VBoxContainer"]
+margin_right = 1120.0
+margin_bottom = 68.0
+size_flags_vertical = 2
 custom_fonts/font = SubResource( 3 )
 text = "Paused"
 align = 1
@@ -155,15 +176,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Continue" type="Button" parent="main"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -2960.0
-margin_top = -140.0
-margin_right = -2460.0
-margin_bottom = -40.0
+[node name="Continue" type="Button" parent="main/VBoxContainer"]
+margin_top = 168.0
+margin_right = 1120.0
+margin_bottom = 268.0
 rect_min_size = Vector2( 500, 100 )
 focus_mode = 0
 custom_fonts/font = ExtResource( 2 )
@@ -172,15 +188,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings" type="Button" parent="main"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -2960.0
-margin_top = -20.0
-margin_right = -2460.0
-margin_bottom = 80.0
+[node name="Settings" type="Button" parent="main/VBoxContainer"]
+margin_top = 272.0
+margin_right = 1120.0
+margin_bottom = 372.0
 rect_min_size = Vector2( 500, 100 )
 focus_mode = 0
 custom_fonts/font = ExtResource( 2 )
@@ -189,11 +200,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Reset" type="Button" parent="main"]
-margin_left = -2000.0
-margin_top = 640.0
-margin_right = -1500.0
-margin_bottom = 740.0
+[node name="Reset" type="Button" parent="main/VBoxContainer"]
+margin_top = 376.0
+margin_right = 1120.0
+margin_bottom = 476.0
 rect_min_size = Vector2( 500, 100 )
 focus_mode = 0
 custom_fonts/font = ExtResource( 2 )
@@ -202,15 +212,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Quit" type="Button" parent="main"]
-margin_left = -2000.0
-margin_top = 760.0
-margin_right = -1500.0
-margin_bottom = 860.0
+[node name="Quit" type="Button" parent="main/VBoxContainer"]
+margin_top = 480.0
+margin_right = 1120.0
+margin_bottom = 580.0
 rect_min_size = Vector2( 500, 100 )
 focus_mode = 0
 custom_fonts/font = ExtResource( 2 )
 text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="settings_screen" type="Control" parent="."]
 visible = false
@@ -231,12 +243,14 @@ margin_right = 21.9999
 margin_bottom = 24.0
 
 [node name="settings_control" parent="settings_screen" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 500.0
 margin_bottom = 626.0
 
 [node name="back" type="Button" parent="settings_screen/settings_control"]
 margin_top = 526.0
-margin_right = 1000.0
+margin_right = 500.0
 margin_bottom = 626.0
 rect_min_size = Vector2( 500, 100 )
 custom_fonts/font = ExtResource( 2 )
@@ -246,8 +260,9 @@ __meta__ = {
 }
 
 [node name="debug" parent="." instance=ExtResource( 6 )]
-[connection signal="pressed" from="main/Continue" to="." method="_on_Continue_pressed"]
-[connection signal="pressed" from="main/Settings" to="." method="_on_Settings_pressed"]
-[connection signal="pressed" from="main/Reset" to="." method="_on_Reset_pressed"]
-[connection signal="pressed" from="main/Quit" to="." method="_on_Quit_pressed"]
+visible = false
+[connection signal="pressed" from="main/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="main/VBoxContainer/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="main/VBoxContainer/Reset" to="." method="_on_Reset_pressed"]
+[connection signal="pressed" from="main/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="settings_screen/settings_control/back" to="." method="_on_settings_back_pressed"]

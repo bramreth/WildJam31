@@ -44,6 +44,7 @@ margin_right = 227.0
 margin_bottom = 40.0
 
 [node name="resolution_label" type="Label" parent="."]
+visible = false
 margin_top = 123.0
 margin_right = 1920.0
 margin_bottom = 141.0
@@ -51,6 +52,7 @@ custom_fonts/font = ExtResource( 2 )
 text = "Resolution"
 
 [node name="resolution" type="HBoxContainer" parent="."]
+visible = false
 margin_top = 151.0
 margin_right = 1920.0
 margin_bottom = 171.0
@@ -62,16 +64,16 @@ text = "resolution"
 selected = 0
 
 [node name="field_of_view_label" type="Label" parent="."]
-margin_top = 181.0
+margin_top = 123.0
 margin_right = 1920.0
-margin_bottom = 199.0
+margin_bottom = 141.0
 custom_fonts/font = ExtResource( 2 )
 text = "Field of View"
 
 [node name="field_of_view_slider" type="HScrollBar" parent="."]
-margin_top = 209.0
+margin_top = 151.0
 margin_right = 1920.0
-margin_bottom = 221.0
+margin_bottom = 163.0
 min_value = 70.0
 max_value = 110.0
 step = 1.0

@@ -14,8 +14,5 @@ __meta__ = {
 
 [node name="steam_lobby" parent="." instance=ExtResource( 1 )]
 anchor_left = 1.0
-anchor_bottom = 0.0
-margin_left = -440.0
 margin_right = 0.0
-margin_bottom = 1080.0
 mouse_filter = 1

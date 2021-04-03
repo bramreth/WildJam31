@@ -32,8 +32,9 @@ _global_script_class_icons={
 
 [application]
 
-config/name="WildJam31"
-run/main_scene="res://scenes/enviornments/test_room/TestLevel.tscn"
+config/name="AllOutAmmo"
+run/main_scene="res://scenes/ui/menu.tscn"
+boot_splash/image="res://assets/images/title_screen_wip_3_black_text.png"
 config/icon="res://assets/kenshape_assets/gun/x gun.png"
 
 [autoload]
@@ -55,7 +56,6 @@ SteamRpc="*res://globals/steamRPC.gd"
 window/size/width=1920
 window/size/height=1080
 window/size/resizable=false
-window/stretch/aspect="keep"
 
 [input]
 

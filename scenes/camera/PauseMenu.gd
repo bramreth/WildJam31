@@ -34,7 +34,7 @@ func _on_Continue_pressed():
 
 
 func _on_Settings_pressed():
-	$main.hide()
+	$main/VBoxContainer.hide()
 	$settings_screen.show()
 
 func _on_Reset_pressed():
@@ -48,5 +48,5 @@ func _on_Quit_pressed():
 
 
 func _on_settings_back_pressed():
-	$main.show()
+	$main/VBoxContainer.show()
 	$settings_screen.hide()
