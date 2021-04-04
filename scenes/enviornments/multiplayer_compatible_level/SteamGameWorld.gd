@@ -24,7 +24,7 @@ func _ready() -> void:
 		_move_player_to_spawn_position(local_player)
 
 func start_wave():
-	pass
+	if SteamNetwork.is_server(): pass
 	
 func goto_reward():
 	$RewardRoom.goto_reward(true)

@@ -255,7 +255,6 @@ __meta__ = {
 }
 
 [node name="debug" parent="." instance=ExtResource( 6 )]
-visible = false
 [connection signal="pressed" from="main/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="main/VBoxContainer/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="main/VBoxContainer/Reset" to="." method="_on_Reset_pressed"]

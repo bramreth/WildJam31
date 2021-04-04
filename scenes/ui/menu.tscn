@@ -119,14 +119,14 @@ __meta__ = {
 [node name="single_player" parent="contents/game_modes/list" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 398.0
+margin_right = 718.0
 margin_bottom = 70.0
 size_flags_horizontal = 3
 button_text = "Play"
 
 [node name="wave" type="HBoxContainer" parent="contents/game_modes/list"]
-margin_left = 402.0
-margin_right = 800.0
+margin_left = 722.0
+margin_right = 1440.0
 margin_bottom = 70.0
 size_flags_horizontal = 3
 alignment = 2
@@ -135,16 +135,16 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="contents/game_modes/list/wave"]
-margin_left = 101.0
+margin_left = 421.0
 margin_top = 20.0
-margin_right = 365.0
+margin_right = 685.0
 margin_bottom = 50.0
 custom_fonts/font = ExtResource( 5 )
 text = "Start Wave"
 
 [node name="select" type="OptionButton" parent="contents/game_modes/list/wave"]
-margin_left = 369.0
-margin_right = 398.0
+margin_left = 689.0
+margin_right = 718.0
 margin_bottom = 70.0
 custom_fonts/font = ExtResource( 5 )
 
@@ -373,8 +373,8 @@ button_text = "Game"
 [node name="Options" parent="buttons/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 351.0
-margin_right = 651.0
+margin_left = 511.0
+margin_right = 811.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 300, 100 )
 button_text = "Settings"
@@ -392,8 +392,8 @@ button_text = "How to play"
 [node name="Credits" parent="buttons/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 702.0
-margin_right = 1002.0
+margin_left = 1022.0
+margin_right = 1322.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 300, 100 )
 button_text = "Credits"
@@ -401,8 +401,8 @@ button_text = "Credits"
 [node name="Quit" parent="buttons/HBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1053.0
-margin_right = 1353.0
+margin_left = 1533.0
+margin_right = 1833.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 300, 100 )
 button_text = "Exit"

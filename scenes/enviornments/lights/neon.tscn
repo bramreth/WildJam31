@@ -4,9 +4,8 @@
 [ext_resource path="res://scenes/enviornments/lights/light_ball.gd" type="Script" id=2]
 [ext_resource path="res://scenes/prefabs/static.tscn" type="PackedScene" id=3]
 
-
 [sub_resource type="OpenSimplexNoise" id=1]
-period = 1.0
+period = 0.1
 lacunarity = 3.0
 
 [sub_resource type="SpatialMaterial" id=2]
@@ -62,4 +61,4 @@ mesh = SubResource( 5 )
 material/0 = null
 
 [node name="AudioStreamPlayer3D" parent="." instance=ExtResource( 3 )]
-bus = "tst"
+bus = "Master"

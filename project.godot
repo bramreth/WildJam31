@@ -53,9 +53,10 @@ SteamRpc="*res://globals/steamRPC.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/width=2560
+window/size/height=1440
 window/size/resizable=false
+window/size/fullscreen=true
 
 [input]
 
@@ -197,6 +198,11 @@ melee={
 steam_debug={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":80,"unicode":0,"echo":false,"script":null)
+ ]
+}
+screenshot={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777247,"unicode":0,"echo":false,"script":null)
  ]
 }
 

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/screenshot/scripts/screenshot.gd" type="Script" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 1, 0, 0, 1 )
+roughness = 0.0
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="Node" type="Node"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.877742, 0.479134, 0, -0.479134, 0.877742, 0, 3.78425, 6.79054 )
+script = ExtResource( 1 )
+shortcut_action = "screenshot"
+
+[node name="Cube" type="MeshInstance" parent="."]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.976586, 0.215126, 0, -0.215126, -0.976586, 0, 5.04296, 2.63257 )
+directional_shadow_max_distance = 200.0
