@@ -10,7 +10,7 @@ var _target_rotation_x:float = 0
 
 func _ready() -> void:
 	_target_global_pos = global_transform.origin
-	_set_player_name()
+#	_set_player_name()
 #	NetworkHelper.connect("player_left", self, "_remove_player")
 
 
