@@ -10,8 +10,14 @@ var _target_rotation_x:float = 0
 
 func _ready() -> void:
 	_target_global_pos = global_transform.origin
-	
+	_set_player_name()
 #	NetworkHelper.connect("player_left", self, "_remove_player")
+
+
+func _set_player_name() -> void:
+	var player_name:String = Steam.getPlayerNickname(int(name))
+	if player_name == null: player_name = Steam.getFriendPersonaName(int(name))
+	$Viewport/Label.text = player_name
 
 
 func _remove_player(player_id:int) -> void:
