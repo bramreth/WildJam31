@@ -1,6 +1,20 @@
 extends Node
 
 
+func is_multiplayer() -> bool:
+	if SteamNetwork.get_server_steam_id() != -1: return true
+	return false
+
+func is_multiplayer_not_host() -> bool:
+	if SteamNetwork.get_server_steam_id() != -1 and not SteamNetwork.is_server(): return true
+	return false
+
+
+func is_multiplayer_is_host() -> bool:
+	if SteamNetwork.get_server_steam_id() != -1 and  SteamNetwork.is_server(): return true
+	return false
+
+#Deprecated ###################################################################
 const DEFAULT_PORT:int = 2077
 const MAX_PLAYERS:int = 4
 

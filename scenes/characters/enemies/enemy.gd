@@ -30,6 +30,14 @@ func _ready():
 	randomize()
 	update_bars()
 	$AttackTimer.wait_time = attack_speed
+	
+	SteamNetwork.register_rpcs(self,
+		[
+			["_apply_damage", SteamNetwork.PERMISSION.SERVER],
+			["_tell_server_damage", SteamNetwork.PERMISSION.CLIENT_ALL],
+			["_sync_state", SteamNetwork.PERMISSION.SERVER]
+		]
+	)
 
 
 func _setup_network_enemy() -> void:
@@ -43,36 +51,49 @@ func update_bars():
 		$health_bar.visible = false
 		
 
+#Movement #############
 func calculate_move_direction() -> Vector3:
 	match _current_state:
 		STATES.SEARCHING:
-			if _has_line_of_sight_to_player():
-				move_state(STATES.TRACKING_PLAYER)
-				return Vector3.ZERO
-			
-			if not _path.empty():
-				var move_direction = _calculate_direction_to_next_path_point()
-				_face_move_direction(move_direction)
-				return move_direction
-			else:
-				_get_path()
-				return Vector3.ZERO
+			return _handle_searching()
 		STATES.TRACKING_PLAYER:
-			if not _has_line_of_sight_to_player():
-				_get_path()
-				move_state(STATES.SEARCHING)
-				return Vector3.ZERO
-			return _calculate_direction_to_player()
+			return _handle_tracking_player()
 		STATES.ATTACKING:
-			if _can_attack:
-				if _has_line_of_sight_to_player() and _distance_to_player() < attack_range:
-					if attack_animator: 
-						attack_animator.play("fire")
-					else:
-						_attack_player()
-				else: move_state(STATES.TRACKING_PLAYER)
-			return Vector3.ZERO
+			return _handle_attacking()
 		_: return Vector3.ZERO
+
+
+func _handle_searching() -> Vector3:
+	if _has_line_of_sight_to_player():
+		move_state(STATES.TRACKING_PLAYER)
+		return Vector3.ZERO
+	
+	if not _path.empty():
+		var move_direction = _calculate_direction_to_next_path_point()
+		_face_move_direction(move_direction)
+		return move_direction
+	else:
+		_get_path()
+		return Vector3.ZERO
+
+
+func _handle_tracking_player() -> Vector3:
+	if not _has_line_of_sight_to_player():
+		_get_path()
+		move_state(STATES.SEARCHING)
+		return Vector3.ZERO
+	return _calculate_direction_to_player()
+
+
+func _handle_attacking() -> Vector3:
+	if _can_attack:
+		if _has_line_of_sight_to_player() and _distance_to_player() < attack_range:
+			if attack_animator: 
+				attack_animator.play("fire")
+			else:
+				_attack_player()
+		else: move_state(STATES.TRACKING_PLAYER)
+	return Vector3.ZERO
 
 
 func _attack_player():
@@ -135,6 +156,28 @@ func _face_move_direction(move_direction:Vector3) -> void:
 		$MeshInstance.orthonormalize()
 
 
+func move_state(_state_in: int):
+	if _current_state == _state_in: return
+	_current_state = _state_in
+	
+	if NetworkHelper.is_multiplayer_is_host(): SteamNetwork.rpc_all_clients(self, "_sync_state", [_state_in])
+	
+	match _current_state:
+		STATES.ATTACKING:
+			$AnimationPlayer.stop()
+		STATES.SEARCHING:
+			$AnimationPlayer.play("walk")
+		STATES.TRACKING_PLAYER:
+			$AnimationPlayer.play("walk")
+
+
+func _sync_state(server_id:int, new_state:int) -> void:
+	if server_id == SteamNetwork._my_steam_id: return
+	move_state(new_state)
+#Movement #############
+
+
+#Player Location Helpers #############
 func _distance_to_player() -> float:
 	return global_transform.origin.distance_to(_player.global_transform.origin)
 
@@ -148,26 +191,30 @@ func _has_line_of_sight_to_player() -> bool:
 			return true
 	$PlayerLineOfSight.enabled = false
 	return false
-
-func move_state(_state_in: int):
-	if _current_state == _state_in: return
-	_current_state = _state_in
-	
-	match _current_state:
-		STATES.ATTACKING:
-			$AnimationPlayer.stop()
-		STATES.SEARCHING:
-			$AnimationPlayer.play("walk")
-		STATES.TRACKING_PLAYER:
-			$AnimationPlayer.play("walk")
-	
+#Player Location Helpers #############
 
 
+#Damage #################
 func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
+	if not NetworkHelper.is_multiplayer() :
+		_apply_damage(-1, amount, knockback)
+	elif SteamNetwork.is_server():
+		SteamNetwork.rpc_all_clients(self, '_apply_damage', [amount, knockback])
+	else:
+		SteamNetwork.rpc_on_server(self, '_tell_server_damage',  [amount, knockback])
+	
+
+
+func _tell_server_damage(damage_dealer:int, amount:int, knockback:Vector3) -> void:
+	SteamNetwork.rpc_all_clients(self, '_apply_damage', [amount, knockback])
+
+
+func _apply_damage(server_id:int, amount:int, knockback:Vector3) -> void:
 	if dead: return
 	move_state(STATES.TRACKING_PLAYER)
 	.damage(amount, knockback)
 	update_bars()
+
 
 # if the ammo has elemental effects apply them to the character
 func apply_element(ammo_source):
@@ -237,6 +284,8 @@ func explosion_dmg(dmg, knockback):
 	if dead: return
 	damage(dmg, knockback)
 	add_dmg_anim(Color.white, dmg, global_transform.origin)
+#Damage #################
+
 
 func _on_death() -> void:
 	dead = true
@@ -261,7 +310,7 @@ func loot_drop():
 	elif loot_val < 0.1:
 		get_tree().get_nodes_in_group("col_spawner").front().add_armor(global_transform.origin)
 	elif loot_val < 0.2:
-		get_tree().get_nodes_in_group("gam_spawner").front().add_ammo(global_transform.origin)
+		get_tree().get_nodes_in_grodup("gam_spawner").front().add_ammo(global_transform.origin)
 
 func _on_DeathPlayer_animation_finished(anim_name):
 	if anim_name == "die":

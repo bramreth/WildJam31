@@ -36,8 +36,7 @@ func _ready() -> void:
 			["update_position", SteamNetwork.PERMISSION.CLIENT_ALL],
 		]
 	)
-#	if NetworkHelper.is_multiplayer and not get_tree().is_network_server():
-	if SteamNetwork.get_server_steam_id() != -1 and not SteamNetwork.is_server():
+	if NetworkHelper.is_multiplayer_not_host():
 		_setup_network_enemy()
 
 
@@ -60,16 +59,13 @@ func _integrate_forces(state):
 func _physics_process(_delta: float) -> void:
 	if dead: return
 	
-	if SteamNetwork.get_server_steam_id() == -1 :
+	if not NetworkHelper.is_multiplayer() :
 		_handle_movement(_delta)
 	elif SteamNetwork.is_server():
 		_handle_movement(_delta)
 		SteamNetwork.rpc_all_clients(self, 'update_position', [global_transform.origin, rotation.y, 0.0])
-#		rpc('update_position', global_transform.origin, rotation.y, 0.0)
 	else:
 		_sync_position()
-	
-	
 
 
 func _handle_movement(_delta:float) -> void:
