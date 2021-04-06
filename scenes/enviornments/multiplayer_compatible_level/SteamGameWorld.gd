@@ -1,7 +1,7 @@
 extends Spatial
 
 onready var players = $Players
-onready var network_player:PackedScene = load("res://scenes/enviornments/multiplayer_compatible_level/NetworkPlayer.tscn")
+export var network_player:PackedScene
 onready var local_player:KinematicBody = players.get_child(0)
 export (bool) var debug
 export(Resource) var level_env
