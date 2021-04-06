@@ -22,13 +22,12 @@ var _velocity:Vector3 = Vector3()
 var _path:Array = []
 var _last_facing_direction:Vector3 = Vector3.ZERO
 var _can_attack:bool = true
-var attack_animator = null
 export (NodePath) var attack_anim
+onready var attack_animator = get_node(attack_anim)
 export (NodePath) var walk_audio
 
 func _ready():
 	randomize()
-	attack_animator = get_node(attack_anim)
 	update_bars()
 	$AttackTimer.wait_time = attack_speed
 
