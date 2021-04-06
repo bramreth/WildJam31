@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/fonts/akira_large.tres" type="DynamicFont" id=3]
 [ext_resource path="res://scenes/enviornments/multiplayer_compatible_level/networking_components/player/NetworkPlayer.gd" type="Script" id=28]
 
-
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
 

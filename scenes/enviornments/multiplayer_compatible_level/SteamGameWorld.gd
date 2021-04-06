@@ -49,7 +49,8 @@ func _setup_multiplayer() -> void:
 
 func _spawn_network_player(player_id:int) -> void:
 	var new_player = network_player.instance()
-	new_player.name = String(player_id)#Steam.getFriendPersonaName(player_id)
+	new_player.name = String(player_id)
+	new_player.player_name = Steam.getFriendPersonaName(player_id)
 	players.add_child(new_player)
 	if SteamNetwork.is_server():
 		_move_player_to_spawn_position(new_player)
