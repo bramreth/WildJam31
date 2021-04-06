@@ -34,11 +34,10 @@ func _ready() -> void:
 	SteamNetwork.register_rpcs(self,
 		[
 			["update_position", SteamNetwork.PERMISSION.CLIENT_ALL],
-#			["update_ready_players", SteamNetwork.PERMISSION.SERVER],
-#			["start_game", SteamNetwork.PERMISSION.SERVER],
 		]
 	)
-	if NetworkHelper.is_multiplayer and not get_tree().is_network_server():
+#	if NetworkHelper.is_multiplayer and not get_tree().is_network_server():
+	if SteamNetwork.get_server_steam_id() != -1 and not SteamNetwork.is_server():
 		_setup_network_enemy()
 
 
@@ -61,11 +60,11 @@ func _integrate_forces(state):
 func _physics_process(_delta: float) -> void:
 	if dead: return
 	
-	if not NetworkHelper.is_multiplayer:
+	if SteamNetwork.get_server_steam_id() == -1 :
 		_handle_movement(_delta)
-	elif NetworkHelper.is_multiplayer and get_tree().is_network_server():
+	elif SteamNetwork.is_server():
 		_handle_movement(_delta)
-		SteamNetwork.rpc_on_server(self, 'update_position', [global_transform.origin, rotation.y, 0.0])
+		SteamNetwork.rpc_all_clients(self, 'update_position', [global_transform.origin, rotation.y, 0.0])
 #		rpc('update_position', global_transform.origin, rotation.y, 0.0)
 	else:
 		_sync_position()
@@ -88,7 +87,7 @@ func _handle_movement(_delta:float) -> void:
 
 
 #Network syncing
-remote func update_position(client_id: int, global_position:Vector3, rotation_y:float, rotation_z:float) -> void:
+func update_position(client_id: int, global_position:Vector3, rotation_y:float, rotation_z:float) -> void:
 	_target_global_pos = global_position
 	_target_rotation_y = rotation_y
 	_target_rotation_z = rotation_z
