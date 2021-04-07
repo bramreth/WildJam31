@@ -34,6 +34,7 @@ func set_player(friendID, hidden_in = false):
 		$VBoxContainer.visible = false
 		$name/status.visible = false
 		$PlayerProfile.rect_min_size = Vector2(100,100)
+		rect_min_size = Vector2(100,122)
 		Steam.getPlayerAvatar(3, friendID)
 		in_lobby()
 	else:
@@ -106,17 +107,18 @@ func set_status(var mode):
 	var col = Color.white
 	match mode:
 		0: #in game
-			col = Color.seagreen
+			col = Color.springgreen
 		1: #online
-			col = Color.orchid
+			col = Color.steelblue
 		2: #offline
-			col = Color.gray
+			col = Color.darkslategray
 	if in_lobby:
-		col = Color.yellow
+		col = Color.springgreen
 	if ready:
-		col = Color.orangered
+		col = Color.yellow
 	
-	outline.set("bg_color", col.darkened(0.66))
+	outline.set("bg_color", col)
+	col.a = 0
 	outline.set("border_color", col)
 #	$PlayerProfile/status.set("custom_styles/panel/border_color", Color(randf(), randf(), randf()))
 
