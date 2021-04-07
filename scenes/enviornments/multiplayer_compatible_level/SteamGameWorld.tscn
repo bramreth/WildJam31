@@ -10,7 +10,7 @@
 [ext_resource path="res://awesome_wenv2.tres" type="Environment" id=8]
 [ext_resource path="res://scenes/enviornments/multiplayer_compatible_level/Level.gd" type="Script" id=9]
 [ext_resource path="res://awesome_wenv.tres" type="Environment" id=10]
-[ext_resource path="res://scenes/characters/enemies/ghost.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enviornments/multiplayer_compatible_level/networking_components/enemies/EnemiesRPC.gd" type="Script" id=11]
 [ext_resource path="res://scenes/enviornments/multiplayer_compatible_level/networking_components/player/NetworkPlayer.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/pickups/collectible_spawner.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/pickups/glob_am_spawner.tscn" type="PackedScene" id=14]
@@ -62,15 +62,26 @@ navmesh = SubResource( 1 )
 
 [node name="GlobalParticles" parent="." instance=ExtResource( 3 )]
 
+[node name="Enemies" type="Node" parent="." groups=[
+"enemies_spawner",
+]]
+script = ExtResource( 11 )
+
+[node name="Trash" type="Node" parent="Enemies"]
+
+[node name="Fast" type="Node" parent="Enemies"]
+
+[node name="Ranged" type="Node" parent="Enemies"]
+
+[node name="Tank" type="Node" parent="Enemies"]
+
+[node name="Timer" type="Timer" parent="Enemies"]
+one_shot = true
+
 [node name="Players" type="Node" parent="."]
 
 [node name="player" parent="Players" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5525, 9.04, 3.04864 )
-
-[node name="Enemies" type="Node" parent="."]
-
-[node name="enemy" parent="Enemies" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7262, 9.35475, -5.6739 )
 
 [node name="Spawns" type="Node" parent="."]
 
@@ -91,3 +102,4 @@ shadow_enabled = true
 [node name="glob_am_spawner" parent="." instance=ExtResource( 14 )]
 
 [node name="collectible_spawner" parent="." instance=ExtResource( 13 )]
+[connection signal="timeout" from="Enemies/Timer" to="Enemies" method="_on_Timer_timeout"]

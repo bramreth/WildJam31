@@ -49,6 +49,7 @@ func client_ready(id):
 	
 func all_ready(id):
 	all_ready = true
+	emit_signal("all_ready")
 	
 func send_ping():
 	pinging = true
