@@ -5,6 +5,8 @@ export var collapsed = false
 var hidden = false
 var state = 0
 var in_game = false
+var ready = false
+var in_lobby = false
 
 signal invite(id)
 signal join(id)
@@ -12,22 +14,9 @@ signal join(id)
 func _ready():
 	$name.visible = not collapsed
 	
-#func collapse():
-##	$name/player.clip_text = true
-#	$name/status.clip_text = true
-#	$name/player.rect_size.x = 140
-#	$name.visible = false
-#	if uid != SteamLobby._my_steam_id:
-#		$VBoxContainer.visible = false
-#
-#func expand():
-#	if hidden: return
-##	$name/player.clip_text = false
-#	$name/status.clip_text = false
-#	$name/player.rect_size.x = 440
-#	$name.visible = true
-#	if uid != SteamLobby._my_steam_id:
-#		$VBoxContainer.visible = true
+func in_lobby():
+	in_lobby = true
+	set_status(3)
 	
 func set_player(friendID, hidden_in = false):
 	uid = friendID
@@ -46,6 +35,7 @@ func set_player(friendID, hidden_in = false):
 		$name/status.visible = false
 		$PlayerProfile.rect_min_size = Vector2(100,100)
 		Steam.getPlayerAvatar(3, friendID)
+		in_lobby()
 	else:
 		Steam.getPlayerAvatar(2, friendID)
 	
@@ -54,7 +44,8 @@ func set_player(friendID, hidden_in = false):
 #	collapse()
 	
 func set_ready():
-	$name/player.set("custom_colors/font_color", Color.limegreen)
+	ready = true
+	set_status(4)
 
 # Avatar is ready for display
 func loaded_avatar(id: int, size: int, buffer: PoolByteArray) -> void:
@@ -109,7 +100,28 @@ func _on_PlayerProfile_gui_input(event):
 		if event.pressed:
 			SteamLobby.leave_lobby()
 
+func set_status(var mode):
+	if in_lobby and mode < 3: return
+	var outline = $PlayerProfile/status.get("custom_styles/panel")
+	var col = Color.white
+	match mode:
+		0: #in game
+			col = Color.seagreen
+		1: #online
+			col = Color.orchid
+		2: #offline
+			col = Color.gray
+	if in_lobby:
+		col = Color.yellow
+	if ready:
+		col = Color.orangered
+	
+	outline.set("bg_color", col.darkened(0.66))
+	outline.set("border_color", col)
+#	$PlayerProfile/status.set("custom_styles/panel/border_color", Color(randf(), randf(), randf()))
+
 func update_data():
+	
 	if uid == SteamLobby._my_steam_id or uid == null:
 		return
 	state = Steam.getFriendPersonaState(uid)
@@ -120,16 +132,20 @@ func update_data():
 			in_game = true
 			$name/status.text = "All Out Ammo"
 			$name/status.set("custom_colors/font_color", Color.forestgreen)
+			set_status(0)
 		else:
 			$name/status.text = "in another game"
 			$name/status.set("custom_colors/font_color", Color.dodgerblue)
+			set_status(1)
 	else:
 		if state > 0:
 			$name/status.set("custom_colors/font_color", Color.dodgerblue)
 			$name/status.text = "online"
+			set_status(1)
 		else:
 			$name/status.set("custom_colors/font_color", Color.gray)
 			$name/status.text = "offline"
+			set_status(2)
 
 func _on_Timer_timeout():
 	update_data()

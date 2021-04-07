@@ -41,6 +41,7 @@ func _ready():
 	for x in range(3):
 		var player = lobby_player.instance()
 		lobby_players.add_child(player)
+		player.in_lobby()
 	SteamLobby.connect("lobby_created", self, "_on_lobby_created")
 	SteamNetwork.register_rpcs(self,
 		[
@@ -136,6 +137,9 @@ func start_game(caller:int):
 func update_ready_players(caller:int, ready_players:Array) -> void:
 	_ready_players = ready_players
 	print('READY PLAYERS: ' + String(_ready_players))
+	for p in _ready_players:
+		if p == SteamLobby._my_steam_id:
+			$lobby_members/you.set_ready()
 	for lp in lobby_players.get_children():
 		for p in _ready_players:
 			if p == lp.uid:
