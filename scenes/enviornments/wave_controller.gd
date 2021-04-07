@@ -7,6 +7,10 @@ enum mobs {
 	TANK
 }
 
+func _ready():
+	for x in range(15):
+		print(get_wave(x))
+
 func trash_wave(level: int):
 	return {mobs.TRASH: common(level)}
 		

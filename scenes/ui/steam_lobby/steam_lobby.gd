@@ -4,6 +4,8 @@ onready var lobby_players = get_node("lobby_members/lobby_players")
 export (PackedScene) var lobby_player
 var friends = []
 
+signal notif(txt)
+
 var _ready_players:Array = []
 var origin = Vector2.ZERO
 var tuck_point = Vector2.ZERO
@@ -123,7 +125,9 @@ func register_ready_player(caller:int, steam_id:int) -> void:
 func host_begin_countdown():
 	var msgs = ["game starting", "3", "2", "1"]
 	while msgs:
-		SteamLobby.send_chat_message(msgs.pop_front())
+		var m = msgs.pop_front()
+		emit_signal("notif", str(m))
+		SteamLobby.send_chat_message(m)
 		yield(get_tree().create_timer(1), "timeout")
 	SteamNetwork.rpc_all_clients(self, 'start_game')
 	

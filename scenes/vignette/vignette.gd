@@ -13,7 +13,33 @@ func _ready():
 	shuffle()
 	randomize()
 
+func view_text(text_in):
+	duration = 0
+	$GunRig.visible = false
+	$ammo_container.visible = false
+	$text.visible = true
+	$WorldEnvironment.environment.set("dof_blur_far_enabled", false)
+	
+	$Timer.start(2)
+	shuffle_col(Color(randf(), randf(), randf()).contrasted())
+#	$camera_root.rotation_degrees = Vector3(rand_range(-1,1),rand_range(-1,1),rand_range(-1,1))
+	$camera_root.rotation_degrees.y = rand_range(-45, 45)
+	$camera_root.rotation_degrees.x = rand_range(-15, 15)
+	$camera_root.rotation_degrees.z = rand_range(-5, 5)
+	$camera_root.translation = $text.global_transform.origin
+	$text/Viewport/Label.text = text_in
+	$camera_root/Camera.translation.z = rand_range(12, 18)
+	if text_in == "game starting":
+		$text/Viewport/Label.text = "game\n starting"
+		$camera_root/Camera.translation.z = 26
 
+	rot_rate.y =  -$camera_root.rotation_degrees.y/30
+	rot_rate.x =  -$camera_root.rotation_degrees.x/10
+	rot_rate.z =  -$camera_root.rotation_degrees.z/4
+	$camera_root/Camera/AnimationPlayer.seek(0, true)
+	$camera_root/Camera/AnimationPlayer.play("zoom")
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	duration += delta
@@ -24,6 +50,10 @@ func shuffle_col(col: Color):
 	$SpotLight.light_color = col.lightened(0.3)
 
 func shuffle():
+	$camera_root/Camera/AnimationPlayer.seek(0, true)
+	$camera_root/Camera/AnimationPlayer.stop()
+	$WorldEnvironment.environment.set("dof_blur_far_enabled", true)
+	$text.visible = false
 	$GunRig.visible = true
 	for child in $ammo_container.get_children():
 		child.visible = false

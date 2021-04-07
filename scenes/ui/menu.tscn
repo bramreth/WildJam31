@@ -421,7 +421,7 @@ button_path = NodePath("../contents/game_modes/list/play")
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0, 0, 0, 0 )
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -463,4 +463,5 @@ script = ExtResource( 12 )
 [connection signal="on_pressed" from="buttons/HBoxContainer/How to play" to="." method="_on_How_to_play_on_pressed"]
 [connection signal="on_pressed" from="buttons/HBoxContainer/Credits" to="." method="_on_Credits_on_pressed"]
 [connection signal="on_pressed" from="buttons/HBoxContainer/Quit" to="." method="_on_Quit_on_pressed"]
+[connection signal="notif" from="steam_lobby" to="Viewport/Spatial" method="view_text"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
