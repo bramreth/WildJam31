@@ -1,4 +1,5 @@
 extends Node
+class_name WaveController
 
 enum mobs {
 	TRASH,
@@ -7,54 +8,54 @@ enum mobs {
 	TANK
 }
 
-func trash_wave(level: int):
-	return {mobs.TRASH: common(level)}
+static func trash_wave(level: int):
+	return common(level)
 		
-func fast_wave(level: int):
-	return {mobs.FAST: uncommon(level)}
-		
-func range_wave(level: int):
-	return {mobs.RANGE: uncommon(level)}
-		
-func tank_wave(level: int):
-	return {mobs.TANK: common(level)}
-
-func get_wave(iter: int):
+static  func fast_wave(level: int):
+	return uncommon(level)
 	
-	var wave = []
+static func range_wave(level: int):
+	return uncommon(level)
+		
+static func tank_wave(level: int):
+	return common(level)
+
+static func get_wave(iter: int):
+	
+	var wave = {}
 	if iter < 3:
-		wave.append(trash_wave(iter))
+		wave[mobs.TRASH] = trash_wave(iter)
 	elif iter < 6:
-		wave.append(trash_wave(iter))
-		wave.append(fast_wave(max(iter-2, 0)))
+		wave[mobs.TRASH] = trash_wave(iter)
+		wave[mobs.FAST] = fast_wave(max(iter-2, 0))
 	elif iter < 9:
-		wave.append(trash_wave(iter))
-		wave.append(range_wave(max(iter-5, 0)))
+		wave[mobs.TRASH] = trash_wave(iter)
+		wave[mobs.FAST] = fast_wave(max(iter-5, 0))
 	elif iter == 9:
-		wave.append(trash_wave(iter))
-		wave.append(fast_wave(max(iter-5, 0)))
-		wave.append(range_wave(max(iter-5, 0)))
+		wave[mobs.TRASH] = trash_wave(iter)
+		wave[mobs.FAST] = fast_wave(max(iter-5, 0))
+		wave[mobs.RANGE] = range_wave(max(iter-5, 0))
 	elif iter < 12:
-		wave.append(trash_wave(iter))
-		wave.append(tank_wave(max(iter-7, 0)))
+		wave[mobs.TRASH] = trash_wave(iter)
+		wave[mobs.TANK] = tank_wave(max(iter-7, 0))
 	else:
-		wave.append(trash_wave(iter))
-		wave.append(fast_wave(max(iter-8, 0)))
-		wave.append(range_wave(max(iter-8, 0)))
-		wave.append(tank_wave(max(iter-8, 0)))
+		wave[mobs.TRASH] = trash_wave(iter)
+		wave[mobs.FAST] = fast_wave(max(iter-8, 0))
+		wave[mobs.RANGE] = range_wave(max(iter-8, 0))
+		wave[mobs.TANK] = tank_wave(max(iter-8, 0))
 	return wave
 
-func common(iter: int):
+static func common(iter: int):
 	if iter <= 0: return 5
 	elif iter == 1: return 8
 	return iter + common(iter-1)
 	
-func uncommon(iter: int):
+static func uncommon(iter: int):
 	if iter <= 0: return 0
 	elif iter == 1: return 1
 	return iter + uncommon(iter-1)
 
-func boss(iter: int):
+static func boss(iter: int):
 	return iter
 
 """

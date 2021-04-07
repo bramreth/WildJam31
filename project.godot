@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://scenes/characters/player/player.gd"
+}, {
+"base": "Node",
+"class": "WaveController",
+"language": "GDScript",
+"path": "res://scenes/enviornments/wave_controller.gd"
 } ]
 _global_script_class_icons={
 "CurveTween": "",
 "Level": "",
-"Player": ""
+"Player": "",
+"WaveController": ""
 }
 
 [application]
