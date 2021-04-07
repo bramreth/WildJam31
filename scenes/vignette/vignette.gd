@@ -29,9 +29,10 @@ func view_text(text_in):
 	$camera_root.translation = $text.global_transform.origin
 	$text/Viewport/Label.text = text_in
 	$camera_root/Camera.translation.z = rand_range(12, 18)
-	if text_in == "game starting":
-		$text/Viewport/Label.text = "game\n starting"
-		$camera_root/Camera.translation.z = 26
+	if text_in.length() > 2:
+		var t = text_in.replace(" ", "\n ")
+		$text/Viewport/Label.text = t
+		$camera_root/Camera.translation.z = 48
 
 	rot_rate.y =  -$camera_root.rotation_degrees.y/30
 	rot_rate.x =  -$camera_root.rotation_degrees.x/10
