@@ -21,11 +21,11 @@ func _ready():
 	start_wave_selection.select(selected_index if selected_index >= 0 and selected_index < Game.MAX_WAVES else 0)
 	highscore.text = str(Game.get_highscore())
 
-func _on_single_player_on_pressed():
-	if $AnimationPlayer.is_playing(): return
-	$AnimationPlayer.play("dip_to_black")
-	yield($AnimationPlayer, "animation_finished")
-	Scene.change(Scene.SAMCADE)
+#func _on_single_player_on_pressed():
+#	if $AnimationPlayer.is_playing(): return
+#	$AnimationPlayer.play("dip_to_black")
+#	yield($AnimationPlayer, "animation_finished")
+#	Scene.change(Scene.SAMCADE)
 
 
 func _on_Options_on_pressed():

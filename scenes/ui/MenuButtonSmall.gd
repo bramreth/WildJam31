@@ -15,6 +15,10 @@ signal on_pressed()
 func _ready():
 	$Background/Text.text = button_text
 
+func set_text(text_in):
+	button_text = text_in
+	$Background/Text.text = button_text
+
 func mouse_over(over:bool) -> void:
 	hover = over	
 	if !toggled:

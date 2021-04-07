@@ -9,13 +9,16 @@ var origin = Vector2.ZERO
 var tuck_point = Vector2.ZERO
 
 export (NodePath) var wipe_path
+export (NodePath) var button_path
 var wipe = null
+var play_button = null
 var collapsed = true
 var tuck_margin = 140
 var full_margin = 440
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	wipe = get_node(wipe_path)
+	play_button = get_node(button_path)
 	randomize()
 	SteamLobby.connect("lobby_joined", self, "_update_lobby")
 	SteamLobby.connect("player_joined_lobby", self, "_update_lobby_from_player")
@@ -59,7 +62,10 @@ func _update_lobby_from_player(steam_id):
 	_update_lobby(SteamLobby._steam_lobby_id)
 
 func _update_lobby(_steam_lobby_id):
-	print("BMARKER")
+	if SteamNetwork.get_peers().size() == 1:
+		play_button.set_text("play")
+	else:
+		play_button.set_text("ready up")
 	var members = []
 	for member in SteamLobby.get_lobby_members():
 		members.append(member)
@@ -171,3 +177,7 @@ func collapse():
 
 func _on_CurveTween_curve_tween(sat):
 	margin_left = sat
+
+
+func _on_play_on_pressed():
+	SteamNetwork.rpc_on_server(self, 'register_ready_player', [SteamNetwork._my_steam_id])
