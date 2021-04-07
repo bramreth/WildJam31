@@ -44,9 +44,8 @@ func client_ready(id):
 	for peer in ready_peers:
 		if ready_peers[peer] == false:
 			return
-	SteamNetwork.rpc_on_client(id, self, "all_ready")
-	all_ready = true
-	
+	SteamNetwork.rpc_all_clients(self, "all_ready")
+
 func all_ready(id):
 	all_ready = true
 	emit_signal("all_ready")
