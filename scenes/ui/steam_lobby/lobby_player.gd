@@ -12,22 +12,22 @@ signal join(id)
 func _ready():
 	$name.visible = not collapsed
 	
-func collapse():
-#	$name/player.clip_text = true
-	$name/status.clip_text = true
-	$name/player.rect_size.x = 140
-	$name.visible = false
-	if uid != SteamLobby._my_steam_id:
-		$VBoxContainer.visible = false
-	
-func expand():
-	if hidden: return
-#	$name/player.clip_text = false
-	$name/status.clip_text = false
-	$name/player.rect_size.x = 440
-	$name.visible = true
-	if uid != SteamLobby._my_steam_id:
-		$VBoxContainer.visible = true
+#func collapse():
+##	$name/player.clip_text = true
+#	$name/status.clip_text = true
+#	$name/player.rect_size.x = 140
+#	$name.visible = false
+#	if uid != SteamLobby._my_steam_id:
+#		$VBoxContainer.visible = false
+#
+#func expand():
+#	if hidden: return
+##	$name/player.clip_text = false
+#	$name/status.clip_text = false
+#	$name/player.rect_size.x = 440
+#	$name.visible = true
+#	if uid != SteamLobby._my_steam_id:
+#		$VBoxContainer.visible = true
 	
 func set_player(friendID, hidden_in = false):
 	uid = friendID
@@ -51,7 +51,7 @@ func set_player(friendID, hidden_in = false):
 	
 	update_data()
 	hidden = hidden_in
-	collapse()
+#	collapse()
 	
 func set_ready():
 	$name/player.set("custom_colors/font_color", Color.limegreen)

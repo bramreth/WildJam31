@@ -16,12 +16,6 @@ var full_margin = 440
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	wipe = get_node(wipe_path)
-	if collapsed:
-		margin_left = -tuck_margin
-		collapse()
-	else:
-		margin_left = -full_margin
-		expand()
 	randomize()
 	SteamLobby.connect("lobby_joined", self, "_update_lobby")
 	SteamLobby.connect("player_joined_lobby", self, "_update_lobby_from_player")
@@ -154,14 +148,6 @@ func create_lobby():
 	SteamLobby.leave_lobby()
 	SteamLobby.create_lobby(Steam.LOBBY_TYPE_FRIENDS_ONLY, 4)
 
-
-func _on_steam_lobby_mouse_exited():
-	collapse()
-	$CurveTween.play(0.25, margin_left, -tuck_margin)
-
-func _on_steam_lobby_mouse_entered():
-	expand()
-	$CurveTween.play(0.25, margin_left, -full_margin)
 
 func expand():
 	collapsed = false

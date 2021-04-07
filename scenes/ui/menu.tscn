@@ -409,7 +409,10 @@ button_text = "Exit"
 
 [node name="steam_lobby" parent="." instance=ExtResource( 11 )]
 anchor_left = 1.0
+anchor_bottom = 0.0
+margin_left = -440.0
 margin_right = 0.0
+margin_bottom = 1440.0
 wipe_path = NodePath("../AnimationPlayer")
 
 [node name="loading_overlay" type="ColorRect" parent="."]
