@@ -14,8 +14,8 @@ onready var ammo_label:Label = $ammocorner/ammo
 onready var max_ammo_label:Label = $ammocorner/maxammo
 
 func _ready():
-	get_tree().get_nodes_in_group("level").front().connect("wave_start", self, "wave_start")
-	get_tree().get_nodes_in_group("level").front().connect("wave_end", self, "wave_end")
+	get_tree().get_nodes_in_group("enemies_spawner").front().connect("wave_started", self, "wave_start")
+	get_tree().get_nodes_in_group("enemies_spawner").front().connect("wave_ended", self, "wave_end")
 
 func update_health(health, armor) -> void:
 	health_bar.value = health
