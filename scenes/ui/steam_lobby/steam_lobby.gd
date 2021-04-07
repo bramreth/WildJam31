@@ -49,6 +49,7 @@ func _ready():
 		[
 			["register_ready_player", SteamNetwork.PERMISSION.CLIENT_ALL],
 			["update_ready_players", SteamNetwork.PERMISSION.SERVER],
+			["_update_bg", SteamNetwork.PERMISSION.SERVER],
 			["start_game", SteamNetwork.PERMISSION.SERVER],
 		]
 	)
@@ -126,13 +127,16 @@ func host_begin_countdown():
 	var msgs = ["game starting", "3", "2", "1"]
 	while msgs:
 		var m = msgs.pop_front()
-		emit_signal("notif", str(m))
-		SteamLobby.send_chat_message(m)
+		SteamNetwork.rpc_all_clients(self, '_update_bg', [m])
 		yield(get_tree().create_timer(1), "timeout")
 	SteamNetwork.rpc_all_clients(self, 'start_game')
 	
+func _update_bg(caller:int, m: String):
+	emit_signal("notif", str(m))
+	
 func start_game(caller:int):
 	# TODO start the game
+	emit_signal("notif", str("go"))
 	wipe.play("dip_to_black")
 	yield(wipe, "animation_finished")
 	Scene.change(Scene.STEAM_MULTIPLAYER)
