@@ -35,6 +35,8 @@ func _ready():
 		[
 			["_apply_damage", SteamNetwork.PERMISSION.SERVER],
 			["_tell_server_damage", SteamNetwork.PERMISSION.CLIENT_ALL],
+			["_add_elemental_effects", SteamNetwork.PERMISSION.SERVER],
+			["_tell_server_elemental_effects", SteamNetwork.PERMISSION.CLIENT_ALL],
 			["_sync_state", SteamNetwork.PERMISSION.SERVER]
 		]
 	)
@@ -218,19 +220,41 @@ func _apply_damage(server_id:int, amount:int, knockback:Vector3) -> void:
 
 # if the ammo has elemental effects apply them to the character
 func apply_element(ammo_source):
+	var elemental_damage:Array = [
+		ammo_source.fire,
+		ammo_source.frost,
+		ammo_source.poison,
+		ammo_source.bleed,
+		[ammo_source.electric, ammo_source.electric_range, ammo_source.electric_jumps]
+	]
+
+	if not NetworkHelper.is_multiplayer() :
+		_add_elemental_effects(-1, elemental_damage)
+	elif SteamNetwork.is_server():
+		SteamNetwork.rpc_all_clients(self, '_add_elemental_effects', [elemental_damage])
+	else:
+		SteamNetwork.rpc_on_server(self, '_tell_server_elemental_effects',  [elemental_damage])
+
+
+func _tell_server_elemental_effects(damage_dealer:int, elemental_damage:Array) -> void:
+	SteamNetwork.rpc_all_clients(self, '_add_elemental_effects', [elemental_damage])
+
+
+func _add_elemental_effects(server_id:int, elemental_damage:Array):
+	print(elemental_damage)
 	if dead: return
-	if ammo_source.fire:
-		$effect_handler.add_burn(ammo_source.fire)
-	if ammo_source.frost:
-		$effect_handler.add_frost(ammo_source.frost)
-	if ammo_source.poison:
-		$effect_handler.add_poison(ammo_source.poison)
-	if ammo_source.bleed:
-		$effect_handler.add_bleed(ammo_source.bleed)
-	if  ammo_source.electric:
-		$effect_handler.add_electric(ammo_source.electric, ammo_source.electric_range, ammo_source.electric_jumps)
-	
-		
+	if elemental_damage[0]:
+		$effect_handler.add_burn(elemental_damage[0])
+	if elemental_damage[1]:
+		$effect_handler.add_frost(elemental_damage[1])
+	if elemental_damage[2]:
+		$effect_handler.add_poison(elemental_damage[2])
+	if elemental_damage[3]:
+		$effect_handler.add_bleed(elemental_damage[3])
+	if elemental_damage[4][0]:
+		$effect_handler.add_electric(elemental_damage[4][0], elemental_damage[4][1], elemental_damage[4][2])
+
+
 func poison_dmg(dmg):
 	if dead: return
 	$paudio.play(0)
