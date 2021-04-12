@@ -11,6 +11,7 @@ viewport_path = NodePath("Viewport")
 
 [node name="NetworkPlayer" type="Spatial" groups=[
 "network_player",
+"player",
 ]]
 script = ExtResource( 28 )
 
