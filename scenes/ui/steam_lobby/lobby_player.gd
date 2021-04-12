@@ -52,7 +52,7 @@ func set_ready():
 func loaded_avatar(id: int, size: int, buffer: PoolByteArray) -> void:
 	if uid != id: return
 	Steam.disconnect("avatar_loaded", self, "loaded_avatar")
-	print("Avatar for user: "+str(id)+", size: "+str(size))
+#	print("Avatar for user: "+str(id)+", size: "+str(size))
 	
 	#Create the image and texture for loading
 	var AVATAR: Image = Image.new()

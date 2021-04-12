@@ -15,7 +15,9 @@ export(bool) var is_ranged = false
 export(float) var attack_range = 5.0
 export(PackedScene) var ranged_attack_projectile
 
-onready var _player = get_tree().get_nodes_in_group("player").front()
+var _threat_counter:Dictionary = {}
+
+onready var _player = _get_highest_threat_player()
 onready var _level = get_tree().get_nodes_in_group('level').front()
 
 var _velocity:Vector3 = Vector3()
@@ -201,6 +203,7 @@ func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
 	if not NetworkHelper.is_multiplayer() :
 		_apply_damage(-1, amount, knockback)
 	elif SteamNetwork.is_server():
+		_increase_threat(SteamNetwork._my_steam_id, amount)
 		SteamNetwork.rpc_all_clients(self, '_apply_damage', [amount, knockback])
 	else:
 		SteamNetwork.rpc_on_server(self, '_tell_server_damage',  [amount, knockback])
@@ -208,6 +211,7 @@ func damage(amount:int, knockback:Vector3 = Vector3.ZERO) -> void:
 
 
 func _tell_server_damage(damage_dealer:int, amount:int, knockback:Vector3) -> void:
+	_increase_threat(damage_dealer, amount)
 	SteamNetwork.rpc_all_clients(self, '_apply_damage', [amount, knockback])
 
 
@@ -216,6 +220,29 @@ func _apply_damage(server_id:int, amount:int, knockback:Vector3) -> void:
 	move_state(STATES.TRACKING_PLAYER)
 	.damage(amount, knockback)
 	update_bars()
+
+
+func _increase_threat(threat, amount) -> void:
+	if _threat_counter.keys().has(threat):
+		_threat_counter[threat] += amount
+	else:
+		_threat_counter[threat] = amount
+	
+	_player = _get_highest_threat_player()
+
+
+func _get_highest_threat_player():
+	var threat = 0
+	var highest_threat_player = -1
+	for player_id in _threat_counter:
+		if _threat_counter[player_id] > threat:
+			highest_threat_player = player_id
+	
+	if highest_threat_player == -1: 
+		return get_tree().get_nodes_in_group('player')[randi() % get_tree().get_nodes_in_group('player').size()]
+	
+	for player in get_tree().get_nodes_in_group('player'):
+		if player.name == str(highest_threat_player): return player
 
 
 # if the ammo has elemental effects apply them to the character
